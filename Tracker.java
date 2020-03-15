@@ -10,7 +10,7 @@ public class Tracker {
     private Vector2d H;
     private Vector2d F;
 
-    public Tracker(Vectro2d _p, Vector2d _v){
+    public Tracker(Vector2d _p, Vector2d _v){
         p = _p;
         v = _v;
         h = get_h.get_h(p.getX(),p.getY());
@@ -43,15 +43,15 @@ public class Tracker {
     public void actTimestep(double dt){
         double newPX = p.getX() + dt * v.getX();
         double newPY = p.getY() + dt * v.getY();
-        double newVX = v.getX() + dt * F.getX() / m;
-        double newVY = v.getY() + dt * F.getY() / m;
+        double newVX = get_h.advRound(v.getX() + dt * F.getX() / m,2);
+        double newVY = get_h.advRound(v.getY() + dt * F.getY() / m,2);
 
         p = new Vector2d(newPX,newPY);
         v = new Vector2d(newVX,newVY);
 
         recalculate();
 
-        t += dt;
+        t = get_h.advRound(t+dt,6);
     }
 
     public Vector2d get_p(){
@@ -60,5 +60,9 @@ public class Tracker {
 
     public Vector2d get_v(){
         return v;
+    }
+
+    public double get_t(){
+        return t;
     }
 }
