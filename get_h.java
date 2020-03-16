@@ -11,7 +11,8 @@ public class get_h{
     }
 
     public static double h(double hx, double hy){
-        double hz = Math.pow(hy,2) + Math.pow(hx,2);;
+        ///double hz = Math.sin(hx) + hx/5 + 1;
+        double hz = 1;
         return hz;
     }
 
