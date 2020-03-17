@@ -1,10 +1,23 @@
 import java.io.*;
 import java.util.*;
 
-class filereader {
+class FileReader {
 
-    public static void main(String[] args) {
-        
+    private static double g;
+    private static double weight; // grams
+    private static double mu;
+    private static double speed;
+    private static double radius;
+    private static double startX;
+    private static double startY;
+    private static Vector2d start = new Vector2d(startX, startY);
+    private static double goalX;
+    private static double goalY;
+    private static Vector2d goal = new Vector2d(goalX, goalY);
+
+
+    public static void fileread() {
+
         Scanner in = new Scanner(System.in);
         System.out.println("File path: ");
 
@@ -16,15 +29,14 @@ class filereader {
 
         try {
             File file = new File(path);
-            input= new Scanner(file);
+            input = new Scanner(file);
 
             while (input.hasNextLine()) {
                 data.add(input.nextLine());
             }
 
 
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println(e);
             return;
         }
@@ -34,48 +46,55 @@ class filereader {
 
             String names = parts[0];
             String values = parts[1];
-            
+
             List<String> list1 = Arrays.asList(names);
 
             if (list1.contains("g")) {
-                Double g = Double.parseDouble(values);
-             
+                g = Double.parseDouble(values);
+
                 System.out.println(g);
             }
 
             if (list1.contains("m")) {
-                Double m = Double.parseDouble(values);
+                weight = Double.parseDouble(values);
 
-                System.out.println(m);
+                System.out.println(weight);
             }
 
-            if(list1.contains("mu")) {
-                Double mu = Double.parseDouble(values);
+            if (list1.contains("mu")) {
+                mu = Double.parseDouble(values);
 
                 System.out.println(mu);
             }
 
-            if(list1.contains("vmax")) {
-                Double vmax = Double.parseDouble(values);
+            if (list1.contains("vmax")) {
+                speed = Double.parseDouble(values);
 
-                System.out.println(vmax);
+                System.out.println(speed);
             }
 
-            if(list1.contains("tol")) {
-                Double tol = Double.parseDouble(values);
+            if (list1.contains("tol")) {
+                radius = Double.parseDouble(values);
 
-                System.out.println(tol);
+                System.out.println(radius);
             }
 
-            if(list1.contains("start")) {
-                //String[] split = list.get(values).split(",");   //needs adjusting
+            if (list1.contains("startX")) {
+                startX = Double.valueOf(values);
+            }
+            if (list1.contains("startY")) {
+                startY = Double.valueOf(values);
             }
 
-            if(list1.contains("goal")) {    //needs adjusting
 
+            if (list1.contains("goalX")) {    //needs adjusting
+                goalX = Double.valueOf(values);
+            }
+            if (list1.contains("goalY")) {    //needs adjusting
+                goalY = Double.valueOf(values);
             }
 
-            if(list1.contains("height")) {      //needs adjusting
+            if (list1.contains("height")) {      //needs adjusting
 
             }
 
@@ -83,5 +102,93 @@ class filereader {
             //System.out.println(values);
         }
 
+    }
+
+    public static double getG() {
+        return g;
+    }
+
+    public static void setG(double g) {
+        FileReader.g = g;
+    }
+
+    public static double getWeight() {
+        return weight;
+    }
+
+    public static void setWeight(double weight) {
+        FileReader.weight = weight;
+    }
+
+    public static double getMu() {
+        return mu;
+    }
+
+    public static void setMu(double mu) {
+        FileReader.mu = mu;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public static double getRadius() {
+        return radius;
+    }
+
+    public static void setRadius(double radius) {
+        FileReader.radius = radius;
+    }
+
+    public static double getStartX() {
+        return startX;
+    }
+
+    public static void setStartX(double startX) {
+        FileReader.startX = startX;
+    }
+
+    public static double getStartY() {
+        return startY;
+    }
+
+    public static void setStartY(double startY) {
+        FileReader.startY = startY;
+    }
+
+    public static Vector2d getStart() {
+        return start;
+    }
+
+    public static void setStart(Vector2d start) {
+        FileReader.start = start;
+    }
+
+    public static double getGoalX() {
+        return goalX;
+    }
+
+    public static void setGoalX(double goalX) {
+        FileReader.goalX = goalX;
+    }
+
+    public static double getGoalY() {
+        return goalY;
+    }
+
+    public static void setGoalY(double goalY) {
+        FileReader.goalY = goalY;
+    }
+
+    public static Vector2d getGoal() {
+        return goal;
+    }
+
+    public static void setGoal(Vector2d start) {
+        FileReader.goal = goal;
     }
 }
