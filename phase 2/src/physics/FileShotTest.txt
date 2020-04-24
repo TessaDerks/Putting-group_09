@@ -1,0 +1,6 @@
+speed = 2.5
+angle = 90
+speed = 2.5
+angle = 90
+speed = 2.5
+angle = 90
