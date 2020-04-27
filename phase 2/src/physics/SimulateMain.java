@@ -2,6 +2,8 @@ package physics;
 
 import java.util.Scanner;
 
+import com.project.puttingsimulator.SIESolver;
+
 public class SimulateMain {
     private static Vector2d start;
     private static Vector2d flag;
@@ -40,8 +42,6 @@ public class SimulateMain {
 
         initialInput();
 
-      //  What.ball = start;
-      //  What.flag = flag;
 
         // Create PuttingSimulator.
         PuttingCourse course = new PuttingCourse(function, flag, start);
@@ -49,7 +49,7 @@ public class SimulateMain {
         course.set_vMax(vmax);
         course.set_holeTolerance(tol);
 
-        PhysicsEngine engine = new VerletSolver(start);
+        PhysicsEngine engine = new SIESolver( start);
         engine.set_step_size(0.01);
         engine.set_h(function);
         engine.set_m(m);
