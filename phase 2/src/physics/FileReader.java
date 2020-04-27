@@ -2,7 +2,7 @@ package physics;
 
 import java.io.*;
 import java.util.*;
-class FileReader {
+public class FileReader {
 
     private static double g;
     private static double weight; // grams
@@ -15,8 +15,16 @@ class FileReader {
     private static double goalY;
     private static String height;
 
+    public static Vector2d[] getVelocity() {
+        return velocity;
+    }
 
-    public static Vector2d[] playShot(String fileName){
+    private static Vector2d[] velocity;
+    private static Vector2d start;
+    private static Vector2d goal;
+
+
+    public static void fileShot(String fileName){
         String path = fileName;
 
         Scanner input;
@@ -35,40 +43,47 @@ class FileReader {
             System.out.println(e);
         }
         int size = (data.size()/2);
-        Double angle = 0.0;
-        Double speedd = 0.0;
+        double angle = 0.0;
+        double speedd = 0.0;
 
-        Vector2d[] velocity = new Vector2d[size];
+        velocity = new Vector2d[size];
         int velocityIndex = 0;
 
         for (int i = 0; i < size; i++){
-            for (int line = 0; line < data.size(); line++) {
+
+            for (int line = i * 2; line < (2 + i * 2); line++) {
+
                 String[] parts = data.get(line).split(" = ");
+
 
                 String names = parts[0];
                 String values = parts[1];
 
-
                 if (names.equals("v") || names.equals("speed")) {
-                    speedd = Double.valueOf(values);
-                    //System.out.println(speedd);
+                    speedd = Double.parseDouble(values);
+                    System.out.println(speedd);
                 }
                 if (names.equals("angle")) {
-                    angle = Double.valueOf(values);
-                    //System.out.println(angle);
-
+                    angle = Double.parseDouble(values);
+                    System.out.println(angle);
                 }
+                //velocity[i] = Tools.velFromAngle(angle,speedd);
             }
-            velocity[velocityIndex] = Tools.velFromAngle(angle,speedd);
-            velocityIndex++;
+            velocity[i] = Tools.velFromAngle(angle,speedd);
+
+            System.out.println(velocity[i].get_x() + " " + velocity[i].get_y());
             //System.out.println(this.velFromAngle(angle, speedd).getX() + " " + this.velFromAngle(angle, speedd).getY());
         }
 
-            return velocity;
+
+    }
+
+    public static Vector2d getShot(int index){
+        return velocity[index];
     }
 
 
-    public void fileread(String path1) {
+    public void fileRead(String path1) {
 
         String path = path1;
 
@@ -96,7 +111,7 @@ class FileReader {
             String names = parts[0];
             String values = parts[1];
 
-            List<String> list1 = Arrays.asList(names);
+            List<String> list1 = Collections.singletonList(names);
 
             if (list1.contains("g")) {
                 g = Double.parseDouble(values);
@@ -129,26 +144,27 @@ class FileReader {
             }
 
             if (list1.contains("startX")) {
-                startX = Double.valueOf(values);
+                startX = Double.parseDouble(values);
                 System.out.println(startX);
             }
             if (list1.contains("startY")) {
-                startY = Double.valueOf(values);
+                startY = Double.parseDouble(values);
                 System.out.println(startY);
-
             }
 
+            start = new Vector2d(startX, startY);
 
             if (list1.contains("goalX")) {    //needs adjusting
-                goalX = Double.valueOf(values);
+                goalX = Double.parseDouble(values);
                 System.out.println(goalX);
 
             }
             if (list1.contains("goalY")) {    //needs adjusting
-                goalY = Double.valueOf(values);
+                goalY = Double.parseDouble(values);
                 System.out.println(goalY);
-
             }
+
+            goal = new Vector2d(goalX, goalY);
 
             if (list1.contains("height")) {      //needs adjusting
                 //String masterFormula = ShuntingYard.postfix(values);
@@ -156,21 +172,10 @@ class FileReader {
                 height = values;
                 System.out.println(values);
             }
-
-            //System.out.println(names);
-            //System.out.println(values);
         }
-
+        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2);
     }
-    //public static void main(String[] args) {
 
-        //Vector2d[] x;
-        //FileReader filereader = new FileReader();
-        //x = filereader.playShot("C:\\Users\\teunh\\Documents\\FileShotTest.txt");
-        //filereader.fileread("C:\\Users\\teunh\\Documents\\FileReaderTessts.txt");
-        
-
-    //}
 
     public static double getG() {
         return g;
@@ -201,7 +206,7 @@ class FileReader {
     }
 
     public void setSpeed(double speed) {
-        this.speed = speed;
+        FileReader.speed = speed;
     }
 
     public static double getRadius() {
