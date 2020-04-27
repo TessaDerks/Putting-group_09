@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="650.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sampl.Controller">
+   <children>
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Setup" textAlignment="CENTER" wrappingWidth="496.037109375">
+         <font>
+            <Font name="Arial Nova Bold" size="39.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" left="50.0" top="10.0" />
+         </VBox.margin></Text>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/gravity.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gravity Constant">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+            <TextField fx:id="gravity" prefWidth="200.0" text="9.81">
+               <HBox.margin>
+                  <Insets left="72.0" top="10.0" />
+               </HBox.margin></TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/weight%20(1).png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass of Ball">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+            <TextField fx:id="mass" prefWidth="200.0" text="45">
+               <HBox.margin>
+                  <Insets left="96.0" top="10.0" />
+               </HBox.margin></TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></HBox>
+       <HBox prefHeight="100.0" prefWidth="200.0">
+           <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/friction.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin>
+            </ImageView>
+               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Friction Coefficient">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+               <TextField fx:id="friction" prefWidth="200.0" text="0.131">
+               <HBox.margin>
+                  <Insets left="60.0" top="10.0" />
+               </HBox.margin></TextField>
+           </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></HBox>
+       <HBox prefHeight="100.0" prefWidth="200.0">
+           <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/golf%20(1).png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin>
+            </ImageView>
+               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position ( x , y )">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+               <TextField fx:id="startPosX" prefWidth="90.0" text="5">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></TextField>
+            <TextField fx:id="startPosY" prefWidth="90.0" text="5">
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+           </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></HBox>
+       <HBox prefHeight="100.0" prefWidth="200.0">
+           <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/finish.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin>
+            </ImageView>
+               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Goal Position ( x , y )">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+               <TextField fx:id="goalPosX" prefWidth="90.0" text="10">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></TextField>
+            <TextField fx:id="goalPosY" prefWidth="90.0" text="10">
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+           </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></HBox>
+       <HBox prefHeight="100.0" prefWidth="200.0">
+           <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/radius.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin>
+            </ImageView>
+               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Radius of Goal">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+               <TextField fx:id="radius" prefWidth="200.0" text="0.2">
+               <HBox.margin>
+                  <Insets left="81.0" top="10.0" />
+               </HBox.margin></TextField>
+           </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></HBox>
+       <HBox prefHeight="100.0" prefWidth="200.0">
+           <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/speedometer.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin>
+            </ImageView>
+               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum Speed">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+               <TextField fx:id="maxSpeed" prefWidth="200.0" text="30">
+               <HBox.margin>
+                  <Insets left="69.0" top="10.0" />
+               </HBox.margin></TextField>
+           </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></HBox>
+       <HBox prefHeight="100.0" prefWidth="200.0">
+           <children>
+            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/forest.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="75.0" />
+               </HBox.margin></ImageView>
+               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Height Profile">
+               <HBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </HBox.margin></Text>
+               <TextField fx:id="heightProfile" prefWidth="200.0" text="1">
+               <HBox.margin>
+                  <Insets left="85.0" top="10.0" />
+               </HBox.margin></TextField>
+           </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></HBox>
+      <Button fx:id="applyManInput" mnemonicParsing="false" onMouseClicked="#applyMan" text="Apply">
+         <VBox.margin>
+            <Insets bottom="20.0" left="275.0" top="20.0" />
+         </VBox.margin></Button>
+   </children>
+</VBox>
