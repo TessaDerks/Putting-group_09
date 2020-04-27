@@ -1,14 +1,13 @@
 package physics;
 
-import java.util.Scanner;
-
-
+import main.Main;
 
 public class SimulateMain {
     private static Vector2d start;
     private static Vector2d flag;
     private static Function2d function;
     public static PuttingSimulator simulator;
+    public static int version;
 
     public static Function2d getFunction() {
         return function;
@@ -27,20 +26,30 @@ public class SimulateMain {
 
     private static double mu;
     private static double vmax;
+
+    public static int getVersion() {
+        return version;
+    }
+
     private static double tol;
 
     public static boolean win = false;
     public static boolean shotsByFile = false;
-    public static Vector2d[] shots;
+
     public static int shotArrayCount = 0;
 
-    public static void beginning(/*double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height*/) {
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version) {
 
-        //start = _start;
-        //flag = _goal;
-        //function = new Function2d(_height);
 
-        initialInput();
+        g = _g;
+        m = _m;
+        mu = _mu;
+        vmax = _vmax;
+        tol = _tol;
+        start = _start;
+        flag = _goal;
+        function = new Function2d(_height);
+        version = _version;
 
 
         // Create PuttingSimulator.
@@ -59,7 +68,7 @@ public class SimulateMain {
         simulator.set_ball_position(start);
 
         System.out.println("=== STARTING GAME ===");
-
+        new Main().start();
 
     }
 
@@ -69,7 +78,7 @@ public class SimulateMain {
         simulator.get_engine().sendPosition();
 
         // Start game.
-        shoot();
+        //shoot();
         if(simulator.calcWin()){
             // Win.
             System.out.println();
@@ -82,7 +91,7 @@ public class SimulateMain {
 
     }
 
-    private static void shoot(){
+   /* private static void shoot(){
         Scanner in = new Scanner(System.in);
 
         if(shotsByFile){
@@ -111,7 +120,9 @@ public class SimulateMain {
 
     }
 
-    private static void initialInput(){
+    */
+
+   /* private static void initialInput(){
 
         int shotType;
         double sx;
@@ -123,7 +134,7 @@ public class SimulateMain {
         System.out.println("Auto? (1)");
         int auto = in.nextInt();
         if(auto != 1) {
-            System.out.println("Shots by (1)hand or (2)file");
+            System.out.println("Shots by (2)hand or (3)file");
             shotType = in.nextInt();
             System.out.println("Enter starting x:");
             sx = in.nextDouble();
@@ -161,17 +172,23 @@ public class SimulateMain {
             function = new Function2d("1");
         }
 
+
+
         start = new Vector2d(sx,sy);
         flag = new Vector2d(fx,fy);
 
-        if(shotType == 2){
+        if(shotType == 3){
             shotsByFile = true;
         }
 
         if(shotsByFile){
-            System.out.println("Shots-file name:");
-            String filename = in.nextLine();
-            shots = FileReader.playShot(filename);
+           // System.out.println("Shots-file name:");
+            //String filename = in.nextLine();
+            shots = FileReader.getShot();
         }
+        System.out.println("1");
     }
+
+    */
+
 }
