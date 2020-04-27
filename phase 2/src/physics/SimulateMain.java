@@ -2,7 +2,7 @@ package physics;
 
 import java.util.Scanner;
 
-import com.project.puttingsimulator.SIESolver;
+
 
 public class SimulateMain {
     private static Vector2d start;
