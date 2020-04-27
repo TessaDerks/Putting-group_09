@@ -16,6 +16,7 @@ import entities.Camera;
 import entities.Entity;
 import entities.Light;
 import entities.Player;
+import javafx.application.Application;
 import maths.MousePicker;
 import org.lwjgl.glfw.GLFW;
 
@@ -27,11 +28,7 @@ import org.lwjglx.util.vector.Vector2f;
 import org.lwjglx.util.vector.Vector3f;
 
 import org.lwjglx.util.vector.Vector4f;
-import physics.PuttingSimulator;
-import physics.SimulateMain;
-import physics.Tools;
-import physics.Vector2d;
-
+import physics.*;
 import terrain.Terrain;
 import water.WaterFrameBuffers;
 import water.WaterRenderer;
@@ -123,7 +120,9 @@ public class Main implements Runnable {
 	public List<WaterTile> waters;
 	public WaterTile water;
 	WaterFrameBuffers fbos;
-	public ShotMenu shotMenu;
+
+	public static Vector2d shots;
+	public int shotCount = 0;
 
 	// ================================================ Background Colour;
 	private static final float RED = 0.5f;
@@ -138,11 +137,10 @@ public class Main implements Runnable {
 	public static boolean takingShot = false;
 
 	public void start() {
-		SimulateMain.beginning();
 		game = new Thread(this, "game");
 		game.start();
 	}
-	
+
 	public void init() throws Exception {
 		window = new Window(WIDTH, HEIGHT, "Game");
 		//window.setBackgroundColor(135f/256f, 206f/256f, 235/256f);
@@ -264,9 +262,6 @@ public class Main implements Runnable {
 
 		//picker = new MousePicker(camera, renderer.getProjectionMatrix());
 
-
-
-
 		// ========================================== Add Entities to an array List at position XYZ. ========================================================
 
 		tree = new ArrayList<Entity>();
@@ -320,7 +315,7 @@ public class Main implements Runnable {
 		//============================================================= GUI Component generation ======================================================
 
 	}
-	
+
 	public void run() {
 		try {
 			init();
@@ -337,11 +332,11 @@ public class Main implements Runnable {
 		loader.cleanUp();
 		window.destroy();
 	}
-	
+
 	private void update() {
 		window.update();
 	}
-	
+
 	private void render() {
 		//===================================================== Camera Movement ==================================================
 		camera.move();
@@ -350,8 +345,19 @@ public class Main implements Runnable {
 		//======================================================= Player Movement ================================================
 
 		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot) {
-            ShotMenu.create();
-			//takingShot = true;
+			if (SimulateMain.getVersion() == 1) {
+				ShotMenu.create();
+				//takingShot = true;
+			} else {
+				if (shotCount < FileReader.getVelocity().length) {
+					shots = FileReader.getShot(shotCount);
+					SimulateMain.simulator.take_shot(shots);
+					takingShot = true;
+					shotCount++;
+				} else {
+					System.out.println("All shots have been made.");
+				}
+			}
 		}
 
 
@@ -409,8 +415,8 @@ public class Main implements Runnable {
 		window.swapBuffers();
 
 	}
-	
-	public static void main(String[] args) {
-		new Main().start();
-	}
+
+	//public static void main(String[] args) {
+	//	new Main().start();
+	//}
 }
