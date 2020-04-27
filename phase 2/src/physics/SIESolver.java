@@ -1,4 +1,4 @@
-package com.project.puttingsimulator;
+package physics;
 
 
 import physics.Function2d;
