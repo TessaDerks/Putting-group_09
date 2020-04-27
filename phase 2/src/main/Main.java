@@ -194,7 +194,7 @@ public class Main implements Runnable {
 		texturedModelGrass = new TexturedModel(modelGrass, new ModelTexture(loader.loadTexture("grassTexture")));
 		texturedModelGolfBall = new TexturedModel(golfballModel, new ModelTexture(loader.loadTexture("golf4")));
 		texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
-		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
+		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("tree")));
 
 		// ========================================== TRANSPARENCY || FAKE LIGHTING on model textures ==================================
 		texturedModelGrass.getTexture().setHasTransparency(true);
@@ -255,10 +255,11 @@ public class Main implements Runnable {
 
 		//=================================================== GUI ============================================================================================
 
-		guis = new ArrayList<>();
+		/*guis = new ArrayList<>();
 		gui = new GUITexture(loader.loadTexture("socuwan"), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
 		guis.add(gui);
 		guiRenderer = new GUIRenderer(loader);
+		*/
 
 		//picker = new MousePicker(camera, renderer.getProjectionMatrix());
 
