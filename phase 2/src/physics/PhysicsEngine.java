@@ -1,11 +1,8 @@
-package physics;
-
-import java.util.Vector;
 
 public interface PhysicsEngine {
     public void actTimestep();
     public void recalculate();
-    public void sendPosition();
+   // public void sendPosition();
 
     public Vector2d calcG();
     public Vector2d calcH();
@@ -19,9 +16,11 @@ public interface PhysicsEngine {
     public void set_v_max(double _v_max);
     public void set_step_size(double _dt);
     public void set_t(double _t);
+    public void resetPosition(Vector2d start); // ==== METHOD ADDED BY TEUN FOR THE AI
 
     public Function2d get_h();
     public Vector2d get_p();
     public Vector2d get_v();
     public double get_t();
 }
+
