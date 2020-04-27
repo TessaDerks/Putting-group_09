@@ -1,8 +1,12 @@
 package com.project.puttingsimulator;
 
-import com.mygdx.puttingame.What;
 
-public class SIESolver implements PhysicsEngine{
+import physics.Function2d;
+import physics.PhysicsEngine;
+import physics.Tools;
+import physics.Vector2d;
+
+public class SIESolver implements PhysicsEngine {
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
