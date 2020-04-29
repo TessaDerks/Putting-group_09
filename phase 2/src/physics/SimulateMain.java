@@ -58,7 +58,7 @@ public class SimulateMain {
         course.set_vMax(vmax);
         course.set_holeTolerance(tol);
 
-        PhysicsEngine engine = new SIESolver( start);
+        PhysicsEngine engine = new VerletSolver( start);
         engine.set_step_size(0.01);
         engine.set_h(function);
         engine.set_m(m);

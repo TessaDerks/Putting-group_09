@@ -36,10 +36,6 @@ public class ShotMenu {
         JTextField textfield2 = new JTextField(10);
         panel.add(textfield2);
 
-        JLabel label3 = new JLabel();
-        label3.setText("(Maximum speed = 5)");
-        panel.add(label3);
-
         JButton button = new JButton("APPLY");
         panel.add(button);
 

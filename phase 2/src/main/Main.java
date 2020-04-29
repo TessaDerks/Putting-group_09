@@ -123,8 +123,9 @@ public class Main implements Runnable {
 
 	public static Vector2d shots;
 	public int shotCount = 0;
+	public static boolean swingShot = false;
 
-	// ================================================ Background Colour;
+	// ================================================ Background Colour ======================================
 	private static final float RED = 0.5f;
 	private static final float GREEN = 0.5f;
 	private static final float BLUE = 0.5f;
@@ -194,9 +195,10 @@ public class Main implements Runnable {
 		texturedModelGrass = new TexturedModel(modelGrass, new ModelTexture(loader.loadTexture("grassTexture")));
 		texturedModelGolfBall = new TexturedModel(golfballModel, new ModelTexture(loader.loadTexture("golf4")));
 		texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
-		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("tree")));
+		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
 
-		// ========================================== TRANSPARENCY || FAKE LIGHTING on model textures ==================================
+		// ========================================== TRANSPARENCY || FAKE LIGHTING on model textures ======================================================
+
 		texturedModelGrass.getTexture().setHasTransparency(true);
 		texturedModelGrass.getTexture().setUseFakeLighting(true);
 
@@ -247,7 +249,7 @@ public class Main implements Runnable {
 
 		lights = new ArrayList<Light>();
 		//lights.add(new Light(new Vector3f(400,150,400), new Vector3f(1f,1f,1f)));
-		lights.add(new Light(new Vector3f(0,50,0), new Vector3f(1f,1f,1f)));
+		lights.add(new Light(new Vector3f(500,1000,500), new Vector3f(1f,1f,1f)));
 		//lights.add(new Light(new Vector3f(200,10,200), new Vector3f(2,0,0), new Vector3f(1,0.01f,0.002f)));
 		//lights.add(new Light(new Vector3f(250,50,250), new Vector3f(250,0,0), new Vector3f(1,0.001f,0.002f)));
 		//lights.add(new Light(new Vector3f(500,5,500), new Vector3f(2,2,10), new Vector3f(1,0.0001f,0.00002f)));
@@ -255,15 +257,13 @@ public class Main implements Runnable {
 
 		//=================================================== GUI ============================================================================================
 
-		/*guis = new ArrayList<>();
-		gui = new GUITexture(loader.loadTexture("socuwan"), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
+		guis = new ArrayList<>();
+		//gui = new GUITexture(loader.loadTexture(""), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
 		guis.add(gui);
 		guiRenderer = new GUIRenderer(loader);
-		*/
 
-		//picker = new MousePicker(camera, renderer.getProjectionMatrix());
 
-		// ========================================== Add Entities to an array List at position XYZ. ========================================================
+		// Add Entities to an array List at position XYZ.
 
 		tree = new ArrayList<Entity>();
 		random = new Random();
@@ -307,9 +307,9 @@ public class Main implements Runnable {
 		goalPosition = SimulateMain.getFlag();
 
 
-		player = new Player(texturedModelGolfBall, new Vector3f((float)playerStartPosition.get_x(),terrain.getHeightOfTerrain((float)(playerStartPosition.get_x()), (float)playerStartPosition.get_y()),(float) playerStartPosition.get_y()),0,0,0,5);
+		player = new Player(texturedModelGolfBall, new Vector3f((float)playerStartPosition.get_x(),terrain.getHeightOfTerrain((float)(playerStartPosition.get_x()), (float)playerStartPosition.get_y()),(float) playerStartPosition.get_y()),0,0,0,10);
 
-		pole = new Entity(texturedModelPole, new Vector3f((float)goalPosition.get_x(),terrain.getHeightOfTerrain(((float) goalPosition.get_x()),(float) goalPosition.get_y()),(float)goalPosition.get_y()-0.25f),0,0,0,5);
+		pole = new Entity(texturedModelPole, new Vector3f((float)goalPosition.get_x(),terrain.getHeightOfTerrain(((float) goalPosition.get_x()),(float) goalPosition.get_y()),(float)goalPosition.get_y()-0.25f),0,0,0,10);
 
 		//============================================================= Camera generation ======================================================
 		camera = new Camera(player);
@@ -348,7 +348,8 @@ public class Main implements Runnable {
 		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot) {
 			if (SimulateMain.getVersion() == 1) {
 				ShotMenu.create();
-				//takingShot = true;
+				//swingShot = true;
+				takingShot = true;
 			} else {
 				if (shotCount < FileReader.getVelocity().length) {
 					shots = FileReader.getShot(shotCount);
@@ -369,7 +370,7 @@ public class Main implements Runnable {
 			Vector2d newPosition = SimulateMain.simulator.act_timestep_from_distance();
 			player.move(terrain, new Vector2f((float) newPosition.get_x(), (float) newPosition.get_y()));
 
-			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),1) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),1) == 0){
+			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),2) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),2) == 0){
 				takingShot = false;
 			}
 		}

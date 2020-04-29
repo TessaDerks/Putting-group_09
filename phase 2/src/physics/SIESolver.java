@@ -1,17 +1,21 @@
-//package com.project.puttingsimulator;
+package physics;
 
-//import com.mygdx.puttingame.What;
 
-public class SIESolver implements PhysicsEngine{
+import physics.Function2d;
+import physics.PhysicsEngine;
+import physics.Tools;
+import physics.Vector2d;
+
+public class SIESolver implements PhysicsEngine {
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
-    private double mu = 0.132; // parameters given value because i haven't used the SimulateMain file
-    private double dt = 0.01;
-    private double v_max = 5;
+    private double mu;
+    private double dt;
+    private double v_max;
     private Vector2d p;
     private Vector2d v;
-    private Function2d h = new Function2d("1");
+    private Function2d h;
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
@@ -48,10 +52,10 @@ public class SIESolver implements PhysicsEngine{
         //sendPosition();
     }
 
-    //@Override
-    //public void sendPosition(){
-    //    //What.ent.setPosition((float) p.get_x(),(float) (h.evaluate(new Vector2d(p.get_x(),p.get_y()))+0.15),(float) p.get_y());
-   // }
+    @Override
+    public void sendPosition(){
+        //What.ent.setPosition((float) p.get_x(),(float) (h.evaluate(new Vector2d(p.get_x(),p.get_y()))+0.15),(float) p.get_y());
+    }
 
     //<editor-fold desc="Calculators">
     @Override
@@ -149,8 +153,4 @@ public class SIESolver implements PhysicsEngine{
         return t;
     }
     //</editor-fold>
-    public void resetPosition(Vector2d start) { // ====== ADDED METHOD ===
-        p = start;
-        recalculate();
-    }
 }

@@ -27,7 +27,6 @@ public class ShotListener implements ActionListener{
         theFrame = frame;
     }
 
-
     public void actionPerformed(ActionEvent event){
         try {
             String speedfield = speed.getText();
@@ -37,22 +36,12 @@ public class ShotListener implements ActionListener{
             SimulateMain.simulator.take_shot(Tools.velFromAngle(angleShot, speedShot));
             Main.takingShot = true;
             theFrame.dispose();
-
-
-
+            //Main.swingShot = false;
             //System.out.println("speed: " + speedShot + " and angle " + angleShot);
         }
         catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(theFrame, "Fill all the fields");
         }
-
-
-
-
-
     }
-
-
-
 
 }

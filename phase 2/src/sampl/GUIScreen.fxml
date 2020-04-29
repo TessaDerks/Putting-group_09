@@ -12,7 +12,7 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <ImageView fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/golf.png" />
                      </image>
@@ -23,11 +23,17 @@
                   <Button mnemonicParsing="false" onMouseClicked="#start" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #404040; -fx-text-fill: #f0f0f0;" text="Play Game">
                      <padding>
                         <Insets top="5.0" />
-                     </padding></Button>
-               </children></HBox>
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></HBox>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <ImageView fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/typing.png" />
                      </image>
@@ -38,12 +44,18 @@
                   <Button mnemonicParsing="false" onMouseClicked="#manInput" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: transparent; -fx-text-fill: #f0f0f0;" text="Manual Input">
                      <padding>
                         <Insets top="5.0" />
-                     </padding></Button>
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></Button>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <ImageView fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/diary.png" />
                      </image>
@@ -54,12 +66,18 @@
                   <Button mnemonicParsing="false" onMouseClicked="#fileRead" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: transparent; -fx-text-fill: #f0f0f0;" text="File Reader">
                      <padding>
                         <Insets top="5.0" />
-                     </padding></Button>
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></Button>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <ImageView fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/exit.png" />
                      </image>
@@ -67,8 +85,14 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#exit" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-text-fill: #f0f0f0;" text="Exit" />
+                  <Button mnemonicParsing="false" onMouseClicked="#exit" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: transparent; -fx-text-fill: #f0f0f0;" text="Exit">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></Button>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
@@ -96,9 +120,9 @@
       </HBox>
    </top>
    <center>
-      <ImageView fitHeight="465.0" fitWidth="498.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="466.0" fitWidth="731.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/fancyplaatje.png" />
+            <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/kim.png" />
          </image>
       </ImageView>
    </center>

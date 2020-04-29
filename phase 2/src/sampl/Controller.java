@@ -97,8 +97,6 @@ public class Controller implements Initializable {
         fileReader.fileRead(fileCourse);
         System.out.println(fileShots);
         FileReader.fileShot(fileShots);
-
-
     }
 
 
