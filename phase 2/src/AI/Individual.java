@@ -1,4 +1,8 @@
-class Individual {
+package AI;
+
+import physics.*;
+
+public class Individual {
     private Double fitness;
     private Vector2d position;
     private Double speed;

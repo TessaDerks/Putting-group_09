@@ -1,8 +1,7 @@
-
+package AI;
 
 import com.sun.jdi.ShortType;
-
-import java.util.Vector;
+import physics.*;
 // IMPORTANT!!!!!
 // ======== bitly.com/98K8eH ===========
 class Genetic {

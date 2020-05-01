@@ -1,3 +1,7 @@
+package AI;
+
+import physics.*;
+
 public class Merge {
 
 

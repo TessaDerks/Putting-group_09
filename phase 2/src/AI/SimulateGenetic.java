@@ -1,3 +1,7 @@
+package AI;
+
+import physics.*;
+
 public class SimulateGenetic {
     private static Vector2d start = new Vector2d(0.0, 0.0);
     private static Vector2d end = new Vector2d(3.0 , 2.0);
