@@ -41,19 +41,9 @@ import java.util.Random;
 
 
 public class Main implements Runnable {
-	public static int getWIDTH() {
-		return WIDTH;
-	}
 
-	public static int getHEIGHT() {
-		return HEIGHT;
-	}
-
-	// =============================== Game / Window ==========================
 	public Thread game;
 	public Window window;
-
-	// =============================== Window dimensions ==========================
 	public static final int WIDTH = 1600, HEIGHT = 900;
 	public int i = 0;
 
@@ -125,7 +115,7 @@ public class Main implements Runnable {
 	public int shotCount = 0;
 	public static boolean swingShot = false;
 
-	// ================================================ Background Colour ======================================
+	// background colour
 	private static final float RED = 0.5f;
 	private static final float GREEN = 0.5f;
 	private static final float BLUE = 0.5f;
@@ -142,28 +132,15 @@ public class Main implements Runnable {
 		game.start();
 	}
 
+	// create window with terrain
 	public void init() throws Exception {
 		window = new Window(WIDTH, HEIGHT, "Game");
-		//window.setBackgroundColor(135f/256f, 206f/256f, 235/256f);
 		window.setBackgroundColor(RED,GREEN,BLUE);
 		window.create();
-		//model = loader.loadToVAO(vertices,textureCoords, indices);
 		renderer = new MasterRenderer(loader);
 
-		// ===========================================    Instructions    =======================================
-		// =========================================== How to add a model ======================================
-		/*
-			1. Load Object file with OBJFileLoader
-			2. Load the object file into model.
-			3. Load texture onto model  (decide if it needs Transparency or Fake Lighting).
-			4. Set Shine and Reflectivity of the lighting on textured model.
-			4. Create an Entity with the textured model.
-			5. Render the Entity (or an Array List of Entities).
 
-		 */
-
-		//=========================================== OBJECT LOADER ========================================
-
+		// load objects to RawModels
 		modelDataTree = OBJFileLoader.loadOBJ("tree");
 		modelDataGrass = OBJFileLoader.loadOBJ("grassModel");
 		modelDataGolfBall = OBJFileLoader.loadOBJ("golf_ball3");
@@ -176,8 +153,8 @@ public class Main implements Runnable {
 		fernModel = loader.loadToVAO(modelDataFern.getVertices(),modelDataFern.getTextureCoords(),modelDataFern.getNormals(),modelDataFern.getIndices());
 		poleModel = loader.loadToVAO(modelDataPole.getVertices(),modelDataPole.getTextureCoords(),modelDataPole.getNormals(),modelDataPole.getIndices());
 
-		//============================================ TERRAIN TEXTURES ======================================
 
+		// create texture for terrain
 		backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
 		rTexture = new TerrainTexture(loader.loadTexture("dirt"));
 		gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
@@ -186,8 +163,8 @@ public class Main implements Runnable {
 		texturePack = new TerrainTexturePack(backgroundTexture, rTexture,gTexture,bTexture);
 		blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 
-		//============================================ MODEL TEXTURES ======================================
 
+		// create texture models
 		fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
 		fernTextureAtlas.setNumberOfRows(2);
 
@@ -197,39 +174,29 @@ public class Main implements Runnable {
 		texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
 		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
 
-		// ========================================== TRANSPARENCY || FAKE LIGHTING on model textures ======================================================
 
 		texturedModelGrass.getTexture().setHasTransparency(true);
 		texturedModelGrass.getTexture().setUseFakeLighting(true);
 
-		// ========================================= SET SHINE AND REFLECTIVITY OF EACH TEXTURED MODEL. ======================================================
-		// tree
+
+		// set shine and reflectivity of each textured model
 
 		textureTree = texturedModelTree.getTexture();
 		textureTree.setShineDamper(10);
 		textureTree.setReflectivity(1);
 
-		// grass
-
-
 		textureGrass = texturedModelGrass.getTexture();
 		textureGrass.setShineDamper(10);
 		textureGrass.setReflectivity(1);
-
-		// fern
-
 
 		fernTextureAtlas = texturedModelFern.getTexture();
 		fernTextureAtlas.setShineDamper(10);
 		fernTextureAtlas.setReflectivity(1);
 
-		//golfBall
-
 		textureGolfBall = texturedModelGolfBall.getTexture();
 		textureGolfBall.setShineDamper(10);
 		textureGolfBall.setReflectivity(1);
 
-		//pole
 
 		texturePole = texturedModelPole.getTexture();
 		texturePole.setShineDamper(10);
@@ -237,34 +204,23 @@ public class Main implements Runnable {
 
 
 
-		// =================================================== TERRAIN GENERATION ======================================================
-
+		// generate terrain
 		terrain = new Terrain(0,0,loader,texturePack, blendMap);
 
-
-
-		// =================================================== LIGHTS GENERATION ======================================================
-			// Light has 2 constructors, enabling you to decide whether you want attenuation or not on a light source.
-			// Attenuation is the brightness of lighting the further it gets from the light source.
-
+		// generate light
 		lights = new ArrayList<Light>();
-		//lights.add(new Light(new Vector3f(400,150,400), new Vector3f(1f,1f,1f)));
 		lights.add(new Light(new Vector3f(500,1000,500), new Vector3f(1f,1f,1f)));
-		//lights.add(new Light(new Vector3f(200,10,200), new Vector3f(2,0,0), new Vector3f(1,0.01f,0.002f)));
-		//lights.add(new Light(new Vector3f(250,50,250), new Vector3f(250,0,0), new Vector3f(1,0.001f,0.002f)));
-		//lights.add(new Light(new Vector3f(500,5,500), new Vector3f(2,2,10), new Vector3f(1,0.0001f,0.00002f)));
 
 
-		//=================================================== GUI ============================================================================================
-
+		// create and render small GUI in top right position
 		guis = new ArrayList<>();
 		//gui = new GUITexture(loader.loadTexture(""), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
 		guis.add(gui);
 		guiRenderer = new GUIRenderer(loader);
 
 
-		// Add Entities to an array List at position XYZ.
 
+		// create tree entity list
 		tree = new ArrayList<Entity>();
 		random = new Random();
 		for(int i=0;i<500;i++){
@@ -274,7 +230,7 @@ public class Main implements Runnable {
 			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,7));
 		}
 
-
+		// create grass entity list
 		grass = new ArrayList<Entity>();
 		random = new Random();
 		for(int i=0;i<500;i++){
@@ -284,6 +240,7 @@ public class Main implements Runnable {
 			grass.add(new Entity(texturedModelGrass, new Vector3f(x,y,z),0,0,0,1));
 		}
 
+		// create fern entity list
 		fern = new ArrayList<Entity>();
 		random = new Random();
 		for(int i=0;i<500;i++){
@@ -294,26 +251,24 @@ public class Main implements Runnable {
 		}
 
 
-//=================================================== water ===================================================================
+		// create water
 		fbos = new WaterFrameBuffers();
 		waterShader = new WaterShader();
 		waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), fbos);
 		waters = new ArrayList<WaterTile>();
 		water = new WaterTile(400,400,0);
 		waters.add(water);
-		//============================================================ Player generation ======================================================
 
 		playerStartPosition = SimulateMain.getStart();
 		goalPosition = SimulateMain.getFlag();
 
-
+		// generate ball
 		player = new Player(texturedModelGolfBall, new Vector3f((float)playerStartPosition.get_x(),terrain.getHeightOfTerrain((float)(playerStartPosition.get_x()), (float)playerStartPosition.get_y()),(float) playerStartPosition.get_y()),0,0,0,10);
 
 		pole = new Entity(texturedModelPole, new Vector3f((float)goalPosition.get_x(),terrain.getHeightOfTerrain(((float) goalPosition.get_x()),(float) goalPosition.get_y()),(float)goalPosition.get_y()-0.25f),0,0,0,10);
 
-		//============================================================= Camera generation ======================================================
+		// put the camera on the ball
 		camera = new Camera(player);
-		//============================================================= GUI Component generation ======================================================
 
 	}
 
@@ -323,6 +278,7 @@ public class Main implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// render the scene continuously with updated scene
 		while (!window.shouldClose() && !Input.isKeyDown(GLFW.GLFW_KEY_ESCAPE)) {
 			update();
 			render();
@@ -339,18 +295,18 @@ public class Main implements Runnable {
 	}
 
 	private void render() {
-		//===================================================== Camera Movement ==================================================
-		camera.move();
-		//picker.update();
-		//System.out.println(picker.getCurrentRay());
-		//======================================================= Player Movement ================================================
 
+		camera.move();
+
+
+		// if s is pressed on keyboard, get information for new shot
 		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot) {
+			// if manual input was chosen, create GUI to ask for velocity of shot
 			if (SimulateMain.getVersion() == 1) {
 				ShotMenu.create();
-				//swingShot = true;
 				takingShot = true;
 			} else {
+				// if file input was chosen, get shot information from file and send information to physics engine
 				if (shotCount < FileReader.getVelocity().length) {
 					shots = FileReader.getShot(shotCount);
 					SimulateMain.simulator.take_shot(shots);
@@ -362,10 +318,10 @@ public class Main implements Runnable {
 			}
 		}
 
-
+		/* if shot is taken, position of ball gets updated with received new position from physics engine,
+			creating a rolling motion*/
 		if (i % 1 == 0 && takingShot) {
 			timeCurrent = System.currentTimeMillis();
-			//System.out.println(timeCurrent-timeLast);
 			timeLast = timeCurrent;
 			Vector2d newPosition = SimulateMain.simulator.act_timestep_from_distance();
 			player.move(terrain, new Vector2f((float) newPosition.get_x(), (float) newPosition.get_y()));
@@ -387,30 +343,32 @@ public class Main implements Runnable {
         float distance = 2 * (camera.getPosition().y - water.getHeight());
         camera.getPosition().y -= distance;
         camera.invertPitch();
-		//========================================================= Render Scene ======================================================
+
+        // render scene from different angles/ distant
 		renderer.processEntity(player);
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, -water.getHeight()));
-		//==============================================================================================================================
+
 		camera.getPosition().y += distance;
 		camera.invertPitch();
 
 		fbos.bindRefractionFrameBuffer();
-		//========================================================= Render Scene ======================================================
+
 		renderer.processEntity(player);
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, water.getHeight()));
-		//==============================================================================================================================
+
 		GL46.glDisable(GL46.GL_CLIP_DISTANCE0);
 		fbos.unbindCurrentFrameBuffer();
-		//========================================================= Render Scene ======================================================
+
+
 		renderer.processEntity(player);
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0,100000));
-		//==============================================================================================================================
+
 
 		//guiRenderer.render(guis);
 		waterRenderer.render(waters, camera);
@@ -418,7 +376,11 @@ public class Main implements Runnable {
 
 	}
 
-	//public static void main(String[] args) {
-	//	new Main().start();
-	//}
+	public static int getWIDTH() {
+		return WIDTH;
+	}
+
+	public static int getHEIGHT() {
+		return HEIGHT;
+	}
 }
