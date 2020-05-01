@@ -8,6 +8,7 @@ import org.lwjglx.util.vector.Matrix4f;
 
 import java.util.List;
 
+// renders small GUI in the right corner of the window of terrain
 public class GUIRenderer {
 
     private final RawModel quad;
