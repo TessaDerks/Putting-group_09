@@ -10,17 +10,13 @@ import org.lwjglx.util.vector.Vector3f;
 import physics.Tools;
 import terrain.Terrain;
 
+// player = ball
 public class Player extends Entity {
 
     private static final float MOVE_SPEED = 20;
     private static final float TURN_SPEED = 160;
-    private static final float GRAVITY = -50;
     private static final float JUMP_POWER = 30;
-
-    private static final float TERRAIN_HEIGHT = 0;
-
     private boolean isInAir1 = false;
-
 
     private float currentSpeed = 0;
     private float currentTurnSpeed = 0;
@@ -31,10 +27,9 @@ public class Player extends Entity {
         super(model, position, rotX, rotY, rotZ, scale);
     }
 
+    // updates position
     public void move(Terrain terrain, Vector2f newPos){
         checkInputs();
-        //super.increaseRotation(0, currentTurnSpeed * Window.getFrameTimeSeconds(), 0);
-        //float distance = currentSpeed * Window.getFrameTimeSeconds();
 
                 Vector3f newPosition = new Vector3f();
                 newPosition.x = newPos.x;
@@ -45,29 +40,6 @@ public class Player extends Entity {
                // Tools.wait(100);
 
             nMoves++;
-
-
-
-
-
-            //float dx = (float) (distance * Math.sin(Math.toRadians(super.getRotY())));
-            // float dz = (float) (distance * Math.cos(Math.toRadians(super.getRotY())));
-
-            //super.setPosition(newPosition.x, terrainHeight, newPosition.z);
-
-            // upwardsSpeed += GRAVITY* Window.getFrameTimeSeconds();
-            //super.increasePosition(0, upwardsSpeed* Window.getFrameTimeSeconds(),0);
-
-           /* float terrainHeight = terrain.getHeightOfTerrain(super.getPosition().x, super.getPosition().z)+0.10f;
-
-            if (super.getPosition().y < terrainHeight) {
-                upwardsSpeed = 0;
-                isInAir1 = false;
-                super.getPosition().y = terrainHeight;
-            }
-
-            */
-
     }
 
     private void jump(){
@@ -75,7 +47,6 @@ public class Player extends Entity {
             this.upwardsSpeed = JUMP_POWER;
             isInAir1 = true;
         }
-
     }
 
     private void checkInputs(){
@@ -102,11 +73,5 @@ public class Player extends Entity {
         if (Input.isKeyDown(GLFW.GLFW_KEY_SPACE)){
             jump();
         }
-
-
-
     }
-
-
-
 }
