@@ -300,6 +300,7 @@ public class Main implements Runnable {
 
 
 		// if s is pressed on keyboard, get information for new shot
+
 		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot) {
 			// if manual input was chosen, create GUI to ask for velocity of shot
 			if (SimulateMain.getVersion() == 1) {
