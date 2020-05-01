@@ -70,7 +70,8 @@ public class Controller implements Initializable {
     @FXML
     private Button applyManInput;
 
-@FXML
+    // read textfield from manual input screen and send information about terrain to simulate main
+    @FXML
     private void applyMan(MouseEvent event){
         double gravityConstant = Double.parseDouble(gravity.getText());
         double massOfBall = Double.parseDouble(mass.getText());
@@ -88,14 +89,15 @@ public class Controller implements Initializable {
         SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1);
     }
 
+
+    // read textfields from file input screen and send information to filereader 
     @FXML
     private void applyFile(MouseEvent event){
         String fileCourse = courseCreator.getText();
         String fileShots = listMoves.getText();
         FileReader fileReader = new FileReader();
-        System.out.println(fileCourse);
+        
         fileReader.fileRead(fileCourse);
-        System.out.println(fileShots);
         FileReader.fileShot(fileShots);
     }
 
