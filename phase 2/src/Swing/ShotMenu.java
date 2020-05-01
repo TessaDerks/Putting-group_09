@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 
+// create menu for manual shot input
 public class ShotMenu {
 
     private static final int FRAME_WIDTH = 200;
@@ -40,7 +41,6 @@ public class ShotMenu {
         panel.add(button);
 
         frame.add(panel);
-
 
         ActionListener shotListener = new ShotListener(textfield1,textfield2, frame);
         button.addActionListener(shotListener);
