@@ -58,6 +58,12 @@ public class SIESolver implements PhysicsEngine {
     }
 
     //<editor-fold desc="Calculators">
+
+    public void resetPosition(Vector2d start){
+        p = start;
+        recalculate();
+    }
+
     @Override
     public void recalculate(){
         G = calcG();

@@ -6,6 +6,7 @@ public interface PhysicsEngine {
     public void actTimestep();
     public void recalculate();
     public void sendPosition();
+    public void resetPosition(Vector2d start);
 
     public Vector2d calcG();
     public Vector2d calcH();

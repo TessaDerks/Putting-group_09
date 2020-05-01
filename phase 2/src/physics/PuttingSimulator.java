@@ -71,9 +71,9 @@ public class PuttingSimulator{
 		System.out.println(">> Shot landed at ( " + ball_position.get_x() + " , " + ball_position.get_y() + " ). t=" + engine.get_t());
 	}
 
-	public boolean calcWin(){
+	public boolean calcWin(Vector2d position){
 		boolean r = false;
-		double absDis = Math.sqrt(Math.pow(ball_position.get_x() - course.get_flag_position().get_x(),2) + Math.pow(ball_position.get_y() - course.get_flag_position().get_y(),2));
+		double absDis = Math.sqrt(Math.pow(position.get_x() - course.get_flag_position().get_x(),2) + Math.pow(position.get_y() - course.get_flag_position().get_y(),2));
 		if(absDis < course.get_hole_tolerance()){
 			r = true;
 		}
