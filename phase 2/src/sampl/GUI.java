@@ -12,6 +12,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+// starts application with main GUI of the game
 public class GUI extends Application {
 
     private double x,y;
@@ -22,7 +23,7 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
+        
         Parent root = FXMLLoader.load(getClass().getResource("GUIScreen.fxml"));
 
         Scene scene = new Scene(root);
@@ -35,16 +36,6 @@ public class GUI extends Application {
                 y = mouseEvent.getSceneY();
             }
         });
-
-       /* root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                primaryStage.setX(mouseEvent.getSceneX()-x);
-                primaryStage.setY(mouseEvent.getSceneY()-y);
-            }
-        });
-
-        */
 
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
