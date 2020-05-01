@@ -1,0 +1,4 @@
+===Seaside Hills===
+>>Start at (0,0)
+>>Flag at Hard(-5,3) or Easy(-1.5,2.5)
+0.3 * ( cos ( x ) + sin ( y ) + 0.4 * x ) + 0.8
