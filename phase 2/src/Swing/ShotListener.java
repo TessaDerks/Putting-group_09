@@ -27,17 +27,18 @@ public class ShotListener implements ActionListener{
         theFrame = frame;
     }
 
+    // reads textfields from manual shot menu and send information of new shot to simulator
     public void actionPerformed(ActionEvent event){
         try {
             String speedfield = speed.getText();
             String anglefield = angle.getText();
             double speedShot = Double.parseDouble(speedfield);
             double angleShot = Double.parseDouble(anglefield);
+
+
             SimulateMain.simulator.take_shot(Tools.velFromAngle(angleShot, speedShot));
             Main.takingShot = true;
             theFrame.dispose();
-            //Main.swingShot = false;
-            //System.out.println("speed: " + speedShot + " and angle " + angleShot);
         }
         catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(theFrame, "Fill all the fields");
