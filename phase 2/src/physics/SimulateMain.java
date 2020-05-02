@@ -57,7 +57,7 @@ public class SimulateMain {
         simulator.get_engine().sendPosition();
 
        // checks if ball landed in hole
-        if(simulator.calcWin()){
+        if(simulator.calcWin(simulator.get_ball_position())){
             System.out.println();
             System.out.println("=!= Y O U   W I N =!=");
             System.out.println();
