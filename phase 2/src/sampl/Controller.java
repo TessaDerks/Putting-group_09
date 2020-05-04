@@ -109,7 +109,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void start(MouseEvent event){
-        new Main().start();
+
     }
 
     @FXML
