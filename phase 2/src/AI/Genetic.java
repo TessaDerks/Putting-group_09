@@ -56,7 +56,7 @@ class Genetic {
             Double _speed = generateSpeed(putting.get_course().get_maximum_velocity());
             population[i].setSpeed(_speed); // setting the speed for the certain individual
             Vector2d vel = Tools.velFromAngle(angle, _speed);
-            putting.take_shot(vel);
+            putting.take_shot(vel, true);
             population[i].setPosition(putting.get_ball_position());
             System.out.println(angle + " " + _speed);
 
@@ -78,7 +78,7 @@ class Genetic {
     public static boolean leftOfHole(){
         boolean ret = false;
         PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(start));
-        putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/3)));
+        putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/3)), true);
 
         // adjust the flag a little to the left and make a checker flag
 
@@ -113,9 +113,7 @@ class Genetic {
                 else{ angle -= adjusting; }
             }
         }
-
     }
-
 
     public static void finishGame() { // finish the game after you have taken the first shot
         PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(population[0].getPosition()));
@@ -129,7 +127,7 @@ class Genetic {
                     if (_speed > putting.get_course().get_maximum_velocity()) break; // cancel the shot if the speed goes above the maximum speed
                     population[i].setSpeed(_speed);
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
-                    putting.take_shot(botVel);
+                    putting.take_shot(botVel, true);
                     population[i].setPosition(putting.get_ball_position());
                     System.out.println(angle + " " + _speed);
                 }
@@ -140,7 +138,7 @@ class Genetic {
                     if (_speed > putting.get_course().get_maximum_velocity()) break;
                     population[j].setSpeed(_speed);
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
-                    putting.take_shot(botVel);
+                    putting.take_shot(botVel, true);
                     population[j].setPosition(putting.get_ball_position());
                     System.out.println(angle + " " + _speed);
 
@@ -155,7 +153,7 @@ class Genetic {
 
     public static Double CalculateAmountShots(){ // calcualte if the bot can reach the distination
         PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new EulerSolver(start));
-        putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()));
+        putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()), true);
 
         Double shotDis = putting.get_ball_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
         //System.out.print(shotDis);

@@ -37,7 +37,8 @@ public class ShotListener implements ActionListener{
             if(speedShot > SimulateMain.getSpeed()){
                 speedShot = SimulateMain.getSpeed();
             }
-            SimulateMain.simulator.take_shot(Tools.velFromAngle(angleShot, speedShot));
+            SimulateMain.simulator.take_shot(Tools.velFromAngle(angleShot, speedShot), false);
+            //SimulateMain.simulator.act_timestep_from_distance();
             Main.takingShot = true;
             theFrame.dispose();
             Main.openNewWindow = true;

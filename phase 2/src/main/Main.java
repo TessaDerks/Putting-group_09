@@ -320,7 +320,7 @@ public class Main implements Runnable {
 				// if file input was chosen, get shot information from file and send information to physics engine
 				if (shotCount < FileReader.getVelocity().length) {
 					shots = FileReader.getShot(shotCount);
-					SimulateMain.simulator.take_shot(shots);
+					SimulateMain.simulator.take_shot(shots, false);
 					takingShot = true;
 					shotCount++;
 				} else {
@@ -331,7 +331,7 @@ public class Main implements Runnable {
 
 		/* if shot is taken, position of ball gets updated with received new position from physics engine,
 			creating a rolling motion*/
-		if (i % 1 == 0 && takingShot) {
+		if (takingShot) {
 			timeCurrent = System.currentTimeMillis();
 			timeLast = timeCurrent;
 			Vector2d newPosition = SimulateMain.simulator.act_timestep_from_distance();
