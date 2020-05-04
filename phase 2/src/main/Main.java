@@ -114,6 +114,7 @@ public class Main implements Runnable {
 	public static Vector2d shots;
 	public int shotCount = 0;
 	public static boolean swingShot = false;
+	private boolean win = false;
 
 	// background colour
 	private static final float RED = 0.5f;
@@ -212,9 +213,9 @@ public class Main implements Runnable {
 		lights.add(new Light(new Vector3f(500,1000,500), new Vector3f(1f,1f,1f)));
 
 
-		// create and render small GUI in top right position
+		// create and render small GUI in top right position if your ball landed in the hole
 		guis = new ArrayList<>();
-		//gui = new GUITexture(loader.loadTexture(""), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
+		gui = new GUITexture(loader.loadTexture("won"), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
 		guis.add(gui);
 		guiRenderer = new GUIRenderer(loader);
 
@@ -273,7 +274,6 @@ public class Main implements Runnable {
 	}
 
 	public void run() {
-		boolean win = false;
 		try {
 			init();
 		} catch (Exception e) {
@@ -379,8 +379,11 @@ public class Main implements Runnable {
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0,100000));
 
+		// only render small gui if you've won
+		if(win){
+			guiRenderer.render(guis);
+		}
 
-		//guiRenderer.render(guis);
 		waterRenderer.render(waters, camera);
 		window.swapBuffers();
 
