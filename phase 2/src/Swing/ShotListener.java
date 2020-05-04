@@ -39,6 +39,8 @@ public class ShotListener implements ActionListener{
             SimulateMain.simulator.take_shot(Tools.velFromAngle(angleShot, speedShot));
             Main.takingShot = true;
             theFrame.dispose();
+            Main.openNewWindow = true;
+
         }
         catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(theFrame, "Fill all the fields");
