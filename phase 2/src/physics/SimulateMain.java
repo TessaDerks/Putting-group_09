@@ -12,9 +12,8 @@ public class SimulateMain {
     private static double m;
     private static double mu;
     private static double vmax;
-
     private static double tol;
-    public static boolean win = false;
+
    
 
     // receives information about new terrain and sends information to the right classes
@@ -55,17 +54,6 @@ public class SimulateMain {
     public static void start(){
         simulator.last_ball_position = start;
         simulator.get_engine().sendPosition();
-
-       // checks if ball landed in hole
-        if(simulator.calcWin(simulator.get_ball_position())){
-            System.out.println();
-            System.out.println("=!= Y O U   W I N =!=");
-            System.out.println();
-
-            win = true;
-        }
-
-
     }
 
     public static Function2d getFunction() {
