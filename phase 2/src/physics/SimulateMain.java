@@ -68,10 +68,11 @@ public class SimulateMain {
         return flag;
     }
 
-
     public static int getVersion() {
         return version;
     }
+
+    public static double getSpeed(){ return vmax; }
 
    
 

@@ -1,6 +1,7 @@
 package Swing;
 
 import physics.PuttingSimulator;
+import physics.SIESolver;
 import physics.SimulateMain;
 
 import javax.swing.JButton;
@@ -24,15 +25,19 @@ public class ShotMenu {
         JPanel panel = new JPanel();
 
         JLabel label1 = new JLabel();
-        label1.setText("Speed: ");
+        label1.setText("        Max speed = " + SimulateMain.getSpeed() + "     ");
         panel.add(label1);
+
+        JLabel label2 = new JLabel();
+        label2.setText("Speed: ");
+        panel.add(label2);
 
         JTextField textfield1 = new JTextField(10);
         panel.add(textfield1);
 
-        JLabel label2 = new JLabel();
-        label2.setText(" Angle: ");
-        panel.add(label2);
+        JLabel label3 = new JLabel();
+        label3.setText(" Angle: ");
+        panel.add(label3);
 
         JTextField textfield2 = new JTextField(10);
         panel.add(textfield2);

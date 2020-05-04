@@ -127,6 +127,7 @@ public class Main implements Runnable {
 	public Vector2d playerStartPosition;
 	public Vector2d goalPosition;
 	public static boolean takingShot = false;
+	public static boolean openNewWindow = true;
 
 	public void start() {
 		game = new Thread(this, "game");
@@ -309,10 +310,11 @@ public class Main implements Runnable {
 
 
 		// if s is pressed on keyboard, get information for new shot
-		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot) {
+		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot && openNewWindow) {
 			// if manual input was chosen, create GUI to ask for velocity of shot
 			if (SimulateMain.getVersion() == 1) {
 				ShotMenu.create();
+				openNewWindow = false;
 				takingShot = true;
 			} else {
 				// if file input was chosen, get shot information from file and send information to physics engine
