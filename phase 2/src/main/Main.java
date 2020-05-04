@@ -273,6 +273,7 @@ public class Main implements Runnable {
 	}
 
 	public void run() {
+		boolean win = false;
 		try {
 			init();
 		} catch (Exception e) {
@@ -283,7 +284,16 @@ public class Main implements Runnable {
 			update();
 			render();
 			if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) window.setFullscreen(!window.isFullscreen());
+			// check if shot landed in hole
+			if(SimulateMain.simulator.calcWin(SimulateMain.simulator.get_ball_position())&& !win && !takingShot){
+				System.out.println();
+				System.out.println("=!= Y O U   W I N =!=");
+				System.out.println();
+
+				win = true;
+			}
 		}
+
 		guiRenderer.cleanUp();
 		renderer.cleanUp();
 		loader.cleanUp();
@@ -295,12 +305,10 @@ public class Main implements Runnable {
 	}
 
 	private void render() {
-
 		camera.move();
 
 
 		// if s is pressed on keyboard, get information for new shot
-
 		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot) {
 			// if manual input was chosen, create GUI to ask for velocity of shot
 			if (SimulateMain.getVersion() == 1) {
@@ -333,6 +341,7 @@ public class Main implements Runnable {
 		}
 
 		i++;
+
 
 
 
