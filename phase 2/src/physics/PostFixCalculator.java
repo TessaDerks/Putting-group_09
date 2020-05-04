@@ -4,6 +4,7 @@ import java.util.*;
 
 public class PostFixCalculator {
 
+    //<editor-fold desc="Global Variables">
     private static Double operand1, operand2;
     private static final String ADD = "+";
     private static final String SUB = "-";
@@ -16,6 +17,7 @@ public class PostFixCalculator {
     private static final String TAN = "tan";
     private static final String LOG = "log";
     private static final String LN = "ln";
+    //</editor-fold>
 
     public static Double calculate(String input, Vector2d coordinates) {
         SinglyLinkedListStack<Double> stack = new SinglyLinkedListStack<>();

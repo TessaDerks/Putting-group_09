@@ -2,22 +2,23 @@ package physics;
 
 
 public class PuttingCourse {
+
+    //<editor-fold desc="Global Variables">
     private Function2d height;
     private Vector2d flag;
     private Vector2d start;
     private double mu = 0.131;
     private double vMax = 5;
     private double holeTolerance = 0.2;
+    //</editor-fold>
 
     public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
         height = _height;
         flag = _flag;
         start = _start;
-
-        //What.flagDia = 2 * holeTolerance;
     }
 
-    // Setters
+    //<editor-fold desc="Setters">
     public void set_mu(double _mu){
         mu = _mu;
     }
@@ -29,8 +30,9 @@ public class PuttingCourse {
     public void set_holeTolerance(double _tol){
         holeTolerance = _tol;
     }
+    //</editor-fold>
 
-    // Getters.
+    //<editor-fold desc="Getters">
     public Function2d get_height(){
         return height;
     }
@@ -54,4 +56,5 @@ public class PuttingCourse {
     public double get_hole_tolerance(){
         return holeTolerance;
     }
+    //</editor-fold>
 }

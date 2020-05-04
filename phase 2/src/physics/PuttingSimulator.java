@@ -3,6 +3,8 @@ package physics;
 import java.util.ArrayList;
 
 public class PuttingSimulator{
+
+	//<editor-fold desc="Global Variables">
 	private Vector2d ball_position;
 	public Vector2d last_ball_position;
 	private Vector2d ball_velocity;
@@ -13,7 +15,9 @@ public class PuttingSimulator{
 	private PhysicsEngine engine;
 
 	private ArrayList<Tree> trees = new ArrayList<>();
+	//</editor-fold>
 
+	// Constructor.
 	public PuttingSimulator(PuttingCourse _course, PhysicsEngine _engine){
 		course = _course;
 		engine = _engine;
@@ -22,12 +26,14 @@ public class PuttingSimulator{
 		engine.recalculate();
 	}
 
+	// Take a shot.
 	public void take_shot(Vector2d initial_ball_velocity){
 		round_count++;
 		engine.set_t(0);
 		engine.set_v(initial_ball_velocity);
 		last_ball_position = ball_position;
 
+		// Act timesteps.
 		while(Tools.advRound(engine.get_v().get_x(),2) == 0 || Tools.advRound(engine.get_v().get_y(),2) == 0) {
 			engine.actTimestep();
 
@@ -71,6 +77,7 @@ public class PuttingSimulator{
 		System.out.println(">> Shot landed at ( " + ball_position.get_x() + " , " + ball_position.get_y() + " ). t=" + engine.get_t());
 	}
 
+	// Calculate if ball is in hole.
 	public boolean calcWin(Vector2d position){
 		boolean r = false;
 		double absDis = Math.sqrt(Math.pow(position.get_x() - course.get_flag_position().get_x(),2) + Math.pow(position.get_y() - course.get_flag_position().get_y(),2));
@@ -80,6 +87,7 @@ public class PuttingSimulator{
 		return r;
 	}
 
+	// Allows graphics engine to act a timestep.
 	public Vector2d act_timestep_from_distance() {
 		engine.actTimestep();
 

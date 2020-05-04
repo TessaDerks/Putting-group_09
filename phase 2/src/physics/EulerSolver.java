@@ -2,6 +2,8 @@ package physics;
 
 
 public class EulerSolver implements PhysicsEngine{
+
+    //<editor-fold desc="Global Variables">
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
@@ -14,6 +16,7 @@ public class EulerSolver implements PhysicsEngine{
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
+    //</editor-fold>
 
     public EulerSolver(Vector2d _p){
         p = _p;
@@ -23,6 +26,7 @@ public class EulerSolver implements PhysicsEngine{
     public void actTimestep(){
         recalculate();
 
+        // Calculate new position and velocity.
         double newPX = p.get_x() + dt * v.get_x();
         double newPY = p.get_y() + dt * v.get_y();
         double newVX = v.get_x() + dt * F.get_x() / m;
@@ -34,14 +38,6 @@ public class EulerSolver implements PhysicsEngine{
         recalculate();
 
         t = Tools.advRound(t+dt,6);
-
-        //Tools.wait((int)(dt * 1000));
-        //sendPosition();
-    }
-
-    @Override
-    public void sendPosition(){
-        //What.ent.setPosition((float) p.get_x(),(float) (h.evaluate(new Vector2d(p.get_x(),p.get_y()))+0.15),(float) p.get_y());
     }
 
     //<editor-fold desc="Calculators">
@@ -65,8 +61,8 @@ public class EulerSolver implements PhysicsEngine{
 
     @Override
     public Vector2d calcH(){
-        double xH = (-mu * m * g * v.get_x()) /* Math.sqrt(Math.pow(v.get_x(),2) + Math.pow(v.get_y(),2))*/;
-        double yH = (-mu * m * g * v.get_y()) /* Math.sqrt(Math.pow(v.get_x(),2) + Math.pow(v.get_y(),2))*/;
+        double xH = (-mu * m * g * v.get_x());
+        double yH = (-mu * m * g * v.get_y());
         return new Vector2d(xH,yH);
     }
 

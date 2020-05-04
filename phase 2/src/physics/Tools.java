@@ -3,6 +3,8 @@ package physics;
 import java.util.concurrent.TimeUnit;
 
 public class Tools {
+
+    // Round a number to a certain amount of decimal places.
     public static double advRound(double num, int dec){
         num = num * Math.pow(10,dec);
         num = Math.round(num);
@@ -10,6 +12,7 @@ public class Tools {
         return num;
     }
 
+    // Get Vector2d velocity form angle and total velocity.
     public static Vector2d velFromAngle(double a, double v){
         a = Math.toRadians(a);
         double vy = v * Math.cos(a);
@@ -17,13 +20,17 @@ public class Tools {
         return new Vector2d(vx,vy);
     }
 
+    // Pause program for x milliseconds.
     public static void wait(int time){
         try{
             TimeUnit.MILLISECONDS.sleep(time);}
         catch(InterruptedException e){}
         return;
     }
-    public static Vector2d AdjustFlagPosition(Vector2d flag){ // new method to adjust the flag position to the left to make a checker flag
+
+    // Method to adjust the flag position to the left to make a checker flag
+    public static Vector2d AdjustFlagPosition(Vector2d flag){
+        // new method to adjust the flag position to the left to make a checker flag
         //Vector2d nullPoint = new Vector2d(0.0, 0.0);
         Double angle = Math.toDegrees(Math.atan(((Math.abs(flag.get_y()))/(Math.abs(flag.get_x()))))); // calculating angle
         //System.out.println(angle);

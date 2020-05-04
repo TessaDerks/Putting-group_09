@@ -1,0 +1,39 @@
+<component name="libraryTable">
+  <library name="LWJGLJars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx.fxml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-bgfx-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-nanovg-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-openal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-nuklear.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-glfw-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx.web.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx.base.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-bgfx.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx.swing.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-opengl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx.graphics.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-glfw.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-nuklear-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx.controls.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-vulkan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx-swt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-par-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-openal-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/javafx.media.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-assimp-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-opengl-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-stb-natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-par.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-stb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/PNGDecoder.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-assimp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/slick-util3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LWJGLJars/lwjgl-nanovg.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

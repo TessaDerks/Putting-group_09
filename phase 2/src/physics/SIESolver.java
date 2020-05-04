@@ -1,12 +1,13 @@
 package physics;
 
-
 import physics.Function2d;
 import physics.PhysicsEngine;
 import physics.Tools;
 import physics.Vector2d;
 
 public class SIESolver implements PhysicsEngine {
+
+    //<editor-fold desc="Global Variables">
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
@@ -19,6 +20,7 @@ public class SIESolver implements PhysicsEngine {
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
+    //</editor-fold>
 
     public SIESolver(Vector2d _p){
         p = _p;
@@ -47,14 +49,6 @@ public class SIESolver implements PhysicsEngine {
         v = new Vector2d(newVX,newVY);
 
         t = Tools.advRound(t+dt,6);
-
-        //Tools.wait((int)(dt * 1000));
-        //sendPosition();
-    }
-
-    @Override
-    public void sendPosition(){
-        //What.ent.setPosition((float) p.get_x(),(float) (h.evaluate(new Vector2d(p.get_x(),p.get_y()))+0.15),(float) p.get_y());
     }
 
     //<editor-fold desc="Calculators">

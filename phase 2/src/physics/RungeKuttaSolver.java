@@ -2,6 +2,8 @@ package physics;
 
 
 public class RungeKuttaSolver implements PhysicsEngine{
+
+    //<editor-fold desc="Global Variables">
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
@@ -14,6 +16,7 @@ public class RungeKuttaSolver implements PhysicsEngine{
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
+    //</editor-fold>
 
     public RungeKuttaSolver(Vector2d _p){
         p = _p;
@@ -24,32 +27,36 @@ public class RungeKuttaSolver implements PhysicsEngine{
 
         Vector2d base_p, base_v, k1, k2, k3, k4;
 
+        // k1.
         recalculate();
         base_p = p;
         base_v = v;
         k1 = F;
         System.out.println("k1(" + k1.get_x() + "," + k1.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
 
+        // k2.
         v = new Vector2d(v.get_x() + (dt * k1.get_x())/(2 * m),v.get_y() + (dt * k1.get_y())/(2 * m));
         p = new Vector2d(p.get_x() + dt * v.get_x() / 2,p.get_y() + dt * v.get_y() / 2);
         recalculate();
         k2 = F;
         System.out.println("k2(" + k2.get_x() + "," + k2.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
 
+        // k3.
         v = new Vector2d(v.get_x() + (dt * k2.get_x())/(2 * m),v.get_y() + (dt * k2.get_y())/(2 * m));
         p = new Vector2d(p.get_x() + dt * v.get_x() / 2,p.get_y() + dt * v.get_y() / 2);
         recalculate();
         k3 = F;
         System.out.println("k3(" + k3.get_x() + "," + k3.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
 
+        // k4.
         v = new Vector2d(v.get_x() + dt * k3.get_x()/m,v.get_y() + dt * k3.get_y()/m);
         p = new Vector2d(p.get_x() + dt * v.get_x(),p.get_y() + dt * v.get_y());
         recalculate();
         k4 = F;
         System.out.println("k4(" + k4.get_x() + "," + k4.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
-        
+
+        // Calculate new values for position and velocity.
         double vx, vy;
-        
         vx = base_v.get_x() + dt * (k1.get_x() + 2 * k2.get_x() + 2 * k3.get_x() + k4.get_x()) / 6;
         vy = base_v.get_y() + dt * (k1.get_y() + 2 * k2.get_y() + 2 * k3.get_y() + k4.get_y()) / 6;
 
@@ -60,11 +67,6 @@ public class RungeKuttaSolver implements PhysicsEngine{
 
         System.out.println("t=" + t + " p(" + p.get_x() + "," + p.get_y() + ") v(" + v.get_x() + "," + v.get_y() + ")");
         System.out.println(dt * (k1.get_y() + 2 * k2.get_y() + 2 * k3.get_y() + k4.get_y()) / 6);
-    }
-
-    @Override
-    public void sendPosition(){
-        //What.ent.setPosition((float) p.get_x(),(float) (h.evaluate(new Vector2d(p.get_x(),p.get_y()))+0.15),(float) p.get_y());
     }
 
     //<editor-fold desc="Calculators">

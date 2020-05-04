@@ -3,6 +3,8 @@ package physics;
 import main.Main;
 
 public class SimulateMain {
+
+    //<editor-fold desc="Global Variables">
     private static Vector2d start;
     private static Vector2d flag;
     private static Function2d function;
@@ -13,8 +15,7 @@ public class SimulateMain {
     private static double mu;
     private static double vmax;
     private static double tol;
-
-   
+    //</editor-fold>
 
     // receives information about new terrain and sends information to the right classes
     public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version) {
@@ -53,7 +54,6 @@ public class SimulateMain {
 
     public static void start(){
         simulator.last_ball_position = start;
-        simulator.get_engine().sendPosition();
     }
 
     public static Function2d getFunction() {

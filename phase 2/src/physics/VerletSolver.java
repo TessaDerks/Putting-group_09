@@ -1,7 +1,8 @@
 package physics;
 
-
 public class VerletSolver implements PhysicsEngine{
+
+    //<editor-fold desc="Global Variables">
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
@@ -15,6 +16,7 @@ public class VerletSolver implements PhysicsEngine{
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
+    //</editor-fold>
 
     public VerletSolver(Vector2d _p){
         p = _p;
@@ -62,11 +64,6 @@ public class VerletSolver implements PhysicsEngine{
         p = temp_p;
         t = Tools.advRound(t+dt,6);
        // sendPosition();
-    }
-
-    @Override
-    public void sendPosition(){
-       // What.ent.setPosition((float) p.get_x(),(float) (h.evaluate(new Vector2d(p.get_x(),p.get_y()))+0.15),(float) p.get_y());
     }
 
     //<editor-fold desc="Calculators">
