@@ -37,7 +37,7 @@ public class SimulateMain {
         course.set_holeTolerance(tol);
 
         // create physics engine and set all settings for terrain
-        PhysicsEngine engine = new VerletSolver( start);
+        PhysicsEngine engine = new SIESolver(start);
         engine.set_step_size(0.01);
         engine.set_h(function);
         engine.set_m(m);
