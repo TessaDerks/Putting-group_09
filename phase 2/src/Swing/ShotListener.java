@@ -34,8 +34,9 @@ public class ShotListener implements ActionListener{
             String anglefield = angle.getText();
             double speedShot = Double.parseDouble(speedfield);
             double angleShot = Double.parseDouble(anglefield);
-
-
+            if(speedShot > SimulateMain.getSpeed()){
+                speedShot = SimulateMain.getSpeed();
+            }
             SimulateMain.simulator.take_shot(Tools.velFromAngle(angleShot, speedShot));
             Main.takingShot = true;
             theFrame.dispose();
