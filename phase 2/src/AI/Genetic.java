@@ -1,6 +1,7 @@
 package AI;
 
 import com.sun.jdi.ShortType;
+import main.Main;
 import physics.*;
 // IMPORTANT!!!!!
 // ======== bitly.com/98K8eH ===========
@@ -15,6 +16,7 @@ class Genetic {
     private static Double speed;
     private static Double angle = 0.0;
     private static Function2d function;
+    private static PuttingSimulator putting;
 
     public Genetic(Vector2d _start, Vector2d _finish, int _popSize, Function2d _function){
         start = _start;
@@ -22,6 +24,15 @@ class Genetic {
         end = _finish;
         popSize = _popSize;
         function = _function;
+    }
+
+    public Genetic(int _popSize){
+        start = SimulateMain.getStart();
+        position = start;
+        end = SimulateMain.getFlag();
+        popSize = _popSize;
+        function = SimulateMain.getFunction();
+        putting = SimulateMain.simulator;
     }
 
     public static void initializePopulation(){// initialize every individual by giving them their starting position
@@ -52,7 +63,8 @@ class Genetic {
 
     public static void takeFirstShot(){ // take the first shot to gain an idea of with how much power the AI should shoot
         for ( int i = 0; i < population.length; i++){
-            PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(position)); // create a field for each AI
+            //PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(position)); // create a field for each AI
+            putting.get_engine().resetPosition(start);
             Double _speed = generateSpeed(putting.get_course().get_maximum_velocity());
             population[i].setSpeed(_speed); // setting the speed for the certain individual
             Vector2d vel = Tools.velFromAngle(angle, _speed);
@@ -77,7 +89,9 @@ class Genetic {
 
     public static boolean leftOfHole(){
         boolean ret = false;
-        PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(start));
+        //PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(start));
+        //PuttingSimulator putting = SimulateMain.simulator;
+        putting.get_engine().resetPosition(start);
         putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/3)), true);
 
         // adjust the flag a little to the left and make a checker flag
@@ -116,7 +130,9 @@ class Genetic {
     }
 
     public static void finishGame() { // finish the game after you have taken the first shot
-        PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(population[0].getPosition()));
+        //PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new SIESolver(population[0].getPosition()));
+        //PuttingSimulator putting = SimulateMain.simulator;
+
         int popSizeNew = (int) Tools.advRound(popSize/2, 0);
         while(!putting.calcWin(population[0].getPosition())) {
                 speed = population[0].getSpeed();
@@ -149,10 +165,16 @@ class Genetic {
                 System.out.print(population[0].getPosition().get_x() + " " + population[0].getPosition().get_y());
             }
             System.out.println("Congrats! Bot made a hole in one!");
+            putting.get_engine().resetPosition(SimulateMain.getStart());
+            putting.take_shot( Tools.velFromAngle(angle, population[0].getSpeed()), false);
+            Main.takingShot = true;
+            System.out.println("Winning velocity: "+ angle + " " + population[0].getSpeed());
+            Main.openNewWindow = true;
     }
 
     public static Double CalculateAmountShots(){ // calcualte if the bot can reach the distination
-        PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new EulerSolver(start));
+        //PuttingSimulator putting = new PuttingSimulator(new PuttingCourse(function, end, start), new EulerSolver(start));
+        //PuttingSimulator putting = SimulateMain.simulator;
         putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()), true);
 
         Double shotDis = putting.get_ball_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
