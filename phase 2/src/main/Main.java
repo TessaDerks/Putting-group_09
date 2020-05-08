@@ -1,5 +1,6 @@
 package main;
 
+import AI.SimulateGenetic;
 import GUI.GUIRenderer;
 import GUI.GUITexture;
 import Swing.ShotMenu;
@@ -329,6 +330,11 @@ public class Main implements Runnable {
 			}
 		}
 
+		if(Input.isKeyDown(GLFW.GLFW_KEY_A) && !takingShot && openNewWindow){
+			openNewWindow = false;
+			SimulateGenetic.initialize(25);
+		}
+
 		/* if shot is taken, position of ball gets updated with received new position from physics engine,
 			creating a rolling motion*/
 		if (takingShot) {
@@ -339,6 +345,7 @@ public class Main implements Runnable {
 
 			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),2) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),2) == 0){
 				takingShot = false;
+				System.out.println("the end");
 			}
 		}
 
