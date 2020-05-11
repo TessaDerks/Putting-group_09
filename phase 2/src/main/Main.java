@@ -217,7 +217,7 @@ public class Main implements Runnable {
 
 		// create and render small GUI in top right position if your ball landed in the hole
 		guis = new ArrayList<>();
-		gui = new GUITexture(loader.loadTexture("won"), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
+		gui = new GUITexture(loader.loadTexture("Win"), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
 		guis.add(gui);
 		guiRenderer = new GUIRenderer(loader);
 
