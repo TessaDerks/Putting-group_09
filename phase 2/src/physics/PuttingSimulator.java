@@ -109,6 +109,7 @@ public class PuttingSimulator{
 		if (engine.get_h().evaluate(new Vector2d(cp.get_x(), cp.get_y())) < 0) {
 			System.out.println("Ball fell in the water!");
 			ball_position = last_ball_position;
+			engine.set_v(new Vector2d(0,0));
 			return	ball_position;
 		}
 
