@@ -3,8 +3,7 @@ package AI;
 import com.sun.jdi.ShortType;
 import main.Main;
 import physics.*;
-// IMPORTANT!!!!!
-// ======== bitly.com/98K8eH ===========
+
 class Genetic {
 
     private static Vector2d start;
@@ -17,16 +16,9 @@ class Genetic {
     private static Double angle = 0.0;
     private static Function2d function;
     private static PuttingSimulator putting;
+    public static boolean testCase = false;
 
-    public Genetic(Vector2d _start, Vector2d _finish, int _popSize, Function2d _function){
-        start = _start;
-        position = start;
-        end = _finish;
-        popSize = _popSize;
-        function = _function;
-    }
-
-    // constructor for graphics use of AI
+    
     public Genetic(int _popSize){
         start = SimulateMain.getStart();
         position = start;
@@ -36,16 +28,15 @@ class Genetic {
         putting = SimulateMain.simulator;
     }
 
-    public static void initializePopulation(){// initialize every individual by giving them their starting position
+    public static void initializePopulation(){
         population = new Individual[popSize];
         for ( int i = 0; i < popSize; i++){
-            //Vector2d x = new Vector2d(i, 0.0);
             population[i] = new Individual(start);
         }
     }
 
-    public static void calcFitness(){ // calculating the fitness for each individual by calculating the distance between
-        Double fitness;               // the end position and the flag, lowest fitness is the best score
+    public static void calcFitness(){ // calculating the distance between the end position and the flag, lowest fitness is the best score
+        Double fitness;
         for ( int i = 0; i < popSize; i++){
             fitness = Math.sqrt(Math.pow(population[i].getPosition().get_x() - end.get_x(), 2) + Math.pow(population[i].getPosition().get_y() - end.get_y(), 2));
             population[i].setFitness(fitness);
@@ -53,7 +44,7 @@ class Genetic {
     }
 
     public static void sortPopulation(){
-        Merge merge = new Merge(); // use mergesort to sort the population on their best individual
+        Merge merge = new Merge();
         merge.sortList(population, 0, popSize-1);
     }
 
@@ -70,8 +61,6 @@ class Genetic {
             Vector2d vel = Tools.velFromAngle(angle, _speed);
             putting.take_shot(vel, true);
             population[i].setPosition(putting.get_ball_position());
-            System.out.println(angle + " " + _speed);
-
         }
         generation++;
         calcFitness();
@@ -93,7 +82,7 @@ class Genetic {
         putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/3)), true);
 
         // adjust the flag a little to the left and make a checker flag
-        Vector2d checker = Tools.AdjustFlagPosition(end); // adjusted angle of 0.001
+        Vector2d checker = Tools.AdjustFlagPosition(end);
 
         // calculate the distance to the flag and to the checker
         Double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
@@ -113,8 +102,6 @@ class Genetic {
             if (leftRight == leftOfHole()){ // if the ball lays on the same side as before, dont change the adjusting angle
                 if(leftRight == true){ angle += adjusting;} // add up if its left
                 else {angle -= adjusting;} //
-                //System.out.println(angle);
-
             }
             else{
                 leftRight = leftOfHole(); // set new value for leftright for the next check
@@ -140,7 +127,6 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[i].setPosition(putting.get_ball_position());
-                    System.out.println(angle + " " + _speed);
                 }
                 for (int j = popSizeNew; j < popSize; j++) {
                     putting.get_engine().resetPosition(start);
@@ -151,29 +137,26 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[j].setPosition(putting.get_ball_position());
-                    System.out.println(angle + " " + _speed);
-
                 }
                 calcFitness();
                 sortPopulation();
                 generation++;
-                System.out.print(population[0].getPosition().get_x() + " " + population[0].getPosition().get_y());
             }
             System.out.println("Congrats! Bot made a hole in one!");
-            putting.get_engine().resetPosition(SimulateMain.getStart());
-            putting.take_shot( Tools.velFromAngle(angle, population[0].getSpeed()), false);
-            Main.takingShot = true;
-            System.out.println("Winning velocity: "+ angle + " " + population[0].getSpeed());
-            Main.openNewWindow = true;
+            if(!testCase){
+                putting.get_engine().resetPosition(SimulateMain.getStart());
+                putting.take_shot( Tools.velFromAngle(angle, population[0].getSpeed()), false);
+                Main.takingShot = true;
+                Main.openNewWindow = true;
+            }
+            System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
     }
 
-    public static Double CalculateAmountShots(){ // calcualte if the bot can reach the distination
+    public static Double CalculateAmountShots(){ // calculate if the bot can reach the destination
         putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()), true);
 
         Double shotDis = putting.get_ball_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
-        //System.out.print(shotDis);
         Double disFlag = Math.sqrt(Math.pow((end.get_x()-putting.get_course().get_hole_tolerance()), 2) + Math.pow((end.get_y()-putting.get_course().get_hole_tolerance()), 2));
-        //System.out.print(disFlag);
         Double shots = (disFlag/shotDis); // calculate the amount of shots needed to score the hole in one based on distance
         return shots; // if the value is higher than 1, it can not shoot the hole in one
     }
