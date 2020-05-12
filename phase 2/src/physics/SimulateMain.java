@@ -1,5 +1,6 @@
 package physics;
 
+import javafx.scene.control.Alert;
 import main.Main;
 
 public class SimulateMain {
@@ -45,11 +46,28 @@ public class SimulateMain {
         engine.set_g(g);
         engine.set_v_max(vmax);
         simulator = new PuttingSimulator(course, engine);
-        simulator.set_ball_position(start);
+        if(Function2d.evaluate(start)<0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Starting position not possible, please enter new position");
 
-        System.out.println("=== STARTING GAME ===");
-        new Main().start();
+            alert.showAndWait();
+        }
+        else if(Function2d.evaluate(flag)<0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Goal position not possible, please enter new position");
 
+            alert.showAndWait();
+        }
+        else {
+            simulator.set_ball_position(start);
+
+            System.out.println("=== STARTING GAME ===");
+            new Main().start();
+        }
     }
 
     public static void start(){
