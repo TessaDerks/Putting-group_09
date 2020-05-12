@@ -114,7 +114,6 @@ public class Main implements Runnable {
 
 	public static Vector2d shots;
 	public int shotCount = 0;
-	public static boolean swingShot = false;
 	private boolean win = false;
 
 	// background colour
@@ -316,7 +315,6 @@ public class Main implements Runnable {
 			if (SimulateMain.getVersion() == 1) {
 				ShotMenu.create();
 				openNewWindow = false;
-				takingShot = true;
 			} else {
 				// if file input was chosen, get shot information from file and send information to physics engine
 				if (shotCount < FileReader.getVelocity().length) {
@@ -345,7 +343,6 @@ public class Main implements Runnable {
 
 			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),2) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),2) == 0){
 				takingShot = false;
-				System.out.println("the end");
 			}
 		}
 
