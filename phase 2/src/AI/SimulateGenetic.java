@@ -8,6 +8,7 @@ public class SimulateGenetic {
     private static int popSize = 25;
     private static Function2d function = new Function2d("1");
 
+    /*
     public static void main(String[] args) {
         Genetic gen = new Genetic(start, end, popSize, function);
         gen.initializePopulation();
@@ -28,6 +29,7 @@ public class SimulateGenetic {
             System.out.println("Your bot scored after " + gen.getGeneration() + " generations!");
         }
     }
+    */
 
     // method to call from main to start AI with graphics
     public static void initialize(int popsize){
