@@ -6,13 +6,13 @@ public class VerletSolver implements PhysicsEngine{
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
-    private double mu;
-    private double dt;
-    private double v_max;
+    private double mu = 0.131;
+    private double dt = 0.01;
+    private double v_max = 30;
     private Vector2d p;
     private Vector2d last_p;
     private Vector2d v;
-    private Function2d h;
+    private Function2d h = new Function2d("1");
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
@@ -38,8 +38,8 @@ public class VerletSolver implements PhysicsEngine{
             temp_p_y = p.get_y() + v.get_y() * dt + ((F.get_y() * Math.pow(dt,2)) / (2 * m));
             temp_p = new Vector2d(temp_p_x,temp_p_y);
 
-            System.out.println(v.get_x() + "v" + v.get_y());
-            System.out.println(temp_p_x + "p" + temp_p_y);
+            //System.out.println(v.get_x() + "v" + v.get_y());
+            //System.out.println(temp_p_x + "p" + temp_p_y);
 
             // New velocity.
             nv_x = (temp_p_x - p.get_x()) / dt;
@@ -82,7 +82,8 @@ public class VerletSolver implements PhysicsEngine{
     @Override
     public Vector2d calcG(){
         Vector2d der = h.gradient(p);
-        return new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
+        Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
+        return output;
     }
 
     @Override
