@@ -40,11 +40,4 @@ class VerletSolverTest {
         Assert.assertFalse(Double.isInfinite(Math.abs(solver.get_p().get_y())));
     }
 
-    @Test
-    void calcG() {
-    }
-
-    @Test
-    void calcH() {
-    }
 }

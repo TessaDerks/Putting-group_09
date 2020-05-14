@@ -39,11 +39,4 @@ class EulerSolverTest {
         Assert.assertFalse(Double.isInfinite(Math.abs(solver.get_p().get_y())));
     }
 
-    @org.junit.jupiter.api.Test
-    void calcG() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void calcH() {
-    }
 }
