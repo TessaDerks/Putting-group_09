@@ -31,28 +31,28 @@ public class RungeKuttaSolver implements PhysicsEngine{
         recalculate();
         base_p = p;
         base_v = v;
-        k1 = F;
+        k1 = calcF();
         //System.out.println("k1(" + k1.get_x() + "," + k1.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
 
         // k2.
         v = new Vector2d(v.get_x() + (dt * k1.get_x())/(2 * m),v.get_y() + (dt * k1.get_y())/(2 * m));
         p = new Vector2d(p.get_x() + dt * v.get_x() / 2,p.get_y() + dt * v.get_y() / 2);
         recalculate();
-        k2 = F;
+        k2 = calcF();
         //System.out.println("k2(" + k2.get_x() + "," + k2.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
 
         // k3.
         v = new Vector2d(v.get_x() + (dt * k2.get_x())/(2 * m),v.get_y() + (dt * k2.get_y())/(2 * m));
         p = new Vector2d(p.get_x() + dt * v.get_x() / 2,p.get_y() + dt * v.get_y() / 2);
         recalculate();
-        k3 = F;
+        k3 = calcF();
         //System.out.println("k3(" + k3.get_x() + "," + k3.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
 
         // k4.
         v = new Vector2d(v.get_x() + dt * k3.get_x()/m,v.get_y() + dt * k3.get_y()/m);
         p = new Vector2d(p.get_x() + dt * v.get_x(),p.get_y() + dt * v.get_y());
         recalculate();
-        k4 = F;
+        k4 = calcF();
         //System.out.println("k4(" + k4.get_x() + "," + k4.get_y() + ") F(" + F.get_x() + "," + F.get_y() + ")");
 
         // Calculate new values for position and velocity.
