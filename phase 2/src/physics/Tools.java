@@ -53,7 +53,7 @@ public class Tools {
     public static boolean checkGoalSlope(Vector2d goal_position,Function2d function, double mass, double g, double mu){
         boolean result = true;
         Vector2d G = calcG(function,goal_position,mass,g);
-        Vector2d H = calcH(mu,mass,g,G);
+        Vector2d H = calcH(mu,mass/1000,g,G);
 
         System.out.println("G"+G.get_x()+" "+G.get_y());
         System.out.println("H"+H.get_x()+" "+H.get_y());

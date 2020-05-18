@@ -1,10 +1,7 @@
 package AI;
 
 import javafx.util.Pair;
-import physics.Function2d;
-import physics.PuttingSimulator;
-import physics.Tools;
-import physics.Vector2d;
+import physics.*;
 
 
 import java.util.ArrayList;
@@ -18,7 +15,7 @@ class RecursiveAlgorithm {
     private Double speed;
     private Double angle = 0.0;
     private Function2d function;
-    private PuttingSimulator putting;
+    private PuttingSimulator putting = SimulateMain.simulator;
 
 
     public RecursiveAlgorithm(Vector2d _start, Vector2d _finish, Function2d _function){
@@ -171,6 +168,7 @@ class RecursiveAlgorithm {
 
 
     public boolean HoleInOnePossible(){ // calculate if the bot can reach the destination
+
         putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()), true);
 
         Double shotDis = putting.get_ball_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
