@@ -199,12 +199,9 @@ public class Main implements Runnable {
 		textureGolfBall.setShineDamper(10);
 		textureGolfBall.setReflectivity(1);
 
-
 		texturePole = texturedModelPole.getTexture();
 		texturePole.setShineDamper(10);
 		texturePole.setReflectivity(1);
-
-
 
 		// generate terrain
 		terrain = new Terrain(0,0,loader,texturePack, blendMap);
@@ -219,8 +216,6 @@ public class Main implements Runnable {
 		gui = new GUITexture(loader.loadTexture("Win"), new Vector2f(0.75f, 0.75f), new Vector2f(0.25f, 0.25f));
 		guis.add(gui);
 		guiRenderer = new GUIRenderer(loader);
-
-
 
 		// create tree entity list
 		tree = new ArrayList<Entity>();

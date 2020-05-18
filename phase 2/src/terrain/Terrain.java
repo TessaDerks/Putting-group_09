@@ -28,7 +28,7 @@ public class Terrain {
     private RawModel model;
     private TerrainTexturePack texturePack;
     private TerrainTexture blendMap;
-    private Function2d function = SimulateMain.getFunction();
+    //private Function2d function = SimulateMain.getFunction();
     private float[][] heights;
 
 // Constructor for Terrain
