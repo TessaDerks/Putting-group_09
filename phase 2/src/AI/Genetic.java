@@ -67,7 +67,7 @@ class Genetic {
         sortPopulation();
     }
 
-    public static void calculateAngle(){ // calculate the angle, ======= NOT USED ======
+    public static void calculateAngle(){ // calculate the angle
         angle = Math.toDegrees(Math.atan(((Math.abs(end.get_x()))/(Math.abs(end.get_y())))));
         if (end.get_y() < 0) {
             if (end.get_x() > 0){ angle += 90;;}
@@ -79,16 +79,16 @@ class Genetic {
     public static boolean leftOfHole(){
         boolean ret = false;
         putting.get_engine().resetPosition(start);
-        putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/3)), true);
+        putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/2)), true);
 
         // adjust the flag a little to the left and make a checker flag
         Vector2d checker = Tools.AdjustFlagPosition(end);
-
+        System.out.println(checker.get_x() +" "+ checker.get_y());
         // calculate the distance to the flag and to the checker
         Double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
         Double disCheck = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - checker.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - checker.get_y(), 2));
 
-        // if the flag is further away than the checker, the ball is on the left side of the flag
+        // if the flag is further away than the checker, the ball is on the left side of the flagd
         if(disFlag >= disCheck){
             ret = true;
         }
@@ -97,11 +97,13 @@ class Genetic {
     public static void cocktailShaker(){ // shake the angle back and forth until the tolerance is small enough to create the right angle
         boolean leftRight = leftOfHole();
         Double adjusting = 10.0;
+        Double counter = 0.0;
 
         while(adjusting > 0.01){
             if (leftRight == leftOfHole()){ // if the ball lays on the same side as before, dont change the adjusting angle
                 if(leftRight == true){ angle += adjusting;} // add up if its left
                 else {angle -= adjusting;} //
+                System.out.println(angle);
             }
             else{
                 leftRight = leftOfHole(); // set new value for leftright for the next check
@@ -109,7 +111,19 @@ class Genetic {
                 //System.out.println(adjusting);
                 if(leftRight == true){ angle += adjusting; }
                 else{ angle -= adjusting; }
+                System.out.println(angle);
             }
+            if(angle >= 360) {
+                angle = 0.0;
+                counter++;
+            }
+            if(angle < 0) {
+                angle = 360 + angle;
+            }
+            //if(counter > 3){
+            //    calculateAngle();
+            //    adjusting = 0.000001;
+            //}
         }
     }
 
@@ -127,6 +141,7 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[i].setPosition(putting.get_ball_position());
+                    System.out.println(_speed);
                 }
                 for (int j = popSizeNew; j < popSize; j++) {
                     putting.get_engine().resetPosition(start);
@@ -137,26 +152,28 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[j].setPosition(putting.get_ball_position());
+                    System.out.println(_speed);
                 }
                 calcFitness();
                 sortPopulation();
                 generation++;
             }
-            //System.out.println("Congrats! Bot made a hole in one!");
+            System.out.println("Congrats! Bot made a hole in one!");
             if(!testCase){
                 putting.get_engine().resetPosition(SimulateMain.getStart());
                 putting.take_shot( Tools.velFromAngle(angle, population[0].getSpeed()), false);
                 Main.takingShot = true;
                 Main.openNewWindow = true;
             }
-            //System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
+            System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
     }
 
     public static Double CalculateAmountShots(){ // calculate if the bot can reach the destination
+        putting.get_engine().resetPosition(start);
         putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()), true);
 
-        Double shotDis = putting.get_ball_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
-        Double disFlag = Math.sqrt(Math.pow((end.get_x()-putting.get_course().get_hole_tolerance()), 2) + Math.pow((end.get_y()-putting.get_course().get_hole_tolerance()), 2));
+        Double shotDis = putting.get_ball_position().get_x() - putting.get_course().get_start_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
+        Double disFlag = Math.sqrt(Math.pow((end.get_x()-start.get_x()-putting.get_course().get_hole_tolerance()), 2) + Math.pow((end.get_y()-start.get_y()-putting.get_course().get_hole_tolerance()), 2));
         Double shots = (disFlag/shotDis); // calculate the amount of shots needed to score the hole in one based on distance
         return shots; // if the value is higher than 1, it can not shoot the hole in one
     }
