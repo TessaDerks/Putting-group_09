@@ -4,7 +4,7 @@ import main.Main;
 import physics.*;
 
 public class SimulateGenetic {
-    private static Vector2d start = SimulateMain.getStart();
+    private static Vector2d start = SimulateMain.getStart() ;
 
 
 

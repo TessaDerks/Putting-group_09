@@ -17,10 +17,10 @@ public class TestAI {
         double g = 9.81;
         double mass = 45;
         double mu = 0.131;
-        double maxV = 50;
+        double maxV = 80;
         double radius = 0.2;
         Vector2d start = new Vector2d(5.0, 5.0);
-        Vector2d goal = new Vector2d(18.8,30.5);
+        Vector2d goal = new Vector2d(31.5,21.5);
         String height = "cos ( 0.5 * x ) + 1";
         SimulateMain.beginning(g, mass, mu, maxV, radius, start, goal, height);
     }
