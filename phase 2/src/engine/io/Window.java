@@ -22,15 +22,15 @@ public class Window {
 	private boolean isResized;
 	private boolean isFullscreen;
 	private int[] windowPosX = new int[1], windowPosY = new int[1];
-	
+
+// Constructor for a window
 	public Window(int width, int height, String title) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
 	}
 
-
-	//============================================================ Create Display Function ========================================================
+	// Create Display Function
 	public void create() {
 		if (!GLFW.glfwInit()) {
 			System.err.println("ERROR: GLFW wasn't initializied");
@@ -55,16 +55,12 @@ public class Window {
 		GLFW.glfwMakeContextCurrent(window);
 		GL.createCapabilities();
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		
 		createCallbacks();
-		
 		GLFW.glfwShowWindow(window);
-		
 		GLFW.glfwSwapInterval(1);
-		
 
 	}
-
+// creation of callbacks
 	private void createCallbacks() {
 		sizeCallback = new GLFWWindowSizeCallback() {
 			public void invoke(long window, int w, int h) {
@@ -81,7 +77,7 @@ public class Window {
 		GLFW.glfwSetWindowSizeCallback(window, sizeCallback);
 	}
 
-	//============================================================ Update Display (frames) Function ========================================================
+	//Update Display (frames) Function
 
 	public void update() {
 
@@ -105,15 +101,15 @@ public class Window {
 		delta = (currentFrameTime - lastFrameTime)/1000f;
 		lastFrameTime = currentFrameTime;
 	}
-	
+// swap Buffers
 	public void swapBuffers() {
 		GLFW.glfwSwapBuffers(window);
 	}
-	
+// close window
 	public boolean shouldClose() {
 		return GLFW.glfwWindowShouldClose(window);
 	}
-	
+// destruction of window
 	public void destroy() {
 		input.destroy();
 		sizeCallback.free();
@@ -121,15 +117,15 @@ public class Window {
 		GLFW.glfwDestroyWindow(window);
 		GLFW.glfwTerminate();
 	}
-	
+// Setter for background Colour
 	public void setBackgroundColor(float r, float g, float b) {
 		background.set(r, g, b);
 	}
-
+// Is the screen full screen?
 	public boolean isFullscreen() {
 		return isFullscreen;
 	}
-
+// Set the screen to full Screen
 	public void setFullscreen(boolean isFullscreen) {
 		this.isFullscreen = isFullscreen;
 		isResized = true;
@@ -140,7 +136,7 @@ public class Window {
 			GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 60);
 		}
 	}
-
+// getters
 	public static float getFrameTimeSeconds(){
 		return delta;
 	}

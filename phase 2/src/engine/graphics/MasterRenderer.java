@@ -25,35 +25,19 @@ public class MasterRenderer {
     private static final float NEAR_PLANE = 0.1f;
     private static final float FAR_PLANE = 10000000f;
 
-    // fog Colour
-  //  private static final float RED = 0.5f;
-  //  private static final float GREEN = 0.5f;
-   // private static final float BLUE = 0.5f;
-
-  //  private static final float RED = 168/256f;
-  //  private static final float GREEN = 72/256f;
-   // private static final float BLUE = 13/256f;
-
     private static final float RED = 0.5444f;
     private static final float GREEN = 0.62f;
     private static final float BLUE = 0.69f;
 
-
-
-
     private Matrix4f projectionMatrix;
-
     private StaticShader shader = new StaticShader();
     private EntityRenderer renderer;
-
     private TerrainRenderer terrainRenderer;
     private TerrainShader terrainShader = new TerrainShader();
-
     private Map<TexturedModel, List<Entity>> entities = new HashMap<TexturedModel, List<Entity>>();
     private List<Terrain> terrains = new ArrayList<Terrain>();
-
     private SkyboxRenderer skyboxRenderer;
-
+// Constructor for MasterRenderer
     public MasterRenderer(Loader loader) {
         enableCulling();
         createProjectionMatrix();
@@ -62,17 +46,16 @@ public class MasterRenderer {
         skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
     }
 
-
+// enable culling
     public static void enableCulling(){
         GL46.glEnable(GL46.GL_CULL_FACE);
         GL46.glCullFace(GL46.GL_BACK);
     }
-
+// disable Culling
     public static void disableCulling(){
         GL46.glDisable(GL46.GL_CULL_FACE);
     }
-
-
+// render method
     public void render(List<Light> lights, Camera camera, Vector4f clipPlane){
         prepare();
 
@@ -84,7 +67,6 @@ public class MasterRenderer {
         renderer.render(entities);
         shader.stop();
 
-
         terrainShader.start();
         terrainShader.loadClipPlane(clipPlane);
         terrainShader.loadSkyColour(RED,GREEN,BLUE);
@@ -95,19 +77,18 @@ public class MasterRenderer {
 
         skyboxRenderer.render(camera, RED,GREEN,BLUE);
 
-
         terrains.clear();
         entities.clear();
     }
-
+// add terrain to list of terrains
     public void processTerrain(Terrain terrain){
         terrains.add(terrain);
     }
-
+// getter function for ProjectionMatrix
     public Matrix4f getProjectionMatrix() {
         return projectionMatrix;
     }
-
+// Adding Entity to a list of entities
     public void processEntity(Entity entity){
         TexturedModel entityModel = entity.getModel();
         List<Entity> batch = entities.get(entityModel);
@@ -120,19 +101,19 @@ public class MasterRenderer {
 
         }
     }
-
+// cleanup of shaders
     public void cleanUp(){
         shader.cleanUp();
         terrainShader.cleanUp();
         skyboxRenderer.getShader().cleanUp();
     }
-
+// preparing screen to be rendered onto.
     public void prepare(){
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT| GL46.GL_DEPTH_BUFFER_BIT);
         GL11.glClearColor(RED, GREEN, BLUE, 1);
     }
-
+// creation of a projection Matrix
     private void createProjectionMatrix(){
         float aspectRatio = (float) 1280 / (float) 720;
         float y_scale = (float) ((1f / Math.tan(Math.toRadians(FOV/2f))) * aspectRatio);

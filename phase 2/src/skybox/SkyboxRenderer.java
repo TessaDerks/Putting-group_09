@@ -70,10 +70,11 @@ public class SkyboxRenderer {
     private SkyboxShader shader;
     private float time = 0;
 
+// returns shader for the skybox
     public SkyboxShader getShader() {
         return shader;
     }
-
+// Constructor for skybox
     public SkyboxRenderer(Loader loader, Matrix4f projectionMatrix){
 
         cube = loader.loadToVAO(VERTICES, 3);
@@ -85,7 +86,7 @@ public class SkyboxRenderer {
         shader.loadProjectionMatrix(projectionMatrix);
         shader.stop();
     }
-
+// Render method
     public void render(Camera camera, float r, float g, float b){
 
         shader.start();
@@ -105,7 +106,7 @@ public class SkyboxRenderer {
         GL46.glDepthMask(true);
         shader.stop();
     }
-
+// binding of textures
     private void bindTextures(){
         time += Window.getFrameTimeSeconds()*1000;
         time%=24000;

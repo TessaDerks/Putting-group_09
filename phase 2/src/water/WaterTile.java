@@ -6,13 +6,14 @@ public class WaterTile {
 	
 	private float height;
 	private float x,z;
-	
+
+// Constructor of Water Tile
 	public WaterTile(float centerX, float centerZ, float height){
 		this.x = centerX;
 		this.z = centerZ;
 		this.height = height;
 	}
-
+// getters
 	public float getHeight() {
 		return height;
 	}

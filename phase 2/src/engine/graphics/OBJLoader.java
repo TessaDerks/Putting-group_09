@@ -10,7 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-
+// Object Loader, loads an .obj file
+// credits: https://www.dropbox.com/sh/x1fyet1otejxk3z/AAAoCqArl4cIx0THdRk2poW3a?dl=0
 public class OBJLoader {
 
     public static RawModel loadObjModel(String fileName, Loader loader){

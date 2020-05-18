@@ -17,7 +17,7 @@ import java.util.List;
 public class TerrainRenderer {
 
     private TerrainShader shader;
-
+// Constructor for a Terrain Renderer
     public TerrainRenderer(TerrainShader shader, Matrix4f projectionMatrix) {
         this.shader = shader;
         shader.start();
@@ -25,7 +25,7 @@ public class TerrainRenderer {
         shader.connectTextureUnits();
         shader.stop();
     }
-
+// render method
     public void render(List<Terrain> terrains) {
         for (Terrain terrain : terrains) {
             prepareTerrain(terrain);
@@ -35,7 +35,7 @@ public class TerrainRenderer {
             unbindTexturedModel();
         }
     }
-
+// preparation of terrain to be rendered onto screen.
     private void prepareTerrain(Terrain terrain) {
         RawModel rawModel = terrain.getModel();
         GL30.glBindVertexArray(rawModel.getVaoID());
@@ -52,7 +52,7 @@ public class TerrainRenderer {
         //GL46.glActiveTexture(GL13.GL_TEXTURE0);
         //GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture.getID());
     }
-
+// binding of textures.
     private void bindTextures(Terrain terrain){
         TerrainTexturePack texturePack = terrain.getTexturePack();
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -66,14 +66,14 @@ public class TerrainRenderer {
         GL13.glActiveTexture(GL13.GL_TEXTURE4);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, terrain.getBlendMap().getTextureID());
     }
-
+// unbinding of textures
     private void unbindTexturedModel() {
         GL20.glDisableVertexAttribArray(0);
         GL20.glDisableVertexAttribArray(1);
         GL20.glDisableVertexAttribArray(2);
         GL30.glBindVertexArray(0);
     }
-
+// loading of a terrain onto a transformation matrix
     private void loadModelMatrix(Terrain terrain) {
         Matrix4f transformationMatrix = Maths.createTransformationMatrix(
                 new Vector3f(terrain.getX(), 0, terrain.getZ()), 0, 0, 0, 1);

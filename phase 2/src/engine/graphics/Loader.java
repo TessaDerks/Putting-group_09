@@ -29,7 +29,7 @@ public class Loader {
     private List<Integer> vaos = new ArrayList<Integer>();
     private List<Integer> vbos = new ArrayList<Integer>();
     private List<Integer> textures = new ArrayList<Integer>();
-
+// loading of RawModel to Vertex Array Object
     public RawModel loadToVAO(float[] positions, float[] textureCoords,float [] normals, int[] indices){
         int vaoID = createVAO();
         bindIndicesBuffer(indices);
@@ -39,14 +39,14 @@ public class Loader {
         unbindVAO();
         return new RawModel(vaoID,indices.length);
     }
-
+// loading of RawModel to vertex Array Object
     public RawModel loadToVAO(float[] positions, int dimensions){
         int vaoID = createVAO();
         this.storeDataInAttributeList(0,dimensions,positions);
         unbindVAO();
         return new RawModel(vaoID, positions.length/dimensions);
     }
-
+// loading Texture
     public int loadTexture(String fileName) throws IOException {
         Texture texture = null;
         try{
@@ -61,7 +61,7 @@ public class Loader {
         textures.add(textureID);
         return textureID;
     }
-
+// clean up of Vertex Array Buffers, Vertex Buffer objects and textures.
     public void cleanUp(){
         for(int vao:vaos){
             GL30.glDeleteVertexArrays(vao);
@@ -73,7 +73,7 @@ public class Loader {
             GL46.glDeleteTextures(texture);
         }
     }
-
+// Cube Map Loader
     public int loadCubeMap(String[] textureFiles){
         int texID = GL11.glGenTextures();
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -91,7 +91,7 @@ public class Loader {
         GL11.glTexParameteri(GL13.GL_TEXTURE_CUBE_MAP, GL12.GL_TEXTURE_WRAP_R, GL12.GL_CLAMP_TO_EDGE);
         return texID;
     }
-
+// Texture Loader from png file
     private TextureData decodeTextureFile(String fileName) {
         int width = 0;
         int height = 0;
@@ -112,14 +112,14 @@ public class Loader {
         }
         return new TextureData(buffer, width, height);
     }
-
+// create Vertex Array Object
     private int createVAO(){
         int vaoID = GL30.glGenVertexArrays();
         vaos.add(vaoID);
         GL30.glBindVertexArray(vaoID);
         return vaoID;
     }
-
+// Storage of data
     private void storeDataInAttributeList(int attributeNumber,int coordinateSize, float[] data){
         int vboID = GL15.glGenBuffers();
         vbos.add(vboID);
@@ -129,11 +129,11 @@ public class Loader {
         GL20.glVertexAttribPointer(attributeNumber,coordinateSize,GL11.GL_FLOAT,false,0,0);
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
     }
-
+// unbind Vertex Array Objects
     private void unbindVAO(){
         GL30.glBindVertexArray(0);
     }
-
+// binding of indices Buffers
     private void bindIndicesBuffer(int[] indices){
         int vboID = GL15.glGenBuffers();
         vbos.add(vboID);
@@ -141,14 +141,14 @@ public class Loader {
         IntBuffer buffer = storeDataInIntBuffer(indices);
         GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
     }
-
+// Store data in an integer buffer
     private IntBuffer storeDataInIntBuffer(int[] data){
         IntBuffer buffer = BufferUtils.createIntBuffer(data.length);
         buffer.put(data);
         buffer.flip();
         return buffer;
     }
-
+// store data in a float buffer
     private FloatBuffer storeDataInFloatBuffer(float[] data){
         FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
         buffer.put(data);

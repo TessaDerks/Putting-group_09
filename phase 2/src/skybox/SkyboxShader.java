@@ -57,6 +57,7 @@ public class SkyboxShader extends ShaderProgram{
         super.loadFloat(location_blendFactor, blend);
     }
 
+// get locations of Uniforms
     @Override
     protected void getAllUniformLocation() {
         location_projectionMatrix = super.getUniformLocation("projectionMatrix");
@@ -66,7 +67,7 @@ public class SkyboxShader extends ShaderProgram{
         location_cubeMap = super.getUniformLocation("cubeMap");
         location_cubeMap2 = super.getUniformLocation("cubeMap2");
     }
-
+// binding of attributes
     @Override
     protected void bindAttributes() {
         super.bindAttribute(0, "position");

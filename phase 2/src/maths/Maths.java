@@ -7,6 +7,7 @@ import org.lwjglx.util.vector.Vector3f;
 
 public class Maths {
 
+// Bary Centric function: will return the height of the triangle of the player position
     public static float barryCentric(Vector3f p1, Vector3f p2, Vector3f p3, Vector2f pos) {
         float det = (p2.z - p3.z) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.z - p3.z);
         float l1 = ((p2.z - p3.z) * (pos.x - p3.x) + (p3.x - p2.x) * (pos.y - p3.z)) / det;
@@ -14,7 +15,7 @@ public class Maths {
         float l3 = 1.0f - l1 - l2;
         return l1 * p1.y + l2 * p2.y + l3 * p3.y;
     }
-
+// creation of a transformation Matrix
     public static Matrix4f createTransformationMatrix(Vector2f translation, Vector2f scale) {
         Matrix4f matrix = new Matrix4f();
         matrix.setIdentity();
@@ -22,7 +23,7 @@ public class Maths {
         Matrix4f.scale(new Vector3f(scale.x, scale.y, 1f), matrix, matrix);
         return matrix;
     }
-
+// creation of a transformation matrix , with rotation of x,y,z
     public static Matrix4f createTransformationMatrix(Vector3f translation, float rx, float ry, float rz, float scale) {
         Matrix4f matrix = new Matrix4f();
         matrix.translate(translation);
@@ -32,7 +33,7 @@ public class Maths {
         matrix.scale(new Vector3f(scale, scale, scale), matrix, matrix);
         return matrix;
     }
-
+// creation of a view Matrix
     public static Matrix4f createViewMatrix(Camera camera) {
         Matrix4f viewMatrix = new Matrix4f();
         viewMatrix.setIdentity();

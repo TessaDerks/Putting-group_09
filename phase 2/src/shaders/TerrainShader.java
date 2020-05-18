@@ -36,7 +36,7 @@ public class TerrainShader extends ShaderProgram {
     public TerrainShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
-
+// get locations of Uniforms
     @Override
     protected void getAllUniformLocation() {
         location_transformationMatrix = super.getUniformLocation("transformationMatrix");
@@ -52,7 +52,6 @@ public class TerrainShader extends ShaderProgram {
         location_blendMap = super.getUniformLocation("blendMap");
         location_plane = super.getUniformLocation("plane");
 
-
         location_lightPosition = new int[MAX_LIGHTS];
         location_lightColour = new int[MAX_LIGHTS];
         location_attenuation = new int[MAX_LIGHTS];
@@ -63,11 +62,11 @@ public class TerrainShader extends ShaderProgram {
         }
 
     }
-
+// load clipplane
     public void loadClipPlane(Vector4f plane){
         super.loadVector(location_plane, plane);
     }
-
+// connection of textures
     public void connectTextureUnits(){
         super.loadInt(location_backgroundTexture, 0);
         super.loadInt(location_rTexture, 1);
@@ -75,16 +74,16 @@ public class TerrainShader extends ShaderProgram {
         super.loadInt(location_bTexture, 3);
         super.loadInt(location_blendMap, 4);
     }
-
+// set skyColour
     public void loadSkyColour(float r, float g, float b){
         super.loadVector(location_skyColour, new Vector3f(r,g,b));
     }
-
+// set dampe and reflectivity
     public void loadShineVariables(float damper, float reflectivity){
         super.loadFloat(location_shineDamper, damper);
         super.loadFloat(location_reflectivity, reflectivity);
     }
-
+// binding of attributes
     @Override
     protected void bindAttributes() {
         super.bindAttribute(0, "position");
@@ -102,7 +101,7 @@ public class TerrainShader extends ShaderProgram {
         Matrix4f viewMatrix = Maths.createViewMatrix(camera);
         super.loadMatrix(location_viewMatrix, viewMatrix);
     }
-
+// load lights
     public void loadLights(List<Light> lights){
         for (int i=0;i<MAX_LIGHTS;i++){
             if(i<lights.size()){
@@ -116,7 +115,6 @@ public class TerrainShader extends ShaderProgram {
             }
         }
     }
-
 
     public void loadProjectionMatrix(Matrix4f projection){
         super.loadMatrix(location_projectionMatrix,projection);

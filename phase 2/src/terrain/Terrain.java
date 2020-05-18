@@ -22,29 +22,16 @@ public class Terrain {
     public static final float SIZE = 1000;
     private static final float MAX_HEIGHT = 40000;
     private static final float MAX_PIXEL_COLOUR = 256 * 256 * 256;
-
     private static int VERTEX_COUNT = 1048;
-    //private static int VERTEX_COUNT = 248;
-
     private float x;
     private float z;
     private RawModel model;
     private TerrainTexturePack texturePack;
     private TerrainTexture blendMap;
-
     private Function2d function = SimulateMain.getFunction();
-
     private float[][] heights;
 
-    public TerrainTexturePack getTexturePack() {
-        return texturePack;
-    }
-
-    public TerrainTexture getBlendMap() {
-        return blendMap;
-    }
-
-
+// Constructor for Terrain
      public Terrain(int gridX, int gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap){
         this.texturePack = texturePack;
         this.blendMap = blendMap;
@@ -53,8 +40,7 @@ public class Terrain {
         this.model = generateTerrain(loader);
     }
 
-
-
+// generation of Terrain
     private RawModel generateTerrain(Loader loader){
 
         heights = new float[VERTEX_COUNT][VERTEX_COUNT];
@@ -99,25 +85,20 @@ public class Terrain {
         return loader.loadToVAO(vertices, textureCoords, normals, indices);
     }
 
+// calculation of normals.
     private Vector3f calculateNormal(int x, int z){
-      /*  float heightL = getHeightOfTerrain(x-1,z);
-        float heightR = getHeightOfTerrain(x+1, z);
-        float heightD = getHeightOfTerrain(x,z-1);
-        float heightU = getHeightOfTerrain(x, z+1);
-
-       */
 
         float heightL = (float) Function2d.evaluate( new Vector2d(x-1,z));
         float heightR = (float) Function2d.evaluate(new Vector2d(x+1, z));
         float heightD = (float) Function2d.evaluate(new Vector2d(x,z-1));
         float heightU = (float) Function2d.evaluate(new Vector2d(x, z+1));
 
-
         Vector3f normal = new Vector3f(heightL-heightR, 2f, heightD - heightU);
         normal.normalise();
         return normal;
     }
 
+// calculation of height at certain x,y position on a height map.
     private float getHeight(int x, int y, BufferedImage image){
         if(x<0 || x>=image.getHeight() || y<0 || y>=image.getHeight()){
             return 0;
@@ -130,6 +111,7 @@ public class Terrain {
 
     }
 
+// calculation of height at a certain x,y position.
     public float getHeightOfTerrain(float worldX, float worldZ){
         float terrainX = worldX - this.x;
         float terrainZ = worldZ - this.z;
@@ -159,19 +141,21 @@ public class Terrain {
 
     }
 
+// getters
     public float getX() {
         return x;
     }
-
     public float getZ() {
         return z;
     }
-
-
-
     public RawModel getModel() {
         return model;
     }
-
+    public TerrainTexturePack getTexturePack() {
+        return texturePack;
+    }
+    public TerrainTexture getBlendMap() {
+        return blendMap;
+    }
 
 }

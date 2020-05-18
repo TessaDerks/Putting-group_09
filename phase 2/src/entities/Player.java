@@ -41,14 +41,14 @@ public class Player extends Entity {
 
             nMoves++;
     }
-
+// jump
     private void jump(){
         if(!isInAir1) {
             this.upwardsSpeed = JUMP_POWER;
             isInAir1 = true;
         }
     }
-
+// checks inputs
     private void checkInputs(){
         if(Input.isKeyDown(GLFW.GLFW_KEY_W)){
             this.currentSpeed = MOVE_SPEED;

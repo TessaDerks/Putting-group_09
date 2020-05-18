@@ -13,10 +13,8 @@ import java.util.List;
 public class StaticShader extends ShaderProgram{
 
     private static final int MAX_LIGHTS = 4;
-
     private static final String VERTEX_FILE = "src/shaders/vertexShader";
     private static final String FRAGMENT_FILE = "src/shaders/fragmentShader";
-
     private int location_transformationMatrix;
     private int location_projectionMatrix;
     private int location_viewMatrix;
@@ -31,11 +29,12 @@ public class StaticShader extends ShaderProgram{
     private int location_offset;
     private int location_plane;
 
-
+// constructor for a Static Shader
     public StaticShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
 
+// get location of uniforms
     @Override
     protected void getAllUniformLocation() {
         location_transformationMatrix = super.getUniformLocation("transformationMatrix");
@@ -48,17 +47,22 @@ public class StaticShader extends ShaderProgram{
         location_numberOfRows = super.getUniformLocation("numberOfRows");
         location_offset = super.getUniformLocation("offset");
         location_plane = super.getUniformLocation("plane");
-
-
         location_lightPosition = new int[MAX_LIGHTS];
         location_lightColour = new int[MAX_LIGHTS];
         location_attenuation = new int[MAX_LIGHTS];
+
         for(int i=0; i<MAX_LIGHTS;i++){
             location_lightPosition[i] = super.getUniformLocation("lightPosition["+i+"]");
             location_lightColour[i] = super.getUniformLocation("lightColour["+i+"]");
             location_attenuation[i] = super.getUniformLocation("attenuation["+i+"]");
         }
+    }
 
+    @Override
+    protected void bindAttributes() {
+        super.bindAttribute(0, "position");
+        super.bindAttribute(1, "textureCoords");
+        super.bindAttribute(2, "normal");
     }
 
     public void loadClipPlane(Vector4f plane){
@@ -71,7 +75,6 @@ public class StaticShader extends ShaderProgram{
 
     public void loadOffset (float x, float y){
         super.load2DVector(location_offset, new Vector2f(x,y));
-
     }
 
     public void loadSkyColour(float r, float g, float b){
@@ -87,16 +90,7 @@ public class StaticShader extends ShaderProgram{
         super.loadFloat(location_reflectivity, reflectivity);
     }
 
-    @Override
-    protected void bindAttributes() {
-        super.bindAttribute(0, "position");
-        super.bindAttribute(1, "textureCoords");
-        super.bindAttribute(2, "normal");
-    }
-
-
     public void loadTransformationMatrix(Matrix4f matrix){
-
         super.loadMatrix(location_transformationMatrix,matrix);
     }
 
@@ -118,7 +112,6 @@ public class StaticShader extends ShaderProgram{
             }
         }
     }
-
 
     public void loadProjectionMatrix(Matrix4f projection){
         super.loadMatrix(location_projectionMatrix,projection);

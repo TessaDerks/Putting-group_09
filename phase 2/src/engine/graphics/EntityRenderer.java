@@ -18,18 +18,15 @@ import java.util.Map;
 
 public class EntityRenderer {
 
-
-
 	private StaticShader shader;
-
+// Constructor for Entity
 	public EntityRenderer(StaticShader shader, Matrix4f projectionMatrix){
 		this.shader = shader;
 		shader.start();
 		shader.loadProjectionMatrix(projectionMatrix);
 		shader.stop();
 	}
-
-
+// Render method
 	public void render(Map<TexturedModel, List<Entity>> entities){
 		for(TexturedModel model:entities.keySet()){
 			prepareTexturedModel(model);
@@ -41,7 +38,7 @@ public class EntityRenderer {
 			unbindTexturedModel();
 		}
 	}
-
+//  binding of a textured model.
 	public void prepareTexturedModel (TexturedModel model1){
 
 		RawModel model = model1.getRawModel();
@@ -59,9 +56,8 @@ public class EntityRenderer {
 		GL46.glActiveTexture(GL46.GL_TEXTURE0);
 		GL46.glBindTexture(GL46.GL_TEXTURE_2D, model1.getTexture().getID());
 
-
 	}
-
+// unbinding of a textured model to a vertex
 	private void unbindTexturedModel(){
 
 		MasterRenderer.enableCulling();

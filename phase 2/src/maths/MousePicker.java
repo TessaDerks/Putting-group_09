@@ -11,23 +11,19 @@ import org.lwjglx.util.vector.Vector4f;
 import terrain.Terrain;
 
 import static maths.Maths.createViewMatrix;
-
+// This class can be used for selecting a certain spot in the rendered world, currently unused.
 public class MousePicker {
 
-
     private Vector3f currentRay;
-
     private Matrix4f projectionMatrix;
     private Matrix4f viewMatrix;
     private Camera camera;
-
 
     public MousePicker(Camera cam, Matrix4f projection) {
         camera = cam;
         projectionMatrix = projection;
         viewMatrix = createViewMatrix(camera);
     }
-
 
     public Vector3f getCurrentRay() {
         return currentRay;

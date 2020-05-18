@@ -9,7 +9,8 @@ public class Entity {
     private float rotX,rotY,rotZ;
     private float scale;
 
-    // which texturePart of a texture you want (TextureAtlas)
+// Getters and Setters
+// which texturePart of a texture you want (TextureAtlas)
     private int textureIndex = 0;
 
     public TexturedModel getModel() {
@@ -59,30 +60,29 @@ public class Entity {
     public void setScale(float scale) {
         this.scale = scale;
     }
-
+// X Offset
     public float getTextureXOffset(){
         int column = textureIndex%model.getTexture().getNumberOfRows();
         return (float)column/(float)model.getTexture().getNumberOfRows();
     }
-
+// Y Offset
     public float getTextureYOffset(){
         int row = textureIndex/model.getTexture().getNumberOfRows();
         return (float)row/(float)model.getTexture().getNumberOfRows();
     }
-
+// move Position
     public void increasePosition(float dx, float dy, float dz){
         this.position.x+=dx;
         this.position.y+=dy;
         this.position.z+=dz;
     }
-
+// move the rotation
     public void increaseRotation(float dx, float dy, float dz){
         this.rotX+=dx;
         this.rotY+=dy;
         this.rotZ+=dz;
     }
-
-
+// Constructor 1 for Entity: without index parameter
     public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
         this.model = model;
         this.position = position;
@@ -91,7 +91,7 @@ public class Entity {
         this.rotZ = rotZ;
         this.scale = scale;
     }
-
+// Constructor 2 for Entity: with index parameter
     public Entity(TexturedModel model,int index, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
         this.textureIndex = index;
         this.model = model;

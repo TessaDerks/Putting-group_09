@@ -22,6 +22,7 @@ public abstract class ShaderProgram {
 
     private static FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
 
+// Constructor for Shader Program
     public ShaderProgram(String vertexFile,String fragmentFile){
         vertexShaderID = loadShader(vertexFile,GL20.GL_VERTEX_SHADER);
         fragmentShaderID = loadShader(fragmentFile,GL20.GL_FRAGMENT_SHADER);
@@ -38,7 +39,6 @@ public abstract class ShaderProgram {
 
     protected int getUniformLocation(String uniformName){
         return GL46.glGetUniformLocation(programID,uniformName);
-
     }
 
     public void start(){
@@ -49,6 +49,7 @@ public abstract class ShaderProgram {
         GL20.glUseProgram(0);
     }
 
+// clean up of the shaders.
     public void cleanUp(){
         stop();
         GL20.glDetachShader(programID, vertexShaderID);
@@ -95,7 +96,7 @@ public abstract class ShaderProgram {
         matrixBuffer.flip();
         GL46.glUniformMatrix4fv(location,false, matrixBuffer);
     }
-
+// loads up shaders
     private static int loadShader(String file, int type){
         StringBuilder shaderSource = new StringBuilder();
         try{
