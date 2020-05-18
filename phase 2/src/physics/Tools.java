@@ -48,4 +48,30 @@ public class Tools {
 
         //Vector2d adjusted = new Vector2d()
     }
+
+    // Method to check if goal is to vertical.
+    public static boolean checkGoalSlope(Vector2d goal_position,Function2d function, double mass, double g, double mu){
+        boolean result = true;
+        Vector2d G = calcG(function,goal_position,mass,g);
+        Vector2d H = calcH(mu,mass,g,G);
+
+        if((Math.abs(H.get_x())<G.get_x())||(Math.abs(H.get_y())<G.get_y()))
+        {
+            result = false;
+        }
+        return result;
+    }
+
+    public static Vector2d calcG(Function2d h, Vector2d p, double m, double g){
+        Vector2d der = h.gradient(p);
+        Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
+
+        return output;
+    }
+
+    public static Vector2d calcH(double mu, double m, double g, Vector2d v){
+        double xH = (-mu * m * g * v.get_x());
+        double yH = (-mu * m * g * v.get_y());
+        return new Vector2d(xH,yH);
+    }
 }
