@@ -55,6 +55,9 @@ public class Tools {
         Vector2d G = calcG(function,goal_position,mass,g);
         Vector2d H = calcH(mu,mass,g,G);
 
+        System.out.println("G"+G.get_x()+" "+G.get_y());
+        System.out.println("H"+H.get_x()+" "+H.get_y());
+
         if((Math.abs(H.get_x())<G.get_x())||(Math.abs(H.get_y())<G.get_y()))
         {
             result = false;
