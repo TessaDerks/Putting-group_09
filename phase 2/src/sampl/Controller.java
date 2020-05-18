@@ -79,19 +79,19 @@ public class Controller implements Initializable {
         double frictionCoefficient = Double.parseDouble(friction.getText());
         double startX = Double.parseDouble(startPosX.getText());
         double startY = Double.parseDouble(startPosY.getText());
-        Vector2d start = new Vector2d(0, 0);
-        double goalX = Double.parseDouble(goalPosX.getText()) - startX ;
-        double goalY = Double.parseDouble(goalPosY.getText()) - startY;
+        Vector2d start = new Vector2d(startX, startY);
+        double goalX = Double.parseDouble(goalPosX.getText());
+        double goalY = Double.parseDouble(goalPosY.getText());
         Vector2d goal = new Vector2d(goalX, goalY);
         double radiusOfTarget = Double.parseDouble(radius.getText());
         double maxV = Double.parseDouble(maxSpeed.getText());
-        String heightFunction = translateFunction(startX,startY,heightProfile.getText());
+        String heightFunction = heightProfile.getText();
 
         SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1);
     }
 
 
-    private String translateFunction(double startX, double startY, String function){
+  /*  private String translateFunction(double startX, double startY, String function){
         for(int i = 0; i<function.length();i++){
 
             String findX = Character.toString(function.charAt(i));
@@ -114,6 +114,8 @@ public class Controller implements Initializable {
         }
         return function;
     }
+
+   */
 
     // read textfields from file input screen and send information to filereader 
     @FXML
