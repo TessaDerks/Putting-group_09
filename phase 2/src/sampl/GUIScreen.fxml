@@ -120,9 +120,9 @@
       </HBox>
    </top>
    <center>
-      <ImageView fitHeight="466.0" fitWidth="731.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="390.0" fitWidth="654.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/kim.png" />
+            <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/menuScreen.png" />
          </image>
       </ImageView>
    </center>
