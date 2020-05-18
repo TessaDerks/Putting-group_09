@@ -65,6 +65,7 @@ public class Tools {
     public static Vector2d calcG(Function2d h, Vector2d p, double m, double g){
         Vector2d der = h.gradient(p);
         Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
+
         return output;
     }
 
