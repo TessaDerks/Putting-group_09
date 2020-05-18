@@ -142,14 +142,14 @@ class Genetic {
                 sortPopulation();
                 generation++;
             }
-            System.out.println("Congrats! Bot made a hole in one!");
+            //System.out.println("Congrats! Bot made a hole in one!");
             if(!testCase){
                 putting.get_engine().resetPosition(SimulateMain.getStart());
                 putting.take_shot( Tools.velFromAngle(angle, population[0].getSpeed()), false);
                 Main.takingShot = true;
                 Main.openNewWindow = true;
             }
-            System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
+            //System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
     }
 
     public static Double CalculateAmountShots(){ // calculate if the bot can reach the destination
