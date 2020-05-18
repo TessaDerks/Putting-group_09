@@ -133,8 +133,8 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void start(MouseEvent event){
-
+    private void start(MouseEvent event) {
+        UILoader("Finish");
     }
 
     @FXML
