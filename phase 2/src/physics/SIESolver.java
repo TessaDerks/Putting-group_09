@@ -16,7 +16,7 @@ public class SIESolver implements PhysicsEngine {
     private double v_max = 30;
     private Vector2d p;
     private Vector2d v;
-    private Function2d h = new Function2d("1");
+    private Function2d h;
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
