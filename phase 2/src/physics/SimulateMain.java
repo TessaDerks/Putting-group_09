@@ -61,6 +61,14 @@ public class SimulateMain {
 
             alert.showAndWait();
         }
+        else if(!Tools.checkGoalSlope(flag, function, m, g, mu)){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Goal position not possible, too steep for ball to stop");
+
+            alert.showAndWait();
+        }
         else {
             simulator.set_ball_position(start);
 
@@ -69,7 +77,7 @@ public class SimulateMain {
         }
     }
 
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height) {
+    public static boolean beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height) {
 
         g = _g;
         m = _m;
@@ -80,22 +88,30 @@ public class SimulateMain {
         flag = _goal;
         function = new Function2d(_height);
 
-        // Create PuttingSimulator and set all given settings
-        PuttingCourse course = new PuttingCourse(function, flag, start);
-        course.set_mu(mu);
-        course.set_vMax(vmax);
-        course.set_holeTolerance(tol);
+        if(Tools.checkGoalSlope(flag, function, m, g, mu)){
+            // Create PuttingSimulator and set all given settings
+            PuttingCourse course = new PuttingCourse(function, flag, start);
+            course.set_mu(mu);
+            course.set_vMax(vmax);
+            course.set_holeTolerance(tol);
 
-        // create physics engine and set all settings for terrain
-        PhysicsEngine engine = new SIESolver(start);
-        engine.set_step_size(0.01);
-        engine.set_h(function);
-        engine.set_m(m);
-        engine.set_g(g);
-        engine.set_v_max(vmax);
-        simulator = new PuttingSimulator(course, engine);
+            // create physics engine and set all settings for terrain
+            PhysicsEngine engine = new SIESolver(start);
+            engine.set_step_size(0.01);
+            engine.set_h(function);
+            engine.set_m(m);
+            engine.set_g(g);
+            engine.set_v_max(vmax);
+            simulator = new PuttingSimulator(course, engine);
 
-        simulator.set_ball_position(start);
+            simulator.set_ball_position(start);
+            return true;
+        }
+        else{
+            return false;
+        }
+
+
 
     }
     public static void start(){
