@@ -152,8 +152,10 @@ public class FileReader {
                 height = values;
             }
         }
+        ArrayList<Vector2d> emptyList = new ArrayList<>();
+
         // send information to build terrain
-        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2);
+        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, emptyList, emptyList);
     }
 
 
