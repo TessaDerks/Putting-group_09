@@ -6,6 +6,7 @@ import physics.PhysicsEngine;
 import physics.Tools;
 import physics.Vector2d;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class SIESolver implements PhysicsEngine {
@@ -24,7 +25,7 @@ public class SIESolver implements PhysicsEngine {
     private Vector2d H;
     private Vector2d F;
     private Vector2d W;
-    List<Wind> windList;
+    List<Wind> windList = new LinkedList<Wind>();
     //</editor-fold>
 
     public SIESolver(Vector2d _p){
