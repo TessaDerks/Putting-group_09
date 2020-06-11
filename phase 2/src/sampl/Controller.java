@@ -15,10 +15,12 @@ import main.Main;
 import physics.FileReader;
 import physics.SimulateMain;
 import physics.Vector2d;
+import terrain.Terrain;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +51,17 @@ public class Controller implements Initializable {
     @FXML
     private TextField goalPosY;
 
+    @FXML
+    private TextField treePosX;
+
+    @FXML
+    private TextField treePosY;
+
+    @FXML
+    private TextField sandPosX;
+
+    @FXML
+    private TextField sandPosY;
 
     @FXML
     private TextField radius;
@@ -71,6 +84,10 @@ public class Controller implements Initializable {
     @FXML
     private Button applyManInput;
 
+    private ArrayList<Vector2d> treesList = new ArrayList<>();
+
+    private ArrayList<Vector2d> sandList = new ArrayList<>();
+
     // read textfield from manual input screen and send information about terrain to simulate main
 
     @FXML
@@ -88,9 +105,7 @@ public class Controller implements Initializable {
         double maxV = Double.parseDouble(maxSpeed.getText());
         String heightFunction = heightProfile.getText();
 
-        ArrayList<Vector2d> emptylist = new ArrayList<>();
-
-        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, emptylist, emptylist);
+        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList);
     }
 
 
@@ -131,6 +146,45 @@ public class Controller implements Initializable {
         FileReader.fileShot(fileShots);
     }
 
+    @FXML
+    private void applyRandomTrees(MouseEvent event){
+
+        for(int i = 0; i< 15; i++){
+            double x = Math.random() * (800 + 1);
+            double y = Math.random() * (800 + 1);
+            Vector2d tree = new Vector2d(x, y);
+            treesList.add(tree);
+        }
+    }
+
+    @FXML
+    private void applyRandomSand(MouseEvent event){
+
+        for(int i = 0; i< 15; i++){
+            double x = Math.random() * (800 + 1);
+            double y = Math.random() * (800 + 1);
+            Vector2d sand = new Vector2d(x, y);
+            sandList.add(sand);
+        }
+    }
+
+    @FXML
+    private void applyTreesButton(MouseEvent event){
+        double x = Double.parseDouble(treePosX.getText());
+        double y = Double.parseDouble(treePosY.getText());
+        Vector2d tree = new Vector2d(x,y);
+        treesList.add(tree);
+        System.out.println("added tree to list");
+    }
+
+    @FXML
+    private void applySandButton(MouseEvent event){
+        double x = Double.parseDouble(sandPosX.getText());
+        double y = Double.parseDouble(sandPosY.getText());
+        Vector2d sand = new Vector2d(x,y);
+        sandList.add(sand);
+        System.out.println("added sand to list");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
