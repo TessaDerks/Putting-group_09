@@ -18,6 +18,7 @@ import physics.Vector2d;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,7 +88,9 @@ public class Controller implements Initializable {
         double maxV = Double.parseDouble(maxSpeed.getText());
         String heightFunction = heightProfile.getText();
 
-        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1);
+        ArrayList<Vector2d> emptylist = new ArrayList<>();
+
+        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, emptylist, emptylist);
     }
 
 
