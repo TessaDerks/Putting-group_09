@@ -20,6 +20,8 @@ public class PuttingCourse {
         height = _height;
         flag = _flag;
         start = _start;
+
+        treeList.add(new Tree(new Vector2d(8,8),1));
     }
 
     //<editor-fold desc="Setters">
