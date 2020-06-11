@@ -1,9 +1,12 @@
 package physics;
 
+import org.lwjgl.system.CallbackI;
 import physics.Function2d;
 import physics.PhysicsEngine;
 import physics.Tools;
 import physics.Vector2d;
+
+import java.util.List;
 
 public class SIESolver implements PhysicsEngine {
 
@@ -20,10 +23,13 @@ public class SIESolver implements PhysicsEngine {
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
+    private Vector2d W;
+    List<Wind> windList;
     //</editor-fold>
 
     public SIESolver(Vector2d _p){
         p = _p;
+        W = calcW();
     }
 
     @Override
@@ -79,9 +85,17 @@ public class SIESolver implements PhysicsEngine {
         return new Vector2d(xH,yH);
     }
 
+    public Vector2d calcW(){
+        Vector2d W = new Vector2d(0,0);
+        for(Wind w : windList){
+            W = new Vector2d(W.get_x()+w.getForce().get_x(),W.get_y()+w.getForce().get_y());
+        }
+        return W;
+    }
+
     @Override
     public Vector2d calcF(){
-        return new Vector2d(G.get_x()+H.get_x(),G.get_y()+H.get_y());
+        return new Vector2d(G.get_x()+H.get_x()+W.get_x(),G.get_y()+H.get_y()+W.get_y());
     }
     //</editor-fold>
 
@@ -130,6 +144,11 @@ public class SIESolver implements PhysicsEngine {
     @Override
     public void set_t(double _t) {
         t = _t;
+    }
+
+    public void add_wind(Wind w){
+        windList.add(w);
+        W = calcW();
     }
 
     //</editor-fold>
