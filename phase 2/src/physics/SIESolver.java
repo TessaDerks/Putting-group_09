@@ -31,7 +31,7 @@ public class SIESolver implements PhysicsEngine {
     public SIESolver(Vector2d _p){
         p = _p;
         W = calcW();
-        add_wind(new Wind(0,360,0,10));
+        add_wind(new Wind(90,10));
     }
 
     @Override
@@ -97,7 +97,7 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public Vector2d calcF(){
-        return new Vector2d(G.get_x()+H.get_x()+(W.get_x()*(10/(10+Math.pow(t,2)))),G.get_y()+H.get_y()+(W.get_y()*(10/(10+Math.pow(t,2)))));
+        return new Vector2d(G.get_x()+H.get_x()+(W.get_x()*(20/(20+Math.pow(t,2)))),G.get_y()+H.get_y()+(W.get_y()*(20/(20+Math.pow(t,2)))));
     }
     //</editor-fold>
 
