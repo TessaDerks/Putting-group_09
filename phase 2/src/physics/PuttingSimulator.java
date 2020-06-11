@@ -13,8 +13,6 @@ public class PuttingSimulator{
 
 	private PuttingCourse course;
 	private PhysicsEngine engine;
-
-	private ArrayList<Tree> trees = new ArrayList<>();
 	//</editor-fold>
 
 	// Constructor.
@@ -51,23 +49,21 @@ public class PuttingSimulator{
 				}
 
 				// Calculate tree hits.
-				for(int i = 0; i < trees.size(); i++){
-					if(trees.get(i).treeHit(cp)){
+				for (Tree t : course.getTreeList()) {
+					if (t.treeHit(cp)) {
 						double rc;
 						double newAngle;
-						if(last_angle == 0 && ball_position.get_x() == trees.get(i).getP().get_x()){
+						if (last_angle == 0 && ball_position.get_x() == t.getP().get_x()) {
 							newAngle = 180;
-						}
-						else if(last_angle == 180 && ball_position.get_x() == trees.get(i).getP().get_x()){
+						} else if (last_angle == 180 && ball_position.get_x() == t.getP().get_x()) {
 							newAngle = 0;
-						}
-						else{
-							rc = (trees.get(i).getP().get_y() - cp.get_y()) / (trees.get(i).getP().get_x() - cp.get_x());
+						} else {
+							rc = (t.getP().get_y() - cp.get_y()) / (t.getP().get_x() - cp.get_x());
 							newAngle = 2 * Math.tan(rc) - last_angle - 90;
 						}
 
-						double ntv = Math.sqrt(Math.pow(cv.get_x(),2) + Math.pow(cv.get_y(),2));
-						Vector2d nv = Tools.velFromAngle(newAngle,ntv);
+						double ntv = Math.sqrt(Math.pow(cv.get_x(), 2) + Math.pow(cv.get_y(), 2));
+						Vector2d nv = Tools.velFromAngle(newAngle, ntv);
 						engine.set_v(nv);
 						break;
 					}
@@ -108,16 +104,16 @@ public class PuttingSimulator{
 		}
 
 		// Calculate tree hits.
-		for (int i = 0; i < trees.size(); i++) {
-			if (trees.get(i).treeHit(cp)) {
+		for (Tree t : course.getTreeList()) {
+			if (t.treeHit(cp)) {
 				double rc;
 				double newAngle;
-				if (last_angle == 0 && ball_position.get_x() == trees.get(i).getP().get_x()) {
+				if (last_angle == 0 && ball_position.get_x() == t.getP().get_x()) {
 					newAngle = 180;
-				} else if (last_angle == 180 && ball_position.get_x() == trees.get(i).getP().get_x()) {
+				} else if (last_angle == 180 && ball_position.get_x() == t.getP().get_x()) {
 					newAngle = 0;
 				} else {
-					rc = (trees.get(i).getP().get_y() - cp.get_y()) / (trees.get(i).getP().get_x() - cp.get_x());
+					rc = (t.getP().get_y() - cp.get_y()) / (t.getP().get_x() - cp.get_x());
 					newAngle = 2 * Math.tan(rc) - last_angle - 90;
 				}
 

@@ -64,5 +64,9 @@ public class PuttingCourse {
     public double get_hole_tolerance(){
         return holeTolerance;
     }
+
+    public List<Tree> getTreeList(){
+        return treeList;
+    }
     //</editor-fold>
 }
