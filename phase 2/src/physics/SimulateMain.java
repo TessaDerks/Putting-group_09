@@ -44,20 +44,20 @@ public class SimulateMain {
         // radius still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // loop to add tree objects to puttingcourse
         for(int i = 0; i< treePositions.size(); i++){
-            Tree t = new Tree(treePositions.get(i), 2);
+            Tree t = new Tree(treePositions.get(i), 0.6);
             course.addTree(t);
         }
 
         // opp still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // loop to add sand objects to puttingcourse
-        /*
+
         for(int i = 0; i< sandPositions.size(); i++){
-            Sand s = new Sand(sandPositions.get(i), 2);
+            Sand s = new Sand(sandPositions.get(i), 2, 0.8);
             course.addSand(s);
         }
-        */
 
-         
+
+
         // create physics engine and set all settings for terrain
         PhysicsEngine engine = new SIESolver(start);
         engine.set_step_size(0.01);
