@@ -254,11 +254,11 @@
                                           <Insets left="60.0" top="30.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Button fx:id="randomTree" mnemonicParsing="false" text="Randomize position">
+                                    <Button fx:id="randomTree" mnemonicParsing="false" onMouseClicked="#applyRandomTrees" text="Randomize position">
                                        <HBox.margin>
                                           <Insets left="20.0" top="40.0" />
                                        </HBox.margin></Button>
-                                    <Button fx:id="treeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Add Tree">
+                                    <Button fx:id="treeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" onMouseClicked="#applyTreesButton" text="Add Tree">
                                        <HBox.margin>
                                           <Insets left="140.0" top="40.0" />
                                        </HBox.margin></Button>
@@ -301,11 +301,11 @@
                                           <Insets left="60.0" top="30.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Button fx:id="randomSand" mnemonicParsing="false" text="Randomize position">
+                                    <Button fx:id="randomSand" mnemonicParsing="false" onMouseClicked="#applyRandomSand" text="Randomize position">
                                        <HBox.margin>
                                           <Insets left="20.0" top="40.0" />
                                        </HBox.margin></Button>
-                                    <Button fx:id="sandButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Add Sand">
+                                    <Button fx:id="sandButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" onMouseClicked="#applySandButton" text="Add Sand">
                                        <HBox.margin>
                                           <Insets left="140.0" top="40.0" />
                                        </HBox.margin></Button>
