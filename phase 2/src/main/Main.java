@@ -239,10 +239,9 @@ public class Main implements Runnable {
 
 		// create sand entity list
 		sand = new ArrayList<Entity>();
-		random = new Random();
-		for(int i=0;i<500;i++){
-			float x = random.nextFloat()*800;
-			float z = random.nextFloat()*800;
+		for(int i=0;i<SimulateMain.simulator.get_course().getSandList().size();i++){
+			float x = (float) SimulateMain.simulator.get_course().getSandList().get(i).getP().get_x();
+			float z = (float) SimulateMain.simulator.get_course().getSandList().get(i).getP().get_x();
 			float y = terrain.getHeightOfTerrain(x,z);
 			sand.add(new Entity(texturedModelSand, new Vector3f(x,y,z),0,0,0,7));
 		}
@@ -383,6 +382,9 @@ public class Main implements Runnable {
 		for(int i = 0; i<sand.size(); i++){
 			renderer.processEntity(sand.get(i));
 		}
+		for(int i = 0; i<tree.size(); i++){
+			renderer.processEntity(tree.get(i));
+		}
 
 		camera.getPosition().y += distance;
 		camera.invertPitch();
@@ -396,6 +398,9 @@ public class Main implements Runnable {
 		for(int i = 0; i<sand.size(); i++){
 			renderer.processEntity(sand.get(i));
 		}
+		for(int i = 0; i<tree.size(); i++){
+			renderer.processEntity(tree.get(i));
+		}
 
 		GL46.glDisable(GL46.GL_CLIP_DISTANCE0);
 		fbos.unbindCurrentFrameBuffer();
@@ -407,6 +412,9 @@ public class Main implements Runnable {
 		renderer.render(lights,camera, new Vector4f(0,-1,0,100000));
 		for(int i = 0; i<sand.size(); i++){
 			renderer.processEntity(sand.get(i));
+		}
+		for(int i = 0; i<tree.size(); i++){
+			renderer.processEntity(tree.get(i));
 		}
 
 		// only render small gui if you've won
