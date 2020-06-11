@@ -1,6 +1,11 @@
 package physics;
 
 
+import physics.Function2d;
+import physics.Sand;
+import physics.Tree;
+import physics.Vector2d;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,61 +19,69 @@ public class PuttingCourse {
     private double vMax = 5;
     private double holeTolerance = 0.2;
     private List<Tree> treeList = new LinkedList<Tree>();
+
+    private List<Sand> sandList = new LinkedList<Sand>();
     //</editor-fold>
 
-    public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
+    public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start) {
         height = _height;
         flag = _flag;
         start = _start;
-
-        treeList.add(new Tree(new Vector2d(8,8),1));
     }
 
     //<editor-fold desc="Setters">
-    public void set_mu(double _mu){
+    public void set_mu(double _mu) {
         mu = _mu;
     }
 
-    public void set_vMax(double _vMax){
+    public void set_vMax(double _vMax) {
         vMax = _vMax;
     }
 
-    public void set_holeTolerance(double _tol){
+    public void set_holeTolerance(double _tol) {
         holeTolerance = _tol;
     }
 
-    public void addTree(Tree t){
+    public void addTree(Tree t) {
         treeList.add(t);
+    }
+
+    public void addSand(Sand s) {
+        sandList.add(s);
     }
     //</editor-fold>
 
     //<editor-fold desc="Getters">
-    public Function2d get_height(){
+    public Function2d get_height() {
         return height;
     }
 
-    public Vector2d get_flag_position(){
+    public Vector2d get_flag_position() {
         return flag;
     }
 
-    public Vector2d get_start_position(){
+    public Vector2d get_start_position() {
         return start;
     }
 
-    public double get_friction_coefficient(){
+    public double get_friction_coefficient() {
         return mu;
     }
 
-    public double get_maximum_velocity(){
+    public double get_maximum_velocity() {
         return vMax;
     }
 
-    public double get_hole_tolerance(){
+    public double get_hole_tolerance() {
         return holeTolerance;
     }
 
-    public List<Tree> getTreeList(){
+    public List<Tree> getTreeList() {
         return treeList;
     }
-    //</editor-fold>
+
+    public List<Sand> getSandList() {
+        return sandList;
+    }
+//</editor-fold>
 }
