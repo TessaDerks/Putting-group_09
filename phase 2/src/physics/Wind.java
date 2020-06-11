@@ -43,4 +43,20 @@ public class Wind {
         }
         return f;
     }
+
+    //<editor-fold desc="Getters">
+
+    public double getAngle() {
+        return angle;
+    }
+
+    public double getTotalForce() {
+        return totalForce;
+    }
+
+    public Vector2d getForce() {
+        return force;
+    }
+
+    //</editor-fold>
 }
