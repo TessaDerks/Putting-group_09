@@ -1,6 +1,9 @@
 package physics;
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class PuttingCourse {
 
     //<editor-fold desc="Global Variables">
@@ -10,6 +13,7 @@ public class PuttingCourse {
     private double mu = 0.131;
     private double vMax = 5;
     private double holeTolerance = 0.2;
+    private List<Tree> treeList = new LinkedList<Tree>();
     //</editor-fold>
 
     public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
@@ -29,6 +33,10 @@ public class PuttingCourse {
 
     public void set_holeTolerance(double _tol){
         holeTolerance = _tol;
+    }
+
+    public void addTree(Tree t){
+        treeList.add(t);
     }
     //</editor-fold>
 
