@@ -153,7 +153,7 @@ public class Main implements Runnable {
 		modelDataGolfBall = OBJFileLoader.loadOBJ("golf_ball3");
 		modelDataFern = OBJFileLoader.loadOBJ("fern");
 		modelDataPole = OBJFileLoader.loadOBJ("pole");
-		modelDataSand = OBJFileLoader.loadOBJ("nameofSand"); // insert name of sand object file!!!
+		modelDataSand = OBJFileLoader.loadOBJ("sand_plane"); // insert name of sand object file!!!
 
 		modelTree = loader.loadToVAO(modelDataTree.getVertices(), modelDataTree.getTextureCoords(),modelDataTree.getNormals(),modelDataTree.getIndices());
 		modelGrass = loader.loadToVAO(modelDataGrass.getVertices(), modelDataGrass.getTextureCoords(),modelDataGrass.getNormals(),modelDataGrass.getIndices());
@@ -181,7 +181,7 @@ public class Main implements Runnable {
 		texturedModelGolfBall = new TexturedModel(golfballModel, new ModelTexture(loader.loadTexture("golf4")));
 		texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
 		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
-		texturedModelSand = new TexturedModel(sandModel, new ModelTexture(loader.loadTexture("nameofsandtexture")));// sand texture!!!
+		texturedModelSand = new TexturedModel(sandModel, new ModelTexture(loader.loadTexture("sandtexture2")));// sand texture!!!
 
 
 		texturedModelGrass.getTexture().setHasTransparency(true);
@@ -230,10 +230,9 @@ public class Main implements Runnable {
 
 		// create tree entity list
 		tree = new ArrayList<Entity>();
-		random = new Random();
-		for(int i=0;i<500;i++){
-			float x = random.nextFloat()*800;
-			float z = random.nextFloat()*800;
+		for(int i=0;i<SimulateMain.simulator.get_course().getTreeList().size();i++){
+			float x = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_x();
+			float z = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_y();
 			float y = terrain.getHeightOfTerrain(x,z);
 			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,7));
 		}
@@ -381,6 +380,9 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, -water.getHeight()));
+		for(int i = 0; i<sand.size(); i++){
+			renderer.processEntity(sand.get(i));
+		}
 
 		camera.getPosition().y += distance;
 		camera.invertPitch();
@@ -391,6 +393,9 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, water.getHeight()));
+		for(int i = 0; i<sand.size(); i++){
+			renderer.processEntity(sand.get(i));
+		}
 
 		GL46.glDisable(GL46.GL_CLIP_DISTANCE0);
 		fbos.unbindCurrentFrameBuffer();
@@ -400,6 +405,9 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0,100000));
+		for(int i = 0; i<sand.size(); i++){
+			renderer.processEntity(sand.get(i));
+		}
 
 		// only render small gui if you've won
 		if(win){
