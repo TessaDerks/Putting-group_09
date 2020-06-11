@@ -167,5 +167,10 @@ public class VerletSolver implements PhysicsEngine{
     public double get_t(){
         return t;
     }
+
+    @Override
+    public double get_m() {
+        return m;
+    }
     //</editor-fold>
 }

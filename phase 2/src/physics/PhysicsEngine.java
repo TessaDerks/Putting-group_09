@@ -24,4 +24,5 @@ public interface PhysicsEngine {
     public Vector2d get_p();
     public Vector2d get_v();
     public double get_t();
+    public double get_m();
 }

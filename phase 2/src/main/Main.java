@@ -356,7 +356,7 @@ public class Main implements Runnable {
 			Vector2d newPosition = SimulateMain.simulator.act_timestep_from_distance();
 			player.move(terrain, new Vector2f((float) newPosition.get_x(), (float) newPosition.get_y()));
 
-			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),2) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),2) == 0){
+			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),0) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),0) == 0){
 				takingShot = false;
 			}
 		}

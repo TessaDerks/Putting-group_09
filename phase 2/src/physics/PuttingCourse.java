@@ -10,7 +10,7 @@ public class PuttingCourse {
     private Function2d height;
     private Vector2d flag;
     private Vector2d start;
-    private double mu = 0.131;
+    private double mu = 0.3;
     private double vMax = 5;
     private double holeTolerance = 0.2;
     private List<Tree> treeList = new LinkedList<Tree>();

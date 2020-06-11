@@ -31,7 +31,7 @@ public class SIESolver implements PhysicsEngine {
     public SIESolver(Vector2d _p){
         p = _p;
         W = calcW();
-        add_wind(new Wind());
+        add_wind(new Wind(0,360,0,10));
     }
 
     @Override
@@ -82,8 +82,8 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public Vector2d calcH(){
-        double xH = (-mu * m * g * v.get_x()) /* Math.sqrt(Math.pow(v.get_x(),2) + Math.pow(v.get_y(),2))*/;
-        double yH = (-mu * m * g * v.get_y()) /* Math.sqrt(Math.pow(v.get_x(),2) + Math.pow(v.get_y(),2))*/;
+        double xH = -mu * m * g * v.get_x() /* Math.sqrt(Math.pow(v.get_x(),2) + Math.pow(v.get_y(),2))*/;
+        double yH = -mu * m * g * v.get_y() /* Math.sqrt(Math.pow(v.get_x(),2) + Math.pow(v.get_y(),2))*/;
         return new Vector2d(xH,yH);
     }
 
@@ -97,7 +97,7 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public Vector2d calcF(){
-        return new Vector2d(G.get_x()+H.get_x()+W.get_x(),G.get_y()+H.get_y()+W.get_y());
+        return new Vector2d(G.get_x()+H.get_x()+(W.get_x()*(10/(10+Math.pow(t,2)))),G.get_y()+H.get_y()+(W.get_y()*(10/(10+Math.pow(t,2)))));
     }
     //</editor-fold>
 
@@ -174,5 +174,11 @@ public class SIESolver implements PhysicsEngine {
     public double get_t(){
         return t;
     }
+
+    @Override
+    public double get_m() {
+        return m;
+    }
+
     //</editor-fold>
 }
