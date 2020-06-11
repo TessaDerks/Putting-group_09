@@ -14,6 +14,7 @@ public class PuttingCourse {
     private double vMax = 5;
     private double holeTolerance = 0.2;
     private List<Tree> treeList = new LinkedList<Tree>();
+    private List<Sand> sandList = new LinkedList<Sand>();
     //</editor-fold>
 
     public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
@@ -39,6 +40,10 @@ public class PuttingCourse {
 
     public void addTree(Tree t){
         treeList.add(t);
+    }
+
+    public void addSand(Sand s) {
+        sandList.add(s);
     }
     //</editor-fold>
 
@@ -69,6 +74,10 @@ public class PuttingCourse {
 
     public List<Tree> getTreeList(){
         return treeList;
+    }
+
+    public List<Sand> getSandList() {
+        return sandList;
     }
     //</editor-fold>
 }
