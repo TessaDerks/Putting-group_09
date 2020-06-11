@@ -4,6 +4,9 @@ import javafx.scene.control.Alert;
 import main.Main;
 import org.lwjgl.system.CallbackI;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 public class SimulateMain {
 
     private static Vector2d start;
@@ -19,7 +22,7 @@ public class SimulateMain {
 
 
     // receives information about new terrain and sends information to the right classes
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version) {
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions) {
 
         g = _g;
         m = _m;
@@ -38,6 +41,23 @@ public class SimulateMain {
         course.set_vMax(vmax);
         course.set_holeTolerance(tol);
 
+        // radius still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // loop to add tree objects to puttingcourse
+        for(int i = 0; i< treePositions.size(); i++){
+            Tree t = new Tree(treePositions.get(i), 2);
+            course.addTree(t);
+        }
+
+        // opp still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // loop to add sand objects to puttingcourse
+        /*
+        for(int i = 0; i< sandPositions.size(); i++){
+            Sand s = new Sand(sandPositions.get(i), 2);
+            course.addSand(s);
+        }
+        */
+
+         
         // create physics engine and set all settings for terrain
         PhysicsEngine engine = new SIESolver(start);
         engine.set_step_size(0.01);
