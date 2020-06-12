@@ -166,11 +166,10 @@ public class Main implements Runnable {
 		backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
 		rTexture = new TerrainTexture(loader.loadTexture("dirt"));
 		gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
-		bTexture = new TerrainTexture(loader.loadTexture("path"));
+		bTexture = new TerrainTexture(loader.loadTexture("mud"));
 
 		texturePack = new TerrainTexturePack(backgroundTexture, rTexture,gTexture,bTexture);
 		blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
-
 
 		// create texture models
 		fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
@@ -236,7 +235,7 @@ public class Main implements Runnable {
 			float y = terrain.getHeightOfTerrain(x,z);
 			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,7));
 		}
-
+/*
 		// create sand entity list
 		sand = new ArrayList<Entity>();
 		for(int i=0;i<SimulateMain.simulator.get_course().getSandList().size();i++){
@@ -245,6 +244,8 @@ public class Main implements Runnable {
 			float y = terrain.getHeightOfTerrain(x,z);
 			sand.add(new Entity(texturedModelSand, new Vector3f(x,y,z),0,0,0,7));
 		}
+
+ */
 
 		// create grass entity list
 		grass = new ArrayList<Entity>();
@@ -379,9 +380,12 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, -water.getHeight()));
+		/*
 		for(int i = 0; i<sand.size(); i++){
 			renderer.processEntity(sand.get(i));
 		}
+
+		 */
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
@@ -395,9 +399,12 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, water.getHeight()));
+		/*
 		for(int i = 0; i<sand.size(); i++){
 			renderer.processEntity(sand.get(i));
 		}
+
+		 */
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
@@ -410,9 +417,12 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0,100000));
+		/*
 		for(int i = 0; i<sand.size(); i++){
 			renderer.processEntity(sand.get(i));
 		}
+
+		 */
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}

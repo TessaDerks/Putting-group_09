@@ -4,6 +4,11 @@ import javafx.scene.control.Alert;
 import main.Main;
 import org.lwjgl.system.CallbackI;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -22,7 +27,7 @@ public class SimulateMain {
 
 
     // receives information about new terrain and sends information to the right classes
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions) {
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions) throws IOException {
 
         g = _g;
         m = _m;
@@ -51,10 +56,19 @@ public class SimulateMain {
         // opp still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // loop to add sand objects to puttingcourse
 
+        String imagePath = "res/blendMapOriginal.png";
+        BufferedImage blendMap = ImageIO.read(new File(imagePath));
+        Graphics2D graphics = (Graphics2D) blendMap.getGraphics();
+        graphics.setColor(Color.BLUE);
+
         for(int i = 0; i< sandPositions.size(); i = i+2){
             Sand s = new Sand(sandPositions.get(i), sandPositions.get(i+1), 0.8);
             course.addSand(s);
+
+            graphics.fillRect((int)sandPositions.get(i).get_x(),(int) sandPositions.get(i).get_y(), (int) sandPositions.get(i+1).get_x(),(int) sandPositions.get(i+1).get_y());
+            graphics.dispose();
         }
+        ImageIO.write(blendMap, "png", new File("res/blendMap.png"));
 
 
 

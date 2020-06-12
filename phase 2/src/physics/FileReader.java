@@ -78,7 +78,7 @@ public class FileReader {
     }
 
     // read file for information about the terrain
-    public void fileRead(String path1) {
+    public void fileRead(String path1) throws IOException {
 
         String path = path1;
         Scanner input;
