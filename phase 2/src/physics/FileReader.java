@@ -15,6 +15,9 @@ public class FileReader {
     private static double goalY;
     private static String height;
 
+    private static ArrayList<Vector2d> trees = new ArrayList<>();
+    private static ArrayList<Vector2d> sand = new ArrayList<>();
+
     private static Vector2d[] velocity;
     private static Vector2d start;
     private static Vector2d goal;
@@ -57,11 +60,9 @@ public class FileReader {
 
                 if (names.equals("v") || names.equals("speed")) {
                     speedd = Double.parseDouble(values);
-                    System.out.println(speedd);
                 }
                 if (names.equals("angle")) {
                     angle = Double.parseDouble(values);
-                    System.out.println(angle);
                 }
             }
             velocity[i] = Tools.velFromAngle(angle,speedd);
@@ -107,6 +108,8 @@ public class FileReader {
             String values = parts[1];
 
             List<String> list1 = Collections.singletonList(names);
+            System.out.println(names);
+            System.out.println(values);
 
             if (list1.contains("g")) {
                 g = Double.parseDouble(values);
@@ -151,11 +154,40 @@ public class FileReader {
             if (list1.contains("height")) {      
                 height = values;
             }
+
+            if (list1.contains("treeLocation")){
+                String[] treeLoc = values.split(" ");
+
+                for(int i = 0; i<treeLoc.length;i++){
+                System.out.println(treeLoc[i]);}
+
+                for(int i = 0; i<treeLoc.length;i+=2){
+                    double treePositionX = Double.parseDouble(treeLoc[i]);
+                    double treePositionY = Double.parseDouble(treeLoc[i+1]);
+                    Vector2d treePosition = new Vector2d(treePositionX,treePositionY);
+                    trees.add(treePosition);
+                    System.out.println(treePositionX);
+                    System.out.println(treePositionY);
+                }
+            }
+
+            if (list1.contains("sandLocation")){
+                String[] sandLoc = values.split(" ");
+                for(int i = 0; i<sandLoc.length;i+=4){
+                    double sandTopX = Double.parseDouble(sandLoc[i]);
+                    double sandTopY = Double.parseDouble(sandLoc[i+1]);
+                    double sandBtmX = Double.parseDouble(sandLoc[i+2]);
+                    double sandBtmY = Double.parseDouble(sandLoc[i+3]);
+                    Vector2d sandPosTop = new Vector2d(sandTopX,sandTopY);
+                    Vector2d sandPosBtm = new Vector2d(sandBtmX,sandBtmY);
+                    sand.add(sandPosTop);
+                    sand.add(sandPosBtm);
+                }
+            }
         }
-        ArrayList<Vector2d> emptyList = new ArrayList<>();
 
         // send information to build terrain
-        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, emptyList, emptyList);
+        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, trees, sand);
     }
 
 
@@ -167,14 +199,6 @@ public class FileReader {
         FileReader.g = g;
     }
 
-    public static double getWeight() {
-        return weight;
-    }
-
-    public static void setWeight(double weight) {
-        FileReader.weight = weight;
-    }
-
     public static double getMu() {
         return mu;
     }
@@ -183,53 +207,6 @@ public class FileReader {
         FileReader.mu = mu;
     }
 
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double speed) {
-        FileReader.speed = speed;
-    }
-
-    public static double getRadius() {
-        return radius;
-    }
-
-    public static void setRadius(double radius) {
-        FileReader.radius = radius;
-    }
-
-    public static double getStartX() {
-        return startX;
-    }
-
-    public static void setStartX(double startX) {
-        FileReader.startX = startX;
-    }
-
-    public static double getStartY() {
-        return startY;
-    }
-
-    public static void setStartY(double startY) {
-        FileReader.startY = startY;
-    }
-
-    public static double getGoalX() {
-        return goalX;
-    }
-
-    public static void setGoalX(double goalX) {
-        FileReader.goalX = goalX;
-    }
-
-    public static double getGoalY() {
-        return goalY;
-    }
-
-    public static void setGoalY(double goalY) {
-        FileReader.goalY = goalY;
-    }
     public static String getHeight(){
         return height;
     }

@@ -29,7 +29,7 @@
                <HBox.margin>
                   <Insets left="10.0" top="55.0" />
                </HBox.margin></Text>
-            <TextField fx:id="courseCreator" prefWidth="300.0" text="C:\Users\zaker\Documents\Projects\untitled\src\physics\course.txt">
+            <TextField fx:id="courseCreator" prefWidth="300.0" text="D:\Putting-group_09\phase 2\src\physics\course.txt">
                <HBox.margin>
                   <Insets left="10.0" top="50.0" />
                </HBox.margin></TextField>
@@ -50,7 +50,7 @@
                <HBox.margin>
                   <Insets left="10.0" top="55.0" />
                </HBox.margin></Text>
-            <TextField fx:id="listMoves" prefWidth="300.0" text="C:\Users\zaker\Documents\Projects\untitled\src\physics\shots.txt">
+            <TextField fx:id="listMoves" prefWidth="300.0" text="D:\Putting-group_09\phase 2\src\physics\shots.txt">
                <HBox.margin>
                   <Insets left="16.0" top="50.0" />
                </HBox.margin></TextField>

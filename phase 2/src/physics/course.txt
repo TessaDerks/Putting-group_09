@@ -7,4 +7,6 @@ startX = 0.0
 startY = 0.0
 goalX = 0.0
 goalY = 10.0
-height = 1
+height = 2
+treeLocation = 4 5 10 10 40 40 50 50 60 25
+sandLocation = 0 0 20 20 30 30 50 50
