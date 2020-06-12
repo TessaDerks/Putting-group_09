@@ -73,7 +73,9 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public void recalculate(){
+
         if(SimulateMain.simulator != null) {
+
             for (Sand s : SimulateMain.simulator.get_course().getSandList()) {
                 if (s.coordInSand(p)) {
                     mu = s.getFriction();
