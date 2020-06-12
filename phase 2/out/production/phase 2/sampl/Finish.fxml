@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sampl.Controller">
+   <children>
+      <TextFlow prefHeight="146.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="160.0" prefWidth="604.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions:" textAlignment="CENTER" wrappingWidth="600.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Press 'S' key to make a move." wrappingWidth="494.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="100.0" />
+                     </VBox.margin></Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Press 'A' key to make a move with the AI." wrappingWidth="600.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="100.0" />
+                     </VBox.margin></Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Press Up and Down arrow keys to zoom in and out." wrappingWidth="600.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="100.0" />
+                     </VBox.margin></Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Press Right and Left mouse button to rotate the camera angle." wrappingWidth="600.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="100.0" />
+                     </VBox.margin></Text>
+               </children>
+            </VBox>
+         </children>
+      </TextFlow>
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select your game mode on the side menu." textAlignment="CENTER" wrappingWidth="600.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Text>
+      <HBox prefHeight="75.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/typing.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="150.0" right="50.0" />
+               </HBox.margin></ImageView>
+            <Button fx:id="modeManInput" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #f0f0f0f0;" text="Manual Input">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="75.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/diary.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="150.0" right="50.0" />
+               </HBox.margin></ImageView>
+            <Button fx:id="modeFileReader" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #f0f0f0f0;" text="File Reader">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>
