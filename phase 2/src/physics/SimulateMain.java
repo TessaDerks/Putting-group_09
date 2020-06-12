@@ -66,7 +66,6 @@ public class SimulateMain {
             course.addSand(s);
 
             graphics.fillRect((int)sandPositions.get(i).get_x(),(int) sandPositions.get(i).get_y(), (int) sandPositions.get(i+1).get_x(),(int) sandPositions.get(i+1).get_y());
-            graphics.dispose();
         }
         ImageIO.write(blendMap, "png", new File("res/blendMap.png"));
 
