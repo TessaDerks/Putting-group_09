@@ -240,8 +240,8 @@ public class Main implements Runnable {
 		// create sand entity list
 		sand = new ArrayList<Entity>();
 		for(int i=0;i<SimulateMain.simulator.get_course().getSandList().size();i++){
-			float x = (float) SimulateMain.simulator.get_course().getSandList().get(i).getP().get_x();
-			float z = (float) SimulateMain.simulator.get_course().getSandList().get(i).getP().get_x();
+			float x = (float) SimulateMain.simulator.get_course().getSandList().get(i).getTopLeft().get_x();
+			float z = (float) SimulateMain.simulator.get_course().getSandList().get(i).getTopLeft().get_y();
 			float y = terrain.getHeightOfTerrain(x,z);
 			sand.add(new Entity(texturedModelSand, new Vector3f(x,y,z),0,0,0,7));
 		}
