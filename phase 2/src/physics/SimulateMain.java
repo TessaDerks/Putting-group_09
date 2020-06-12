@@ -51,8 +51,8 @@ public class SimulateMain {
         // opp still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // loop to add sand objects to puttingcourse
 
-        for(int i = 0; i< sandPositions.size(); i++){
-            Sand s = new Sand(sandPositions.get(i), 2, 0.8);
+        for(int i = 0; i< sandPositions.size(); i = i+2){
+            Sand s = new Sand(sandPositions.get(i), sandPositions.get(i+1), 0.8);
             course.addSand(s);
         }
 
