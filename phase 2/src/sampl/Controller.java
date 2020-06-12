@@ -164,6 +164,17 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    private void resetTreeList(MouseEvent event){
+        treesList = new ArrayList<>();
+    }
+
+    @FXML
+    private void resetSandList(MouseEvent event){
+        sandList = new ArrayList<>();
+    }
+
+
+    @FXML
     private void applyRandomSand(MouseEvent event){
 
         for(int i = 0; i< 15; i++){

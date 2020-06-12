@@ -262,6 +262,11 @@
                                        <HBox.margin>
                                           <Insets left="140.0" top="40.0" />
                                        </HBox.margin></Button>
+                                    <Button fx:id="resetTreeButton" mnemonicParsing="false" onMouseClicked="#resetTreeList" text="Reset">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="40.0" />
+                                       </HBox.margin>
+                                    </Button>
                                  </children>
                               </HBox>
                            </children>
@@ -326,6 +331,11 @@
                                        <HBox.margin>
                                           <Insets left="140.0" top="40.0" />
                                        </HBox.margin></Button>
+                                    <Button fx:id="resetSandButton" mnemonicParsing="false" onMouseClicked="#resetSandList" text="Reset">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="40.0" />
+                                       </HBox.margin>
+                                    </Button>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="30.0" />
@@ -333,6 +343,7 @@
                               </HBox>
                            </children>
                         </VBox>
+                        <Text fill="WHITE" layoutX="213.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Field Size: 1024 x 1024" textAlignment="CENTER" wrappingWidth="223.634765625" />
                      </children></AnchorPane>
             </content>
           </Tab>
