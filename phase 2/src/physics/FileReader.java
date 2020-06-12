@@ -108,8 +108,6 @@ public class FileReader {
             String values = parts[1];
 
             List<String> list1 = Collections.singletonList(names);
-            System.out.println(names);
-            System.out.println(values);
 
             if (list1.contains("g")) {
                 g = Double.parseDouble(values);
@@ -142,7 +140,6 @@ public class FileReader {
 
             if (list1.contains("goalX")) {    
                 goalX = Double.parseDouble(values);
-                System.out.println(goalX);
 
             }
             if (list1.contains("goalY")) {    
@@ -158,16 +155,11 @@ public class FileReader {
             if (list1.contains("treeLocation")){
                 String[] treeLoc = values.split(" ");
 
-                for(int i = 0; i<treeLoc.length;i++){
-                System.out.println(treeLoc[i]);}
-
                 for(int i = 0; i<treeLoc.length;i+=2){
                     double treePositionX = Double.parseDouble(treeLoc[i]);
                     double treePositionY = Double.parseDouble(treeLoc[i+1]);
                     Vector2d treePosition = new Vector2d(treePositionX,treePositionY);
                     trees.add(treePosition);
-                    System.out.println(treePositionX);
-                    System.out.println(treePositionY);
                 }
             }
 
