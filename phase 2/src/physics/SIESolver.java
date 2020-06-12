@@ -15,7 +15,8 @@ public class SIESolver implements PhysicsEngine {
     private double t = 0;
     private double m = 45.93;
     private double g = 9.81;
-    private double mu = 0.131;
+    private double mu = 0.3;
+    private double muBase;
     private double dt = 0.01;
     private double v_max = 30;
     private Vector2d p;
@@ -57,6 +58,10 @@ public class SIESolver implements PhysicsEngine {
         v = new Vector2d(newVX,newVY);
 
         t = Tools.advRound(t+dt,6);
+
+        if(mu != muBase){
+            mu = muBase;
+        }
     }
 
     //<editor-fold desc="Calculators">
@@ -68,6 +73,12 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public void recalculate(){
+        for(Sand s : SimulateMain.simulator.get_course().getSandList()){
+            if(s.coordInSand(p)){
+                mu = s.getFriction();
+                break;
+            }
+        }
         G = calcG();
         H = calcH();
         F = calcF();
@@ -105,6 +116,7 @@ public class SIESolver implements PhysicsEngine {
     @Override
     public void setMu(double _mu) {
         mu = _mu;
+        muBase = _mu;
     }
 
     @Override
