@@ -19,7 +19,7 @@
          <children>
             <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/golf-course.png" />
+                  <Image url="file:/../res/JavaFX/golf-course.png" />
                </image>
                <HBox.margin>
                   <Insets left="100.0" top="45.0" />
@@ -41,7 +41,7 @@
          <children>
             <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/list.png" />
+                  <Image url="file:/../res/JavaFX/list.png" />
                </image>
                <HBox.margin>
                   <Insets left="100.0" top="40.0" />
