@@ -58,10 +58,16 @@ public class Controller implements Initializable {
     private TextField treePosY;
 
     @FXML
-    private TextField sandPosX;
+    private TextField sandTopX;
 
     @FXML
-    private TextField sandPosY;
+    private TextField sandTopY;
+
+    @FXML
+    private TextField sandBtmX;
+
+    @FXML
+    private TextField sandBtmY;
 
     @FXML
     private TextField radius;
@@ -161,10 +167,14 @@ public class Controller implements Initializable {
     private void applyRandomSand(MouseEvent event){
 
         for(int i = 0; i< 15; i++){
-            double x = Math.random() * (800 + 1);
-            double y = Math.random() * (800 + 1);
-            Vector2d sand = new Vector2d(x, y);
-            sandList.add(sand);
+            double xTop = Math.random() * (800 + 1);
+            double yTop = Math.random() * (800 + 1);
+            Vector2d sandTop = new Vector2d(xTop, yTop);
+            sandList.add(sandTop);
+            double xBtm = Math.random() * (800 + 1);
+            double yBtm = Math.random() * (800 + 1);
+            Vector2d sandBtm = new Vector2d(xBtm, yBtm);
+            sandList.add(sandBtm);
         }
     }
 
@@ -174,16 +184,18 @@ public class Controller implements Initializable {
         double y = Double.parseDouble(treePosY.getText());
         Vector2d tree = new Vector2d(x,y);
         treesList.add(tree);
-        System.out.println("added tree to list");
     }
 
     @FXML
     private void applySandButton(MouseEvent event){
-        double x = Double.parseDouble(sandPosX.getText());
-        double y = Double.parseDouble(sandPosY.getText());
-        Vector2d sand = new Vector2d(x,y);
-        sandList.add(sand);
-        System.out.println("added sand to list");
+        double xTop = Double.parseDouble(sandTopX.getText());
+        double yTop = Double.parseDouble(sandTopY.getText());
+        Vector2d sandTop = new Vector2d(xTop,yTop);
+        sandList.add(sandTop);
+        double xBtm = Double.parseDouble(sandBtmX.getText());
+        double yBtm = Double.parseDouble(sandBtmY.getText());
+        Vector2d sandBtm =  new Vector2d(xBtm,yBtm);
+        sandList.add(sandBtm);
     }
 
     @Override
