@@ -75,7 +75,7 @@ public class PuttingSimulator{
 
 		}
 
-		//System.out.println(">> Shot landed at ( " + ball_position.get_x() + " , " + ball_position.get_y() + " ). t=" + engine.get_t());
+		System.out.println(">> Shot landed at ( " + ball_position.get_x() + " , " + ball_position.get_y() + " ). t=" + engine.get_t());
 	}
 
 	// Calculate if ball is in hole.

@@ -29,15 +29,28 @@ public class Tools {
     }
 
     // Method to adjust the flag position to the left to make a checker flag
-    public static Vector2d AdjustFlagPosition(Vector2d flag){
+    public static Vector2d adjustFlagPosition(Vector2d start, Vector2d flag){
         // new method to adjust the flag position to the left to make a checker flag
-        //Vector2d nullPoint = new Vector2d(0.0, 0.0);
-        Double angle = Math.toDegrees(Math.atan(((Math.abs(flag.get_y()))/(Math.abs(flag.get_x()))))); // calculating angle
-        //System.out.println(angle);
-        angle+=0.01;
-        Double absDis = Math.sqrt(Math.pow(flag.get_x(),2)+Math.pow(flag.get_y(),2));
-        Double returnY = Math.abs(Math.sin(Math.toRadians(angle))*absDis);
-        Double returnX = Math.abs(Math.cos(Math.toRadians(angle))*absDis);
+        Double returnX, returnY;
+        if(((start.get_x() <= flag.get_x()) && (start.get_y() <= flag.get_y())) || ((start.get_x() >= flag.get_x()) && (start.get_y() >= flag.get_y()))){
+            Double angle = Math.toDegrees(Math.atan(((Math.abs(flag.get_y()-start.get_y()))/(Math.abs(flag.get_x()-start.get_x()))))); // calculating angle
+            System.out.println(angle);
+            angle-=0.01;
+            System.out.println(angle);
+            Double absDis = Math.sqrt(Math.pow(flag.get_x()-start.get_x(),2)+Math.pow(flag.get_y()-start.get_y(),2));
+            returnY = Math.abs(Math.sin(Math.toRadians(angle))*absDis);
+            returnX = Math.abs(Math.cos(Math.toRadians(angle))*absDis);
+        }
+        else {
+            Double angle = Math.toDegrees(Math.atan(((Math.abs(flag.get_y()-start.get_y()))/(Math.abs(flag.get_x()-start.get_x()))))); // calculating angle
+            System.out.println(angle);
+            angle+=0.01;
+            System.out.println(angle);
+            Double absDis = Math.sqrt(Math.pow(flag.get_x()-start.get_x(),2)+Math.pow(flag.get_y()-start.get_y(),2));
+            returnY = Math.abs(Math.sin(Math.toRadians(angle))*absDis);
+            returnX = Math.abs(Math.cos(Math.toRadians(angle))*absDis);
+        }
+
         //System.out.println(returnX + " " + returnY );
         if (flag.get_y() < 0) {
             if (flag.get_x() > 0) return new Vector2d(returnX,-returnY);
@@ -77,4 +90,6 @@ public class Tools {
         double yH = (-mu * m * g * v.get_y());
         return new Vector2d(xH,yH);
     }
+
+
 }

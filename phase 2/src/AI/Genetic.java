@@ -82,18 +82,18 @@ class Genetic {
         putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/2)), true);
 
         // adjust the flag a little to the left and make a checker flag
-        Vector2d checker = Tools.AdjustFlagPosition(end);
-        System.out.println(checker.get_x() +" "+ checker.get_y());
+        Vector2d checker = Tools.adjustFlagPosition(start, end);
         // calculate the distance to the flag and to the checker
         Double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
         Double disCheck = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - checker.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - checker.get_y(), 2));
 
         // if the flag is further away than the checker, the ball is on the left side of the flagd
-        if(disFlag >= disCheck){
+        if(disFlag <= disCheck){
             ret = true;
         }
         return ret;
     }
+
     public static void cocktailShaker(){ // shake the angle back and forth until the tolerance is small enough to create the right angle
         boolean leftRight = leftOfHole();
         Double adjusting = 10.0;
