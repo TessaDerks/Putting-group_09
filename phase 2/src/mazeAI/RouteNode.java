@@ -1,5 +1,7 @@
 package mazeAI;
 
+import org.jetbrains.annotations.NotNull;
+
 class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
     private final T current;
     private T previous;
@@ -18,7 +20,7 @@ class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
     }
 
     @Override
-    public int compareTo(RouteNode other) {
+    public int compareTo(@NotNull RouteNode other) {
         if (this.estimatedScore > other.estimatedScore) {
             return 1;
         } else if (this.estimatedScore < other.estimatedScore) {

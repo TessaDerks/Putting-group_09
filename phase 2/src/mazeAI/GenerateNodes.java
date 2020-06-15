@@ -7,6 +7,7 @@ continue generating until endpoint
 
 package mazeAI;
 
+import org.jetbrains.annotations.NotNull;
 import physics.Vector2d;
 
 import java.util.HashMap;
@@ -32,14 +33,34 @@ public class GenerateNodes{
         k = _k;
         compensate = _compensate;
 
-        // recursion zwick
-
+        // Create nodes
+        Vector2d n0,n1,n2,n3,n4,n5,n6,n7;
+        n0 = new Vector2d(start.get_x()-k,start.get_y()+k);
+        n1 = new Vector2d(start.get_x(),start.get_y()+k);
+        n2 = new Vector2d(start.get_x()+k,start.get_y()+k);
+        n3 = new Vector2d(start.get_x()+k,start.get_y());
+        n4 = new Vector2d(start.get_x()+k,start.get_y()-k);
+        n5 = new Vector2d(start.get_x(),start.get_y()-k);
+        n6 = new Vector2d(start.get_x()-k,start.get_y()-k);
+        n7 = new Vector2d(start.get_x()-k,start.get_y());
+        recursion(n0,0);
+        recursion(n1,1);
+        recursion(n2,2);
+        recursion(n3,3);
+        recursion(n4,4);
+        recursion(n5,5);
+        recursion(n6,6);
+        recursion(n7,7);
+        
+        // Connect nodes
         for(CheckPoint c : checkPointSet){
             hingeNode(c);
         }
+        
+        maze = new Graph<>(checkPointSet,connections);
     }
 
-    public void recursion(Vector2d c, int p){
+    public void recursion(@NotNull Vector2d c, int p){
         // stop condition
         if(Math.abs(c.get_x()) == Math.abs(end.get_x())+(k*(compensate+1)) || Math.abs(c.get_y()) == Math.abs(end.get_y())+(k*(compensate+1))){
             return;
@@ -88,14 +109,35 @@ public class GenerateNodes{
         return;
     }
 
-    public void hingeNode(CheckPoint c){
-        Vector2d n1 = new Vector2d(c.getX()-k,c.getY()+k);
-        if(!(Math.abs(n1.get_x()) > Math.abs(end.get_x())+(k*(compensate+1)) || Math.abs(n1.get_y()) > Math.abs(end.get_y())+(k*(compensate+1)))){
+    public void hingeNode(@NotNull CheckPoint c){
+        Vector2d n0, n1, n2, n3, n4, n5, n6, n7;
 
+        n0 = new Vector2d(c.getX()-k,c.getY()+k);
+        n1 = new Vector2d(c.getX(),c.getY()+k);
+        n2 = new Vector2d(c.getX()+k,c.getY()+k);
+        n3 = new Vector2d(c.getX()+k,c.getY());
+        n4 = new Vector2d(c.getX()+k,c.getY()-k);
+        n5 = new Vector2d(c.getX(),c.getY()-k);
+        n6 = new Vector2d(c.getX()-k,c.getY()-k);
+        n7 = new Vector2d(c.getX()-k,c.getY());
+
+        Set<Vector2d> nSet = Stream.of(n0,n1,n2,n3,n4,n5,n6,n7).collect(Collectors.toSet());
+        Set<String> StringSet = new HashSet<String>();
+
+        for(Vector2d n : nSet) {
+            if (!(Math.abs(n.get_x()) > Math.abs(end.get_x()) + (k * (compensate + 1)) || Math.abs(n.get_y()) > Math.abs(end.get_y()) + (k * (compensate + 1)))) {
+                StringSet.add(cToId(n));
+            }
         }
+
+        connections.put(cToId(new Vector2d(c.getX(),c.getY())), StringSet);
     }
 
-    public String cToId(Vector2d c){
+    public String cToId(@NotNull Vector2d c){
         return "("+c.get_x()+","+c.get_y()+")";
+    }
+
+    public Graph<CheckPoint> getMaze() {
+        return maze;
     }
 }

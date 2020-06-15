@@ -1,5 +1,7 @@
 package mazeAI;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +24,7 @@ public class Graph<T extends GraphNode> {
     }
 
     // Get all the nodes connected to a specific node
-    public Set<T> getConnections(T node){
+    public Set<T> getConnections(@NotNull T node){
         return connections.get(node.getId()).stream()
                 .map(this::getNode)
                 .collect(Collectors.toSet());
