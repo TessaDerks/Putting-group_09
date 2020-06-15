@@ -34,6 +34,7 @@ public class GenerateNodes{
         compensate = _compensate;
 
         // Create nodes
+        checkPointSet.add(new CheckPoint(start.get_x(),start.get_y()));
         Vector2d n0,n1,n2,n3,n4,n5,n6,n7;
         n0 = new Vector2d(start.get_x()-k,start.get_y()+k);
         n1 = new Vector2d(start.get_x(),start.get_y()+k);

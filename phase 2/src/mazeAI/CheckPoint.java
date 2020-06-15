@@ -8,13 +8,15 @@ public class CheckPoint implements GraphNode {
     public CheckPoint(double _x, double _y){
         x = _x;
         y = _y;
-        id = "(" + x + ";" + y + ")";
+        id = "(" + x + "," + y + ")";
     }
 
+    @Override
     public double getX() {
         return x;
     }
 
+    @Override
     public double getY() {
         return y;
     }

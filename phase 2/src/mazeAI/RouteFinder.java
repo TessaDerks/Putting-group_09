@@ -1,5 +1,9 @@
 package mazeAI;
 
+import physics.Function2d;
+import physics.SimulateMain;
+import physics.Vector2d;
+
 import java.util.*;
 
 public class RouteFinder<T extends GraphNode> {
@@ -23,6 +27,8 @@ public class RouteFinder<T extends GraphNode> {
 
         while (!openSet.isEmpty()) {
             RouteNode<T> next = openSet.poll();
+
+            // When the end point is reached
             if (next.getCurrent().equals(to)) {
                 List<T> route = new ArrayList<>();
                 RouteNode<T> current = next;
@@ -35,18 +41,19 @@ public class RouteFinder<T extends GraphNode> {
 
             graph.getConnections(next.getCurrent()).forEach(connection -> {
                 RouteNode<T> nextNode = allNodes.getOrDefault(connection, new RouteNode<>(connection));
-                allNodes.put(connection, nextNode);
+                if(Function2d.evaluate(new Vector2d(nextNode.getCurrent().getX(),nextNode.getCurrent().getY()))>=0||!SimulateMain.simulator.get_course().nodeOnTree(new Vector2d(nextNode.getCurrent().getX(),nextNode.getCurrent().getY()))){
+                    allNodes.put(connection, nextNode);
 
-                double newScore = next.getRouteScore() + nextNodeScorer.computeCost(next.getCurrent(), connection);
-                if (newScore < nextNode.getRouteScore()) {
-                    nextNode.setPrevious(next.getCurrent());
-                    nextNode.setRouteScore(newScore);
-                    nextNode.setEstimatedScore(newScore + targetScorer.computeCost(connection, to));
-                    openSet.add(nextNode);
+                    double newScore = next.getRouteScore() + nextNodeScorer.computeCost(next.getCurrent(), connection);
+                    if (newScore < nextNode.getRouteScore()) {
+                        nextNode.setPrevious(next.getCurrent());
+                        nextNode.setRouteScore(newScore);
+                        nextNode.setEstimatedScore(newScore + targetScorer.computeCost(connection, to));
+                        openSet.add(nextNode);
+                    }
                 }
             });
 
-            throw new IllegalStateException("No route found");
         }
 
         throw new IllegalStateException("No route found");

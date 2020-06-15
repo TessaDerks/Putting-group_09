@@ -77,5 +77,14 @@ public class PuttingCourse {
     public List<Sand> getSandList() {
         return sandList;
     }
+
+    public boolean nodeOnTree(Vector2d p) {
+        for(Tree t : treeList){
+            if(t.treeHit(p)){
+                return true;
+            }
+        }
+        return false;
+    }
     //</editor-fold>
 }
