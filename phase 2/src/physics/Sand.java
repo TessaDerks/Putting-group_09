@@ -1,5 +1,7 @@
 package physics;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Sand {
     private Vector2d topLeft;
     private Vector2d bottomRight;
@@ -11,7 +13,7 @@ public class Sand {
         friction = _friction;
     }
 
-    public boolean coordInSand(Vector2d c){
+    public boolean coordInSand(@NotNull Vector2d c){
         boolean r = false;
         if(((c.get_x()>=topLeft.get_x())&&(c.get_x()<=bottomRight.get_x())&& ((c.get_y()<=topLeft.get_y())&&(c.get_y()>=bottomRight.get_y())))){
             r = true;

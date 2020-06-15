@@ -2,6 +2,7 @@ package physics;
 
 import javafx.scene.control.Alert;
 import main.Main;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.system.CallbackI;
 
 import javax.imageio.ImageIO;
@@ -27,7 +28,7 @@ public class SimulateMain {
 
 
     // receives information about new terrain and sends information to the right classes
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions) throws IOException {
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions) throws IOException {
 
         g = _g;
         m = _m;

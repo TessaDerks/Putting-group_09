@@ -1,5 +1,7 @@
 package physics;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class ShuntingYard {
@@ -32,7 +34,7 @@ public class ShuntingYard {
                 return (ops.containsKey(sub) && ops.get(sub).precedence >= ops.get(op).precedence);
             }
 
-            public static String postfix(String infix) {
+            public static @NotNull String postfix(@NotNull String infix) {
                 StringBuilder output = new StringBuilder();
                 Deque<String> stack = new LinkedList<>();
 

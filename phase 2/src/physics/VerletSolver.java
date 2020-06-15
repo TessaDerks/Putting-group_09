@@ -1,5 +1,7 @@
 package physics;
 
+import org.jetbrains.annotations.NotNull;
+
 public class VerletSolver implements PhysicsEngine{
 
     //<editor-fold desc="Global Variables">
@@ -116,7 +118,7 @@ public class VerletSolver implements PhysicsEngine{
     }
 
     @Override
-    public void set_v(Vector2d _v) {
+    public void set_v(@NotNull Vector2d _v) {
         if(Math.sqrt(Math.pow(_v.get_x(),2)+Math.pow(_v.get_y(),2))>v_max)
         {
             v = new Vector2d(0,0);

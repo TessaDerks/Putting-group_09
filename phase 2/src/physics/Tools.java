@@ -1,5 +1,8 @@
 package physics;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.concurrent.TimeUnit;
 
 public class Tools {
@@ -78,14 +81,15 @@ public class Tools {
         return result;
     }
 
-    public static Vector2d calcG(Function2d h, Vector2d p, double m, double g){
+    public static @NotNull Vector2d calcG(@NotNull Function2d h, Vector2d p, double m, double g){
         Vector2d der = h.gradient(p);
         Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
 
         return output;
     }
 
-    public static Vector2d calcH(double mu, double m, double g, Vector2d v){
+    @Contract("_, _, _, _ -> new")
+    public static @NotNull Vector2d calcH(double mu, double m, double g, @NotNull Vector2d v){
         double xH = (-mu * m * g * v.get_x());
         double yH = (-mu * m * g * v.get_y());
         return new Vector2d(xH,yH);
