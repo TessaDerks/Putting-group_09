@@ -64,7 +64,7 @@
          <children>
             <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/typing.png" />
+                  <Image url="file:/../res/JavaFX/typing.png" />
                </image>
                <HBox.margin>
                   <Insets left="150.0" right="50.0" />
@@ -86,7 +86,7 @@
          <children>
             <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/diary.png" />
+                  <Image url="file:/../res/JavaFX/diary.png" />
                </image>
                <HBox.margin>
                   <Insets left="150.0" right="50.0" />

@@ -3,13 +3,15 @@ package physics;
 public class Function2d{
     private double delta = 1e-10;
     private static String masterFunction;
+    private static double cap;
 
-    public Function2d(String function){
+    public Function2d(String function, double _cap){
         masterFunction = ShuntingYard.postfix(function);
+        cap = _cap;
     }
 
     public static double evaluate(Vector2d p) {
-        double z = PostFixCalculator.calculate(masterFunction,p);
+        double z = Math.min(cap,PostFixCalculator.calculate(masterFunction,p));
         return z;
     }
 

@@ -14,7 +14,7 @@
                <children>
                   <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/golf.png" />
+                        <Image url="file:/../res/JavaFX/golf.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
@@ -35,7 +35,7 @@
                <children>
                   <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/typing.png" />
+                        <Image url="file:/../res/JavaFX/typing.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
@@ -57,7 +57,7 @@
                <children>
                   <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/diary.png" />
+                        <Image url="file:/../res/JavaFX/diary.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
@@ -79,7 +79,7 @@
                <children>
                   <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/exit.png" />
+                        <Image url="file:/../res/JavaFX/exit.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" top="5.0" />
@@ -110,7 +110,7 @@
             </Text>
             <ImageView fitWidth="24.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/off.png" />
+                  <Image url="file:/../res/JavaFX/off.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -122,7 +122,7 @@
    <center>
       <ImageView fitHeight="390.0" fitWidth="654.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="file:/C:/Users/zaker/Documents/Projects/untitled/res/JavaFX/menuScreen.png" />
+            <Image url="file:/../res/JavaFX/menuScreen.png" />
          </image>
       </ImageView>
    </center>
