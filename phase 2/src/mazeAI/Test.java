@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args){
-        Function2d f = new Function2d("cos ( x ) + cos ( y ) + 1");
+        Function2d f = new Function2d("cos ( x ) + cos ( y ) + 1", 1);
 
         GenerateNodes generator = new GenerateNodes(new Vector2d(0,0),new Vector2d(12,12),0.5,3);
         RouteFinder finder = new RouteFinder(generator.getMaze());
