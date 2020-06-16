@@ -1,5 +1,6 @@
 package mazeAI;
 
+import com.sun.security.jgss.GSSUtil;
 import org.jetbrains.annotations.NotNull;
 import physics.Function2d;
 import physics.Vector2d;
@@ -9,13 +10,22 @@ import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args){
-        Function2d f = new Function2d("1");
+        Function2d f = new Function2d("cos ( x ) + cos ( y ) + 1");
 
-        GenerateNodes generator = new GenerateNodes(new Vector2d(0,0),new Vector2d(10,10),0.5,3);
+        GenerateNodes generator = new GenerateNodes(new Vector2d(0,0),new Vector2d(12,12),0.5,3);
         RouteFinder finder = new RouteFinder(generator.getMaze());
-        List<CheckPoint> route = finder.findRoute(generator.getMaze().getNode(cToId(new Vector2d(0,0))),generator.getMaze().getNode(cToId(new Vector2d(10,10))));
+        List<CheckPoint> route = finder.findRoute(generator.getMaze().getNode(cToId(new Vector2d(0,0))),generator.getMaze().getNode(cToId(new Vector2d(12,12))));
 
         System.out.println(route.stream().map(CheckPoint::getId).collect(Collectors.toList()));
+
+        RouteDivider divider = new RouteDivider(route,0.5);
+
+        List<Shot> shots = divider.getShots();
+
+        System.out.println();
+        for(Shot s : shots){
+            System.out.print(s);
+        }
     }
 
     public static String cToId(@NotNull Vector2d c){

@@ -17,4 +17,9 @@ public class Shot {
         angle = _angle;
         speed = _speed;
     }
+
+    @Override
+    public String toString() {
+        return "Shot{"+start.toString()+end.toString()+"}";
+    }
 }

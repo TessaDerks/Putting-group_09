@@ -16,4 +16,9 @@ public class Vector2d {
     public double get_y() {
         return y;
     }
+
+    @Override
+    public String toString() {
+        return "("+x+","+y+")";
+    }
 }
