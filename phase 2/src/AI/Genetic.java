@@ -34,7 +34,6 @@ class Genetic {
         start = _start;
         position = start;
         end = _end;
-        System.out.println("Start of Gen!"+start.toString()+end.toString());
         popSize = _popSize;
         function = SimulateMain.getFunction();
         putting = SimulateMain.simulator;
@@ -42,7 +41,6 @@ class Genetic {
 
     public static void initializePopulation(){
         population = new Individual[popSize];
-        System.out.println("initializePopulation"+start.toString()+end.toString());
         for ( int i = 0; i < popSize; i++){
             population[i] = new Individual(start);
         }
@@ -95,14 +93,10 @@ class Genetic {
         putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/2)), true);
 
         // adjust the flag a little to the left and make a checker flag
-        System.out.println("leftOfHole 1"+start.toString()+end.toString());
         Vector2d checker = Tools.adjustFlagPosition(start, end);
-        System.out.println("leftOfHole 2"+checker.toString());
         // calculate the distance to the flag and to the checker
         Double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
         Double disCheck = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - checker.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - checker.get_y(), 2));
-        //System.out.println(end.toString() + " " + disFlag);
-        //System.out.println(checker.toString() + " " + disCheck);
         // if the flag is further away than the checker, the ball is on the left side of the flagd
         if(disFlag <= disCheck){
             ret = true;
@@ -119,15 +113,12 @@ class Genetic {
             if (leftRight == leftOfHole()){ // if the ball lays on the same side as before, dont change the adjusting angle
                 if(leftRight == true){ angle += adjusting;} // add up if its left
                 else {angle -= adjusting;} //
-                System.out.println(angle);
             }
             else{
                 leftRight = leftOfHole(); // set new value for leftright for the next check
                 adjusting = adjusting/10; // divide adjusting by 10 to set the step size smaller
-                //System.out.println(adjusting);
                 if(leftRight == true){ angle += adjusting; }
                 else{ angle -= adjusting; }
-                System.out.println(angle);
             }
             /*
             if(angle >= 360) {
@@ -160,7 +151,6 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[i].setPosition(putting.get_ball_position());
-                    //System.out.println(_speed);
                 }
                 for (int j = popSizeNew; j < popSize; j++) {
                     putting.get_engine().resetPosition(start);
@@ -171,7 +161,6 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[j].setPosition(putting.get_ball_position());
-                    //System.out.println(_speed);
                 }
                 calcFitness();
                 sortPopulation();

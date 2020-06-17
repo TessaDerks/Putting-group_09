@@ -84,7 +84,6 @@ public class PuttingSimulator{
 	public boolean calcWin(@NotNull Vector2d position, Vector2d flagPos){
 		boolean r = false;
 		double absDis = Math.sqrt(Math.pow(position.get_x() - flagPos.get_x(),2) + Math.pow(position.get_y() - flagPos.get_y(),2));
-		System.out.println("!!!!!!!"+absDis+" "+position.toString()+" "+flagPos.toString());
 		if(absDis < course.get_hole_tolerance()){
 			r = true;
 		}

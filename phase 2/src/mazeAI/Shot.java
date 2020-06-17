@@ -23,6 +23,10 @@ public class Shot {
         return "Shot{"+start.toString()+end.toString()+"}";
     }
 
+    public String altToString(){
+        return "Shot{a:"+angle+";s:"+speed+"}";
+    }
+
     public double getAngle() {
         return angle;
     }

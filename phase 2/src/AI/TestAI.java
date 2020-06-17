@@ -35,16 +35,18 @@ public class TestAI {
         RouteFinder finder = new RouteFinder(generator.getMaze());
         List<CheckPoint> route = finder.findRoute(generator.getMaze().getNode(cToId(start)),generator.getMaze().getNode(cToId(goal)));
 
+        System.out.println();
         System.out.println(route.stream().map(CheckPoint::getId).collect(Collectors.toList()));
 
         RouteDivider divider = new RouteDivider(route,0.5);
 
         List<Shot> shots = divider.getShots();
 
-        System.out.println();
         for(Shot s : shots){
             System.out.print(s);
         }
+        System.out.println();
+        System.out.println();
 
         currentStart = shots.get(0).getStart();
 
@@ -57,6 +59,12 @@ public class TestAI {
         }
 
         System.out.println("Done");
+
+        System.out.println();
+
+        for(Shot s : botShots){
+            System.out.print(s.altToString());
+        }
     }
 
     public static void setStart(){
