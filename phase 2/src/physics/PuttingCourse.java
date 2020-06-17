@@ -7,7 +7,7 @@ import java.util.List;
 public class PuttingCourse {
 
     //<editor-fold desc="Global Variables">
-    private Function height;
+    private Function2d height;
     private Vector2d flag;
     private Vector2d start;
     private double mu = 0.3;
@@ -46,7 +46,7 @@ public class PuttingCourse {
     //</editor-fold>
 
     //<editor-fold desc="Getters">
-    public Function get_height(){
+    public Function2d get_height(){
         return height;
     }
 
