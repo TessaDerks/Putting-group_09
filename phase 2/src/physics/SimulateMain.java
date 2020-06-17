@@ -42,7 +42,7 @@ public class SimulateMain {
         heightMap = _heightMap;
 
 
-        // Create PuttingSimulator and set all given settings 
+        // Create PuttingSimulator and set all given settings
         PuttingCourse course = new PuttingCourse(function, flag, start);
         course.set_mu(mu);
         course.set_vMax(vmax);
