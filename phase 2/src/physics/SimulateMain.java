@@ -39,15 +39,17 @@ public class SimulateMain {
         tol = _tol;
         start = _start;
         flag = _goal;
-        if(SimulateMain.getHeightMap().equals("")){
+
+        version = _version;
+        //heightMap = _heightMap;
+        heightMap = "";
+
+        if(heightMap.equals("")){
             function = new Function(_height, 900);
         }
         else{
             function = new HeightMap(_heightMap);
         }
-
-        version = _version;
-        heightMap = _heightMap;
 
 
         // Create PuttingSimulator and set all given settings
@@ -87,7 +89,7 @@ public class SimulateMain {
         engine.set_g(g);
         engine.set_v_max(vmax);
         simulator = new PuttingSimulator(course, engine);
-        if(function.evaluate(start)<0){
+        if(function.evaluate(start)<0 && heightMap.equals("")){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -95,7 +97,7 @@ public class SimulateMain {
 
             alert.showAndWait();
         }
-        else if(function.evaluate(flag)<0){
+        else if(function.evaluate(flag)<0 && heightMap.equals("")){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -103,7 +105,7 @@ public class SimulateMain {
 
             alert.showAndWait();
         }
-        else if(!Tools.checkGoalSlope(flag, function, m, g, mu)){
+        else if(!Tools.checkGoalSlope(flag, function, m, g, mu) && heightMap.equals("")){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
