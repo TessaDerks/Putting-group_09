@@ -17,7 +17,7 @@ public class PuttingCourse {
     private List<Sand> sandList = new LinkedList<Sand>();
     //</editor-fold>
 
-    public PuttingCourse(Function _height, Vector2d _flag, Vector2d _start){
+    public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
         height = _height;
         flag = _flag;
         start = _start;
