@@ -3,7 +3,6 @@ package physics;
 import javafx.scene.control.Alert;
 import main.Main;
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.system.CallbackI;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -11,13 +10,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class SimulateMain {
 
     private static Vector2d start;
     private static Vector2d flag;
-    private static Function2d function;
+    private static Function function;
     public static PuttingSimulator simulator;
     public static int version;
     private static double g;
@@ -37,7 +35,7 @@ public class SimulateMain {
         tol = _tol;
         start = _start;
         flag = _goal;
-        function = new Function2d(_height);
+        function = new Function(_height);
         version = _version;
 
 
@@ -80,7 +78,7 @@ public class SimulateMain {
         engine.set_g(g);
         engine.set_v_max(vmax);
         simulator = new PuttingSimulator(course, engine);
-        if(Function2d.evaluate(start)<0){
+        if(Function.evaluate(start)<0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -88,7 +86,7 @@ public class SimulateMain {
 
             alert.showAndWait();
         }
-        else if(Function2d.evaluate(flag)<0){
+        else if(Function.evaluate(flag)<0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -121,7 +119,7 @@ public class SimulateMain {
         tol = _tol;
         start = _start;
         flag = _goal;
-        function = new Function2d(_height);
+        function = new Function(_height);
 
         if(Tools.checkGoalSlope(flag, function, m, g, mu)){
             // Create PuttingSimulator and set all given settings
@@ -153,7 +151,7 @@ public class SimulateMain {
         simulator.last_ball_position = start;
     }
 
-    public static Function2d getFunction() {
+    public static Function getFunction() {
         return function;
     }
 

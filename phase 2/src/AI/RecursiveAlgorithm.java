@@ -14,11 +14,11 @@ class RecursiveAlgorithm {
     private static Vector2d end;
     private Double speed;
     private Double angle = 0.0;
-    private Function2d function;
+    private Function function;
     private PuttingSimulator putting = SimulateMain.simulator;
 
 
-    public RecursiveAlgorithm(Vector2d _start, Vector2d _finish, Function2d _function){
+    public RecursiveAlgorithm(Vector2d _start, Vector2d _finish, Function _function){
         start = _start;
         end = _finish;
         function = _function;

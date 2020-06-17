@@ -1,8 +1,7 @@
 package mazeAI;
 
-import com.sun.security.jgss.GSSUtil;
 import org.jetbrains.annotations.NotNull;
-import physics.Function2d;
+import physics.Function;
 import physics.Vector2d;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args){
-        Function2d f = new Function2d("cos ( x ) + cos ( y ) + 1", 1);
+        Function f = new Function("cos ( x ) + cos ( y ) + 1", 1);
 
         GenerateNodes generator = new GenerateNodes(new Vector2d(0,0),new Vector2d(12,12),0.5,3);
         RouteFinder finder = new RouteFinder(generator.getMaze());
@@ -28,7 +27,7 @@ public class Test {
         }
     }
 
-    public static String cToId(@NotNull Vector2d c){
+    public static @NotNull String cToId(@NotNull Vector2d c){
         return "("+c.get_x()+","+c.get_y()+")";
     }
 }

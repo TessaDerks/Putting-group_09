@@ -1,6 +1,5 @@
 package AI;
 
-import com.sun.jdi.ShortType;
 import main.Main;
 import physics.*;
 
@@ -14,7 +13,7 @@ class Genetic {
     private static int generation = 0;
     private static Double speed;
     private static Double angle = 0.0;
-    private static Function2d function;
+    private static Function function;
     private static PuttingSimulator putting;
     public static boolean testCase = false;
 
@@ -235,11 +234,11 @@ class Genetic {
         Genetic.angle = angle;
     }
 
-    public static Function2d getFunction() {
+    public static Function getFunction() {
         return function;
     }
 
-    public static void setFunction(Function2d function) {
+    public static void setFunction(Function function) {
         Genetic.function = function;
     }
 

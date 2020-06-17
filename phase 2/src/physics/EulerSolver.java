@@ -12,7 +12,7 @@ public class EulerSolver implements PhysicsEngine{
     private double v_max = 30;
     private Vector2d p;
     private Vector2d v;
-    private Function2d h;
+    private Function h;
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
@@ -99,7 +99,7 @@ public class EulerSolver implements PhysicsEngine{
     }
 
     @Override
-    public void set_h(Function2d _h) {
+    public void set_h(Function _h) {
         h = _h;
     }
 
@@ -122,7 +122,7 @@ public class EulerSolver implements PhysicsEngine{
 
     //<editor-fold desc="Getters">
     @Override
-    public Function2d get_h() {
+    public Function get_h() {
         return h;
     }
 

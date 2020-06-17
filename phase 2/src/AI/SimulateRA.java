@@ -16,7 +16,7 @@ public class SimulateRA {
 
         SimulateMain.beginning(g, mass, mu, maxV, radius, start, end, function);
 
-        RecursiveAlgorithm test = new RecursiveAlgorithm(start, end, new Function2d(function));
+        RecursiveAlgorithm test = new RecursiveAlgorithm(start, end, new Function(function));
 
         if (!test.HoleInOnePossible()) {
             System.out.println(false);

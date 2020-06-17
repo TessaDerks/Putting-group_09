@@ -1,6 +1,6 @@
 package mazeAI;
 
-import physics.Function2d;
+import physics.Function;
 import physics.SimulateMain;
 import physics.Vector2d;
 
@@ -41,7 +41,7 @@ public class RouteFinder<T extends GraphNode> {
 
             graph.getConnections(next.getCurrent()).forEach(connection -> {
                 RouteNode<T> nextNode = allNodes.getOrDefault(connection, new RouteNode<>(connection));
-                if(Function2d.evaluate(new Vector2d(nextNode.getCurrent().getX(),nextNode.getCurrent().getY()))>=0||!SimulateMain.simulator.get_course().nodeOnTree(new Vector2d(nextNode.getCurrent().getX(),nextNode.getCurrent().getY()))){
+                if(Function.evaluate(new Vector2d(nextNode.getCurrent().getX(),nextNode.getCurrent().getY()))>=0||!SimulateMain.simulator.get_course().nodeOnTree(new Vector2d(nextNode.getCurrent().getX(),nextNode.getCurrent().getY()))){
                     allNodes.put(connection, nextNode);
 
                     double newScore = next.getRouteScore() + nextNodeScorer.computeCost(next.getCurrent(), connection);

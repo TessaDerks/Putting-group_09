@@ -66,7 +66,7 @@ public class Tools {
     }
 
     // Method to check if goal is to vertical.
-    public static boolean checkGoalSlope(Vector2d goal_position,Function2d function, double mass, double g, double mu){
+    public static boolean checkGoalSlope(Vector2d goal_position, Function function, double mass, double g, double mu){
         boolean result = true;
         Vector2d G = calcG(function,goal_position,mass,g);
         Vector2d H = calcH(mu,mass/1000,g,G);
@@ -81,7 +81,7 @@ public class Tools {
         return result;
     }
 
-    public static @NotNull Vector2d calcG(@NotNull Function2d h, Vector2d p, double m, double g){
+    public static @NotNull Vector2d calcG(@NotNull Function h, Vector2d p, double m, double g){
         Vector2d der = h.gradient(p);
         Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
 

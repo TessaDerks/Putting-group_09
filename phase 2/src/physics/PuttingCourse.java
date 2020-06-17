@@ -7,7 +7,7 @@ import java.util.List;
 public class PuttingCourse {
 
     //<editor-fold desc="Global Variables">
-    private Function2d height;
+    private Function height;
     private Vector2d flag;
     private Vector2d start;
     private double mu = 0.3;
@@ -17,7 +17,7 @@ public class PuttingCourse {
     private List<Sand> sandList = new LinkedList<Sand>();
     //</editor-fold>
 
-    public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
+    public PuttingCourse(Function _height, Vector2d _flag, Vector2d _start){
         height = _height;
         flag = _flag;
         start = _start;
@@ -46,7 +46,7 @@ public class PuttingCourse {
     //</editor-fold>
 
     //<editor-fold desc="Getters">
-    public Function2d get_height(){
+    public Function get_height(){
         return height;
     }
 

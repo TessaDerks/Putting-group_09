@@ -2,20 +2,15 @@ package terrain;
 
 import engine.graphics.Loader;
 import engine.graphics.models.RawModel;
-import engine.graphics.textures.ModelTexture;
 import engine.graphics.textures.TerrainTexture;
 import engine.graphics.textures.TerrainTexturePack;
 import maths.Maths;
 import org.lwjglx.util.vector.Vector2f;
 import org.lwjglx.util.vector.Vector3f;
-import physics.Function2d;
-import physics.SimulateMain;
+import physics.Function;
 import physics.Vector2d;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Terrain {
 
@@ -54,7 +49,7 @@ public class Terrain {
         for(int i=0;i<VERTEX_COUNT;i++){
             for(int j=0;j<VERTEX_COUNT;j++){
                 vertices[vertexPointer*3] = (float)j/((float)VERTEX_COUNT - 1) * SIZE;
-                float height = (float) Function2d.evaluate(new Vector2d(j,i));
+                float height = (float) Function.evaluate(new Vector2d(j,i));
                 heights[j][i] = height;
                 vertices[vertexPointer*3+1] = height;
                 vertices[vertexPointer*3+2] = (float)i/((float)VERTEX_COUNT - 1) * SIZE;
@@ -88,10 +83,10 @@ public class Terrain {
 // calculation of normals.
     private Vector3f calculateNormal(int x, int z){
 
-        float heightL = (float) Function2d.evaluate( new Vector2d(x-1,z));
-        float heightR = (float) Function2d.evaluate(new Vector2d(x+1, z));
-        float heightD = (float) Function2d.evaluate(new Vector2d(x,z-1));
-        float heightU = (float) Function2d.evaluate(new Vector2d(x, z+1));
+        float heightL = (float) Function.evaluate( new Vector2d(x-1,z));
+        float heightR = (float) Function.evaluate(new Vector2d(x+1, z));
+        float heightD = (float) Function.evaluate(new Vector2d(x,z-1));
+        float heightU = (float) Function.evaluate(new Vector2d(x, z+1));
 
         Vector3f normal = new Vector3f(heightL-heightR, 2f, heightD - heightU);
         normal.normalise();
