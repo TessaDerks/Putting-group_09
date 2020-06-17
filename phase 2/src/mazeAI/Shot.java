@@ -22,4 +22,20 @@ public class Shot {
     public String toString() {
         return "Shot{"+start.toString()+end.toString()+"}";
     }
+
+    public double getAngle() {
+        return angle;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public Vector2d getEnd() {
+        return end;
+    }
+
+    public Vector2d getStart() {
+        return start;
+    }
 }

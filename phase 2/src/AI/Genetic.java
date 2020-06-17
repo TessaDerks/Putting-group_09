@@ -1,6 +1,7 @@
 package AI;
 
 import main.Main;
+import mazeAI.Shot;
 import physics.*;
 
 class Genetic {
@@ -157,6 +158,7 @@ class Genetic {
                 sortPopulation();
                 generation++;
             }
+            TestAI.addBotShots(new Shot(angle,population[0].getSpeed()));
             System.out.println("Congrats! Bot made a hole in one!");
             if(!testCase){
                 putting.get_engine().resetPosition(SimulateMain.getStart());
