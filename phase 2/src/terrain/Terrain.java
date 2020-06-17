@@ -38,6 +38,20 @@ public class Terrain {
         return blendMap;
     }
 
+    public Terrain(int gridX, int gridZ, Loader loader){
+        this.x = gridX*SIZE;
+        this.z = gridZ*SIZE;
+        if(SimulateMain.getHeightMap().equals("")){
+            this.model = generateTerrainFunction(loader);
+            System.out.println("a");
+        }
+        else
+        {
+            this.model = generateTerrainMap(loader, SimulateMain.getHeightMap());
+            System.out.println("b");
+        }
+    }
+
     public Terrain(int gridX, int gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap){
         this.texturePack = texturePack;
         this.blendMap = blendMap;
