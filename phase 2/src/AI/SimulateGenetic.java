@@ -15,11 +15,9 @@ public class SimulateGenetic {
         Genetic gen = new Genetic(popsize,start,end);
         gen.initializePopulation();
         gen.cocktailShaker();
-        System.out.print(gen.getAngle());
 
         //xgen.calculateAngle();
         if (gen.CalculateAmountShots() > 1) {
-            System.out.println(gen.CalculateAmountShots());
             System.out.println("Hole in one not possible, try different parameters");
             Main.openNewWindow = true;
             SimulateMain.simulator.get_engine().resetPosition(start);
@@ -31,7 +29,6 @@ public class SimulateGenetic {
             System.out.println("Your bot scored after " + gen.getGeneration() + " generations!");
         }
         lastEnd = gen.getPopulation()[0].getPosition();
-        System.out.println("lastEnd"+lastEnd.toString());
     }
 
     public static Vector2d getLastEnd() {

@@ -54,8 +54,9 @@ public class TestAI {
             Genetic.testCase = false;
             SimulateMain.simulator.get_course().set_holeTolerance(SimulateMain.simulator.get_course().get_hole_tolerance()*1.5);
             currentStart = SimulateGenetic.getLastEnd();
-            System.out.println("currentstart"+currentStart.toString());
         }
+
+        System.out.println("Done");
     }
 
     public static void setStart(){
