@@ -21,12 +21,14 @@ public class SimulateMain {
     private static double g;
     private static double m;
     private static double mu;
+
     private static double vmax;
     private static double tol;
+    private static String heightMap;
 
 
     // receives information about new terrain and sends information to the right classes
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions) throws IOException {
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions, String _heightMap) throws IOException {
 
         g = _g;
         m = _m;
@@ -37,6 +39,7 @@ public class SimulateMain {
         flag = _goal;
         function = new Function(_height);
         version = _version;
+        heightMap = _heightMap;
 
 
         // Create PuttingSimulator and set all given settings 
@@ -169,6 +172,9 @@ public class SimulateMain {
 
     public static double getSpeed(){ return vmax; }
 
-   
+    public static String getHeightMap() {
+        return heightMap;
+    }
+
 
 }

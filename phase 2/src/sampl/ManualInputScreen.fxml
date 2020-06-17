@@ -23,7 +23,7 @@
                            <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                                  <image>
                                     <Image url="file:/../res/JavaFX/gravity.png" />
@@ -31,12 +31,12 @@
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gravity Constant">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                              <TextField fx:id="gravity" prefWidth="200.0" text="9.81">
+                              <TextField fx:id="gravity" prefWidth="300.0" text="9.81">
                                  <HBox.margin>
-                                    <Insets left="72.0" top="10.0" />
+                                    <Insets left="50.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                            </children>
@@ -48,163 +48,186 @@
                                     <Image url="file:/../res/JavaFX/weight.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass of Ball">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                              <TextField fx:id="mass" prefWidth="200.0" text="45">
+                              <TextField fx:id="mass" prefWidth="300.0" text="45">
                                  <HBox.margin>
-                                    <Insets left="96.0" top="10.0" />
+                                    <Insets left="72.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                            </children>
                         </HBox>
-                         <HBox layoutX="2.0" layoutY="269.0" prefHeight="43.0" prefWidth="650.0">
+                         <HBox layoutX="2.0" layoutY="256.0" prefHeight="39.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="file:/../res/JavaFX/finish.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
                                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Goal Position ( x , y )">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="goalPosX" prefWidth="90.0" text="10">
+                                 <TextField fx:id="goalPosX" prefWidth="140.0" text="10">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="30.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField fx:id="goalPosY" prefWidth="90.0" text="10">
+                              <TextField fx:id="goalPosY" prefWidth="140.0" text="10">
                                  <HBox.margin>
                                     <Insets left="20.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
                         </HBox>
-                         <HBox layoutY="327.0" prefHeight="50.0" prefWidth="650.0">
+                         <HBox layoutX="2.0" layoutY="300.0" prefHeight="39.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="file:/../res/JavaFX/radius.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
                                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Radius of Goal">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="radius" prefWidth="200.0" text="1">
+                                 <TextField fx:id="radius" prefWidth="300.0" text="1">
                                  <HBox.margin>
-                                    <Insets left="81.0" top="10.0" />
+                                    <Insets left="60.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
                         </HBox>
-                         <HBox layoutX="-1.0" layoutY="377.0" prefHeight="57.0" prefWidth="656.0">
+                         <HBox layoutX="-1.0" layoutY="339.0" prefHeight="42.0" prefWidth="656.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="file:/../res/JavaFX/speedometer.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
                                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum Speed">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="maxSpeed" prefHeight="25.0" prefWidth="202.0" text="30">
+                                 <TextField fx:id="maxSpeed" prefWidth="300.0" text="30">
                                  <HBox.margin>
-                                    <Insets left="69.0" top="10.0" />
+                                    <Insets left="50.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
                         </HBox>
-                         <HBox layoutX="1.0" layoutY="428.0" prefHeight="57.0" prefWidth="650.0">
+                         <HBox layoutX="1.0" layoutY="382.0" prefHeight="52.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="file:/../res/JavaFX/forest.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
-                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Height Profile">
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Height Function">
+                                 <HBox.margin>
+                                    <Insets left="25.0" top="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                                 <TextField fx:id="heightProfile" prefHeight="25.0" prefWidth="137.0" text="1">
                                  <HBox.margin>
                                     <Insets left="50.0" top="10.0" />
                                  </HBox.margin>
-                              </Text>
-                                 <TextField fx:id="heightProfile" prefWidth="200.0" text="1">
+                              </TextField>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimum value">
                                  <HBox.margin>
-                                    <Insets left="85.0" top="10.0" />
+                                    <Insets left="10.0" top="10.0" />
+                                 </HBox.margin></Text>
+                              <TextField prefHeight="25.0" prefWidth="68.0">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
                         </HBox>
-                        <Button fx:id="applyManInput" layoutX="332.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#applyMan" text="Apply" />
-                         <HBox layoutX="1.0" layoutY="224.0" prefHeight="45.0" prefWidth="650.0">
+                        <Button fx:id="applyManInput" layoutX="302.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#applyMan" text="Apply" />
+                         <HBox layoutX="1.0" layoutY="212.0" prefHeight="38.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="file:/../res/JavaFX/golf1.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
                                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position ( x , y )">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="startPosX" prefWidth="90.0" text="5">
+                                 <TextField fx:id="startPosX" prefWidth="140.0" text="5">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="30.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField fx:id="startPosY" prefWidth="90.0" text="5">
+                              <TextField fx:id="startPosY" prefWidth="140.0" text="5">
                                  <HBox.margin>
                                     <Insets left="20.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
                         </HBox>
-                           <HBox layoutY="177.0" prefHeight="47.0" prefWidth="650.0">
+                           <HBox layoutY="168.0" prefHeight="48.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="file:/../res/JavaFX/friction.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="75.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
                                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Friction Coefficient">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="friction" prefWidth="200.0" text="0.3">
+                                 <TextField fx:id="friction" prefWidth="300.0" text="0.3">
                                  <HBox.margin>
-                                    <Insets left="60.0" top="10.0" />
+                                    <Insets left="40.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
+                        </HBox>
+                        <HBox layoutX="2.0" layoutY="426.0" prefHeight="51.0" prefWidth="650.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Height Map">
+                                 <HBox.margin>
+                                    <Insets left="85.0" top="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <TextField fx:id="heightMapp" prefHeight="25.0" prefWidth="140.0" text="heightmap">
+                                 <HBox.margin>
+                                    <Insets left="70.0" top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
                         </HBox>
                      </children>
                   </AnchorPane>
