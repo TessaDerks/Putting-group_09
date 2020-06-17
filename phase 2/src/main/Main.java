@@ -55,28 +55,24 @@ public class Main implements Runnable {
 	public RawModel golfballModel;
 	public RawModel fernModel;
 	public RawModel poleModel;
-	public RawModel sandModel;
 
 	public ModelData modelDataTree;
 	public ModelData modelDataGrass;
 	public ModelData modelDataGolfBall;
 	public ModelData modelDataFern;
 	public ModelData modelDataPole;
-	public ModelData modelDataSand;
 
 	public ModelTexture textureTree;
 	public ModelTexture textureGrass;
 	public ModelTexture fernTextureAtlas;
 	public ModelTexture textureGolfBall;
 	public ModelTexture texturePole;
-	public ModelTexture textureSand;
 
 	public TexturedModel texturedModelTree;
 	public TexturedModel texturedModelGrass;
 	public TexturedModel texturedModelFern;
 	public TexturedModel texturedModelGolfBall;
 	public TexturedModel texturedModelPole;
-	public TexturedModel texturedModelSand;
 
 	public MasterRenderer renderer;
 
@@ -88,8 +84,6 @@ public class Main implements Runnable {
 	public List<Entity> tree;
 	public List<Entity> grass;
 	public List<Entity> fern;
-	public List<Entity> sand;
-
 
 	public List<Entity> entities;
 	public Entity pole;
@@ -109,7 +103,6 @@ public class Main implements Runnable {
 	public List<GUITexture> guis;
 	public GUITexture gui;
 	public GUIRenderer guiRenderer;
-	public MousePicker picker;
 
 	public WaterShader waterShader;
 	public WaterRenderer waterRenderer;
@@ -154,14 +147,12 @@ public class Main implements Runnable {
 		modelDataGolfBall = OBJFileLoader.loadOBJ("golf_ball3");
 		modelDataFern = OBJFileLoader.loadOBJ("fern");
 		modelDataPole = OBJFileLoader.loadOBJ("pole");
-		modelDataSand = OBJFileLoader.loadOBJ("sand_plane"); // insert name of sand object file!!!
 
 		modelTree = loader.loadToVAO(modelDataTree.getVertices(), modelDataTree.getTextureCoords(),modelDataTree.getNormals(),modelDataTree.getIndices());
 		modelGrass = loader.loadToVAO(modelDataGrass.getVertices(), modelDataGrass.getTextureCoords(),modelDataGrass.getNormals(),modelDataGrass.getIndices());
 		golfballModel = loader.loadToVAO(modelDataGolfBall.getVertices(),modelDataGolfBall.getTextureCoords(),modelDataGolfBall.getNormals(),modelDataGolfBall.getIndices());
 		fernModel = loader.loadToVAO(modelDataFern.getVertices(),modelDataFern.getTextureCoords(),modelDataFern.getNormals(),modelDataFern.getIndices());
 		poleModel = loader.loadToVAO(modelDataPole.getVertices(),modelDataPole.getTextureCoords(),modelDataPole.getNormals(),modelDataPole.getIndices());
-		sandModel = loader.loadToVAO(modelDataSand.getVertices(),modelDataSand.getTextureCoords(),modelDataSand.getNormals(),modelDataSand.getIndices());
 
 		// create texture for terrain
 		backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
@@ -181,8 +172,6 @@ public class Main implements Runnable {
 		texturedModelGolfBall = new TexturedModel(golfballModel, new ModelTexture(loader.loadTexture("golf4")));
 		texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
 		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
-		texturedModelSand = new TexturedModel(sandModel, new ModelTexture(loader.loadTexture("sandtexture2")));// sand texture!!!
-
 
 		texturedModelGrass.getTexture().setHasTransparency(true);
 		texturedModelGrass.getTexture().setUseFakeLighting(true);
@@ -210,12 +199,7 @@ public class Main implements Runnable {
 		texturePole.setShineDamper(10);
 		texturePole.setReflectivity(1);
 
-		textureSand = texturedModelSand.getTexture();
-		textureSand.setShineDamper(10);
-		textureSand.setReflectivity(1);
-
 		// generate terrain
-
 		terrain = new Terrain(0,0,loader,texturePack, blendMap);
 
 
@@ -238,17 +222,7 @@ public class Main implements Runnable {
 			float y = terrain.getHeightOfTerrain(x,z);
 			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,7));
 		}
-/*
-		// create sand entity list
-		sand = new ArrayList<Entity>();
-		for(int i=0;i<SimulateMain.simulator.get_course().getSandList().size();i++){
-			float x = (float) SimulateMain.simulator.get_course().getSandList().get(i).getTopLeft().get_x();
-			float z = (float) SimulateMain.simulator.get_course().getSandList().get(i).getTopLeft().get_y();
-			float y = terrain.getHeightOfTerrain(x,z);
-			sand.add(new Entity(texturedModelSand, new Vector3f(x,y,z),0,0,0,7));
-		}
 
- */
 
 		// create grass entity list
 		grass = new ArrayList<Entity>();
@@ -383,12 +357,7 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, -water.getHeight()));
-		/*
-		for(int i = 0; i<sand.size(); i++){
-			renderer.processEntity(sand.get(i));
-		}
 
-		 */
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
@@ -402,12 +371,7 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, water.getHeight()));
-		/*
-		for(int i = 0; i<sand.size(); i++){
-			renderer.processEntity(sand.get(i));
-		}
 
-		 */
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
@@ -420,12 +384,7 @@ public class Main implements Runnable {
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0,100000));
-		/*
-		for(int i = 0; i<sand.size(); i++){
-			renderer.processEntity(sand.get(i));
-		}
 
-		 */
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
@@ -447,4 +406,7 @@ public class Main implements Runnable {
 	public static int getHEIGHT() {
 		return HEIGHT;
 	}
+
+
+
 }
