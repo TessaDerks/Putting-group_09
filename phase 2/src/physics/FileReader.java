@@ -179,7 +179,7 @@ public class FileReader {
         }
 
         // send information to build terrain
-        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, trees, sand);
+        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, trees, sand, "");
     }
 
 
