@@ -10,12 +10,14 @@ public class TestAI {
     public static void main(String []args){
         // initialize terrain
         setStart();
+        /*
         int popSize = 25;
         Genetic.testCase = true;
         Tools tools = new Tools();
         //tools.adjustFlagPosition(start, goal);
         SimulateGenetic.initialize(popSize);
         Genetic.testCase = false;
+         */
     }
 
     public static void setStart(){
