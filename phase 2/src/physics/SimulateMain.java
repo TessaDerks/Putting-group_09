@@ -15,7 +15,7 @@ public class SimulateMain {
 
     private static Vector2d start;
     private static Vector2d flag;
-    private static Function function;
+    private static Function2d function;
     public static PuttingSimulator simulator;
     public static int version;
     private static double g;
@@ -37,7 +37,13 @@ public class SimulateMain {
         tol = _tol;
         start = _start;
         flag = _goal;
-        function = new Function(_height);
+        if(SimulateMain.getHeightMap().equals("")){
+            function = new Function(_height, 900);
+        }
+        else{
+            function = new HeightMap(_heightMap);
+        }
+
         version = _version;
         heightMap = _heightMap;
 
@@ -48,15 +54,13 @@ public class SimulateMain {
         course.set_vMax(vmax);
         course.set_holeTolerance(tol);
 
-        // radius still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         // loop to add tree objects to puttingcourse
         for(int i = 0; i< treePositions.size(); i++){
             Tree t = new Tree(treePositions.get(i), 0.6);
             course.addTree(t);
         }
 
-        // opp still needs to be adjusted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // loop to add sand objects to puttingcourse
 
         String imagePath = "res/blendMapOriginal.png";
         BufferedImage blendMap = ImageIO.read(new File(imagePath));
@@ -81,7 +85,7 @@ public class SimulateMain {
         engine.set_g(g);
         engine.set_v_max(vmax);
         simulator = new PuttingSimulator(course, engine);
-        if(Function.evaluate(start)<0){
+        if(function.evaluate(start)<0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -89,7 +93,7 @@ public class SimulateMain {
 
             alert.showAndWait();
         }
-        else if(Function.evaluate(flag)<0){
+        else if(function.evaluate(flag)<0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
