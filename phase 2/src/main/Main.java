@@ -120,6 +120,7 @@ public class Main implements Runnable {
 	public static Vector2d shots;
 	public int shotCount = 0;
 	private boolean win = false;
+	private boolean terrainMethod;
 
 	// background colour
 	private static final float RED = 0.5f;
@@ -214,7 +215,9 @@ public class Main implements Runnable {
 		textureSand.setReflectivity(1);
 
 		// generate terrain
+
 		terrain = new Terrain(0,0,loader,texturePack, blendMap);
+
 
 		// generate light
 		lights = new ArrayList<Light>();

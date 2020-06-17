@@ -85,6 +85,9 @@ public class Controller implements Initializable {
     private TextField listMoves;
 
     @FXML
+    private TextField heightMapp;
+
+    @FXML
     private Button applyFileReader;
 
     @FXML
@@ -110,8 +113,9 @@ public class Controller implements Initializable {
         double radiusOfTarget = Double.parseDouble(radius.getText());
         double maxV = Double.parseDouble(maxSpeed.getText());
         String heightFunction = heightProfile.getText();
+        String heightMap = heightMapp.getText();
 
-        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList);
+        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList, heightMap);
     }
 
 
