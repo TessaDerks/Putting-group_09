@@ -3,6 +3,7 @@ package physics;
 import javafx.scene.control.Alert;
 import main.Main;
 import org.jetbrains.annotations.NotNull;
+import terrain.Terrain;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class SimulateMain {
     private static double vmax;
     private static double tol;
     private static String heightMap;
+    private static Terrain terrain;
 
 
     // receives information about new terrain and sends information to the right classes
@@ -126,7 +128,7 @@ public class SimulateMain {
         tol = _tol;
         start = _start;
         flag = _goal;
-        function = new Function(_height);
+        function = new Function(_height, 900);
 
         if(Tools.checkGoalSlope(flag, function, m, g, mu)){
             // Create PuttingSimulator and set all given settings
@@ -158,7 +160,7 @@ public class SimulateMain {
         simulator.last_ball_position = start;
     }
 
-    public static Function getFunction() {
+    public static Function2d getFunction() {
         return function;
     }
 
@@ -180,5 +182,7 @@ public class SimulateMain {
         return heightMap;
     }
 
-
+    public static Terrain getTerrain() {
+        return terrain;
+    }
 }
