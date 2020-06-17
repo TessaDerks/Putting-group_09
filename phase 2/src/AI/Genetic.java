@@ -4,6 +4,8 @@ import main.Main;
 import mazeAI.Shot;
 import physics.*;
 
+import java.sql.SQLOutput;
+
 class Genetic {
 
     private static Vector2d start;
@@ -40,6 +42,7 @@ class Genetic {
 
     public static void initializePopulation(){
         population = new Individual[popSize];
+        System.out.println("initializePopulation"+start.toString()+end.toString());
         for ( int i = 0; i < popSize; i++){
             population[i] = new Individual(start);
         }
@@ -92,7 +95,9 @@ class Genetic {
         putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/2)), true);
 
         // adjust the flag a little to the left and make a checker flag
+        System.out.println("leftOfHole 1"+start.toString()+end.toString());
         Vector2d checker = Tools.adjustFlagPosition(start, end);
+        System.out.println("leftOfHole 2"+checker.toString());
         // calculate the distance to the flag and to the checker
         Double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
         Double disCheck = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - checker.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - checker.get_y(), 2));
@@ -124,6 +129,7 @@ class Genetic {
                 else{ angle -= adjusting; }
                 System.out.println(angle);
             }
+            /*
             if(angle >= 360) {
                 angle = 0.0;
                 counter++;
@@ -131,6 +137,8 @@ class Genetic {
             if(angle < 0) {
                 angle = 360 + angle;
             }
+            */
+
             //if(counter > 3){
             //    calculateAngle();
             //    adjusting = 0.000001;

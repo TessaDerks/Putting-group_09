@@ -36,6 +36,17 @@ public class Tools {
     public static @NotNull Vector2d adjustFlagPosition(@NotNull Vector2d start, @NotNull Vector2d flag){
         // new method to adjust the flag position to the left to make a checker flag
         Double returnX, returnY;
+
+        double angleFlag = Math.atan((flag.get_y()-start.get_y())/(flag.get_x()-start.get_x()));
+        angleFlag = Math.toDegrees(angleFlag);
+        double magnitude = Math.sqrt(Math.pow(flag.get_x()-start.get_x(),2)+Math.pow(flag.get_y()-start.get_y(),2));
+        double angleChecker = angleFlag+0.01;
+        Vector2d temp = velFromAngle(angleChecker,magnitude);
+        Vector2d checker = new Vector2d(temp.get_y()+start.get_x(),temp.get_x()+start.get_y());
+        return  checker;
+
+
+        /*
         if(((start.get_x() <= flag.get_x()) && (start.get_y() <= flag.get_y())) || ((start.get_x() >= flag.get_x()) && (start.get_y() >= flag.get_y()))){
             Double angle = Math.toDegrees(Math.atan(((Math.abs(flag.get_y()-start.get_y()))/(Math.abs(flag.get_x()-start.get_x()))))); // calculating angle
             angle+=0.01;
@@ -61,6 +72,8 @@ public class Tools {
         else return new Vector2d(returnX, returnY);
 
         //Vector2d adjusted = new Vector2d()
+
+         */
     }
 
     // Method to check if goal is to vertical.

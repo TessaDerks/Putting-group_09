@@ -11,7 +11,7 @@ import static mazeAI.Test.cToId;
 
 public class TestAI {
 
-    private static Vector2d start = new Vector2d(0, 0);
+    private static Vector2d start = new Vector2d(-3, -2);
     private static Vector2d goal = new Vector2d(12,12);
     private static List<Shot> botShots = new ArrayList<Shot>();
     private static  Vector2d currentStart;
@@ -52,7 +52,7 @@ public class TestAI {
             Genetic.testCase = true;
             SimulateGenetic.initialize(20,currentStart,s.getEnd());
             Genetic.testCase = false;
-            SimulateMain.simulator.get_course().set_holeTolerance(SimulateMain.simulator.get_course().get_hole_tolerance()+0.1);
+            SimulateMain.simulator.get_course().set_holeTolerance(SimulateMain.simulator.get_course().get_hole_tolerance()*1.5);
             currentStart = SimulateGenetic.getLastEnd();
             System.out.println("currentstart"+currentStart.toString());
         }
@@ -63,7 +63,7 @@ public class TestAI {
         double mass = 45;
         double mu = 0.131;
         double maxV = 60;
-        double radius = 1;
+        double radius = 0.2;
         String height = "1";
         SimulateMain.beginning(g, mass, mu, maxV, radius, start, goal, height);
     }
