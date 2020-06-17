@@ -96,7 +96,7 @@ public class Main implements Runnable {
 
 	public Random random;
 
-	public Terrain terrain;
+	public static Terrain terrain;
 
 
 	public TerrainTexture backgroundTexture;
