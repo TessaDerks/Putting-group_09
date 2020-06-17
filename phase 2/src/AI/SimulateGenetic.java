@@ -6,6 +6,7 @@ import physics.*;
 public class SimulateGenetic {
     private static Vector2d start = SimulateMain.getStart() ;
 
+    private static Vector2d lastEnd;
 
 
     // method to call from main to start AI with graphics
@@ -29,5 +30,11 @@ public class SimulateGenetic {
             gen.finishGame();
             System.out.println("Your bot scored after " + gen.getGeneration() + " generations!");
         }
+        lastEnd = gen.getPopulation()[0].getPosition();
+        System.out.println("lastEnd"+lastEnd.toString());
+    }
+
+    public static Vector2d getLastEnd() {
+        return lastEnd;
     }
 }
