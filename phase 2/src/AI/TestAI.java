@@ -58,7 +58,7 @@ public class TestAI {
         double mass = 45;
         double mu = 0.131;
         double maxV = 50;
-        double radius = 0.2;
+        double radius = 0.7;
         String height = "1";
         SimulateMain.beginning(g, mass, mu, maxV, radius, start, goal, height);
     }

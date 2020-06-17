@@ -1,5 +1,7 @@
 package physics;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class PuttingSimulator{
@@ -79,9 +81,9 @@ public class PuttingSimulator{
 	}
 
 	// Calculate if ball is in hole.
-	public boolean calcWin(Vector2d position){
+	public boolean calcWin(@NotNull Vector2d position, Vector2d flagPos){
 		boolean r = false;
-		double absDis = Math.sqrt(Math.pow(position.get_x() - course.get_flag_position().get_x(),2) + Math.pow(position.get_y() - course.get_flag_position().get_y(),2));
+		double absDis = Math.sqrt(Math.pow(position.get_x() - flagPos.get_x(),2) + Math.pow(position.get_y() - flagPos.get_y(),2));
 		if(absDis < course.get_hole_tolerance()){
 			r = true;
 		}

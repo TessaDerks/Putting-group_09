@@ -304,7 +304,7 @@ public class Main implements Runnable {
 			render();
 			if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) window.setFullscreen(!window.isFullscreen());
 			// check if shot landed in hole
-			if(SimulateMain.simulator.calcWin(SimulateMain.simulator.get_ball_position())&& !win && !takingShot){
+			if(SimulateMain.simulator.calcWin(SimulateMain.simulator.get_ball_position(),SimulateMain.getFlag())&& !win && !takingShot){
 				System.out.println();
 				System.out.println("=!= Y O U   W I N =!=");
 				System.out.println();

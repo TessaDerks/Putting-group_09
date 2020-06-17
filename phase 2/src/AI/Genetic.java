@@ -139,7 +139,7 @@ class Genetic {
     public static void finishGame() { // finish the game after you have taken the first shot
 
         int popSizeNew = (int) Tools.advRound(popSize/2, 0);
-        while(!putting.calcWin(population[0].getPosition())) {
+        while(!putting.calcWin(population[0].getPosition(),end)) {
                 speed = population[0].getSpeed();
                 for (int i = 0; i < popSizeNew; i++) { // split population in half, one with a higher speed
                     putting.get_engine().resetPosition(start); // setting the position to the start position
