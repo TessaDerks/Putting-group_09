@@ -32,7 +32,8 @@ public class Tools {
     }
 
     // Method to adjust the flag position to the left to make a checker flag
-    public static Vector2d adjustFlagPosition(Vector2d start, Vector2d flag){
+    @Contract("_, _ -> new")
+    public static @NotNull Vector2d adjustFlagPosition(@NotNull Vector2d start, @NotNull Vector2d flag){
         // new method to adjust the flag position to the left to make a checker flag
         Double returnX, returnY;
         if(((start.get_x() <= flag.get_x()) && (start.get_y() <= flag.get_y())) || ((start.get_x() >= flag.get_x()) && (start.get_y() >= flag.get_y()))){

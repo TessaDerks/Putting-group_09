@@ -32,6 +32,7 @@ class Genetic {
         start = _start;
         position = start;
         end = _end;
+        System.out.println("Start of Gen!"+start.toString()+end.toString());
         popSize = _popSize;
         function = SimulateMain.getFunction();
         putting = SimulateMain.simulator;
@@ -95,8 +96,8 @@ class Genetic {
         // calculate the distance to the flag and to the checker
         Double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
         Double disCheck = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - checker.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - checker.get_y(), 2));
-        System.out.println(end.toString() + " " + disFlag);
-        System.out.println(checker.toString() + " " + disCheck);
+        //System.out.println(end.toString() + " " + disFlag);
+        //System.out.println(checker.toString() + " " + disCheck);
         // if the flag is further away than the checker, the ball is on the left side of the flagd
         if(disFlag <= disCheck){
             ret = true;
@@ -138,9 +139,9 @@ class Genetic {
     }
 
     public static void finishGame() { // finish the game after you have taken the first shot
-
+        boolean win = putting.calcWin(population[0].getPosition(),end);
         int popSizeNew = (int) Tools.advRound(popSize/2, 0);
-        while(!putting.calcWin(population[0].getPosition(),end)) {
+        while(!win) {
                 speed = population[0].getSpeed();
                 for (int i = 0; i < popSizeNew; i++) { // split population in half, one with a higher speed
                     putting.get_engine().resetPosition(start); // setting the position to the start position
@@ -151,7 +152,7 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[i].setPosition(putting.get_ball_position());
-                    System.out.println(_speed);
+                    //System.out.println(_speed);
                 }
                 for (int j = popSizeNew; j < popSize; j++) {
                     putting.get_engine().resetPosition(start);
@@ -162,11 +163,13 @@ class Genetic {
                     Vector2d botVel = Tools.velFromAngle(angle, _speed);
                     putting.take_shot(botVel, true);
                     population[j].setPosition(putting.get_ball_position());
-                    System.out.println(_speed);
+                    //System.out.println(_speed);
                 }
                 calcFitness();
                 sortPopulation();
                 generation++;
+
+                win = putting.calcWin(population[0].getPosition(),end);
             }
             TestAI.addBotShots(new Shot(angle,population[0].getSpeed()));
             System.out.println("Congrats! Bot made a hole in one!");

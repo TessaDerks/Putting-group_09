@@ -14,6 +14,7 @@ public class TestAI {
     private static Vector2d start = new Vector2d(0, 0);
     private static Vector2d goal = new Vector2d(12,12);
     private static List<Shot> botShots = new ArrayList<Shot>();
+    private static  Vector2d currentStart;
 
     public static void main(String []args){
         // initialize terrain
@@ -45,11 +46,15 @@ public class TestAI {
             System.out.print(s);
         }
 
+        currentStart = shots.get(0).getStart();
+
         for(Shot s : shots){
             Genetic.testCase = true;
-            SimulateGenetic.initialize(20,s.getStart(),s.getEnd());
+            SimulateGenetic.initialize(20,currentStart,s.getEnd());
             Genetic.testCase = false;
             SimulateMain.simulator.get_course().set_holeTolerance(SimulateMain.simulator.get_course().get_hole_tolerance()+0.1);
+            currentStart = SimulateGenetic.getLastEnd();
+            System.out.println("currentstart"+currentStart.toString());
         }
     }
 
