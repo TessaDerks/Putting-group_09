@@ -46,10 +46,8 @@ public class TestAI {
         }
 
         for(Shot s : shots){
-            Genetic.setStart(s.getStart());
-            Genetic.setEnd(s.getEnd());
             Genetic.testCase = true;
-            SimulateGenetic.initialize(20);
+            SimulateGenetic.initialize(20,s.getStart(),s.getEnd());
             Genetic.testCase = false;
             SimulateMain.simulator.get_course().set_holeTolerance(SimulateMain.simulator.get_course().get_hole_tolerance()+0.1);
         }
@@ -59,8 +57,8 @@ public class TestAI {
         double g = 9.81;
         double mass = 45;
         double mu = 0.131;
-        double maxV = 80;
-        double radius = 0.1;
+        double maxV = 50;
+        double radius = 0.2;
         String height = "1";
         SimulateMain.beginning(g, mass, mu, maxV, radius, start, goal, height);
     }

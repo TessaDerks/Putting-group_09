@@ -28,6 +28,15 @@ class Genetic {
         putting = SimulateMain.simulator;
     }
 
+    public Genetic(int _popSize, Vector2d _start, Vector2d _end){
+        start = _start;
+        position = start;
+        end = _end;
+        popSize = _popSize;
+        function = SimulateMain.getFunction();
+        putting = SimulateMain.simulator;
+    }
+
     public static void initializePopulation(){
         population = new Individual[popSize];
         for ( int i = 0; i < popSize; i++){

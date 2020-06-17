@@ -80,7 +80,7 @@ public class PuttingCourse {
 
     public boolean nodeOnTree(Vector2d p) {
         for(Tree t : treeList){
-            if(t.treeHit(p)){
+            if(t.AITreeHit(p)){
                 return true;
             }
         }

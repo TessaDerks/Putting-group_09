@@ -15,6 +15,10 @@ public class Tree {
         return (Math.sqrt(Math.pow(bp.get_x() - p.get_x(),2) + Math.pow(bp.get_y() - p.get_y(),2))) <= r;
     }
 
+    public boolean AITreeHit(@NotNull Vector2d bp){
+        return (Math.sqrt(Math.pow(bp.get_x() - p.get_x(),2) + Math.pow(bp.get_y() - p.get_y(),2))) <= r*1.2;
+    }
+
     public Vector2d getP() {
         return p;
     }

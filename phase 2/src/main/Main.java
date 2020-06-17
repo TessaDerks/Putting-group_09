@@ -348,7 +348,7 @@ public class Main implements Runnable {
 
 		if(Input.isKeyDown(GLFW.GLFW_KEY_A) && !takingShot && openNewWindow){
 			openNewWindow = false;
-			SimulateGenetic.initialize(25);
+			SimulateGenetic.initialize(25,SimulateMain.getStart(),SimulateMain.getFlag());
 		}
 
 		/* if shot is taken, position of ball gets updated with received new position from physics engine,

@@ -9,9 +9,9 @@ public class SimulateGenetic {
 
 
     // method to call from main to start AI with graphics
-    public static void initialize(int popsize){
+    public static void initialize(int popsize, Vector2d start, Vector2d end){
         //popSize = popsize;
-        Genetic gen = new Genetic(popsize);
+        Genetic gen = new Genetic(popsize,start,end);
         gen.initializePopulation();
         gen.cocktailShaker();
         System.out.print(gen.getAngle());
