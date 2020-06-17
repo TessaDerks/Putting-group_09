@@ -42,14 +42,10 @@ public class SimulateMain {
 
         version = _version;
         //heightMap = _heightMap;
-        heightMap = "";
+        heightMap = "perlinNoise";
 
-        if(heightMap.equals("")){
-            function = new Function(_height, 900);
-        }
-        else{
-            function = new HeightMap(_heightMap);
-        }
+        function = new Function(_height, 900);
+
 
 
         // Create PuttingSimulator and set all given settings

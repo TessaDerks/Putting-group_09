@@ -1,11 +1,14 @@
 package sampl;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
@@ -17,6 +20,11 @@ import physics.SimulateMain;
 import physics.Vector2d;
 import terrain.Terrain;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +34,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Controller implements Initializable {
+
+    @FXML
+    private ImageView perlin;
 
     @FXML
     private BorderPane borderPane;
@@ -88,6 +99,12 @@ public class Controller implements Initializable {
     private TextField heightMapp;
 
     @FXML
+    private TextField widthString;
+
+    @FXML
+    private TextField heightString;
+
+    @FXML
     private Button applyFileReader;
 
     @FXML
@@ -116,6 +133,19 @@ public class Controller implements Initializable {
         String heightMap = heightMapp.getText();
 
         SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList, heightMap);
+    }
+
+    @FXML
+    private void randomNoiseGenerate(MouseEvent event) throws IOException {
+
+        int width = Integer.parseInt(widthString.getText());
+        int height = Integer.parseInt(heightString.getText());
+
+        PerlinNoiseGen a = new PerlinNoiseGen(width,height);
+        a.GeneratePerlin(width,height);
+        BufferedImage image1 = ImageIO.read(new File("res/perlinNoise.png"));
+        Image image2 = SwingFXUtils.toFXImage(image1, null);
+        perlin.setImage(image2);
     }
 
 

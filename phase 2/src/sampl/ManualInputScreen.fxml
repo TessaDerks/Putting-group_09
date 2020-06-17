@@ -370,6 +370,43 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+           <Tab text="Map Generator">
+              <VBox layoutY="330.0" prefHeight="200.0" prefWidth="650.0">
+                  <children>
+                     <ImageView fx:id="perlin" fitHeight="418.0" fitWidth="444.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="file:/../res/perlinNoise.png" />
+                        </image>
+                        <VBox.margin>
+                           <Insets left="85.0" top="20.0" />
+                        </VBox.margin>
+                     </ImageView>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Button fx:id="randomHeight" mnemonicParsing="false" onMouseClicked="#randomNoiseGenerate" text="Randomize">
+                              <HBox.margin>
+                                 <Insets left="130.0" top="20.0" />
+                              </HBox.margin></Button>
+                           <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Width:">
+                              <HBox.margin>
+                                 <Insets left="20.0" top="25.0" />
+                              </HBox.margin></Text>
+                           <TextField fx:id="widthString" prefHeight="25.0" prefWidth="75.0">
+                              <HBox.margin>
+                                 <Insets left="10.0" top="20.0" />
+                              </HBox.margin></TextField>
+                           <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Height:">
+                              <HBox.margin>
+                                 <Insets left="20.0" top="25.0" />
+                              </HBox.margin></Text>
+                           <TextField fx:id="heightString" prefHeight="25.0" prefWidth="75.0">
+                              <HBox.margin>
+                                 <Insets left="10.0" top="20.0" />
+                              </HBox.margin></TextField>
+                        </children>
+                     </HBox>
+                  </children></VBox>
+           </Tab>
         </tabs>
       </TabPane>
    </children>
