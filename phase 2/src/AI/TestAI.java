@@ -19,6 +19,8 @@ public class TestAI {
         // initialize terrain
         setStart();
 
+        SimulateMain.simulator.get_course().addTree(new Tree(new Vector2d(8,8),3));
+
         /*
         int popSize = 25;
         Genetic.testCase = true;

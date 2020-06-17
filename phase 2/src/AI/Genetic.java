@@ -14,7 +14,7 @@ class Genetic {
     private static int generation = 0;
     private static Double speed;
     private static Double angle = 0.0;
-    private static Function function;
+    private static Function2d function;
     private static PuttingSimulator putting;
     public static boolean testCase = false;
 
@@ -236,11 +236,11 @@ class Genetic {
         Genetic.angle = angle;
     }
 
-    public static Function getFunction() {
+    public static Function2d getFunction() {
         return function;
     }
 
-    public static void setFunction(Function function) {
+    public static void setFunction(Function2d function) {
         Genetic.function = function;
     }
 

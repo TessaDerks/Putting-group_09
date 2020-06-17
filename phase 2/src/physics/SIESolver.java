@@ -26,7 +26,7 @@ public class SIESolver implements PhysicsEngine {
     public SIESolver(Vector2d _p){
         p = _p;
         W = calcW();
-        add_wind(new Wind(90,10));
+        //add_wind(new Wind(90,10));
     }
 
     @Override
