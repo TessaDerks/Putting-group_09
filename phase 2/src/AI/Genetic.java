@@ -95,7 +95,8 @@ class Genetic {
         // calculate the distance to the flag and to the checker
         Double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
         Double disCheck = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - checker.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - checker.get_y(), 2));
-
+        System.out.println(end.toString() + " " + disFlag);
+        System.out.println(checker.toString() + " " + disCheck);
         // if the flag is further away than the checker, the ball is on the left side of the flagd
         if(disFlag <= disCheck){
             ret = true;
