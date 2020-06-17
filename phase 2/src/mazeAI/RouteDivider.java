@@ -56,7 +56,7 @@ public class RouteDivider {
         // Iterate through X
         for(double i = s.getX()+k/2; i < e.getX(); i+=k/2){
             Vector2d p = fx(a,i,b);
-            if(SimulateMain.simulator.get_course().nodeOnTree(p)|| Function.evaluate(p)<0){
+            if(SimulateMain.simulator.get_course().nodeOnTree(p)|| SimulateMain.simulator.get_engine().get_h().evaluate(p)<0){
                 return false;
             }
         }
@@ -64,7 +64,7 @@ public class RouteDivider {
         // Iterate through Y
         for(double i = s.getY()+k/2; i < e.getY(); i+=k/2){
             Vector2d p = fy(a,i,b);
-            if(SimulateMain.simulator.get_course().nodeOnTree(p)|| Function.evaluate(p)<0){
+            if(SimulateMain.simulator.get_course().nodeOnTree(p)|| SimulateMain.simulator.get_engine().get_h().evaluate(p)<0){
                 return false;
             }
         }
