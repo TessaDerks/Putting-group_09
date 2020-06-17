@@ -49,7 +49,7 @@ public class SimulateMain {
 
 
         // Create PuttingSimulator and set all given settings
-        PuttingCourse course = new PuttingCourse(function, flag, start);
+        PuttingCourse course = new PuttingCourse((Function) function, flag, start);
         course.set_mu(mu);
         course.set_vMax(vmax);
         course.set_holeTolerance(tol);
@@ -80,7 +80,7 @@ public class SimulateMain {
         // create physics engine and set all settings for terrain
         PhysicsEngine engine = new SIESolver(start);
         engine.set_step_size(0.01);
-        engine.set_h(function);
+        engine.set_h((Function) function);
         engine.set_m(m);
         engine.set_g(g);
         engine.set_v_max(vmax);
@@ -101,7 +101,7 @@ public class SimulateMain {
 
             alert.showAndWait();
         }
-        else if(!Tools.checkGoalSlope(flag, function, m, g, mu)){
+        else if(!Tools.checkGoalSlope(flag, (Function) function, m, g, mu)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -128,9 +128,9 @@ public class SimulateMain {
         flag = _goal;
         function = new Function(_height);
 
-        if(Tools.checkGoalSlope(flag, function, m, g, mu)){
+        if(Tools.checkGoalSlope(flag, (Function) function, m, g, mu)){
             // Create PuttingSimulator and set all given settings
-            PuttingCourse course = new PuttingCourse(function, flag, start);
+            PuttingCourse course = new PuttingCourse((Function) function, flag, start);
             course.set_mu(mu);
             course.set_vMax(vmax);
             course.set_holeTolerance(tol);
@@ -138,7 +138,7 @@ public class SimulateMain {
             // create physics engine and set all settings for terrain
             PhysicsEngine engine = new SIESolver(start);
             engine.set_step_size(0.01);
-            engine.set_h(function);
+            engine.set_h((Function) function);
             engine.set_m(m);
             engine.set_g(g);
             engine.set_v_max(vmax);
@@ -159,7 +159,7 @@ public class SimulateMain {
     }
 
     public static Function getFunction() {
-        return function;
+        return (Function) function;
     }
 
     public static Vector2d getStart() {
