@@ -8,9 +8,13 @@ import maths.Maths;
 import org.lwjglx.util.vector.Vector2f;
 import org.lwjglx.util.vector.Vector3f;
 import physics.Function;
+import physics.SimulateMain;
 import physics.Vector2d;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Terrain {
 
@@ -65,7 +69,7 @@ public class Terrain {
         for(int i=0;i<VERTEX_COUNT;i++){
             for(int j=0;j<VERTEX_COUNT;j++){
                 vertices[vertexPointer*3] = (float)j/((float)VERTEX_COUNT - 1) * SIZE;
-                float height = (float) Function.evaluate(new Vector2d(j,i));
+                float height = (float) SimulateMain.getFunction().evaluate(new Vector2d(j,i));
                 heights[j][i] = height;
                 vertices[vertexPointer*3+1] = height;
                 vertices[vertexPointer*3+2] = (float)i/((float)VERTEX_COUNT - 1) * SIZE;
@@ -99,10 +103,10 @@ public class Terrain {
     // calculation of normals.
     private Vector3f calculateNormalFunction(int x, int z){
 
-        float heightL = (float) Function.evaluate( new Vector2d(x-1,z));
-        float heightR = (float) Function.evaluate(new Vector2d(x+1, z));
-        float heightD = (float) Function.evaluate(new Vector2d(x,z-1));
-        float heightU = (float) Function.evaluate(new Vector2d(x, z+1));
+        float heightL = (float) SimulateMain.getFunction().evaluate( new Vector2d(x-1,z));
+        float heightR = (float) SimulateMain.getFunction().evaluate(new Vector2d(x+1, z));
+        float heightD = (float) SimulateMain.getFunction().evaluate(new Vector2d(x,z-1));
+        float heightU = (float) SimulateMain.getFunction().evaluate(new Vector2d(x, z+1));
 
         Vector3f normal = new Vector3f(heightL-heightR, 2f, heightD - heightU);
         normal.normalise();
