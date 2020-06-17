@@ -15,7 +15,7 @@ public class SIESolver implements PhysicsEngine {
     private double v_max = 30;
     private Vector2d p;
     private Vector2d v;
-    private Function h;
+    private Function2d h;
     private Vector2d G;
     private Vector2d H;
     private Vector2d F;
@@ -139,7 +139,7 @@ public class SIESolver implements PhysicsEngine {
     }
 
     @Override
-    public void set_h(Function _h) {
+    public void set_h(Function2d _h) {
         h = _h;
     }
 
@@ -167,7 +167,7 @@ public class SIESolver implements PhysicsEngine {
 
     //<editor-fold desc="Getters">
     @Override
-    public Function get_h() {
+    public Function2d get_h() {
         return h;
     }
 
