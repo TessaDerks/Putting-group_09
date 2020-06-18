@@ -16,6 +16,11 @@ public class TestAI {
     private static Vector2d goal;
     private static List<Shot> botShots = new ArrayList<Shot>();
     private static  Vector2d currentStart;
+    public static int shotCount = 0;
+
+    public static List<Shot> getBotShots() {
+        return botShots;
+    }
 
     public static void main(String []args){
         // initialize terrain
@@ -68,9 +73,19 @@ public class TestAI {
         }
     }
 
+    public static void takeAIShot(){
+
+        SimulateMain.simulator.take_shot((Tools.velFromAngle(botShots.get(shotCount).getAngle(),botShots.get(shotCount).getSpeed())), false);
+        Main.takingShot = true;
+        System.out.println("=========="+SimulateMain.simulator.get_ball_position() + "==================" + SimulateMain.simulator.get_engine().get_p());
+        shotCount++;
+
+    }
+
     public static void runMazeAI(Vector2d _start, Vector2d _end){
         start = _start;
         goal = _end;
+        Main.aiRunning = true;
         GenerateNodes generator = new GenerateNodes(start,goal,0.5,3);
         RouteFinder finder = new RouteFinder(generator.getMaze());
         List<CheckPoint> route = finder.findRoute(generator.getMaze().getNode(cToId(start)),generator.getMaze().getNode(cToId(goal)));
@@ -98,18 +113,36 @@ public class TestAI {
             currentStart = SimulateGenetic.getLastEnd();
         }
 
+        SimulateMain.simulator.get_engine().resetPosition(start);
+        SimulateMain.simulator.set_ball_position(start);
+        System.out.println(start);
+
         System.out.println("Done");
+        System.out.println("=============="+SimulateMain.simulator.get_ball_position() + "=====" + start.toString());
 
         System.out.println();
 
-        for(Shot s : botShots){
+        takeAIShot();
+
+       /* for(Shot s : botShots){
             SimulateMain.simulator.take_shot(Tools.velFromAngle(s.getAngle(),s.getSpeed()), false);
             Main.takingShot = true;
             //Main.shotCount++;
             System.out.print(s.altToString());
         }
+        */
+
+
+
+      /*  SimulateMain.simulator.take_shot((Tools.velFromAngle(botShots.get(1).getAngle(),botShots.get(1).getSpeed())), false);
+        Main.takingShot = true;
+
+        System.out.println("=========="+SimulateMain.simulator.get_ball_position() + "==================" + SimulateMain.simulator.get_engine().get_p());
+
+       */
+
         System.out.println(SimulateGenetic.getLastEnd());
-        System.out.println(SimulateMain.simulator.get_ball_position());
+
         System.out.println(SimulateMain.getFlag().toString());
     }
 

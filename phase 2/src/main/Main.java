@@ -128,6 +128,7 @@ public class Main implements Runnable {
 	public Vector2d goalPosition;
 	public static boolean takingShot = false;
 	public static boolean openNewWindow = true;
+	public static boolean aiRunning = false;
 
 	public void start() {
 		game = new Thread(this, "game");
@@ -221,7 +222,7 @@ public class Main implements Runnable {
 			float x = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_x();
 			float z = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_y();
 			float y = terrain.getHeightOfTerrain(x,z);
-			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,7));
+			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,5));
 		}
 
 
@@ -336,6 +337,9 @@ public class Main implements Runnable {
 
 			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),0) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),0) == 0){
 				takingShot = false;
+				if(aiRunning && (TestAI.shotCount < TestAI.getBotShots().size())){
+					TestAI.takeAIShot();
+				}
 			}
 		}
 

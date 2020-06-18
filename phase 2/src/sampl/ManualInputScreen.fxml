@@ -78,12 +78,12 @@
                                     <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="goalPosX" prefWidth="140.0" text="10">
+                                 <TextField fx:id="goalPosX" prefWidth="140.0" text="12">
                                  <HBox.margin>
                                     <Insets left="30.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField fx:id="goalPosY" prefWidth="140.0" text="10">
+                              <TextField fx:id="goalPosY" prefWidth="140.0" text="12">
                                  <HBox.margin>
                                     <Insets left="20.0" top="10.0" />
                                  </HBox.margin>
@@ -181,12 +181,12 @@
                                     <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="startPosX" prefWidth="140.0" text="5">
+                                 <TextField fx:id="startPosX" prefWidth="140.0" text="1">
                                  <HBox.margin>
                                     <Insets left="30.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField fx:id="startPosY" prefWidth="140.0" text="5">
+                              <TextField fx:id="startPosY" prefWidth="140.0" text="1">
                                  <HBox.margin>
                                     <Insets left="20.0" top="10.0" />
                                  </HBox.margin>
@@ -222,7 +222,7 @@
                                     <Insets left="85.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                              <TextField fx:id="heightMapp" prefHeight="25.0" prefWidth="140.0" text="heightmap">
+                              <TextField fx:id="heightMapp" prefHeight="25.0" prefWidth="140.0">
                                  <HBox.margin>
                                     <Insets left="70.0" top="10.0" />
                                  </HBox.margin>

@@ -53,19 +53,4 @@ public class SimplexNoise {
 
     }
 
-    public double getNoise(int x,int y, int z){
-
-        double result=0;
-
-        for(int i=0;i<octaves.length;i++){
-            double frequency = Math.pow(2,i);
-            double amplitude = Math.pow(persistence,octaves.length-i);
-
-            result=result+octaves[i].noise(x/frequency, y/frequency,z/frequency)* amplitude;
-        }
-
-
-        return result;
-
-    }
 } 

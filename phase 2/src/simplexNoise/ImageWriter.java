@@ -31,7 +31,7 @@ public class ImageWriter {
 
         try {
             // retrieve image
-            File outputfile = new File("saved.png");
+            File outputfile = new File("res/saved.png");
             outputfile.createNewFile();
 
             ImageIO.write(image, "png", outputfile);
