@@ -371,9 +371,12 @@ public class Main implements Runnable {
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
+		/*
 		for(int i = 0; i<stump.size(); i++){
 			renderer.processEntity(stump.get(i));
 		}
+
+		 */
 
 		camera.getPosition().y += distance;
 		camera.invertPitch();
@@ -388,9 +391,12 @@ public class Main implements Runnable {
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
+		/*
 		for(int i = 0; i<stump.size(); i++){
 			renderer.processEntity(stump.get(i));
 		}
+
+		 */
 
 		GL46.glDisable(GL46.GL_CLIP_DISTANCE0);
 		fbos.unbindCurrentFrameBuffer();
@@ -404,9 +410,12 @@ public class Main implements Runnable {
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
+		/*
 		for(int i = 0; i<stump.size(); i++){
 			renderer.processEntity(stump.get(i));
 		}
+
+		 */
 
 		// only render small gui if you've won
 		if(win){
