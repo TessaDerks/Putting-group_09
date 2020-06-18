@@ -77,7 +77,6 @@ public class TestAI {
 
         SimulateMain.simulator.take_shot((Tools.velFromAngle(botShots.get(shotCount).getAngle(),botShots.get(shotCount).getSpeed())), false);
         Main.takingShot = true;
-        System.out.println("=========="+SimulateMain.simulator.get_ball_position() + "==================" + SimulateMain.simulator.get_engine().get_p());
         shotCount++;
 
     }
@@ -118,28 +117,10 @@ public class TestAI {
         System.out.println(start);
 
         System.out.println("Done");
-        System.out.println("=============="+SimulateMain.simulator.get_ball_position() + "=====" + start.toString());
 
         System.out.println();
 
         takeAIShot();
-
-       /* for(Shot s : botShots){
-            SimulateMain.simulator.take_shot(Tools.velFromAngle(s.getAngle(),s.getSpeed()), false);
-            Main.takingShot = true;
-            //Main.shotCount++;
-            System.out.print(s.altToString());
-        }
-        */
-
-
-
-      /*  SimulateMain.simulator.take_shot((Tools.velFromAngle(botShots.get(1).getAngle(),botShots.get(1).getSpeed())), false);
-        Main.takingShot = true;
-
-        System.out.println("=========="+SimulateMain.simulator.get_ball_position() + "==================" + SimulateMain.simulator.get_engine().get_p());
-
-       */
 
         System.out.println(SimulateGenetic.getLastEnd());
 
