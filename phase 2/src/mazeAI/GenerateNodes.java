@@ -22,11 +22,18 @@ public class GenerateNodes{
     private Graph<CheckPoint> maze;
     private Set<CheckPoint> checkPointSet = new HashSet<>();
     private Map<String, Set<String>> connections = new HashMap<>();
-    private Vector2d start;
-    private Vector2d end;
-    private double k;
+    private final Vector2d start;
+    private final Vector2d end;
+    private final double k;
     private int compensate;
 
+    /**
+     *
+     * @param _start
+     * @param _end
+     * @param _k
+     * @param _compensate
+     */
     public GenerateNodes(Vector2d _start, Vector2d _end, double _k, int _compensate){
         start = _start;
         end = _end;
@@ -61,6 +68,11 @@ public class GenerateNodes{
         maze = new Graph<>(checkPointSet,connections);
     }
 
+    /**
+     *
+     * @param c
+     * @param p
+     */
     public void recursion(@NotNull Vector2d c, int p){
         // stop condition
         if(Math.abs(c.get_x()) == Math.abs(end.get_x())+(k*(compensate+1)) || Math.abs(c.get_y()) == Math.abs(end.get_y())+(k*(compensate+1))){
@@ -110,6 +122,10 @@ public class GenerateNodes{
         return;
     }
 
+    /**
+     *
+     * @param c
+     */
     public void hingeNode(@NotNull CheckPoint c){
         Vector2d n0, n1, n2, n3, n4, n5, n6, n7;
 
@@ -134,6 +150,11 @@ public class GenerateNodes{
         connections.put(cToId(new Vector2d(c.getX(),c.getY())), StringSet);
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     public String cToId(@NotNull Vector2d c){
         return "("+c.get_x()+","+c.get_y()+")";
     }

@@ -5,6 +5,11 @@ public class CheckPoint implements GraphNode {
     private final double x;
     private final double y;
 
+    /**
+     *
+     * @param _x
+     * @param _y
+     */
     public CheckPoint(double _x, double _y){
         x = _x;
         y = _y;

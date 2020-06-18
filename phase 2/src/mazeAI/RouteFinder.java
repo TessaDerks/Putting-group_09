@@ -11,12 +11,22 @@ public class RouteFinder<T extends GraphNode> {
     private final Scorer<T> nextNodeScorer;
     private final Scorer<T> targetScorer;
 
+    /**
+     *
+     * @param _graph
+     */
     public RouteFinder(Graph<T> _graph){
         graph = _graph;
         nextNodeScorer = new PietScorer();
         targetScorer = new PietScorer();
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
     public List<T> findRoute(T from, T to){
         Queue<RouteNode> openSet = new PriorityQueue<>(); // Nodes to be considered for next step
         Map<T, RouteNode<T>> allNodes = new HashMap<>(); // Maps nodes to the step that has been taken from those nodes

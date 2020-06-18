@@ -27,6 +27,11 @@ public class Test {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     public static @NotNull String cToId(@NotNull Vector2d c){
         return "("+c.get_x()+","+c.get_y()+")";
     }

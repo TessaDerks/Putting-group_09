@@ -2,7 +2,6 @@ package mazeAI;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import physics.Function;
 import physics.SimulateMain;
 import physics.Vector2d;
 
@@ -13,7 +12,7 @@ public class RouteDivider {
     private List<CheckPoint> route;
     private List<Shot> shots = new ArrayList<Shot>();
     private int currentStartNodeIndex = 0;
-    private double k;
+    private final double k;
 
     public RouteDivider(List<CheckPoint> _route,double _k){
         route = _route;
@@ -71,7 +70,7 @@ public class RouteDivider {
         return true;
     }
     
-    @Contract(value = "double, double, double -> new Vector2d", pure = true)
+    @Contract(value = "_, _, _ -> new", pure = true)
     private @NotNull Vector2d fx(double a, double x, double b){
         return new Vector2d(x,a*x+b);
     }

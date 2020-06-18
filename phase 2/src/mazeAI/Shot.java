@@ -8,11 +8,21 @@ public class Shot {
     private double speed;
     private double angle;
 
+    /**
+     *
+     * @param _start
+     * @param _end
+     */
     public Shot(Vector2d _start, Vector2d _end){
         start = _start;
         end = _end;
     }
 
+    /**
+     *
+     * @param _angle
+     * @param _speed
+     */
     public Shot(double _angle, double _speed){
         angle = _angle;
         speed = _speed;
@@ -23,6 +33,10 @@ public class Shot {
         return "Shot{"+start.toString()+end.toString()+"}";
     }
 
+    /**
+     *
+     * @return
+     */
     public String altToString(){
         return "Shot{a:"+angle+";s:"+speed+"}";
     }
