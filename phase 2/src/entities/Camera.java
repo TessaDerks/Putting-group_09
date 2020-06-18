@@ -22,6 +22,11 @@ public class Camera {
     private Player player;
 
 // Constructor for Camera
+
+    /**
+     *
+     * @param player
+     */
     public Camera(Player player){
         this.player = player;
     }
@@ -49,6 +54,12 @@ public class Camera {
         return roll;
     }
 // calculation of Camera Position
+
+    /**
+     *
+     * @param horDistance
+     * @param vertDistance
+     */
     private void calculateCameraPosition(float horDistance, float vertDistance){
         float theta = player.getRotY() + angleAroundPlayer;
         float offsetX = (float) (horDistance*Math.sin(Math.toRadians(theta)));
@@ -59,10 +70,20 @@ public class Camera {
         this.yaw = 180 - (player.getRotY()+angleAroundPlayer);
     }
 // calculation of Horizontal Distance
+
+    /**
+     *
+     * @return
+     */
     private float calculateHorizontalDistance(){
         return (float) (distanceFromPlayer * Math.cos(Math.toRadians(pitch)));
     }
 // calculation of vertical Distance
+
+    /**
+     *
+     * @return
+     */
     private float calculateVerticalDistance(){
         return (float) (distanceFromPlayer * Math.sin(Math.toRadians(pitch)));
     }

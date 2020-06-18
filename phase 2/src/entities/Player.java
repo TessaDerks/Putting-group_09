@@ -23,11 +23,26 @@ public class Player extends Entity {
     private float upwardsSpeed = 0;
     private int nMoves = 0;
 
+    /**
+     *
+     * @param model
+     * @param position
+     * @param rotX
+     * @param rotY
+     * @param rotZ
+     * @param scale
+     */
     public Player(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
         super(model, position, rotX, rotY, rotZ, scale);
     }
 
     // updates position
+
+    /**
+     *
+     * @param terrain
+     * @param newPos
+     */
     public void move(Terrain terrain, Vector2f newPos){
         checkInputs();
 

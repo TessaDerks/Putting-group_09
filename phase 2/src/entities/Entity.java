@@ -71,18 +71,42 @@ public class Entity {
         return (float)row/(float)model.getTexture().getNumberOfRows();
     }
 // move Position
+
+    /**
+     *
+     * @param dx
+     * @param dy
+     * @param dz
+     */
     public void increasePosition(float dx, float dy, float dz){
         this.position.x+=dx;
         this.position.y+=dy;
         this.position.z+=dz;
     }
 // move the rotation
+
+    /**
+     *
+     * @param dx
+     * @param dy
+     * @param dz
+     */
     public void increaseRotation(float dx, float dy, float dz){
         this.rotX+=dx;
         this.rotY+=dy;
         this.rotZ+=dz;
     }
 // Constructor 1 for Entity: without index parameter
+
+    /**
+     *
+     * @param model
+     * @param position
+     * @param rotX
+     * @param rotY
+     * @param rotZ
+     * @param scale
+     */
     public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
         this.model = model;
         this.position = position;
@@ -92,6 +116,17 @@ public class Entity {
         this.scale = scale;
     }
 // Constructor 2 for Entity: with index parameter
+
+    /**
+     *
+     * @param model
+     * @param index
+     * @param position
+     * @param rotX
+     * @param rotY
+     * @param rotZ
+     * @param scale
+     */
     public Entity(TexturedModel model,int index, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
         this.textureIndex = index;
         this.model = model;
