@@ -1,10 +1,14 @@
 package AI;
 
-import physics.*;
-
 public class Merge {
 
-
+    /**
+     *
+     * @param list
+     * @param first
+     * @param second
+     * @param end
+     */
     public static void splitList(Individual[] list, int first, int second, int end) {
 
 
@@ -13,10 +17,8 @@ public class Merge {
         Individual[] firstHalf = new Individual[sizeFirst];
         Individual[] secondHalf = new Individual[sizeSecond];
 
-        for(int i = 0; i < sizeFirst; i++){
-            firstHalf[i] = list[first + i];
-            //System.out.print(firstHalf[i] + " ");
-        }
+        //System.out.print(firstHalf[i] + " ");
+        if (sizeFirst >= 0) System.arraycopy(list, first, firstHalf, 0, sizeFirst);
         //System.out.println();
         for (int j = 0; j < sizeSecond; j++){
             secondHalf[j] = list[second+1+j];
@@ -51,6 +53,12 @@ public class Merge {
         }
     }
 
+    /**
+     *
+     * @param list
+     * @param start
+     * @param end
+     */
     public void sortList(Individual[] list, int start, int end){
 
         if(start < end){

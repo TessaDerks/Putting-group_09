@@ -1,6 +1,7 @@
 package AI;
 
 import javafx.util.Pair;
+import org.jetbrains.annotations.Nullable;
 import physics.*;
 
 
@@ -10,14 +11,16 @@ import java.util.List;
 class RecursiveAlgorithm {
 
     private static Vector2d start;
-    private Vector2d landing;
     private static Vector2d end;
-    private Double speed;
-    private Double angle = 0.0;
-    private Function function;
+    private final Function function;
     private PuttingSimulator putting = SimulateMain.simulator;
 
-
+    /**
+     *
+     * @param _start
+     * @param _finish
+     * @param _function
+     */
     public RecursiveAlgorithm(Vector2d _start, Vector2d _finish, Function _function){
         start = _start;
         end = _finish;
@@ -37,6 +40,12 @@ class RecursiveAlgorithm {
 
     //make sure the speed will be generated randomly
     //the lower the score, the less the speed changes
+
+    /**
+     *
+     * @param maxSpeed
+     * @return
+     */
     private double adjust_speed(double maxSpeed) {
         maxSpeed = 10; //how to import the maxspeed value on the game (maybe retrieve it using the constructor?)
         double new_speed;
@@ -60,6 +69,12 @@ class RecursiveAlgorithm {
     // in case the initial angle doesnt make the ball end up in the hole (the initial angle is the angle calculated in the finishGame method)
     // let it adjust the angle
     //the lower the score, the less the angle changes
+
+    /**
+     *
+     * @param initial_angle
+     * @return
+     */
     private double adjust_angle(double initial_angle) {
         initial_angle = calculateAngle(); //import it from the finishGame method
         double new_angle;
@@ -81,8 +96,12 @@ class RecursiveAlgorithm {
         return new_angle;
     }
 
+    /**
+     *
+     * @return
+     */
     public double calculateAngle(){ // calculate the angle, checken of dit goed is
-        angle = (double) Math.toDegrees(Math.atan2(end.get_y() - start.get_y(),end.get_x() - start.get_x()));
+        Double angle = (double) Math.toDegrees(Math.atan2(end.get_y() - start.get_y(), end.get_x() - start.get_x()));
 
         if(angle < 0){
             angle += 360;
@@ -96,6 +115,11 @@ class RecursiveAlgorithm {
     // if there is rocks, score is higher
     // lower score == better
     // score is representeed by the distance between the ball and the hole
+
+    /**
+     *
+     * @return
+     */
     private double score(){        //parameter physics.Vector2d ending removed
 
         double _score = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
@@ -103,13 +127,12 @@ class RecursiveAlgorithm {
         return _score;
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean inHole() {
-        if(score() <= 0.2) {
-            return true;
-        }
-        else{
-            return false;
-        }
+        return score() <= 0.2;
     }
 
 
@@ -125,7 +148,7 @@ class RecursiveAlgorithm {
     // recursive call
     // if lowest score < begin score, recursive call to getpath with new values
     // return speed/ angle when score == 0
-    private Vector2d getpath(double speed_heuristic, double angle_heuristic, Double score, int depth) {
+    private @Nullable Vector2d getpath(double speed_heuristic, double angle_heuristic, Double score, int depth) {
 
         double new_score;
 
@@ -143,7 +166,7 @@ class RecursiveAlgorithm {
             new_score = score();                   //new_score = score(putting.take_shot(new_velocity, true));
             scores.add(new Pair<Double, Vector2d>(new_score, new_velocity));
 
-            if (inHole() == true)
+            if (inHole())
                 return new_velocity;
         }
 
@@ -154,7 +177,7 @@ class RecursiveAlgorithm {
                 Vector2d tempVel = (Vector2d) scores.get(i).getValue();
                 scores.set(i, new Pair<Double, Vector2d>((Double) scores.get(i).getKey(),getpath(tempVel.get_x(), tempVel.get_y(), (Double) scores.get(i).getKey(), depth + 1)));
                 //make order go from little to big
-                if (inHole() == true) {
+                if (inHole()) {
                     return (Vector2d) scores.get(i).getValue();
                 }
                 else {
@@ -185,15 +208,6 @@ class RecursiveAlgorithm {
         }
     }
 
-
-    public boolean finishGame() {
-        if (HoleInOnePossible() == false) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
 
 
 

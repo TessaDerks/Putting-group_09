@@ -7,6 +7,10 @@ public class Individual {
     private Vector2d position;
     private Double speed;
 
+    /**
+     *
+     * @param pos
+     */
     Individual(Vector2d pos){
         fitness = 0.0;
         position = pos;

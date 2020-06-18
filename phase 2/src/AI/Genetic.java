@@ -2,6 +2,7 @@ package AI;
 
 import main.Main;
 import mazeAI.Shot;
+import org.jetbrains.annotations.NotNull;
 import physics.*;
 
 import java.sql.SQLOutput;
@@ -21,7 +22,10 @@ class Genetic {
     public static boolean testCase = false;
     private static double clearance = 5;
 
-    
+    /**
+     *
+     * @param _popSize
+     */
     public Genetic(int _popSize){
         start = SimulateMain.getStart();
         position = start;
@@ -31,6 +35,12 @@ class Genetic {
         putting = SimulateMain.simulator;
     }
 
+    /**
+     *
+     * @param _popSize
+     * @param _start
+     * @param _end
+     */
     public Genetic(int _popSize, Vector2d _start, Vector2d _end){
         start = _start;
         position = start;
@@ -61,34 +71,34 @@ class Genetic {
         merge.sortList(population, 0, popSize-1);
     }
 
+    /**
+     *
+     * @param maxSpeed
+     * @return
+     */
     public static double generateSpeed(Double maxSpeed){
         Double _speed = Tools.advRound(Math.random() * maxSpeed, 2);
         return _speed; // generate a random speed using the maxSpeed of the puttingsimulator as speed for a first shot
     }
 
     public static void takeFirstShot(){ // take the first shot to gain an idea of with how much power the AI should shoot
-        for ( int i = 0; i < population.length; i++){
+        for (Individual individual : population) {
             putting.get_engine().resetPosition(start);
             Double _speed = generateSpeed(putting.get_course().get_maximum_velocity());
-            population[i].setSpeed(_speed); // setting the speed for the certain individual
+            individual.setSpeed(_speed); // setting the speed for the certain individual
             Vector2d vel = Tools.velFromAngle(angle, _speed);
             putting.take_shot(vel, true);
-            population[i].setPosition(putting.get_ball_position());
+            individual.setPosition(putting.get_ball_position());
         }
         generation++;
         calcFitness();
         sortPopulation();
     }
 
-    public static void calculateAngle(){ // calculate the angle
-        angle = Math.toDegrees(Math.atan(((Math.abs(end.get_x()))/(Math.abs(end.get_y())))));
-        if (end.get_y() < 0) {
-            if (end.get_x() > 0){ angle += 90;;}
-            else{ angle += 180 ;}
-        }
-        else if ((end.get_y() > 0) &&( end.get_x() < 0) ) {angle +=270;}
-    }
-
+    /**
+     *
+     * @return
+     */
     public static boolean leftOfHole(){
         boolean ret = false;
         putting.get_engine().resetPosition(start);
@@ -109,17 +119,16 @@ class Genetic {
     public static void cocktailShaker(){ // shake the angle back and forth until the tolerance is small enough to create the right angle
         boolean leftRight = leftOfHole();
         Double adjusting = 10.0;
-        Double counter = 0.0;
 
         while(adjusting > 0.01){
             if (leftRight == leftOfHole()){ // if the ball lays on the same side as before, dont change the adjusting angle
-                if(leftRight == true){ angle += adjusting;} // add up if its left
+                if(leftRight){ angle += adjusting;} // add up if its left
                 else {angle -= adjusting;} //
             }
             else{
                 leftRight = leftOfHole(); // set new value for leftright for the next check
                 adjusting = adjusting/10; // divide adjusting by 10 to set the step size smaller
-                if(leftRight == true){ angle += adjusting; }
+                if(leftRight){ angle += adjusting; }
                 else{ angle -= adjusting; }
             }
             /*
@@ -181,16 +190,6 @@ class Genetic {
             System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
     }
 
-    public static Double CalculateAmountShots(){ // calculate if the bot can reach the destination
-        putting.get_engine().resetPosition(start);
-        putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()), true);
-
-        Double shotDis = putting.get_ball_position().get_x() - putting.get_course().get_start_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
-        Double disFlag = Math.sqrt(Math.pow((end.get_x()-start.get_x()-putting.get_course().get_hole_tolerance()/clearance), 2) + Math.pow((end.get_y()-start.get_y()-putting.get_course().get_hole_tolerance()/clearance), 2));
-        Double shots = (disFlag/shotDis); // calculate the amount of shots needed to score the hole in one based on distance
-        return shots; // if the value is higher than 1, it can not shoot the hole in one
-    }
-
     // getters and setters
     public static Vector2d getStart() {
         return start;
@@ -208,28 +207,8 @@ class Genetic {
         Genetic.position = position;
     }
 
-    public static Vector2d getEnd() {
-        return end;
-    }
-
-    public static void setEnd(Vector2d end) {
-        Genetic.end = end;
-    }
-
-    public static int getPopSize() {
-        return popSize;
-    }
-
-    public static void setPopSize(int popSize) {
-        Genetic.popSize = popSize;
-    }
-
     public static Individual[] getPopulation() {
         return population;
-    }
-
-    public static void setPopulation(Individual[] population) {
-        Genetic.population = population;
     }
 
     public static Double getSpeed() {

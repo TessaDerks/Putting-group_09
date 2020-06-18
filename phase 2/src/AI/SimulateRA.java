@@ -22,8 +22,5 @@ public class SimulateRA {
             System.out.println(false);
             System.out.println("Hole in one not possible, try different parameters");
         }
-        else {
-
-        }
     }
 }
