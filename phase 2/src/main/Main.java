@@ -1,6 +1,5 @@
 package main;
 
-import AI.SimulateGenetic;
 import AI.TestAI;
 import GUI.GUIRenderer;
 import GUI.GUITexture;
@@ -18,8 +17,6 @@ import entities.Camera;
 import entities.Entity;
 import entities.Light;
 import entities.Player;
-import javafx.application.Application;
-import maths.MousePicker;
 import org.lwjgl.glfw.GLFW;
 
 import engine.io.Input;
@@ -40,7 +37,6 @@ import water.WaterTile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 public class Main implements Runnable {
 
@@ -72,7 +68,6 @@ public class Main implements Runnable {
 
 	public TexturedModel texturedModelTree;
 	public TexturedModel texturedModelGrass;
-	public TexturedModel texturedModelFern;
 	public TexturedModel texturedModelGolfBall;
 	public TexturedModel texturedModelPole;
 	public TexturedModel texturedModelStump;
@@ -87,7 +82,6 @@ public class Main implements Runnable {
 	public List<Entity> tree;
 	public List<Entity> stump;
 	public List<Entity> grass;
-	public List<Entity> fern;
 
 	public List<Entity> entities;
 	public Entity pole;
@@ -117,7 +111,6 @@ public class Main implements Runnable {
 	public static Vector2d shots;
 	public static int shotCount = 0;
 	private boolean win = false;
-	private boolean terrainMethod;
 
 	// background colour
 	private static final float RED = 0.5f;
@@ -368,8 +361,8 @@ public class Main implements Runnable {
 
 		renderer.render(lights,camera, new Vector4f(0,-1,0, -water.getHeight()));
 
-		for(int i = 0; i<tree.size(); i++){
-			renderer.processEntity(tree.get(i));
+		for (Entity entity : tree) {
+			renderer.processEntity(entity);
 		}
 		/*
 		for(int i = 0; i<stump.size(); i++){
@@ -388,8 +381,8 @@ public class Main implements Runnable {
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0, water.getHeight()));
 
-		for(int i = 0; i<tree.size(); i++){
-			renderer.processEntity(tree.get(i));
+		for (Entity entity : tree) {
+			renderer.processEntity(entity);
 		}
 		/*
 		for(int i = 0; i<stump.size(); i++){
@@ -407,8 +400,8 @@ public class Main implements Runnable {
 		renderer.processEntity(pole);
 		renderer.render(lights,camera, new Vector4f(0,-1,0,100000));
 
-		for(int i = 0; i<tree.size(); i++){
-			renderer.processEntity(tree.get(i));
+		for (Entity entity : tree) {
+			renderer.processEntity(entity);
 		}
 		/*
 		for(int i = 0; i<stump.size(); i++){
