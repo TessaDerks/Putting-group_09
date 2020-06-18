@@ -186,7 +186,7 @@ class Genetic {
         putting.take_shot(Tools.velFromAngle(90, putting.get_course().get_maximum_velocity()), true);
 
         Double shotDis = putting.get_ball_position().get_x() - putting.get_course().get_start_position().get_x(); // by shooting the ball at 90 degrees, the x value is the maximum distance it can shoot
-        Double disFlag = Math.sqrt(Math.pow((end.get_x()-start.get_x()-putting.get_course().get_hole_tolerance()), 2) + Math.pow((end.get_y()-start.get_y()-putting.get_course().get_hole_tolerance()), 2));
+        Double disFlag = Math.sqrt(Math.pow((end.get_x()-start.get_x()-putting.get_course().get_hole_tolerance()/clearance), 2) + Math.pow((end.get_y()-start.get_y()-putting.get_course().get_hole_tolerance()/clearance), 2));
         Double shots = (disFlag/shotDis); // calculate the amount of shots needed to score the hole in one based on distance
         return shots; // if the value is higher than 1, it can not shoot the hole in one
     }
