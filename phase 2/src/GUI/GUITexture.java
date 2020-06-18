@@ -8,6 +8,12 @@ public class GUITexture {
     private Vector2f position;
     private Vector2f scale;
 
+    /**
+     *
+     * @param texture
+     * @param position
+     * @param scale
+     */
     public GUITexture(int texture, Vector2f position, Vector2f scale) {
         this.texture = texture;
         this.position = position;
