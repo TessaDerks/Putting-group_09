@@ -19,6 +19,7 @@ class Genetic {
     private static Function2d function;
     private static PuttingSimulator putting;
     public static boolean testCase = false;
+    private static double clearance = 5;
 
     
     public Genetic(int _popSize){
@@ -40,6 +41,7 @@ class Genetic {
     }
 
     public static void initializePopulation(){
+        clearance = SimulateMain.simulator.get_course().get_hole_tolerance()/0.1;
         population = new Individual[popSize];
         for ( int i = 0; i < popSize; i++){
             population[i] = new Individual(start);
@@ -138,7 +140,7 @@ class Genetic {
     }
 
     public static void finishGame() { // finish the game after you have taken the first shot
-        boolean win = putting.calcWin(population[0].getPosition(),end);
+        boolean win = putting.calcWin(population[0].getPosition(),end,clearance);
         int popSizeNew = (int) Tools.advRound(popSize/2, 0);
         while(!win) {
                 speed = population[0].getSpeed();
@@ -166,7 +168,7 @@ class Genetic {
                 sortPopulation();
                 generation++;
 
-                win = putting.calcWin(population[0].getPosition(),end);
+                win = putting.calcWin(population[0].getPosition(),end,clearance);
             }
             TestAI.addBotShots(new Shot(angle,population[0].getSpeed()));
             System.out.println("Congrats! Bot made a hole in one!");
