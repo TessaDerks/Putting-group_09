@@ -13,7 +13,8 @@ public class FileReader {
     private static double startY;
     private static double goalX;
     private static double goalY;
-    private static String height;
+    private static String height = "1";
+    private static String heightMap = "";
 
     private static ArrayList<Vector2d> trees = new ArrayList<>();
     private static ArrayList<Vector2d> sand = new ArrayList<>();
@@ -176,31 +177,15 @@ public class FileReader {
                     sand.add(sandPosBtm);
                 }
             }
+
+            if(list1.contains("heightMap")){
+                heightMap = values;
+            }
         }
 
         // send information to build terrain
-        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, trees, sand, "");
+        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, trees, sand, heightMap);
     }
 
-
-    public static double getG() {
-        return g;
-    }
-
-    public static void setG(double g) {
-        FileReader.g = g;
-    }
-
-    public static double getMu() {
-        return mu;
-    }
-
-    public static void setMu(double mu) {
-        FileReader.mu = mu;
-    }
-
-    public static String getHeight(){
-        return height;
-    }
     
 }
