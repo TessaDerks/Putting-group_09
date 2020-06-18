@@ -1,8 +1,10 @@
 package water;
 
+import terrain.Terrain;
+
 public class WaterTile {
 	
-	public static final float TILE_SIZE = 200;
+	public static final float TILE_SIZE = Terrain.SIZE/2;
 	
 	private float height;
 	private float x,z;

@@ -256,7 +256,7 @@ public class Main implements Runnable {
 		waterShader = new WaterShader();
 		waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), fbos);
 		waters = new ArrayList<WaterTile>();
-		water = new WaterTile(400,400,0);
+		water = new WaterTile(Terrain.SIZE/2,Terrain.SIZE/2,0);
 		waters.add(water);
 
 		playerStartPosition = SimulateMain.getStart();
