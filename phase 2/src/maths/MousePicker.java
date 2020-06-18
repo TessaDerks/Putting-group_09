@@ -3,6 +3,8 @@ package maths;
 
 import entities.Camera;
 import main.Main;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.lwjglx.input.Mouse;
 import org.lwjglx.util.vector.Matrix4f;
 import org.lwjglx.util.vector.Vector2f;
@@ -19,12 +21,21 @@ public class MousePicker {
     private Matrix4f viewMatrix;
     private Camera camera;
 
+    /**
+     *
+     * @param cam
+     * @param projection
+     */
     public MousePicker(Camera cam, Matrix4f projection) {
         camera = cam;
         projectionMatrix = projection;
         viewMatrix = createViewMatrix(camera);
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3f getCurrentRay() {
         return currentRay;
     }
@@ -34,7 +45,11 @@ public class MousePicker {
         currentRay = calculateMouseRay();
     }
 
-    private Vector3f calculateMouseRay() {
+    /**
+     *
+     * @return
+     */
+    private @NotNull Vector3f calculateMouseRay() {
         float mouseX = Mouse.getX();
         float mouseY = Mouse.getY();
         Vector2f normalizedCoords = getNormalisedDeviceCoordinates(mouseX, mouseY);
@@ -44,7 +59,12 @@ public class MousePicker {
         return worldRay;
     }
 
-    private Vector3f toWorldCoords(Vector4f eyeCoords) {
+    /**
+     *
+     * @param eyeCoords
+     * @return
+     */
+    private @NotNull Vector3f toWorldCoords(Vector4f eyeCoords) {
         Matrix4f invertedView = Matrix4f.invert(viewMatrix, null);
         Vector4f rayWorld = Matrix4f.transform(invertedView, eyeCoords, null);
         Vector3f mouseRay = new Vector3f(rayWorld.x, rayWorld.y, rayWorld.z);
@@ -52,13 +72,25 @@ public class MousePicker {
         return mouseRay;
     }
 
-    private Vector4f toEyeCoords(Vector4f clipCoords) {
+    /**
+     *
+     * @param clipCoords
+     * @return
+     */
+    private @NotNull Vector4f toEyeCoords(Vector4f clipCoords) {
         Matrix4f invertedProjection = Matrix4f.invert(projectionMatrix, null);
         Vector4f eyeCoords = Matrix4f.transform(invertedProjection, clipCoords, null);
         return new Vector4f(eyeCoords.x, eyeCoords.y, -1f, 0f);
     }
 
-    private Vector2f getNormalisedDeviceCoordinates(float mouseX, float mouseY) {
+    /**
+     *
+     * @param mouseX
+     * @param mouseY
+     * @return
+     */
+    @Contract("_, _ -> new")
+    private @NotNull Vector2f getNormalisedDeviceCoordinates(float mouseX, float mouseY) {
         float x = (2.0f * mouseX) / Main.getWIDTH() - 1f;
         float y = (2.0f * mouseY) / Main.getHEIGHT() - 1f;
         return new Vector2f(x, y);
