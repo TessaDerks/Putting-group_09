@@ -41,11 +41,15 @@ public class SimulateMain {
         flag = _goal;
 
         version = _version;
-        //heightMap = _heightMap;
-        heightMap = "perlinNoise";
+        heightMap = _heightMap;
+        //heightMap = "perlinNoise";
 
-        function = new Function(_height, 900);
-
+        if(heightMap.equals("")){
+            function = new Function(_height, 900);
+        }
+        else{
+            function = new HeightMap(heightMap);
+        }
 
 
         // Create PuttingSimulator and set all given settings
@@ -85,6 +89,7 @@ public class SimulateMain {
         engine.set_g(g);
         engine.set_v_max(vmax);
         simulator = new PuttingSimulator(course, engine);
+
         if(function.evaluate(start)<0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");

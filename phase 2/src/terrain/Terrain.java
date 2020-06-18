@@ -147,7 +147,7 @@ public class Terrain {
         for(int i=0;i<VERTEX_COUNT;i++){
             for(int j=0;j<VERTEX_COUNT;j++){
                 vertices[vertexPointer*3] = (float)j/((float)VERTEX_COUNT - 1) * SIZE;
-                float height = getHeight(j,i,image)+ 100;
+                float height = getHeight(j,i,image);
                 heights[j][i] = height;
                 vertices[vertexPointer*3+1] = height;
                 vertices[vertexPointer*3+2] = (float)i/((float)VERTEX_COUNT - 1) * SIZE;
