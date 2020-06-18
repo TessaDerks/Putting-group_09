@@ -176,7 +176,7 @@ public class Main implements Runnable {
 		texturedModelGrass = new TexturedModel(modelGrass, new ModelTexture(loader.loadTexture("grassTexture")));
 		texturedModelGolfBall = new TexturedModel(golfballModel, new ModelTexture(loader.loadTexture("golf4")));
 		//texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
-		texturedModelStump = new TexturedModel(stumpModel, new ModelTexture(loader.loadTexture("treeStumpTexture")));
+		texturedModelStump = new TexturedModel(stumpModel, new ModelTexture(loader.loadTexture("wallTexture")));
 		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
 
 		texturedModelGrass.getTexture().setHasTransparency(true);
