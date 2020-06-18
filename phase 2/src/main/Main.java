@@ -54,17 +54,18 @@ public class Main implements Runnable {
 	public RawModel modelTree;
 	public RawModel modelGrass;
 	public RawModel golfballModel;
-	public RawModel fernModel;
+	public RawModel stumpModel;
 	public RawModel poleModel;
 
 	public ModelData modelDataTree;
 	public ModelData modelDataGrass;
 	public ModelData modelDataGolfBall;
-	public ModelData modelDataFern;
+	public ModelData modelDataStump;
 	public ModelData modelDataPole;
 
 	public ModelTexture textureTree;
 	public ModelTexture textureGrass;
+	public ModelTexture textureStump;
 	public ModelTexture fernTextureAtlas;
 	public ModelTexture textureGolfBall;
 	public ModelTexture texturePole;
@@ -74,6 +75,7 @@ public class Main implements Runnable {
 	public TexturedModel texturedModelFern;
 	public TexturedModel texturedModelGolfBall;
 	public TexturedModel texturedModelPole;
+	public TexturedModel texturedModelStump;
 
 	public MasterRenderer renderer;
 
@@ -83,6 +85,7 @@ public class Main implements Runnable {
 	public List<Light> lights;
 
 	public List<Entity> tree;
+	public List<Entity> stump;
 	public List<Entity> grass;
 	public List<Entity> fern;
 
@@ -147,13 +150,13 @@ public class Main implements Runnable {
 		modelDataTree = OBJFileLoader.loadOBJ("tree");
 		modelDataGrass = OBJFileLoader.loadOBJ("grassModel");
 		modelDataGolfBall = OBJFileLoader.loadOBJ("golf_ball3");
-		modelDataFern = OBJFileLoader.loadOBJ("fern");
+		modelDataStump = OBJFileLoader.loadOBJ("treeStump2");
 		modelDataPole = OBJFileLoader.loadOBJ("pole");
 
 		modelTree = loader.loadToVAO(modelDataTree.getVertices(), modelDataTree.getTextureCoords(),modelDataTree.getNormals(),modelDataTree.getIndices());
 		modelGrass = loader.loadToVAO(modelDataGrass.getVertices(), modelDataGrass.getTextureCoords(),modelDataGrass.getNormals(),modelDataGrass.getIndices());
 		golfballModel = loader.loadToVAO(modelDataGolfBall.getVertices(),modelDataGolfBall.getTextureCoords(),modelDataGolfBall.getNormals(),modelDataGolfBall.getIndices());
-		fernModel = loader.loadToVAO(modelDataFern.getVertices(),modelDataFern.getTextureCoords(),modelDataFern.getNormals(),modelDataFern.getIndices());
+		stumpModel = loader.loadToVAO(modelDataStump.getVertices(),modelDataStump.getTextureCoords(),modelDataStump.getNormals(),modelDataStump.getIndices());
 		poleModel = loader.loadToVAO(modelDataPole.getVertices(),modelDataPole.getTextureCoords(),modelDataPole.getNormals(),modelDataPole.getIndices());
 
 		// create texture for terrain
@@ -172,7 +175,8 @@ public class Main implements Runnable {
 		texturedModelTree = new TexturedModel(modelTree, new ModelTexture(loader.loadTexture("tree")));
 		texturedModelGrass = new TexturedModel(modelGrass, new ModelTexture(loader.loadTexture("grassTexture")));
 		texturedModelGolfBall = new TexturedModel(golfballModel, new ModelTexture(loader.loadTexture("golf4")));
-		texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
+		//texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
+		texturedModelStump = new TexturedModel(stumpModel, new ModelTexture(loader.loadTexture("treeStumpTexture")));
 		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
 
 		texturedModelGrass.getTexture().setHasTransparency(true);
@@ -185,13 +189,13 @@ public class Main implements Runnable {
 		textureTree.setShineDamper(10);
 		textureTree.setReflectivity(1);
 
+		textureStump = texturedModelStump.getTexture();
+		textureStump.setShineDamper(10);
+		textureStump.setReflectivity(1);
+
 		textureGrass = texturedModelGrass.getTexture();
 		textureGrass.setShineDamper(10);
 		textureGrass.setReflectivity(1);
-
-		fernTextureAtlas = texturedModelFern.getTexture();
-		fernTextureAtlas.setShineDamper(10);
-		fernTextureAtlas.setReflectivity(1);
 
 		textureGolfBall = texturedModelGolfBall.getTexture();
 		textureGolfBall.setShineDamper(10);
@@ -207,7 +211,7 @@ public class Main implements Runnable {
 
 		// generate light
 		lights = new ArrayList<Light>();
-		lights.add(new Light(new Vector3f(500,1000,500), new Vector3f(1f,1f,1f)));
+		lights.add(new Light(new Vector3f(200,200,0), new Vector3f(1f,1f,1f)));
 
 
 		// create and render small GUI in top right position if your ball landed in the hole
@@ -237,13 +241,13 @@ public class Main implements Runnable {
 		}
 
 		// create fern entity list
-		fern = new ArrayList<Entity>();
+		stump = new ArrayList<Entity>();
 		random = new Random();
-		for(int i=0;i<500;i++){
-			float x = random.nextFloat()*800;
-			float z = random.nextFloat()*800;
+		for(int i=0;i<50;i++){
+			float x = random.nextFloat()*Terrain.SIZE;
+			float z = random.nextFloat()*Terrain.SIZE;
 			float y = terrain.getHeightOfTerrain(x,z);
-			fern.add(new Entity(texturedModelFern, random.nextInt(4), new Vector3f(x,y,z),0,0,0,1));
+			stump.add(new Entity(texturedModelStump, random.nextInt(4), new Vector3f(x,y,z),0,0,0,1));
 		}
 
 
@@ -361,10 +365,14 @@ public class Main implements Runnable {
 		renderer.processEntity(player);
 		renderer.processTerrain(terrain);
 		renderer.processEntity(pole);
+
 		renderer.render(lights,camera, new Vector4f(0,-1,0, -water.getHeight()));
 
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
+		}
+		for(int i = 0; i<stump.size(); i++){
+			renderer.processEntity(stump.get(i));
 		}
 
 		camera.getPosition().y += distance;
@@ -380,6 +388,9 @@ public class Main implements Runnable {
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
 		}
+		for(int i = 0; i<stump.size(); i++){
+			renderer.processEntity(stump.get(i));
+		}
 
 		GL46.glDisable(GL46.GL_CLIP_DISTANCE0);
 		fbos.unbindCurrentFrameBuffer();
@@ -392,6 +403,9 @@ public class Main implements Runnable {
 
 		for(int i = 0; i<tree.size(); i++){
 			renderer.processEntity(tree.get(i));
+		}
+		for(int i = 0; i<stump.size(); i++){
+			renderer.processEntity(stump.get(i));
 		}
 
 		// only render small gui if you've won
