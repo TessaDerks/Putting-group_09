@@ -127,7 +127,7 @@
                                     <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="maxSpeed" prefWidth="300.0" text="30">
+                                 <TextField fx:id="maxSpeed" prefWidth="300.0" text="90">
                                  <HBox.margin>
                                     <Insets left="50.0" top="10.0" />
                                  </HBox.margin>
