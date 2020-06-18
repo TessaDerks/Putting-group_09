@@ -112,8 +112,6 @@ public class Controller implements Initializable {
     @FXML
     private Button applyManInput;
 
-    private static int seed = 0;
-
     private ArrayList<Vector2d> treesList = new ArrayList<>();
 
     private ArrayList<Vector2d> sandList = new ArrayList<>();
@@ -141,11 +139,18 @@ public class Controller implements Initializable {
 
     @FXML
     private void randomNoiseGenerate(MouseEvent event) throws IOException {
+        Random r = new Random();
+        int largestFeature = r.nextInt(1000);
+        float persistence = r.nextFloat()* 0.5f;
+        int seedd = 0;
+        System.out.println(largestFeature);
+        System.out.println(persistence);
+        System.out.println(seedd);
 
         int width = Integer.parseInt(widthString.getText());
         int height = Integer.parseInt(heightString.getText());
 
-        SimplexNoise simplexNoise=new SimplexNoise(100,0.1, seed);
+        SimplexNoise simplexNoise=new SimplexNoise(largestFeature,persistence, seedd);
         double xStart=0;
         double XEnd=500;
         double yStart=0;
@@ -168,7 +173,6 @@ public class Controller implements Initializable {
         BufferedImage image1 = ImageIO.read(new File("res/saved.png"));
         Image image2 = SwingFXUtils.toFXImage(image1, null);
         perlin.setImage(image2);
-        seed++;
     }
 
 

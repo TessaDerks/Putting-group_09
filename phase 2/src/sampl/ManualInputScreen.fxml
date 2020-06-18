@@ -375,7 +375,7 @@
                   <children>
                      <ImageView fx:id="perlin" fitHeight="418.0" fitWidth="444.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="file:/../res/noise.png" />
+                           <Image url="file:/../res/saved.png" />
                         </image>
                         <VBox.margin>
                            <Insets left="85.0" top="20.0" />
