@@ -71,7 +71,7 @@ public class RouteDivider {
         return true;
     }
     
-    @Contract(value = "_, _, _ -> new", pure = true)
+    @Contract(value = "double, double, double -> new Vector2d", pure = true)
     private @NotNull Vector2d fx(double a, double x, double b){
         return new Vector2d(x,a*x+b);
     }
