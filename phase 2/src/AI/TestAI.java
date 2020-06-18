@@ -1,5 +1,6 @@
 package AI;
 
+import main.Main;
 import mazeAI.*;
 import physics.*;
 
@@ -11,8 +12,8 @@ import static mazeAI.Test.cToId;
 
 public class TestAI {
 
-    private static Vector2d start = new Vector2d(-3, -2);
-    private static Vector2d goal = new Vector2d(12,12);
+    private static Vector2d start;
+    private static Vector2d goal;
     private static List<Shot> botShots = new ArrayList<Shot>();
     private static  Vector2d currentStart;
 
@@ -65,6 +66,51 @@ public class TestAI {
         for(Shot s : botShots){
             System.out.print(s.altToString());
         }
+    }
+
+    public static void runMazeAI(Vector2d _start, Vector2d _end){
+        start = _start;
+        goal = _end;
+        GenerateNodes generator = new GenerateNodes(start,goal,0.5,3);
+        RouteFinder finder = new RouteFinder(generator.getMaze());
+        List<CheckPoint> route = finder.findRoute(generator.getMaze().getNode(cToId(start)),generator.getMaze().getNode(cToId(goal)));
+
+        System.out.println();
+        System.out.println(route.stream().map(CheckPoint::getId).collect(Collectors.toList()));
+
+        RouteDivider divider = new RouteDivider(route,0.5);
+
+        List<Shot> shots = divider.getShots();
+
+        for(Shot s : shots){
+            System.out.print(s);
+        }
+        System.out.println();
+        System.out.println();
+
+        currentStart = shots.get(0).getStart();
+
+        for(Shot s : shots){
+            Genetic.testCase = true;
+            SimulateGenetic.initialize(20,currentStart,s.getEnd());
+            Genetic.testCase = false;
+            SimulateMain.simulator.get_course().set_holeTolerance(SimulateMain.simulator.get_course().get_hole_tolerance()*1);
+            currentStart = SimulateGenetic.getLastEnd();
+        }
+
+        System.out.println("Done");
+
+        System.out.println();
+
+        for(Shot s : botShots){
+            SimulateMain.simulator.take_shot(Tools.velFromAngle(s.getAngle(),s.getSpeed()), false);
+            Main.takingShot = true;
+            //Main.shotCount++;
+            System.out.print(s.altToString());
+        }
+        System.out.println(SimulateGenetic.getLastEnd());
+        System.out.println(SimulateMain.simulator.get_ball_position());
+        System.out.println(SimulateMain.getFlag().toString());
     }
 
     public static void setStart(){

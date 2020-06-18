@@ -1,6 +1,7 @@
 package main;
 
 import AI.SimulateGenetic;
+import AI.TestAI;
 import GUI.GUIRenderer;
 import GUI.GUITexture;
 import Swing.ShotMenu;
@@ -111,7 +112,7 @@ public class Main implements Runnable {
 	WaterFrameBuffers fbos;
 
 	public static Vector2d shots;
-	public int shotCount = 0;
+	public static int shotCount = 0;
 	private boolean win = false;
 	private boolean terrainMethod;
 
@@ -322,7 +323,7 @@ public class Main implements Runnable {
 
 		if(Input.isKeyDown(GLFW.GLFW_KEY_A) && !takingShot && openNewWindow){
 			openNewWindow = false;
-			SimulateGenetic.initialize(25,SimulateMain.getStart(),SimulateMain.getFlag());
+			TestAI.runMazeAI(SimulateMain.getStart(),SimulateMain.getFlag());
 		}
 
 		/* if shot is taken, position of ball gets updated with received new position from physics engine,

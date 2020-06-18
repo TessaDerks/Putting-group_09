@@ -17,17 +17,22 @@ public class SimulateGenetic {
         gen.cocktailShaker();
 
         //xgen.calculateAngle();
+        /*
         if (gen.CalculateAmountShots() > 1) {
             System.out.println("Hole in one not possible, try different parameters");
             Main.openNewWindow = true;
             SimulateMain.simulator.get_engine().resetPosition(start);
         }
         else {
+        */
             //gen.calculateAngle();
             gen.takeFirstShot();
             gen.finishGame();
             System.out.println("Your bot scored after " + gen.getGeneration() + " generations!");
+            /*
         }
+
+         */
         lastEnd = gen.getPopulation()[0].getPosition();
     }
 
