@@ -6,6 +6,7 @@ import engine.graphics.textures.ModelTexture;
 import engine.graphics.textures.TerrainTexturePack;
 import entities.Entity;
 import maths.Maths;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.*;
 import org.lwjglx.util.vector.Matrix4f;
 import org.lwjglx.util.vector.Vector3f;
@@ -18,7 +19,13 @@ public class TerrainRenderer {
 
     private TerrainShader shader;
 // Constructor for a Terrain Renderer
-    public TerrainRenderer(TerrainShader shader, Matrix4f projectionMatrix) {
+
+    /**
+     *
+     * @param shader
+     * @param projectionMatrix
+     */
+    public TerrainRenderer(@NotNull TerrainShader shader, Matrix4f projectionMatrix) {
         this.shader = shader;
         shader.start();
         shader.loadProjectionMatrix(projectionMatrix);
@@ -26,7 +33,12 @@ public class TerrainRenderer {
         shader.stop();
     }
 // render method
-    public void render(List<Terrain> terrains) {
+
+    /**
+     *
+     * @param terrains
+     */
+    public void render(@NotNull List<Terrain> terrains) {
         for (Terrain terrain : terrains) {
             prepareTerrain(terrain);
             loadModelMatrix(terrain);
@@ -36,7 +48,12 @@ public class TerrainRenderer {
         }
     }
 // preparation of terrain to be rendered onto screen.
-    private void prepareTerrain(Terrain terrain) {
+
+    /**
+     *
+     * @param terrain
+     */
+    private void prepareTerrain(@NotNull Terrain terrain) {
         RawModel rawModel = terrain.getModel();
         GL30.glBindVertexArray(rawModel.getVaoID());
         GL20.glEnableVertexAttribArray(0);
@@ -53,7 +70,12 @@ public class TerrainRenderer {
         //GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture.getID());
     }
 // binding of textures.
-    private void bindTextures(Terrain terrain){
+
+    /**
+     *
+     * @param terrain
+     */
+    private void bindTextures(@NotNull Terrain terrain){
         TerrainTexturePack texturePack = terrain.getTexturePack();
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturePack.getBackgroundTexture().getTextureID());
@@ -74,7 +96,12 @@ public class TerrainRenderer {
         GL30.glBindVertexArray(0);
     }
 // loading of a terrain onto a transformation matrix
-    private void loadModelMatrix(Terrain terrain) {
+
+    /**
+     *
+     * @param terrain
+     */
+    private void loadModelMatrix(@NotNull Terrain terrain) {
         Matrix4f transformationMatrix = Maths.createTransformationMatrix(
                 new Vector3f(terrain.getX(), 0, terrain.getZ()), 0, 0, 0, 1);
         shader.loadTransformationMatrix(transformationMatrix);

@@ -7,6 +7,11 @@ public class TexturedModel {
     private ModelTexture texture;
 
 // Constructor for a textured Model, takes in a rawModel and textures for a model.
+    /**
+     *
+     * @param model
+     * @param texture
+     */
     public TexturedModel(RawModel model, ModelTexture texture){
         this.rawModel = model;
         this.texture = texture;

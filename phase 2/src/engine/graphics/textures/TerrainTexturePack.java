@@ -22,6 +22,13 @@ public class TerrainTexturePack {
         return bTexture;
     }
 
+    /**
+     *
+     * @param backgroundTexture
+     * @param rTexture
+     * @param gTexture
+     * @param bTexture
+     */
     public TerrainTexturePack(TerrainTexture backgroundTexture, TerrainTexture rTexture, TerrainTexture gTexture, TerrainTexture bTexture) {
         this.backgroundTexture = backgroundTexture;
         this.rTexture = rTexture;

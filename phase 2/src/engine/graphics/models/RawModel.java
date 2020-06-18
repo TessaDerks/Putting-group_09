@@ -13,12 +13,24 @@ public class RawModel {
 
 	private int vaoID;
 	private int vertexCount;
+
     // Constructor for a Model with a vertexCount.
+
+	/**
+	 *
+	 * @param vaoID
+	 * @param vertexCount
+	 */
 	public RawModel(int vaoID, int vertexCount){
 		this.vaoID = vaoID;
 		this.vertexCount = vertexCount;
 	}
+
 	// Constructor for a Model without vertexCount.
+	/**
+	 *
+	 * @param vaoID
+	 */
 	public RawModel(int vaoID){
 		this.vaoID = vaoID;
 		this.vertexCount = vertexCount;

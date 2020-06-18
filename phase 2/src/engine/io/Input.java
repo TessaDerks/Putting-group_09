@@ -16,7 +16,7 @@ public class Input {
 	private GLFWCursorPosCallback mouseMove;
 	private GLFWMouseButtonCallback mouseButtons;
 	private GLFWScrollCallback mouseScroll;
-	
+
 	public Input() {
 		keyboard = new GLFWKeyCallback() {
 			public void invoke(long window, int key, int scancode, int action, int mods) {
@@ -44,11 +44,21 @@ public class Input {
 			}
 		};
 	}
-	
+
+	/**
+	 *
+	 * @param key
+	 * @return
+	 */
 	public static boolean isKeyDown(int key) {
 		return keys[key];
 	}
-	
+
+	/**
+	 *
+	 * @param button
+	 * @return
+	 */
 	public static boolean isButtonDown(int button) {
 		return buttons[button];
 	}

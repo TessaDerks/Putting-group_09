@@ -7,6 +7,10 @@ public class TerrainTexture {
         return textureID;
     }
 
+    /**
+     *
+     * @param textureID
+     */
     public TerrainTexture(int textureID) {
         this.textureID = textureID;
     }

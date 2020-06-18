@@ -3,6 +3,7 @@ package engine.graphics;
 import de.matthiasmann.twl.utils.PNGDecoder;
 import engine.graphics.models.RawModel;
 import engine.graphics.textures.TextureData;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.*;
 import org.lwjglx.BufferUtils;
 import org.newdawn.slick.opengl.Texture;
@@ -30,6 +31,15 @@ public class Loader {
     private List<Integer> vbos = new ArrayList<Integer>();
     private List<Integer> textures = new ArrayList<Integer>();
 // loading of RawModel to Vertex Array Object
+
+    /**
+     *
+     * @param positions
+     * @param textureCoords
+     * @param normals
+     * @param indices
+     * @return
+     */
     public RawModel loadToVAO(float[] positions, float[] textureCoords,float [] normals, int[] indices){
         int vaoID = createVAO();
         bindIndicesBuffer(indices);
@@ -40,6 +50,13 @@ public class Loader {
         return new RawModel(vaoID,indices.length);
     }
 // loading of RawModel to vertex Array Object
+
+    /**
+     *
+     * @param positions
+     * @param dimensions
+     * @return
+     */
     public RawModel loadToVAO(float[] positions, int dimensions){
         int vaoID = createVAO();
         this.storeDataInAttributeList(0,dimensions,positions);
@@ -47,6 +64,13 @@ public class Loader {
         return new RawModel(vaoID, positions.length/dimensions);
     }
 // loading Texture
+
+    /**
+     *
+     * @param fileName
+     * @return
+     * @throws IOException
+     */
     public int loadTexture(String fileName) throws IOException {
         Texture texture = null;
         try{
@@ -74,6 +98,12 @@ public class Loader {
         }
     }
 // Cube Map Loader
+
+    /**
+     *
+     * @param textureFiles
+     * @return
+     */
     public int loadCubeMap(String[] textureFiles){
         int texID = GL11.glGenTextures();
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -92,6 +122,12 @@ public class Loader {
         return texID;
     }
 // Texture Loader from png file
+
+    /**
+     *
+     * @param fileName
+     * @return
+     */
     private TextureData decodeTextureFile(String fileName) {
         int width = 0;
         int height = 0;
@@ -120,6 +156,13 @@ public class Loader {
         return vaoID;
     }
 // Storage of data
+
+    /**
+     *
+     * @param attributeNumber
+     * @param coordinateSize
+     * @param data
+     */
     private void storeDataInAttributeList(int attributeNumber,int coordinateSize, float[] data){
         int vboID = GL15.glGenBuffers();
         vbos.add(vboID);
@@ -134,6 +177,11 @@ public class Loader {
         GL30.glBindVertexArray(0);
     }
 // binding of indices Buffers
+
+    /**
+     *
+     * @param indices
+     */
     private void bindIndicesBuffer(int[] indices){
         int vboID = GL15.glGenBuffers();
         vbos.add(vboID);
@@ -142,14 +190,26 @@ public class Loader {
         GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
     }
 // Store data in an integer buffer
-    private IntBuffer storeDataInIntBuffer(int[] data){
+
+    /**
+     *
+     * @param data
+     * @return
+     */
+    private @NotNull IntBuffer storeDataInIntBuffer(int @NotNull [] data){
         IntBuffer buffer = BufferUtils.createIntBuffer(data.length);
         buffer.put(data);
         buffer.flip();
         return buffer;
     }
 // store data in a float buffer
-    private FloatBuffer storeDataInFloatBuffer(float[] data){
+
+    /**
+     *
+     * @param data
+     * @return
+     */
+    private @NotNull FloatBuffer storeDataInFloatBuffer(float @NotNull [] data){
         FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
         buffer.put(data);
         buffer.flip();

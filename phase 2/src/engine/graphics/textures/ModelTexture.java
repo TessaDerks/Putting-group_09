@@ -13,7 +13,10 @@ public class ModelTexture {
     private int numberOfRows = 1;
 
 
-
+    /**
+     *
+     * @return
+     */
     public boolean isUseFakeLighting() {
         return useFakeLighting;
     }
@@ -22,6 +25,10 @@ public class ModelTexture {
         this.useFakeLighting = useFakeLighting;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isHasTransparency() {
         return hasTransparency;
     }
@@ -30,9 +37,14 @@ public class ModelTexture {
         this.hasTransparency = hasTransparency;
     }
 
+    /**
+     *
+     * @param id
+     */
     public ModelTexture(int id){
         this.textureID = id;
     }
+
     public int getID(){
         return this.textureID;
     }

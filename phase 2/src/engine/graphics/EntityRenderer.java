@@ -6,6 +6,7 @@ import engine.graphics.models.TexturedModel;
 import engine.graphics.textures.ModelTexture;
 import entities.Entity;
 import maths.Maths;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
@@ -20,14 +21,25 @@ public class EntityRenderer {
 
 	private StaticShader shader;
 // Constructor for Entity
-	public EntityRenderer(StaticShader shader, Matrix4f projectionMatrix){
+
+	/**
+	 *
+	 * @param shader
+	 * @param projectionMatrix
+	 */
+	public EntityRenderer(@NotNull StaticShader shader, Matrix4f projectionMatrix){
 		this.shader = shader;
 		shader.start();
 		shader.loadProjectionMatrix(projectionMatrix);
 		shader.stop();
 	}
 // Render method
-	public void render(Map<TexturedModel, List<Entity>> entities){
+
+	/**
+	 *
+	 * @param entities
+	 */
+	public void render(@NotNull Map<TexturedModel, List<Entity>> entities){
 		for(TexturedModel model:entities.keySet()){
 			prepareTexturedModel(model);
 			List<Entity> batch = entities.get(model);
@@ -39,7 +51,12 @@ public class EntityRenderer {
 		}
 	}
 //  binding of a textured model.
-	public void prepareTexturedModel (TexturedModel model1){
+
+	/**
+	 *
+	 * @param model1
+	 */
+	public void prepareTexturedModel (@NotNull TexturedModel model1){
 
 		RawModel model = model1.getRawModel();
 		GL30.glBindVertexArray(model.getVaoID());
@@ -58,6 +75,7 @@ public class EntityRenderer {
 
 	}
 // unbinding of a textured model to a vertex
+
 	private void unbindTexturedModel(){
 
 		MasterRenderer.enableCulling();
@@ -68,7 +86,11 @@ public class EntityRenderer {
 
 	}
 
-	private void prepareInstance(Entity entity){
+	/**
+	 *
+	 * @param entity
+	 */
+	private void prepareInstance(@NotNull Entity entity){
 
 		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(), entity.getRotX(),entity.getRotY(),entity.getRotZ(),entity.getScale());
 		shader.loadTransformationMatrix(transformationMatrix);

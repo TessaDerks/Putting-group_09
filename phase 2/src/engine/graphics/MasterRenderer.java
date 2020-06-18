@@ -38,6 +38,11 @@ public class MasterRenderer {
     private List<Terrain> terrains = new ArrayList<Terrain>();
     private SkyboxRenderer skyboxRenderer;
 // Constructor for MasterRenderer
+
+    /**
+     *
+     * @param loader
+     */
     public MasterRenderer(Loader loader) {
         enableCulling();
         createProjectionMatrix();
@@ -56,6 +61,13 @@ public class MasterRenderer {
         GL46.glDisable(GL46.GL_CULL_FACE);
     }
 // render method
+
+    /**
+     *
+     * @param lights
+     * @param camera
+     * @param clipPlane
+     */
     public void render(List<Light> lights, Camera camera, Vector4f clipPlane){
         prepare();
 
@@ -81,6 +93,11 @@ public class MasterRenderer {
         entities.clear();
     }
 // add terrain to list of terrains
+
+    /**
+     *
+     * @param terrain
+     */
     public void processTerrain(Terrain terrain){
         terrains.add(terrain);
     }
@@ -89,6 +106,11 @@ public class MasterRenderer {
         return projectionMatrix;
     }
 // Adding Entity to a list of entities
+
+    /**
+     *
+     * @param entity
+     */
     public void processEntity(Entity entity){
         TexturedModel entityModel = entity.getModel();
         List<Entity> batch = entities.get(entityModel);

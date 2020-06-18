@@ -24,6 +24,13 @@ public class Window {
 	private int[] windowPosX = new int[1], windowPosY = new int[1];
 
 // Constructor for a window
+
+	/**
+	 *
+	 * @param width
+	 * @param height
+	 * @param title
+	 */
 	public Window(int width, int height, String title) {
 		this.width = width;
 		this.height = height;
@@ -106,6 +113,11 @@ public class Window {
 		GLFW.glfwSwapBuffers(window);
 	}
 // close window
+
+	/**
+	 *
+	 * @return
+	 */
 	public boolean shouldClose() {
 		return GLFW.glfwWindowShouldClose(window);
 	}
@@ -122,6 +134,11 @@ public class Window {
 		background.set(r, g, b);
 	}
 // Is the screen full screen?
+
+	/**
+	 *
+	 * @return
+	 */
 	public boolean isFullscreen() {
 		return isFullscreen;
 	}

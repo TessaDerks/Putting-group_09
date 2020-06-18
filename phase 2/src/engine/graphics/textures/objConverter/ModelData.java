@@ -8,6 +8,14 @@ public class ModelData {
     private int[] indices;
     private float furthestPoint;
 
+    /**
+     *
+     * @param vertices
+     * @param textureCoords
+     * @param normals
+     * @param indices
+     * @param furthestPoint
+     */
     public ModelData(float[] vertices, float[] textureCoords, float[] normals, int[] indices,
                      float furthestPoint) {
         this.vertices = vertices;

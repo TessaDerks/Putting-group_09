@@ -1,5 +1,6 @@
 package engine.graphics.textures.objConverter;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjglx.util.vector.Vector3f;
 
 public class Vertex {
@@ -13,7 +14,12 @@ public class Vertex {
     private int index;
     private float length;
 
-    public Vertex(int index,Vector3f position){
+    /**
+     *
+     * @param index
+     * @param position
+     */
+    public Vertex(int index, @NotNull Vector3f position){
         this.index = index;
         this.position = position;
         this.length = position.length();
@@ -31,6 +37,12 @@ public class Vertex {
         return textureIndex!=NO_INDEX && normalIndex!=NO_INDEX;
     }
 
+    /**
+     *
+     * @param textureIndexOther
+     * @param normalIndexOther
+     * @return
+     */
     public boolean hasSameTextureAndNormal(int textureIndexOther,int normalIndexOther){
         return textureIndexOther==textureIndex && normalIndexOther==normalIndex;
     }

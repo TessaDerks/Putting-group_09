@@ -8,6 +8,12 @@ public class TextureData {
     private int height;
     private ByteBuffer buffer;
 
+    /**
+     *
+     * @param buffer
+     * @param width
+     * @param height
+     */
     public TextureData(ByteBuffer buffer, int width, int height){
         this.buffer = buffer;
         this.width = width;

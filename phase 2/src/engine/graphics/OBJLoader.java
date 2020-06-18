@@ -1,6 +1,7 @@
 package engine.graphics;
 
 import engine.graphics.models.RawModel;
+import org.jetbrains.annotations.NotNull;
 import org.lwjglx.util.vector.Vector2f;
 import org.lwjglx.util.vector.Vector3f;
 
@@ -13,7 +14,12 @@ import java.util.List;
 // Object Loader, loads an .obj file
 // credits: https://www.dropbox.com/sh/x1fyet1otejxk3z/AAAoCqArl4cIx0THdRk2poW3a?dl=0
 public class OBJLoader {
-
+    /**
+     *
+     * @param fileName
+     * @param loader
+     * @return
+     */
     public static RawModel loadObjModel(String fileName, Loader loader){
         FileReader reader = null;
         try{
@@ -94,7 +100,16 @@ public class OBJLoader {
         return loader.loadToVAO(verticesArray, textureArray, normalsArray, indicesArray);
     }
 
-    private static void processVertex(String [] vertexData, List<Integer> indices, List<Vector2f> textures, List<Vector3f> normals, float[] textureArray, float[] normalsArray){
+    /**
+     *
+     * @param vertexData
+     * @param indices
+     * @param textures
+     * @param normals
+     * @param textureArray
+     * @param normalsArray
+     */
+    private static void processVertex(String @NotNull [] vertexData, @NotNull List<Integer> indices, @NotNull List<Vector2f> textures, @NotNull List<Vector3f> normals, float @NotNull [] textureArray, float @NotNull [] normalsArray){
         int currentVertexPointer = Integer.parseInt(vertexData[0]) - 1;
         indices.add(currentVertexPointer);
         Vector2f currentText = textures.get(Integer.parseInt(vertexData[1])-1);
