@@ -18,6 +18,8 @@ import main.Main;
 import physics.FileReader;
 import physics.SimulateMain;
 import physics.Vector2d;
+import simplexNoise.ImageWriter;
+import simplexNoise.SimplexNoise;
 import terrain.Terrain;
 
 import javax.imageio.ImageIO;
@@ -110,6 +112,8 @@ public class Controller implements Initializable {
     @FXML
     private Button applyManInput;
 
+    private static int seed = 0;
+
     private ArrayList<Vector2d> treesList = new ArrayList<>();
 
     private ArrayList<Vector2d> sandList = new ArrayList<>();
@@ -141,11 +145,30 @@ public class Controller implements Initializable {
         int width = Integer.parseInt(widthString.getText());
         int height = Integer.parseInt(heightString.getText());
 
-        PerlinNoiseGen a = new PerlinNoiseGen(width,height);
-        a.GeneratePerlin(width,height);
-        BufferedImage image1 = ImageIO.read(new File("res/perlinNoise.png"));
+        SimplexNoise simplexNoise=new SimplexNoise(100,0.1, seed);
+        double xStart=0;
+        double XEnd=500;
+        double yStart=0;
+        double yEnd=500;
+        int xResolution= width;
+        int yResolution= height;
+
+        double[][] result=new double[xResolution][yResolution];
+
+        for(int i=0;i<xResolution;i++){
+            for(int j=0;j<yResolution;j++){
+                int x=(int)(xStart+i*((XEnd-xStart)/xResolution));
+                int y=(int)(yStart+j*((yEnd-yStart)/yResolution));
+                result[i][j]=0.5*(1+simplexNoise.getNoise(x,y));
+            }
+        }
+
+        ImageWriter.greyWriteImage(result);
+
+        BufferedImage image1 = ImageIO.read(new File("res/saved.png"));
         Image image2 = SwingFXUtils.toFXImage(image1, null);
         perlin.setImage(image2);
+        seed++;
     }
 
 
