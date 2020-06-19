@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL46;
@@ -23,6 +24,12 @@ public abstract class ShaderProgram {
     private static FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
 
 // Constructor for Shader Program
+
+    /**
+     *
+     * @param vertexFile
+     * @param fragmentFile
+     */
     public ShaderProgram(String vertexFile,String fragmentFile){
         vertexShaderID = loadShader(vertexFile,GL20.GL_VERTEX_SHADER);
         fragmentShaderID = loadShader(fragmentFile,GL20.GL_FRAGMENT_SHADER);
@@ -37,6 +44,11 @@ public abstract class ShaderProgram {
 
     protected abstract void getAllUniformLocation();
 
+    /**
+     *
+     * @param uniformName
+     * @return
+     */
     protected int getUniformLocation(String uniformName){
         return GL46.glGetUniformLocation(programID,uniformName);
     }
@@ -61,28 +73,65 @@ public abstract class ShaderProgram {
 
     protected abstract void bindAttributes();
 
+    /**
+     *
+     * @param attribute
+     * @param variableName
+     */
     protected void bindAttribute(int attribute, String variableName){
         GL20.glBindAttribLocation(programID, attribute, variableName);
     }
 
+    /**
+     *
+     * @param location
+     * @param value
+     */
     protected void loadInt(int location, int value){
         GL46.glUniform1i(location, value);
     }
 
+    /**
+     *
+     * @param location
+     * @param value
+     */
     protected void loadFloat(int location, float value){
         GL46.glUniform1f(location, value);
     }
 
-    protected void loadVector(int location, Vector3f vector){
+    /**
+     *
+     * @param location
+     * @param vector
+     */
+    protected void loadVector(int location, @NotNull Vector3f vector){
         GL46.glUniform3f(location, vector.x,vector.y,vector.z);
     }
-    protected void load2DVector(int location, Vector2f vector){
+
+    /**
+     *
+     * @param location
+     * @param vector
+     */
+    protected void load2DVector(int location, @NotNull Vector2f vector){
         GL46.glUniform2f(location, vector.x,vector.y);
     }
-    protected void loadVector(int location, Vector4f vector){
+
+    /**
+     *
+     * @param location
+     * @param vector
+     */
+    protected void loadVector(int location, @NotNull Vector4f vector){
         GL46.glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
     }
 
+    /**
+     *
+     * @param location
+     * @param value
+     */
     protected void loadBoolean(int location, boolean value){
         float toLoad = 0;
         if(value){
@@ -91,12 +140,24 @@ public abstract class ShaderProgram {
         GL46.glUniform1f(location, toLoad);
     }
 
-    protected void loadMatrix(int location, Matrix4f matrix){
+    /**
+     *
+     * @param location
+     * @param matrix
+     */
+    protected void loadMatrix(int location, @NotNull Matrix4f matrix){
         matrix.store(matrixBuffer);
         matrixBuffer.flip();
         GL46.glUniformMatrix4fv(location,false, matrixBuffer);
     }
 // loads up shaders
+
+    /**
+     *
+     * @param file
+     * @param type
+     * @return
+     */
     private static int loadShader(String file, int type){
         StringBuilder shaderSource = new StringBuilder();
         try{
