@@ -32,13 +32,7 @@ class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
 
     @Override
     public int compareTo(@NotNull RouteNode other) {
-        if (this.estimatedScore > other.estimatedScore) {
-            return 1;
-        } else if (this.estimatedScore < other.estimatedScore) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return Double.compare(this.estimatedScore, other.estimatedScore);
     }
 
     //<editor-fold desc="Getters & Setters">

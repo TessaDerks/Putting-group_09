@@ -1,10 +1,3 @@
-/**
-node om de k meter
-node voor (xs,ys)
-volgende nodes voor (xs-k,ys) (xs+k,ys) (xs,ys-k) (xs,ys+k) + hoekpunten
-continue generating until endpoint
- **/
-
 package mazeAI;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,35 +15,33 @@ public class GenerateNodes{
     private Graph<CheckPoint> maze;
     private Set<CheckPoint> checkPointSet = new HashSet<>();
     private Map<String, Set<String>> connections = new HashMap<>();
-    private final Vector2d start;
     private final Vector2d end;
     private final double k;
     private int compensate;
 
     /**
      *
-     * @param _start
-     * @param _end
-     * @param _k
-     * @param _compensate
+     * @param _start Vector2d
+     * @param _end Vector2d
+     * @param _k double, k => 0.5, determines distance between nodes
+     * @param _compensate int, compensate > 0, amount of nodes behind the end
      */
     public GenerateNodes(Vector2d _start, Vector2d _end, double _k, int _compensate){
-        start = _start;
         end = _end;
         k = _k;
         compensate = _compensate;
 
         // Create nodes
-        checkPointSet.add(new CheckPoint(start.get_x(),start.get_y()));
+        checkPointSet.add(new CheckPoint(_start.get_x(), _start.get_y()));
         Vector2d n0,n1,n2,n3,n4,n5,n6,n7;
-        n0 = new Vector2d(start.get_x()-k,start.get_y()+k);
-        n1 = new Vector2d(start.get_x(),start.get_y()+k);
-        n2 = new Vector2d(start.get_x()+k,start.get_y()+k);
-        n3 = new Vector2d(start.get_x()+k,start.get_y());
-        n4 = new Vector2d(start.get_x()+k,start.get_y()-k);
-        n5 = new Vector2d(start.get_x(),start.get_y()-k);
-        n6 = new Vector2d(start.get_x()-k,start.get_y()-k);
-        n7 = new Vector2d(start.get_x()-k,start.get_y());
+        n0 = new Vector2d(_start.get_x()-k, _start.get_y()+k);
+        n1 = new Vector2d(_start.get_x(), _start.get_y()+k);
+        n2 = new Vector2d(_start.get_x()+k, _start.get_y()+k);
+        n3 = new Vector2d(_start.get_x()+k, _start.get_y());
+        n4 = new Vector2d(_start.get_x()+k, _start.get_y()-k);
+        n5 = new Vector2d(_start.get_x(), _start.get_y()-k);
+        n6 = new Vector2d(_start.get_x()-k, _start.get_y()-k);
+        n7 = new Vector2d(_start.get_x()-k, _start.get_y());
         recursion(n0,0);
         recursion(n1,1);
         recursion(n2,2);
@@ -70,8 +61,8 @@ public class GenerateNodes{
 
     /**
      *
-     * @param c
-     * @param p
+     * @param c Vector2d, position from where you want to generate the nodes
+     * @param p int, i <= 0 <= 7, index of Checkpoint
      */
     public void recursion(@NotNull Vector2d c, int p){
         // stop condition
@@ -119,12 +110,11 @@ public class GenerateNodes{
             //connections.put(cToId(c), Stream.of(cToId(new Vector2d(c.get_x()-k,c.get_y()))).collect(Collectors.toSet()));
             recursion(new Vector2d(c.get_x()-k,c.get_y()),7);
         }
-        return;
     }
 
     /**
      *
-     * @param c
+     * @param c Checkpoint, generate connections from this checkpoint
      */
     public void hingeNode(@NotNull CheckPoint c){
         Vector2d n0, n1, n2, n3, n4, n5, n6, n7;
@@ -139,7 +129,7 @@ public class GenerateNodes{
         n7 = new Vector2d(c.getX()-k,c.getY());
 
         Set<Vector2d> nSet = Stream.of(n0,n1,n2,n3,n4,n5,n6,n7).collect(Collectors.toSet());
-        Set<String> StringSet = new HashSet<String>();
+        Set<String> StringSet = new HashSet<>();
 
         for(Vector2d n : nSet) {
             if (!(Math.abs(n.get_x()) > Math.abs(end.get_x()) + (k * (compensate + 1)) || Math.abs(n.get_y()) > Math.abs(end.get_y()) + (k * (compensate + 1)))) {
@@ -152,8 +142,8 @@ public class GenerateNodes{
 
     /**
      *
-     * @param c
-     * @return
+     * @param c Vector2d
+     * @return string, contains coordinates and returns position as a string
      */
     public String cToId(@NotNull Vector2d c){
         return "("+c.get_x()+","+c.get_y()+")";

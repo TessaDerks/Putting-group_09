@@ -10,10 +10,15 @@ import java.util.List;
 
 public class RouteDivider {
     private List<CheckPoint> route;
-    private List<Shot> shots = new ArrayList<Shot>();
+    private List<Shot> shots = new ArrayList<>();
     private int currentStartNodeIndex = 0;
     private final double k;
 
+    /**
+     *
+     * @param _route List of checkpoints, describes the route
+     * @param _k double, distance between the nodes, k > 0.5
+     */
     public RouteDivider(List<CheckPoint> _route,double _k){
         route = _route;
         k = _k;
@@ -47,7 +52,13 @@ public class RouteDivider {
             }
         }
     }
-    
+
+    /**
+     *
+     * @param s Checkpoint, starting point
+     * @param e Checkpoint, end point
+     * @return boolean, return false if the connections crosses a tree or water.
+     */
     private boolean checkLine(@NotNull CheckPoint s, @NotNull CheckPoint e){
         double a = (s.getY()-e.getY())/(s.getX()-e.getX());
         double b = s.getY() - (a * s.getX());

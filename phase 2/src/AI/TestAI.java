@@ -12,12 +12,8 @@ import static mazeAI.Test.cToId;
 
 public class TestAI {
 
-    private static List<Shot> botShots = new ArrayList<Shot>();
+    private static List<Shot> botShots = new ArrayList<>();
     public static int shotCount = 0;
-
-    public static List<Shot> getBotShots() {
-        return botShots;
-    }
 
     public static void takeAIShot(){
 
@@ -29,8 +25,8 @@ public class TestAI {
 
     /**
      *
-     * @param _start
-     * @param _end
+     * @param _start Vector2d
+     * @param _end Vector2d
      */
     public static void runMazeAI(Vector2d _start, Vector2d _end){
         Main.aiRunning = true;
@@ -76,7 +72,14 @@ public class TestAI {
         System.out.println(SimulateMain.getFlag().toString());
     }
 
+    /**
+     * @param s Shot
+     */
     public static void addBotShots(Shot s){
         botShots.add(s);
+    }
+
+    public static List<Shot> getBotShots() {
+        return botShots;
     }
 }
