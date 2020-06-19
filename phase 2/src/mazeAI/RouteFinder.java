@@ -13,7 +13,7 @@ public class RouteFinder<T extends GraphNode> {
 
     /**
      *
-     * @param _graph
+     * @param _graph Graph, combination of all connections and checkpoints
      */
     public RouteFinder(Graph<T> _graph){
         graph = _graph;
@@ -23,9 +23,10 @@ public class RouteFinder<T extends GraphNode> {
 
     /**
      *
-     * @param from
-     * @param to
-     * @return
+     * @param from Checkpoint, start
+     * @param to Checkpoint, goal
+     * @return List of Checkpoints, returns the list of all the checkpoints he visits
+     * @throws IllegalStateException, throws exception when there is no possible route
      */
     public List<T> findRoute(T from, T to){
         Queue<RouteNode> openSet = new PriorityQueue<>(); // Nodes to be considered for next step

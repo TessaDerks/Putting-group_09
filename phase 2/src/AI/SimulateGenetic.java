@@ -3,7 +3,6 @@ package AI;
 import physics.*;
 
 public class SimulateGenetic {
-    private static final Vector2d start = SimulateMain.getStart() ;
 
     private static Vector2d lastEnd;
 
@@ -12,12 +11,12 @@ public class SimulateGenetic {
 
     /**
      *
-     * @param popsize
-     * @param start
-     * @param end
+     * @param popSize int, popSize > 0
+     * @param start Vector2d
+     * @param end Vector2d
      */
-    public static void initialize(int popsize, Vector2d start, Vector2d end){
-        Genetic gen = new Genetic(popsize,start,end);
+    public static void initialize(int popSize, Vector2d start, Vector2d end){
+        Genetic gen = new Genetic(popSize,start,end);
         gen.initializePopulation();
         gen.cocktailShaker();
 

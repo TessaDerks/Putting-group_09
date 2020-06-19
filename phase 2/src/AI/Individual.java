@@ -9,7 +9,7 @@ public class Individual {
 
     /**
      *
-     * @param pos
+     * @param pos Vector2d, set starting position for certain individual
      */
     Individual(Vector2d pos){
         fitness = 0.0;

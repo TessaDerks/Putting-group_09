@@ -7,8 +7,8 @@ public class CheckPoint implements GraphNode {
 
     /**
      *
-     * @param _x
-     * @param _y
+     * @param _x double, x coordinate
+     * @param _y double, y coordinate
      */
     public CheckPoint(double _x, double _y){
         x = _x;
