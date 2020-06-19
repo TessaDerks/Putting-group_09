@@ -29,7 +29,13 @@ public class ShuntingYard {
 
             }};
 
-            private static boolean isHigerPrec(String op, String sub)
+    /**
+     *
+     * @param op
+     * @param sub
+     * @return
+     */
+    private static boolean isHigerPrec(String op, String sub)
             {
                 return (ops.containsKey(sub) && ops.get(sub).precedence >= ops.get(op).precedence);
             }
@@ -67,10 +73,4 @@ public class ShuntingYard {
                 return output.toString();
             }
 
-
-    //public static void main(String[] args) {
-     //   String function = "log ( sin ( sqrt ( x ^ 3 ) ) ) + y";
-     //   String post = postfix(function);
-     //   System.out.print(post);
-    //}
 }

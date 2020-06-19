@@ -1,6 +1,8 @@
 package physics;
 
 
+import org.jetbrains.annotations.NotNull;
+
 public class EulerSolver implements PhysicsEngine{
 
     //<editor-fold desc="Global Variables">
@@ -18,6 +20,10 @@ public class EulerSolver implements PhysicsEngine{
     private Vector2d F;
     //</editor-fold>
 
+    /**
+     *
+     * @param _p
+     */
     public EulerSolver(Vector2d _p){
         p = _p;
     }
@@ -39,6 +45,7 @@ public class EulerSolver implements PhysicsEngine{
     }
 
     //<editor-fold desc="Calculators">
+    @Override
     public void resetPosition(Vector2d start){
         p = start;
         recalculate();
@@ -54,8 +61,7 @@ public class EulerSolver implements PhysicsEngine{
     @Override
     public Vector2d calcG(){
         Vector2d der = h.gradient(p);
-        Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
-        return output;
+        return new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
     }
 
     @Override
@@ -88,7 +94,7 @@ public class EulerSolver implements PhysicsEngine{
     }
 
     @Override
-    public void set_v(Vector2d _v) {
+    public void set_v(@NotNull Vector2d _v) {
         if(Math.sqrt(Math.pow(_v.get_x(),2)+Math.pow(_v.get_y(),2))>v_max)
         {
             v = new Vector2d(0,0);
@@ -139,10 +145,4 @@ public class EulerSolver implements PhysicsEngine{
     public double get_t(){
         return t;
     }
-
-    @Override
-    public double get_m() {
-        return m;
-    }
-    //</editor-fold>
 }

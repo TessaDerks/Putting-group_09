@@ -3,16 +3,27 @@ package physics;
 import org.jetbrains.annotations.NotNull;
 
 public class Sand {
-    private Vector2d topLeft;
-    private Vector2d bottomRight;
-    private double friction = 0.9;
+    private final Vector2d topLeft;
+    private final Vector2d bottomRight;
+    private double friction;
 
+    /**
+     *
+     * @param _topLeft
+     * @param _bottomRight
+     * @param _friction
+     */
     public Sand(Vector2d _topLeft, Vector2d _bottomRight, double _friction){
         topLeft = _topLeft;
         bottomRight = _bottomRight;
         friction = _friction;
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     public boolean coordInSand(@NotNull Vector2d c){
         boolean r = false;
         if(((c.get_x()>=topLeft.get_x())&&(c.get_x()<=bottomRight.get_x())&& ((c.get_y()<=topLeft.get_y())&&(c.get_y()>=bottomRight.get_y())))){
@@ -26,16 +37,5 @@ public class Sand {
         return friction;
     }
 
-    public Vector2d getBottomRight() {
-        return bottomRight;
-    }
-
-    public Vector2d getTopLeft() {
-        return topLeft;
-    }
-
-    public void setFriction(double friction) {
-        this.friction = friction;
-    }
     //</editor-fold>
 }

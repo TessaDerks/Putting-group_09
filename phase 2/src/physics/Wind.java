@@ -5,7 +5,9 @@ public class Wind {
     private double totalForce;
     private Vector2d force;
 
-    // Random force and direction.
+    /**
+     * Constructor, random force and direction.
+     */
     public Wind(){
         angle = Math.random() * 360;
         double b = 30;// Upper bound at 30 m/s -> https://en.wikipedia.org/wiki/Beaufort_scale
@@ -14,7 +16,13 @@ public class Wind {
         force = Tools.velFromAngle(angle,f);
     }
 
-    // Random force and direction, with bounds.
+    /**
+     * Constructor, random force and direction, with bounds.
+     * @param angleLowerBound double, angleLowerBound<angleUpperBound
+     * @param angleUpperBound double, angleUpperBound>angleLowerBound
+     * @param forceLowerBound double, forceLowerBound<forceUpperBound
+     * @param forceUpperBound double, forceUpperBound>forceLowerBound
+     */
     public Wind(double angleLowerBound, double angleUpperBound, double forceLowerBound, double forceUpperBound){
         angle = Math.random() * (angleUpperBound-angleLowerBound) + angleLowerBound;
         totalForce = calcBoundedForce(forceLowerBound,forceUpperBound);
@@ -22,7 +30,11 @@ public class Wind {
         force = Tools.velFromAngle(angle,f);
     }
 
-    // Chosen force and direction.
+    /**
+     * Constructor, chosen force and direction.
+     * @param _angle double
+     * @param _totalForce double
+     */
     public Wind(double _angle, double _totalForce){
         angle = _angle;
         totalForce = _totalForce;
@@ -30,7 +42,12 @@ public class Wind {
         force = Tools.velFromAngle(angle,f);
     }
 
-    // Calculate a force roughly following frequency of wind speed occurrence, bounded.
+    /**
+     * Calculate a force roughly following frequency of wind speed occurrence, bounded.
+     * @param lB double, lB<uB
+     * @param uB double, uB>lB
+     * @return double, force, lB<=force<=uB
+     */
     private double calcBoundedForce(double lB, double uB){
         int i = 0;
         double d = uB-lB;
@@ -52,10 +69,6 @@ public class Wind {
 
     public double getAngle() {
         return angle;
-    }
-
-    public double getTotalForce() {
-        return totalForce;
     }
 
     public Vector2d getForce() {

@@ -10,6 +10,10 @@ public class SinglyLinkedListStack<T> {
         size = 0;
     }
 
+    /**
+     *
+     * @param element
+     */
     public void push(T element) {
         if(head == null) {
             head = new Node(element);
@@ -22,6 +26,10 @@ public class SinglyLinkedListStack<T> {
         size++;
     }
 
+    /**
+     *
+     * @return
+     */
     public T pop() {
         if(head == null)
             return null;
@@ -35,25 +43,18 @@ public class SinglyLinkedListStack<T> {
         }
     }
 
-    public T top() {
-        if(head != null)
-            return head.data;
-        else
-            return null;
-    }
-
     public int size() {
         return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     private class Node<T> {
         private T data;
         private Node<T> next;
 
+        /**
+         *
+         * @param data
+         */
         public Node(T data) {
             this.data = data;
         }

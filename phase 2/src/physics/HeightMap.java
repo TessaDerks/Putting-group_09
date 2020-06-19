@@ -1,7 +1,7 @@
 package physics;
 
-import main.Main;
 import maths.Maths;
+import org.jetbrains.annotations.NotNull;
 import org.lwjglx.util.vector.Vector2f;
 import org.lwjglx.util.vector.Vector3f;
 
@@ -18,6 +18,10 @@ public class HeightMap implements Function2d {
     private float[][] heights;
     public static final float SIZE = 200;
 
+    /**
+     *
+     * @param heightmap
+     */
     public HeightMap(String heightmap){
         try {
             heightMap = ImageIO.read(new File("res/" + heightmap + ".png"));
@@ -28,13 +32,12 @@ public class HeightMap implements Function2d {
     }
 
     @Override
-    public double evaluate(Vector2d p) {
-        double z = getHeightOfTerrain((float) p.get_x(), (float) p.get_y());
-        return z;
+    public double evaluate(@NotNull Vector2d p) {
+        return getHeightOfTerrain((float) p.get_x(), (float) p.get_y());
     }
 
     @Override
-    public Vector2d gradient(Vector2d p) {
+    public Vector2d gradient(@NotNull Vector2d p) {
         double dx = (this.evaluate(new Vector2d(p.get_x() + delta,p.get_y())) - evaluate(new Vector2d(p.get_x(),p.get_y())))/delta;
         double dy = (this.evaluate(new Vector2d(p.get_x(),p.get_y() + delta)) - evaluate(new Vector2d(p.get_x(),p.get_y())))/delta;
         dx = Tools.advRound(dx,4);
@@ -53,17 +56,21 @@ public class HeightMap implements Function2d {
         }
     }
 
+    /**
+     *
+     * @param worldX
+     * @param worldZ
+     * @return
+     */
     public float getHeightOfTerrain(float worldX, float worldZ){
-        float terrainX = worldX;
-        float terrainZ = worldZ;
         float gridSquareSize = SIZE/((float)heights.length -1);
-        int gridX = (int) Math.floor(terrainX/gridSquareSize);
-        int gridZ = (int) Math.floor(terrainZ/gridSquareSize);
+        int gridX = (int) Math.floor(worldX /gridSquareSize);
+        int gridZ = (int) Math.floor(worldZ /gridSquareSize);
         if(gridX >= heights.length -1 || gridZ >= heights.length -1 || gridX < 0 || gridZ < 0){
             return 0;
         }
-        float xCoord = (terrainX % gridSquareSize)/gridSquareSize;
-        float zCoord = (terrainZ % gridSquareSize)/gridSquareSize;
+        float xCoord = (worldX % gridSquareSize)/gridSquareSize;
+        float zCoord = (worldZ % gridSquareSize)/gridSquareSize;
         float answer;
         if(xCoord <= (1-zCoord)){
             answer = Maths
@@ -82,7 +89,12 @@ public class HeightMap implements Function2d {
 
     }
 
-
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     private float getHeight(int x, int y){
         if(x<0 || x>=heightMap.getHeight() || y<0 || y>=heightMap.getHeight()){
             return 0;
