@@ -5,6 +5,11 @@ public class Vector2I
     public int start;
     public int end;
 
+    /**
+     *
+     * @param start
+     * @param end
+     */
     public Vector2I(int start, int end)
     {
         this.start = start;
