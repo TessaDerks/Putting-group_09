@@ -14,6 +14,8 @@ public class MazeGenerator
     private static int height;
     private static int block_width = 2; //2m eind, begin en midden boom
     private static int block_height = 2;
+    public static int count = 0;
+    public static double i1 = 0.5;
 
     private static final List<Vector2I> maze = new ArrayList<>();
 
@@ -76,7 +78,6 @@ public class MazeGenerator
                 toVisit.add(new Vector2I(nextPath.end, under));
         }
 
-
     }
 
         public static void coordinates()
@@ -91,21 +92,21 @@ public class MazeGenerator
                     //WALLS HAVE TO BE REPLACED BY TREES AND WATER
                     //HORIZONTAL WALLS
                     if(!maze.contains(new Vector2I(current, lower)))
-                    start_horizontal.add(new Vector2d(x * block_width,(y + 1) * block_height));
-                    end_horizontal.add(new Vector2d((x + 1) * block_width, (y + 1) * block_height));
+                    start_horizontal.add(new Vector2d(x ,(y + 1)));
+                    end_horizontal.add(new Vector2d((x + 1), (y + 1)));
 
                     //calculating the middle of the horizontal lines
                     //so only need to adjust the x coordinate
-                    midpoint_horizontal.add(new Vector2d(((x * block_width) + block_width/2), (y+1) * block_height));
+                    midpoint_horizontal.add(new Vector2d((1.5 * x), (y+1)));
 
                     //VERTICAL WALLS
                     if(!maze.contains(new Vector2I(current, current + 1)))
-                    start_vertical.add(new Vector2d((x + 1) * block_width, y * block_height));
-                    end_vertical.add(new Vector2d((x + 1) * block_width, (y + 1) * block_height));
+                    start_vertical.add(new Vector2d((x + 1), y));
+                    end_vertical.add(new Vector2d((x + 1), (y + 1)));
 
                     //calculating the middle of the vertical lines
                     //so only need to adjust the y coordinate
-                    midpoint_vertical.add(new Vector2d((x+1) * block_width, ((y + 1) * block_height) + block_height/2));
+                    midpoint_vertical.add(new Vector2d((x+1), (1.5*(y + 1))));
                 }
             }
 
@@ -130,7 +131,7 @@ public class MazeGenerator
         all_coordinates.addAll(midpoint_vertical);
         all_coordinates.addAll(end_vertical);
 
-        //System.out.println(all_coordinates);
+       // System.out.println(all_coordinates);
         //final_list = removeDuplicates(all_coordinates);
 
     }
@@ -164,13 +165,19 @@ public class MazeGenerator
             }
 
         }
+
+        for(int i=0;i<treeList.size()-1;i++) {
+            System.out.print(treeList.get(i).getP() + " || ");
+            count++;
+        }
+        System.out.println(count);
         return treeList;
     }
 
     public static ArrayList<Tree> createMaze(){
 
-       width = 40;
-       height = 40;
+       width = 10;
+       height = 10;
 
         generate();
         coordinates();
