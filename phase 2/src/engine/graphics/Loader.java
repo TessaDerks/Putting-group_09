@@ -30,15 +30,14 @@ public class Loader {
     private List<Integer> vaos = new ArrayList<Integer>();
     private List<Integer> vbos = new ArrayList<Integer>();
     private List<Integer> textures = new ArrayList<Integer>();
-// loading of RawModel to Vertex Array Object
 
     /**
-     * Loading the data into a vertex array object.
-     * @param positions float[]
-     * @param textureCoords float[]
-     * @param normals float[]
-     * @param indices int[]
-     * @return RawModel
+     * Loading the data into a vertex array object and returning a RawModel.
+     * @param positions float[] positions data of a model
+     * @param textureCoords float[] texture coordinates data of a model
+     * @param normals float[] normal data of a model
+     * @param indices int[] indices data of a model
+     * @return RawModel with the positions, textureCoordinates, normals and indices
      */
     public RawModel loadToVAO(float[] positions, float[] textureCoords,float [] normals, int[] indices){
         int vaoID = createVAO();
@@ -49,13 +48,12 @@ public class Loader {
         unbindVAO();
         return new RawModel(vaoID,indices.length);
     }
-// loading of RawModel to vertex Array Object
 
     /**
-     *
-     * @param positions
-     * @param dimensions
-     * @return
+     * Loading the data into a vertex array object and returning a RawModel.
+     * @param positions float[] positions data of a model
+     * @param dimensions dimensions in every direction from the middle point.
+     * @return RawModel with the positions and the dimensions
      */
     public RawModel loadToVAO(float[] positions, int dimensions){
         int vaoID = createVAO();
@@ -63,12 +61,11 @@ public class Loader {
         unbindVAO();
         return new RawModel(vaoID, positions.length/dimensions);
     }
-// loading Texture
 
     /**
-     *
-     * @param fileName
-     * @return
+     * Loading of a texture file
+     * @param fileName String the name of the file
+     * @return int returns an integer that identifies a texture.
      * @throws IOException
      */
     public int loadTexture(String fileName) throws IOException {
@@ -85,7 +82,9 @@ public class Loader {
         textures.add(textureID);
         return textureID;
     }
+
 // clean up of Vertex Array Buffers, Vertex Buffer objects and textures.
+
     public void cleanUp(){
         for(int vao:vaos){
             GL30.glDeleteVertexArrays(vao);
@@ -97,12 +96,11 @@ public class Loader {
             GL46.glDeleteTextures(texture);
         }
     }
-// Cube Map Loader
 
     /**
-     *
+     * Cube Map Loader, loads up 6 textures of the Cube Map
      * @param textureFiles
-     * @return
+     * @return int returns an integer that identifies a texture.
      */
     public int loadCubeMap(String[] textureFiles){
         int texID = GL11.glGenTextures();
@@ -124,9 +122,9 @@ public class Loader {
 // Texture Loader from png file
 
     /**
-     *
-     * @param fileName
-     * @return
+     * Decodes PNG files and returns texture data.
+     * @param fileName String name of the file you want to decode
+     * @return TextureData returns the data of a Texture, TextureData.
      */
     private TextureData decodeTextureFile(String fileName) {
         int width = 0;
@@ -148,20 +146,23 @@ public class Loader {
         }
         return new TextureData(buffer, width, height);
     }
+
 // create Vertex Array Object
+
     private int createVAO(){
         int vaoID = GL30.glGenVertexArrays();
         vaos.add(vaoID);
         GL30.glBindVertexArray(vaoID);
         return vaoID;
     }
+
 // Storage of data
 
     /**
-     *
-     * @param attributeNumber
-     * @param coordinateSize
-     * @param data
+     * Storage of data into an attribute list
+     * @param attributeNumber int attribute number
+     * @param coordinateSize int Size of the coordinate
+     * @param data float[] data that is going to be stored in an attribute list
      */
     private void storeDataInAttributeList(int attributeNumber,int coordinateSize, float[] data){
         int vboID = GL15.glGenBuffers();
@@ -176,11 +177,10 @@ public class Loader {
     private void unbindVAO(){
         GL30.glBindVertexArray(0);
     }
-// binding of indices Buffers
 
     /**
-     *
-     * @param indices
+     * Binding of the Indices to a buffer
+     * @param indices int[] indices that will be binded to a buffer.
      */
     private void bindIndicesBuffer(int[] indices){
         int vboID = GL15.glGenBuffers();
@@ -192,9 +192,9 @@ public class Loader {
 // Store data in an integer buffer
 
     /**
-     *
-     * @param data
-     * @return
+     * Storing of data in an integer buffer.
+     * @param data int[] data that will be stored in an integer buffer.
+     * @return IntBuffer IntBuffer with the data stored inside.
      */
     private @NotNull IntBuffer storeDataInIntBuffer(int @NotNull [] data){
         IntBuffer buffer = BufferUtils.createIntBuffer(data.length);
@@ -205,9 +205,9 @@ public class Loader {
 // store data in a float buffer
 
     /**
-     *
-     * @param data
-     * @return
+     * Storing of data in a float buffer.
+     * @param data float[] data that will be stored in an float buffer.
+     * @return FloatBuffer FloatBuffer with the data stored inside.
      */
     private @NotNull FloatBuffer storeDataInFloatBuffer(float @NotNull [] data){
         FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);

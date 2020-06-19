@@ -32,7 +32,9 @@ public class TerrainShader extends ShaderProgram {
     private int location_blendMap;
     private int location_plane;
 
-
+    /**
+     *
+     */
     public TerrainShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
@@ -63,6 +65,11 @@ public class TerrainShader extends ShaderProgram {
 
     }
 // load clipplane
+
+    /**
+     *
+     * @param plane
+     */
     public void loadClipPlane(Vector4f plane){
         super.loadVector(location_plane, plane);
     }
@@ -75,10 +82,23 @@ public class TerrainShader extends ShaderProgram {
         super.loadInt(location_blendMap, 4);
     }
 // set skyColour
+
+    /**
+     *
+     * @param r
+     * @param g
+     * @param b
+     */
     public void loadSkyColour(float r, float g, float b){
         super.loadVector(location_skyColour, new Vector3f(r,g,b));
     }
 // set dampe and reflectivity
+
+    /**
+     *
+     * @param damper
+     * @param reflectivity
+     */
     public void loadShineVariables(float damper, float reflectivity){
         super.loadFloat(location_shineDamper, damper);
         super.loadFloat(location_reflectivity, reflectivity);
@@ -91,17 +111,29 @@ public class TerrainShader extends ShaderProgram {
         super.bindAttribute(2, "normal");
     }
 
-
+    /**
+     *
+     * @param matrix
+     */
     public void loadTransformationMatrix(Matrix4f matrix){
 
         super.loadMatrix(location_transformationMatrix,matrix);
     }
 
+    /**
+     *
+     * @param camera
+     */
     public void loadViewMatrix(Camera camera){
         Matrix4f viewMatrix = Maths.createViewMatrix(camera);
         super.loadMatrix(location_viewMatrix, viewMatrix);
     }
 // load lights
+
+    /**
+     *
+     * @param lights
+     */
     public void loadLights(List<Light> lights){
         for (int i=0;i<MAX_LIGHTS;i++){
             if(i<lights.size()){
@@ -116,6 +148,10 @@ public class TerrainShader extends ShaderProgram {
         }
     }
 
+    /**
+     *
+     * @param projection
+     */
     public void loadProjectionMatrix(Matrix4f projection){
         super.loadMatrix(location_projectionMatrix,projection);
     }
