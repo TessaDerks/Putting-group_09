@@ -30,6 +30,23 @@ public class SimulateMain {
 
 
     // receives information about new terrain and sends information to the right classes
+
+    /**
+     *
+     * @param _g
+     * @param _m
+     * @param _mu
+     * @param _vmax
+     * @param _tol
+     * @param _start
+     * @param _goal
+     * @param _height
+     * @param _version
+     * @param treePositions
+     * @param sandPositions
+     * @param _heightMap
+     * @throws IOException
+     */
     public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions, String _heightMap) throws IOException {
 
         g = _g;
@@ -60,8 +77,8 @@ public class SimulateMain {
 
 
         // loop to add tree objects to puttingcourse
-        for(int i = 0; i< treePositions.size(); i++){
-            Tree t = new Tree(treePositions.get(i), 0.6);
+        for (Vector2d treePosition : treePositions) {
+            Tree t = new Tree(treePosition, 0.6);
             course.addTree(t);
         }
 
@@ -122,7 +139,18 @@ public class SimulateMain {
         }
     }
 
-    public static boolean beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height) {
+    /**
+     *
+     * @param _g
+     * @param _m
+     * @param _mu
+     * @param _vmax
+     * @param _tol
+     * @param _start
+     * @param _goal
+     * @param _height
+     */
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height) {
 
         g = _g;
         m = _m;
@@ -150,12 +178,7 @@ public class SimulateMain {
             simulator = new PuttingSimulator(course, engine);
 
             simulator.set_ball_position(start);
-            return true;
         }
-        else{
-            return false;
-        }
-
 
 
     }

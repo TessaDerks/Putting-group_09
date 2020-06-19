@@ -1,9 +1,14 @@
 package physics;
 
 public class Vector2d {
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
 
+    /**
+     * Constructor
+     * @param _x double
+     * @param _y double
+     */
     public Vector2d(double _x, double _y){
         x = _x;
         y = _y;

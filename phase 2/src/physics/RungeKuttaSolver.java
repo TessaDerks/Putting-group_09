@@ -18,6 +18,10 @@ public class RungeKuttaSolver implements PhysicsEngine{
     private Vector2d F;
     //</editor-fold>
 
+    /**
+     *
+     * @param _p
+     */
     public RungeKuttaSolver(Vector2d _p){
         p = _p;
     }
@@ -70,6 +74,7 @@ public class RungeKuttaSolver implements PhysicsEngine{
     }
 
     //<editor-fold desc="Calculators">
+    @Override
     public void resetPosition(Vector2d start){
         p = start;
         recalculate();
@@ -85,8 +90,7 @@ public class RungeKuttaSolver implements PhysicsEngine{
     @Override
     public Vector2d calcG(){
         Vector2d der = h.gradient(p);
-        Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
-        return output;
+        return new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
     }
 
     @Override
@@ -171,10 +175,4 @@ public class RungeKuttaSolver implements PhysicsEngine{
     public double get_t(){
         return t;
     }
-
-    @Override
-    public double get_m() {
-        return m;
-    }
-    //</editor-fold>
 }

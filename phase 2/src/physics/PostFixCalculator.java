@@ -1,5 +1,7 @@
 package physics;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class PostFixCalculator {
@@ -19,7 +21,13 @@ public class PostFixCalculator {
     private static final String LN = "ln";
     //</editor-fold>
 
-    public static Double calculate(String input, Vector2d coordinates) {
+    /**
+     *
+     * @param input
+     * @param coordinates
+     * @return
+     */
+    public static Double calculate(@NotNull String input, Vector2d coordinates) {
         SinglyLinkedListStack<Double> stack = new SinglyLinkedListStack<>();
 
         String[] inputs = input.split(" ");
@@ -43,7 +51,13 @@ public class PostFixCalculator {
         return handleCalculation(stack, inputs);
     }
 
-    private static Double handleCalculation(SinglyLinkedListStack<Double> stack, String[] el) {
+    /**
+     *
+     * @param stack
+     * @param el
+     * @return
+     */
+    private static Double handleCalculation(SinglyLinkedListStack<Double> stack, String @NotNull [] el) {
 
         for(int i = 0; i < el.length; i++) {
             if( el[i].equals(ADD) || el[i].equals(SUB) || el[i].equals(MUL) || el[i].equals(DIV) || el[i].equals(POW) ) {
@@ -124,12 +138,24 @@ public class PostFixCalculator {
 
         return stack.pop();
     }
-    public static String removeX(Vector2d coordinates) {
+
+    /**
+     *
+     * @param coordinates
+     * @return
+     */
+    public static @NotNull String removeX(@NotNull Vector2d coordinates) {
 
         return String.valueOf(coordinates.get_x());
 
     }
-    public static String removeY(Vector2d coordinates) {
+
+    /**
+     *
+     * @param coordinates
+     * @return
+     */
+    public static @NotNull String removeY(@NotNull Vector2d coordinates) {
 
         return String.valueOf(coordinates.get_y());
 

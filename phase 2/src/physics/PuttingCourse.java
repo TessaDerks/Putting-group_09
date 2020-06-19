@@ -7,9 +7,9 @@ import java.util.List;
 public class PuttingCourse {
 
     //<editor-fold desc="Global Variables">
-    private Function2d height;
-    private Vector2d flag;
-    private Vector2d start;
+    private final Function2d height;
+    private final Vector2d flag;
+    private final Vector2d start;
     private double mu = 0.3;
     private double vMax = 5;
     private double holeTolerance = 0.2;
@@ -17,6 +17,12 @@ public class PuttingCourse {
     private List<Sand> sandList = new LinkedList<Sand>();
     //</editor-fold>
 
+    /**
+     *
+     * @param _height
+     * @param _flag
+     * @param _start
+     */
     public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
         height = _height;
         flag = _flag;
@@ -45,19 +51,6 @@ public class PuttingCourse {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Getters">
-    public Function2d get_height(){
-        return height;
-    }
-
-    public Vector2d get_flag_position(){
-        return flag;
-    }
-
-    public Vector2d get_start_position(){
-        return start;
-    }
-
     public double get_friction_coefficient(){
         return mu;
     }
@@ -78,6 +71,11 @@ public class PuttingCourse {
         return sandList;
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public boolean nodeOnTree(Vector2d p) {
         for(Tree t : treeList){
             if(t.AITreeHit(p)){

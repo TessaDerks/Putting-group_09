@@ -24,15 +24,19 @@ public class FileReader {
     private static Vector2d goal;
 
     // read file about shots, create array with shots
+
+    /**
+     *
+     * @param fileName
+     */
     public static void fileShot(String fileName){
-        
-        String path = fileName;
+
         Scanner input;
 
         // add text in file to array by line
         ArrayList<String> data = new ArrayList<String>();
         try {
-            File file = new File(path);
+            File file = new File(fileName);
             input = new Scanner(file);
 
             while (input.hasNextLine()) {
@@ -49,7 +53,6 @@ public class FileReader {
         double speedd = 0.0;
 
         velocity = new Vector2d[size];
-        int velocityIndex = 0;
 
         // fill array with shots from file
         for (int i = 0; i < size; i++){
@@ -70,26 +73,41 @@ public class FileReader {
         }
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public static Vector2d getShot(int index){
         return velocity[index];
     }
 
     // returns array with all shots
+
+    /**
+     *
+     * @return
+     */
     public static Vector2d[] getVelocity() {
         return velocity;
     }
 
     // read file for information about the terrain
+
+    /**
+     *
+     * @param path1
+     * @throws IOException
+     */
     public void fileRead(String path1) throws IOException {
 
-        String path = path1;
         Scanner input;
 
         ArrayList<String> data = new ArrayList<String>();
 
         // add text in file to array by line
         try {
-            File file = new File(path);
+            File file = new File(path1);
             input = new Scanner(file);
 
             while (input.hasNextLine()) {
@@ -102,8 +120,8 @@ public class FileReader {
             return;
         }
 
-        for (int line = 0; line < data.size(); line++) {
-            String[] parts = data.get(line).split(" = ");
+        for (String datum : data) {
+            String[] parts = datum.split(" = ");
 
             String names = parts[0];
             String values = parts[1];
@@ -139,46 +157,46 @@ public class FileReader {
 
             start = new Vector2d(startX, startY);
 
-            if (list1.contains("goalX")) {    
+            if (list1.contains("goalX")) {
                 goalX = Double.parseDouble(values);
 
             }
-            if (list1.contains("goalY")) {    
+            if (list1.contains("goalY")) {
                 goalY = Double.parseDouble(values);
             }
 
             goal = new Vector2d(goalX, goalY);
 
-            if (list1.contains("height")) {      
+            if (list1.contains("height")) {
                 height = values;
             }
 
-            if (list1.contains("treeLocation")){
+            if (list1.contains("treeLocation")) {
                 String[] treeLoc = values.split(" ");
 
-                for(int i = 0; i<treeLoc.length;i+=2){
+                for (int i = 0; i < treeLoc.length; i += 2) {
                     double treePositionX = Double.parseDouble(treeLoc[i]);
-                    double treePositionY = Double.parseDouble(treeLoc[i+1]);
-                    Vector2d treePosition = new Vector2d(treePositionX,treePositionY);
+                    double treePositionY = Double.parseDouble(treeLoc[i + 1]);
+                    Vector2d treePosition = new Vector2d(treePositionX, treePositionY);
                     trees.add(treePosition);
                 }
             }
 
-            if (list1.contains("sandLocation")){
+            if (list1.contains("sandLocation")) {
                 String[] sandLoc = values.split(" ");
-                for(int i = 0; i<sandLoc.length;i+=4){
+                for (int i = 0; i < sandLoc.length; i += 4) {
                     double sandTopX = Double.parseDouble(sandLoc[i]);
-                    double sandTopY = Double.parseDouble(sandLoc[i+1]);
-                    double sandBtmX = Double.parseDouble(sandLoc[i+2]);
-                    double sandBtmY = Double.parseDouble(sandLoc[i+3]);
-                    Vector2d sandPosTop = new Vector2d(sandTopX,sandTopY);
-                    Vector2d sandPosBtm = new Vector2d(sandBtmX,sandBtmY);
+                    double sandTopY = Double.parseDouble(sandLoc[i + 1]);
+                    double sandBtmX = Double.parseDouble(sandLoc[i + 2]);
+                    double sandBtmY = Double.parseDouble(sandLoc[i + 3]);
+                    Vector2d sandPosTop = new Vector2d(sandTopX, sandTopY);
+                    Vector2d sandPosBtm = new Vector2d(sandBtmX, sandBtmY);
                     sand.add(sandPosTop);
                     sand.add(sandPosBtm);
                 }
             }
 
-            if(list1.contains("heightMap")){
+            if (list1.contains("heightMap")) {
                 heightMap = values;
             }
         }

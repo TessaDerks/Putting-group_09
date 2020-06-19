@@ -1,26 +1,44 @@
 package physics;
 
 public interface PhysicsEngine {
-    public void actTimestep();
+    void actTimestep();
     public void recalculate();
-    public void resetPosition(Vector2d start);
 
-    public Vector2d calcG();
-    public Vector2d calcH();
-    public Vector2d calcF();
+    /**
+     * 
+     * @param start
+     */
+    void resetPosition(Vector2d start);
 
-    public void setMu(double _mu);
-    public void set_m(double _m);
-    public void set_g(double _g);
-    public void set_v(Vector2d _v);
-    public void set_h(Function2d _h);
-    public void set_v_max(double _v_max);
-    public void set_step_size(double _dt);
-    public void set_t(double _t);
+    /**
+     *
+     * @return
+     */
+    Vector2d calcG();
 
-    public Function2d get_h();
-    public Vector2d get_p();
-    public Vector2d get_v();
-    public double get_t();
-    public double get_m();
+    /**
+     *
+     * @return
+     */
+    Vector2d calcH();
+
+    /**
+     * 
+     * @return
+     */
+    Vector2d calcF();
+
+    void setMu(double _mu);
+    void set_m(double _m);
+    void set_g(double _g);
+    void set_v(Vector2d _v);
+    void set_h(Function2d _h);
+    void set_v_max(double _v_max);
+    void set_step_size(double _dt);
+    void set_t(double _t);
+
+    Function2d get_h();
+    Vector2d get_p();
+    Vector2d get_v();
+    double get_t();
 }

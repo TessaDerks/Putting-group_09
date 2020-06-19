@@ -7,7 +7,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Tools {
 
-    // Round a number to a certain amount of decimal places.
+    /**
+     * Round a number to a certain amount of decimal places.
+     * @param num double, number to be rounded
+     * @param dec int, amount of decimal places to round 'num' to
+     * @return double, 'num' rounded to 'dec' decimal places
+     */
     public static double advRound(double num, int dec){
         num = num * Math.pow(10,dec);
         num = Math.round(num);
@@ -15,68 +20,57 @@ public class Tools {
         return num;
     }
 
-    // Get Vector2d velocity form angle and total velocity.
-    public static Vector2d velFromAngle(double a, double v){
+    /**
+     * Get Vector2d velocity form angle and total velocity.
+     * @param a double, angle in degrees
+     * @param v double, velocity in m/s
+     * @return Vector2d, speed acting in x and y direction
+     */
+    @Contract("_, _ -> new")
+    public static @NotNull Vector2d velFromAngle(double a, double v){
         a = Math.toRadians(a);
         double vy = v * Math.cos(a);
         double vx = v * Math.sin(a);
         return new Vector2d(vx,vy);
     }
 
-    // Pause program for x milliseconds.
+    /**
+     * Pause program for x milliseconds
+     * @param time int, milliseconds
+     */
     public static void wait(int time){
         try{
             TimeUnit.MILLISECONDS.sleep(time);}
-        catch(InterruptedException e){}
-        return;
+        catch(InterruptedException ignored){}
     }
 
-    // Method to adjust the flag position to the left to make a checker flag
+    /**
+     * Method to adjust the flag position to the left to make a checker flag
+     * @param start
+     * @param flag
+     * @return
+     */
     @Contract("_, _ -> new")
     public static @NotNull Vector2d adjustFlagPosition(@NotNull Vector2d start, @NotNull Vector2d flag){
         // new method to adjust the flag position to the left to make a checker flag
-        Double returnX, returnY;
 
         double angleFlag = Math.atan((flag.get_y()-start.get_y())/(flag.get_x()-start.get_x()));
         angleFlag = Math.toDegrees(angleFlag);
         double magnitude = Math.sqrt(Math.pow(flag.get_x()-start.get_x(),2)+Math.pow(flag.get_y()-start.get_y(),2));
         double angleChecker = angleFlag+0.01;
         Vector2d temp = velFromAngle(angleChecker,magnitude);
-        Vector2d checker = new Vector2d(temp.get_y()+start.get_x(),temp.get_x()+start.get_y());
-        return  checker;
-
-
-        /*
-        if(((start.get_x() <= flag.get_x()) && (start.get_y() <= flag.get_y())) || ((start.get_x() >= flag.get_x()) && (start.get_y() >= flag.get_y()))){
-            Double angle = Math.toDegrees(Math.atan(((Math.abs(flag.get_y()-start.get_y()))/(Math.abs(flag.get_x()-start.get_x()))))); // calculating angle
-            angle+=0.01;
-            Double absDis = Math.sqrt(Math.pow(flag.get_x()-start.get_x(),2)+Math.pow(flag.get_y()-start.get_y(),2));
-            returnX = Math.abs(Math.cos(Math.toRadians(angle))*absDis);
-            returnY = Math.abs(Math.sin(Math.toRadians(angle))*absDis);
-        }
-        else {
-            Double angle = Math.toDegrees(Math.atan(((Math.abs(flag.get_y()-start.get_y()))/(Math.abs(flag.get_x()-start.get_x()))))); // calculating angle
-            angle-=0.01;
-            Double absDis = Math.sqrt(Math.pow(flag.get_x()-start.get_x(),2)+Math.pow(flag.get_y()-start.get_y(),2));
-            returnX = Math.abs(Math.cos(Math.toRadians(angle))*absDis);
-            returnY = Math.abs(Math.sin(Math.toRadians(angle))*absDis);
-
-        }
-
-        //System.out.println(returnX + " " + returnY );
-        if (flag.get_y() < 0) {
-            if (flag.get_x() > 0) return new Vector2d(returnX,-returnY);
-            else return new Vector2d(-returnX, - returnY);
-        }
-        else if ((flag.get_y() > 0) &&( flag.get_x() < 0) ) return new Vector2d(-returnX, returnY);
-        else return new Vector2d(returnX, returnY);
-
-        //Vector2d adjusted = new Vector2d()
-
-         */
+        return new Vector2d(temp.get_y()+start.get_x(),temp.get_x()+start.get_y());
     }
 
-    // Method to check if goal is to vertical.
+    /**
+     * Method to check if goal is to vertical.
+     * @param goal_position
+     * @param function
+     * @param mass
+     * @param g
+     * @param mu
+     * @return
+     */
     public static boolean checkGoalSlope(Vector2d goal_position, Function2d function, double mass, double g, double mu){
         boolean result = true;
         Vector2d G = calcG(function,goal_position,mass,g);
@@ -92,13 +86,27 @@ public class Tools {
         return result;
     }
 
+    /**
+     *
+     * @param h
+     * @param p
+     * @param m
+     * @param g
+     * @return
+     */
     public static @NotNull Vector2d calcG(@NotNull Function2d h, Vector2d p, double m, double g){
         Vector2d der = h.gradient(p);
-        Vector2d output = new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
-
-        return output;
+        return new Vector2d(-m*g*der.get_x(),-m*g*der.get_y());
     }
 
+    /**
+     *
+     * @param mu
+     * @param m
+     * @param g
+     * @param v
+     * @return
+     */
     @Contract("_, _, _, _ -> new")
     public static @NotNull Vector2d calcH(double mu, double m, double g, @NotNull Vector2d v){
         double xH = (-mu * m * g * v.get_x());
