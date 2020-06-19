@@ -25,7 +25,7 @@ public class EntityRenderer {
 	/**
 	 * Constructor for the EntityRenderer
 	 * This is the renderer for an entity
-	 * @param shader StaticShader the shaders of the entity Renderer
+	 * @param shader StaticShader the shader of the entity Renderer
 	 * @param projectionMatrix Matrix4f Projection Matrix of the entity renderer
 	 */
 	public EntityRenderer(@NotNull StaticShader shader, Matrix4f projectionMatrix){
@@ -34,12 +34,12 @@ public class EntityRenderer {
 		shader.loadProjectionMatrix(projectionMatrix);
 		shader.stop();
 	}
+
 // Render method
 
 	/**
 	 * render method, this renders all the entities
-	 *
-	 * @param entities
+	 * @param entities Map<TexturedModel, List<Entity>
 	 */
 	public void render(@NotNull Map<TexturedModel, List<Entity>> entities){
 		for(TexturedModel model:entities.keySet()){
