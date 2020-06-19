@@ -4,10 +4,10 @@ public class Merge {
 
     /**
      *
-     * @param list
-     * @param first
-     * @param second
-     * @param end
+     * @param list Array of Individuals,
+     * @param first int, 0 < first < second
+     * @param second int, first < second < end
+     * @param end second < end < size of the list
      */
     public static void splitList(Individual[] list, int first, int second, int end) {
 
@@ -18,7 +18,7 @@ public class Merge {
         Individual[] secondHalf = new Individual[sizeSecond];
 
         //System.out.print(firstHalf[i] + " ");
-        if (sizeFirst >= 0) System.arraycopy(list, first, firstHalf, 0, sizeFirst);
+        System.arraycopy(list, first, firstHalf, 0, sizeFirst);
         //System.out.println();
         for (int j = 0; j < sizeSecond; j++){
             secondHalf[j] = list[second+1+j];
@@ -55,9 +55,9 @@ public class Merge {
 
     /**
      *
-     * @param list
-     * @param start
-     * @param end
+     * @param list arrayList of individuals
+     * @param start int, 0 < start < end
+     * @param end int, start < end < list.size
      */
     public void sortList(Individual[] list, int start, int end){
 

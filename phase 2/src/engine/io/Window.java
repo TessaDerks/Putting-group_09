@@ -26,9 +26,9 @@ public class Window {
 
 	/**
 	 * create window
-	 * @param width, int, width of window
-	 * @param height, int, height of window
-	 * @param title, String, title of window
+	 * @param width int, width of window
+	 * @param height int, height of window
+	 * @param title String, title of window
 	 */
 	public Window(int width, int height, String title) {
 		this.width = width;

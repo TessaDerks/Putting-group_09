@@ -12,8 +12,8 @@ public class Graph<T extends GraphNode> {
 
     /**
      *
-     * @param _nodes
-     * @param _connections
+     * @param _nodes Set, set of all nodes in the graph
+     * @param _connections Map, map of all connections between the nodes
      */
     public Graph(Set<T> _nodes, Map<String, Set<String>> _connections){
         nodes = _nodes;
@@ -24,8 +24,9 @@ public class Graph<T extends GraphNode> {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id String, id of the node, consisting of its checkpoint
+     * @return Node matching the Id
+     * @throws IllegalArgumentException, whenever a certain id is not found
      */
     public T getNode(String id){
         return nodes.stream()
@@ -37,8 +38,8 @@ public class Graph<T extends GraphNode> {
     // Get all the nodes connected to a specific node
     /**
      *
-     * @param node
-     * @return
+     * @param node String, id of node
+     * @return Set of connections
      */
     public Set<T> getConnections(@NotNull T node){
         return connections.get(node.getId()).stream()
