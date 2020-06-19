@@ -11,7 +11,7 @@ public class Input {
 	private static boolean[] buttons = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST];
 	private static double mouseX, mouseY;
 	private static double scrollX, scrollY;
-	
+
 	private GLFWKeyCallback keyboard;
 	private GLFWCursorPosCallback mouseMove;
 	private GLFWMouseButtonCallback mouseButtons;
@@ -45,20 +45,13 @@ public class Input {
 		};
 	}
 
-	/**
-	 *
-	 * @param key
-	 * @return
-	 */
-	public static boolean isKeyDown(int key) {
+
+	public static boolean isKeyDown(int key)
+	{
 		return keys[key];
 	}
 
-	/**
-	 *
-	 * @param button
-	 * @return
-	 */
+
 	public static boolean isButtonDown(int button) {
 		return buttons[button];
 	}
@@ -76,14 +69,6 @@ public class Input {
 
 	public static double getMouseY() {
 		return mouseY;
-	}
-	
-	public static double getScrollX() {
-		return scrollX;
-	}
-
-	public static double getScrollY() {
-		return scrollY;
 	}
 
 	public GLFWKeyCallback getKeyboardCallback() {

@@ -23,13 +23,12 @@ public class Window {
 	private boolean isFullscreen;
 	private int[] windowPosX = new int[1], windowPosY = new int[1];
 
-// Constructor for a window
 
 	/**
-	 *
-	 * @param width
-	 * @param height
-	 * @param title
+	 * create window
+	 * @param width, int, width of window
+	 * @param height, int, height of window
+	 * @param title, String, title of window
 	 */
 	public Window(int width, int height, String title) {
 		this.width = width;
@@ -37,7 +36,9 @@ public class Window {
 		this.title = title;
 	}
 
-	// Create Display Function
+	/**
+	 * create display function
+	 */
 	public void create() {
 		if (!GLFW.glfwInit()) {
 			System.err.println("ERROR: GLFW wasn't initializied");
@@ -67,7 +68,7 @@ public class Window {
 		GLFW.glfwSwapInterval(1);
 
 	}
-// creation of callbacks
+
 	private void createCallbacks() {
 		sizeCallback = new GLFWWindowSizeCallback() {
 			public void invoke(long window, int w, int h) {
@@ -84,8 +85,9 @@ public class Window {
 		GLFW.glfwSetWindowSizeCallback(window, sizeCallback);
 	}
 
-	//Update Display (frames) Function
-
+	/**
+	 * Update display frames
+	 */
 	public void update() {
 
 		if (isResized) {
@@ -108,20 +110,17 @@ public class Window {
 		delta = (currentFrameTime - lastFrameTime)/1000f;
 		lastFrameTime = currentFrameTime;
 	}
-// swap Buffers
+
 	public void swapBuffers() {
+
 		GLFW.glfwSwapBuffers(window);
 	}
-// close window
 
-	/**
-	 *
-	 * @return
-	 */
 	public boolean shouldClose() {
+
 		return GLFW.glfwWindowShouldClose(window);
 	}
-// destruction of window
+
 	public void destroy() {
 		input.destroy();
 		sizeCallback.free();
@@ -129,20 +128,18 @@ public class Window {
 		GLFW.glfwDestroyWindow(window);
 		GLFW.glfwTerminate();
 	}
-// Setter for background Colour
-	public void setBackgroundColor(float r, float g, float b) {
+
+
+	public void setBackgroundColor(float r, float g, float b)
+	{
 		background.set(r, g, b);
 	}
-// Is the screen full screen?
 
-	/**
-	 *
-	 * @return
-	 */
+
 	public boolean isFullscreen() {
 		return isFullscreen;
 	}
-// Set the screen to full Screen
+
 	public void setFullscreen(boolean isFullscreen) {
 		this.isFullscreen = isFullscreen;
 		isResized = true;
@@ -153,8 +150,9 @@ public class Window {
 			GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 60);
 		}
 	}
-// getters
+
 	public static float getFrameTimeSeconds(){
+
 		return delta;
 	}
 
@@ -162,19 +160,5 @@ public class Window {
 		return System.currentTimeMillis() * 1;
 	}
 
-	public int getWidth() {
-		return width;
-	}
 
-	public int getHeight() {
-		return height;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public long getWindow() {
-		return window;
-	}
 }
