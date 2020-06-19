@@ -36,7 +36,7 @@ public class SimulateMain {
      * @param _heightMap String, name of file with heightmap to describe terrain
      * @throws IOException
      */
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions, String _heightMap) throws IOException {
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions, String _heightMap, ArrayList<Tree> _stumps) throws IOException {
 
         vmax = _vmax;
         start = _start;
@@ -63,6 +63,10 @@ public class SimulateMain {
         for (Vector2d treePosition : treePositions) {
             Tree t = new Tree(treePosition, 0.6);
             course.addTree(t);
+        }
+
+        for (Tree stump : _stumps) {
+            course.addStump(stump);
         }
 
         // add sand to picture describing terrain

@@ -15,6 +15,7 @@ public class PuttingCourse {
     private double holeTolerance = 0.2;
     private List<Tree> treeList = new LinkedList<Tree>();
     private List<Sand> sandList = new LinkedList<Sand>();
+    private List<Tree> stumpList = new LinkedList<>();
     //</editor-fold>
 
     /**
@@ -49,6 +50,12 @@ public class PuttingCourse {
     public void addSand(Sand s) {
         sandList.add(s);
     }
+
+    public void addStump(Tree t){
+        stumpList.add(t);
+    }
+
+
     //</editor-fold>
 
     public double get_friction_coefficient(){
@@ -71,6 +78,9 @@ public class PuttingCourse {
         return sandList;
     }
 
+    public List<Tree> getStumpList() {
+        return stumpList;
+    }
     /**
      *
      * @param p

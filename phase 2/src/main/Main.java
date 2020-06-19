@@ -235,10 +235,9 @@ public class Main implements Runnable {
 
 		// create fern entity list
 		stump = new ArrayList<Entity>();
-		random = new Random();
-		for(int i=0;i<50;i++){
-			float x = random.nextFloat()*Terrain.SIZE;
-			float z = random.nextFloat()*Terrain.SIZE;
+		for(int i=0;i<SimulateMain.simulator.get_course().getStumpList().size();i++){
+			float x = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_x();
+			float z = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_y();
 			float y = terrain.getHeightOfTerrain(x,z);
 			stump.add(new Entity(texturedModelStump, new Vector3f(x,y,z),0,0,0,1));
 		}
@@ -343,8 +342,6 @@ public class Main implements Runnable {
 		i++;
 
 
-
-
 		renderer.processEntity(pole);
 
 		GL11.glEnable(GL46.GL_CLIP_DISTANCE0);
@@ -364,12 +361,11 @@ public class Main implements Runnable {
 		for (Entity entity : tree) {
 			renderer.processEntity(entity);
 		}
-		/*
+
 		for(int i = 0; i<stump.size(); i++){
 			renderer.processEntity(stump.get(i));
 		}
 
-		 */
 
 		camera.getPosition().y += distance;
 		camera.invertPitch();
@@ -384,12 +380,10 @@ public class Main implements Runnable {
 		for (Entity entity : tree) {
 			renderer.processEntity(entity);
 		}
-		/*
+
 		for(int i = 0; i<stump.size(); i++){
 			renderer.processEntity(stump.get(i));
 		}
-
-		 */
 
 		GL46.glDisable(GL46.GL_CLIP_DISTANCE0);
 		fbos.unbindCurrentFrameBuffer();
@@ -403,12 +397,9 @@ public class Main implements Runnable {
 		for (Entity entity : tree) {
 			renderer.processEntity(entity);
 		}
-		/*
 		for(int i = 0; i<stump.size(); i++){
 			renderer.processEntity(stump.get(i));
 		}
-
-		 */
 
 		// only render small gui if you've won
 		if(win){

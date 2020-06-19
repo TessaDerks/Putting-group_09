@@ -1,5 +1,6 @@
 package sampl;
 
+import MazeGenerator.MazeGenerator;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import main.Main;
 import physics.FileReader;
 import physics.SimulateMain;
+import physics.Tree;
 import physics.Vector2d;
 import simplexNoise.ImageWriter;
 import simplexNoise.SimplexNoise;
@@ -106,9 +108,12 @@ public class Controller implements Initializable {
     @FXML
     private TextField heightString;
 
+
     private ArrayList<Vector2d> treesList = new ArrayList<>();
 
     private ArrayList<Vector2d> sandList = new ArrayList<>();
+
+    private ArrayList<Tree> stumps = new ArrayList<>();
 
     // read textfield from manual input screen and send information about terrain to simulate main
 
@@ -132,7 +137,13 @@ public class Controller implements Initializable {
         String heightFunction = heightProfile.getText();
         String heightMap = heightMapp.getText();
 
-        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList, heightMap);
+        SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList, heightMap, stumps);
+    }
+
+
+    @FXML
+    private void mazeGeneration() {
+        stumps = MazeGenerator.createMaze();
     }
 
     /**
