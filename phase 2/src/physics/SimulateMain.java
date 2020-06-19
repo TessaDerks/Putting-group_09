@@ -3,8 +3,6 @@ package physics;
 import javafx.scene.control.Alert;
 import main.Main;
 import org.jetbrains.annotations.NotNull;
-import terrain.Terrain;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,48 +17,34 @@ public class SimulateMain {
     private static Function2d function;
     public static PuttingSimulator simulator;
     public static int version;
-    private static double g;
-    private static double m;
-    private static double mu;
-
     private static double vmax;
-    private static double tol;
     private static String heightMap;
-    private static Terrain terrain;
-
-
-    // receives information about new terrain and sends information to the right classes
 
     /**
-     *
-     * @param _g
-     * @param _m
-     * @param _mu
-     * @param _vmax
-     * @param _tol
-     * @param _start
-     * @param _goal
-     * @param _height
-     * @param _version
-     * @param treePositions
-     * @param sandPositions
-     * @param _heightMap
+     * set all variables for terrain and physics engine
+     * @param _g double, gravitation force
+     * @param _m double, mass of ball
+     * @param _mu double, friction coefficients
+     * @param _vmax double, maximum speed for golf ball
+     * @param _tol double, radius around hole that golf ball has to eventually land in
+     * @param _start Vector2d, starting position for golf ball
+     * @param _goal Vector2d, position of hole
+     * @param _height String, function to calculate height for terrein
+     * @param _version int, determines manual of filereader for input
+     * @param treePositions ArrayList<Vector2d>, list of positions of trees
+     * @param sandPositions ArrayList<Vector2d>, list of position of sand spaces
+     * @param _heightMap String, name of file with heightmap to describe terrain
      * @throws IOException
      */
     public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions, String _heightMap) throws IOException {
 
-        g = _g;
-        m = _m;
-        mu = _mu;
         vmax = _vmax;
-        tol = _tol;
         start = _start;
         flag = _goal;
-
         version = _version;
         heightMap = _heightMap;
-        //heightMap = "perlinNoise";
 
+        // create function based on input
         if(heightMap.equals("")){
             function = new Function(_height, 900);
         }
@@ -68,21 +52,20 @@ public class SimulateMain {
             function = new HeightMap(heightMap);
         }
 
-
         // Create PuttingSimulator and set all given settings
         PuttingCourse course = new PuttingCourse(function, flag, start);
-        course.set_mu(mu);
+        course.set_mu(_mu);
         course.set_vMax(vmax);
-        course.set_holeTolerance(tol);
+        course.set_holeTolerance(_tol);
 
 
-        // loop to add tree objects to puttingcourse
+        // add tree objects to puttingcourse
         for (Vector2d treePosition : treePositions) {
             Tree t = new Tree(treePosition, 0.6);
             course.addTree(t);
         }
 
-
+        // add sand to picture describing terrain
         String imagePath = "res/blendMapOriginal.png";
         BufferedImage blendMap = ImageIO.read(new File(imagePath));
         Graphics2D graphics = (Graphics2D) blendMap.getGraphics();
@@ -96,17 +79,16 @@ public class SimulateMain {
         }
         ImageIO.write(blendMap, "png", new File("res/blendMap.png"));
 
-
-
-        // create physics engine and set all settings for terrain
+        // create physics engine and set all variables
         PhysicsEngine engine = new SIESolver(start);
         engine.set_step_size(0.01);
         engine.set_h(function);
-        engine.set_m(m);
-        engine.set_g(g);
+        engine.set_m(_m);
+        engine.set_g(_g);
         engine.set_v_max(vmax);
         simulator = new PuttingSimulator(course, engine);
 
+        // check if starting settings are possible otherwise start game
         if(function.evaluate(start)<0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
@@ -123,7 +105,7 @@ public class SimulateMain {
 
             alert.showAndWait();
         }
-        else if(!Tools.checkGoalSlope(flag, function, m, g, mu)){
+        else if(!Tools.checkGoalSlope(flag, function, _m, _g, _mu)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -139,49 +121,7 @@ public class SimulateMain {
         }
     }
 
-    /**
-     *
-     * @param _g
-     * @param _m
-     * @param _mu
-     * @param _vmax
-     * @param _tol
-     * @param _start
-     * @param _goal
-     * @param _height
-     */
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height) {
 
-        g = _g;
-        m = _m;
-        mu = _mu;
-        vmax = _vmax;
-        tol = _tol;
-        start = _start;
-        flag = _goal;
-        function = new Function(_height, 900);
-
-        if(Tools.checkGoalSlope(flag, function, m, g, mu)){
-            // Create PuttingSimulator and set all given settings
-            PuttingCourse course = new PuttingCourse(function, flag, start);
-            course.set_mu(mu);
-            course.set_vMax(vmax);
-            course.set_holeTolerance(tol);
-
-            // create physics engine and set all settings for terrain
-            PhysicsEngine engine = new SIESolver(start);
-            engine.set_step_size(0.01);
-            engine.set_h(function);
-            engine.set_m(m);
-            engine.set_g(g);
-            engine.set_v_max(vmax);
-            simulator = new PuttingSimulator(course, engine);
-
-            simulator.set_ball_position(start);
-        }
-
-
-    }
     public static void start(){
         simulator.last_ball_position = start;
     }
@@ -208,7 +148,4 @@ public class SimulateMain {
         return heightMap;
     }
 
-    public static Terrain getTerrain() {
-        return terrain;
-    }
 }
