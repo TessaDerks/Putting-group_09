@@ -1,14 +1,11 @@
 package MazeGenerator;
 
+import org.jetbrains.annotations.NotNull;
 import physics.Tree;
 import physics.Vector2d;
 
 import java.util.*;
 import java.util.List;
-import java.util.LinkedHashSet;
-import java.util.stream.Collectors;
-
-import javax.swing.*;
 
 public class MazeGenerator
 {
@@ -18,16 +15,16 @@ public class MazeGenerator
     private static final int block_width = 2;  //2m eind, begin en midden boom
     private static final int block_height = 2;
 
-    private List<Vector2I> maze = new ArrayList<>();
+    private final List<Vector2I> maze = new ArrayList<>();
 
-    private List<Vector2d> start_horizontal = new ArrayList<>();       //stores starting coordinates lines
-    private List<Vector2d> end_horizontal = new ArrayList<>();         //stores ending coordinates lines
-    private List<Vector2d> start_vertical = new ArrayList<>();
-    private List<Vector2d> end_vertical = new ArrayList<>();
-    private List<Vector2d> midpoint_horizontal = new ArrayList<>();
-    private List<Vector2d> midpoint_vertical = new ArrayList<>();
-    private List<Vector2d> all_coordinates = new ArrayList<>();
-    private List<Vector2d> final_list = new ArrayList<>();
+    private final List<Vector2d> start_horizontal = new ArrayList<>();       //stores starting coordinates lines
+    private final List<Vector2d> end_horizontal = new ArrayList<>();         //stores ending coordinates lines
+    private final List<Vector2d> start_vertical = new ArrayList<>();
+    private final List<Vector2d> end_vertical = new ArrayList<>();
+    private final List<Vector2d> midpoint_horizontal = new ArrayList<>();
+    private final List<Vector2d> midpoint_vertical = new ArrayList<>();
+    private final List<Vector2d> all_coordinates = new ArrayList<>();
+    private final List<Vector2d> final_list = new ArrayList<>();
 
 
 
@@ -140,7 +137,12 @@ public class MazeGenerator
 
     }
 
-    public List<Tree> removeDuplicates(List<Vector2d> initialList) {
+    /**
+     *
+     * @param initialList
+     * @return
+     */
+    public List<Tree> removeDuplicates(@NotNull List<Vector2d> initialList) {
 
         List<Tree> treeList = new ArrayList<>();
         List<Vector2d> newList = new ArrayList<Vector2d>();
