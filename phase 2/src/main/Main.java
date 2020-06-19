@@ -240,7 +240,7 @@ public class Main implements Runnable {
 			float x = random.nextFloat()*Terrain.SIZE;
 			float z = random.nextFloat()*Terrain.SIZE;
 			float y = terrain.getHeightOfTerrain(x,z);
-			stump.add(new Entity(texturedModelStump, random.nextInt(4), new Vector3f(x,y,z),0,0,0,1));
+			stump.add(new Entity(texturedModelStump, new Vector3f(x,y,z),0,0,0,1));
 		}
 
 
