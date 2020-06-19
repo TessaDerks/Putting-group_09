@@ -23,11 +23,12 @@ public class TerrainTexturePack {
     }
 
     /**
-     *
-     * @param backgroundTexture
-     * @param rTexture
-     * @param gTexture
-     * @param bTexture
+     * Constructor for the TerrainTexturePack
+     * This creates a Texture Pack for the terrain.
+     * @param backgroundTexture TerrainTexture background colour texture
+     * @param rTexture TerrainTexture red colour texture
+     * @param gTexture TerrainTexture green colour texture
+     * @param bTexture TerrainTexture blue colour texture
      */
     public TerrainTexturePack(TerrainTexture backgroundTexture, TerrainTexture rTexture, TerrainTexture gTexture, TerrainTexture bTexture) {
         this.backgroundTexture = backgroundTexture;

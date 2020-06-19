@@ -14,24 +14,13 @@ public class RawModel {
 	private int vaoID;
 	private int vertexCount;
 
-    // Constructor for a Model with a vertexCount.
-
 	/**
+	 * Constructor for a Model with a vertexCount.
 	 *
-	 * @param vaoID
-	 * @param vertexCount
+	 * @param vaoID integer Unique ID of a Vertex Array Object, this is a memory reference for the Vertex Array Object (VAO).
+	 * @param vertexCount integer Total amount of vertices.
 	 */
 	public RawModel(int vaoID, int vertexCount){
-		this.vaoID = vaoID;
-		this.vertexCount = vertexCount;
-	}
-
-	// Constructor for a Model without vertexCount.
-	/**
-	 *
-	 * @param vaoID
-	 */
-	public RawModel(int vaoID){
 		this.vaoID = vaoID;
 		this.vertexCount = vertexCount;
 	}

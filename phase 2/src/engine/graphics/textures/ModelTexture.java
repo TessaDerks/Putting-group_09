@@ -14,9 +14,10 @@ public class ModelTexture {
 
 
     /**
-     *
-     * @return
+     * returns true or false, depending on if the modelTexture is using fake Lighting.
+     * @return true if the object is using fake Lighting
      */
+
     public boolean isUseFakeLighting() {
         return useFakeLighting;
     }
@@ -26,8 +27,8 @@ public class ModelTexture {
     }
 
     /**
-     *
-     * @return
+     * returns true or false, depending on if the modelTexture is transparent.
+     * @return true if the object is transparent
      */
     public boolean isHasTransparency() {
         return hasTransparency;
@@ -38,8 +39,8 @@ public class ModelTexture {
     }
 
     /**
-     *
-     * @param id
+     * Constructor for the modelTexture
+     * @param id int sets the textureID of a modelTexture object.
      */
     public ModelTexture(int id){
         this.textureID = id;

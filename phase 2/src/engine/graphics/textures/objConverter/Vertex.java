@@ -15,9 +15,10 @@ public class Vertex {
     private float length;
 
     /**
-     *
-     * @param index
-     * @param position
+     * This is a constructor for a Vertex.
+     * Here you can create a vertex with an index number and position.
+     * @param index int index of the Vertex.
+     * @param position Vector3f position of the vertex.
      */
     public Vertex(int index, @NotNull Vector3f position){
         this.index = index;
@@ -25,23 +26,11 @@ public class Vertex {
         this.length = position.length();
     }
 
-    public int getIndex(){
-        return index;
-    }
-
-    public float getLength(){
-        return length;
-    }
-
-    public boolean isSet(){
-        return textureIndex!=NO_INDEX && normalIndex!=NO_INDEX;
-    }
-
     /**
-     *
-     * @param textureIndexOther
-     * @param normalIndexOther
-     * @return
+     * This checks if a vertex has the same textures and normals.
+     * @param textureIndexOther int texture index of the texture you want to check with.
+     * @param normalIndexOther int normal index of the normal you want to check with.
+     * @return boolean true if texture and normal are the same false if not.
      */
     public boolean hasSameTextureAndNormal(int textureIndexOther,int normalIndexOther){
         return textureIndexOther==textureIndex && normalIndexOther==normalIndex;
@@ -73,6 +62,16 @@ public class Vertex {
 
     public void setDuplicateVertex(Vertex duplicateVertex) {
         this.duplicateVertex = duplicateVertex;
+    }
+
+    public int getIndex() { return index; }
+
+    public float getLength(){
+        return length;
+    }
+
+    public boolean isSet(){
+        return textureIndex!=NO_INDEX && normalIndex!=NO_INDEX;
     }
 
 }

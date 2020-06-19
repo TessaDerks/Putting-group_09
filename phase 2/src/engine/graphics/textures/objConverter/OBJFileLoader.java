@@ -18,9 +18,10 @@ public class OBJFileLoader {
     private static final String RES_LOC = "res/";
 
     /**
-     *
-     * @param objFileName
-     * @return
+     * .obj Loader to ModelData.
+     * Reads in .obj data and converts it to a Model Data object.
+     * @param objFileName String File name of the .obj file.
+     * @return returns ModelData
      */
     public static @NotNull ModelData loadOBJ(String objFileName) {
         FileReader read = null;
@@ -89,10 +90,10 @@ public class OBJFileLoader {
     }
 
     /**
-     *
-     * @param vertex
-     * @param vertices
-     * @param indices
+     * Processing the Vertices and Indices and giving them an index number.
+     * @param vertex String[] line of the string that the .obj loader reads, in order to process it.
+     * @param vertices List<Vertex> List of vertices
+     * @param indices List<Integer> List of integers
      */
     private static void processVertex(String @NotNull [] vertex, @NotNull List<Vertex> vertices, List<Integer> indices) {
         int index = Integer.parseInt(vertex[0]) - 1;
@@ -110,9 +111,9 @@ public class OBJFileLoader {
     }
 
     /**
-     *
-     * @param indices
-     * @return
+     * Converting a List of indices to an Array of indices.
+     * @param indices List<Integer>
+     * @return returns an integer array with the indices
      */
     private static int @NotNull [] convertIndicesListToArray(@NotNull List<Integer> indices) {
         int[] indicesArray = new int[indices.size()];
@@ -123,14 +124,14 @@ public class OBJFileLoader {
     }
 
     /**
-     *
-     * @param vertices
-     * @param textures
-     * @param normals
-     * @param verticesArray
-     * @param texturesArray
-     * @param normalsArray
-     * @return
+     * Converting data of the .obj file to arrays
+     * @param vertices List<Vertex> List of the vertices
+     * @param textures List<Vector2f> List of the textures
+     * @param normals List<Vector3f> List of the normals
+     * @param verticesArray float[]
+     * @param texturesArray float[]
+     * @param normalsArray float[]
+     * @return float The furthest point
      */
     private static float convertDataToArrays(@NotNull List<Vertex> vertices, List<Vector2f> textures,
                                              List<Vector3f> normals, float[] verticesArray, float[] texturesArray,
@@ -157,12 +158,12 @@ public class OBJFileLoader {
     }
 
     /**
-     *
-     * @param previousVertex
-     * @param newTextureIndex
-     * @param newNormalIndex
-     * @param indices
-     * @param vertices
+     * When a vertex has the same textures and normals it gets processed more efficiently here.
+     * @param previousVertex Vertex this is the previous Vertex.
+     * @param newTextureIndex int This is the index of the new Texture.
+     * @param newNormalIndex int this is the index of the new Normal.
+     * @param indices List<Integer> this is a list of the indices.
+     * @param vertices List<Vertex>  this is a list of the vertices.
      */
     private static void dealWithAlreadyProcessedVertex(@NotNull Vertex previousVertex, int newTextureIndex,
                                                        int newNormalIndex, List<Integer> indices, List<Vertex> vertices) {
@@ -186,8 +187,8 @@ public class OBJFileLoader {
     }
 
     /**
-     *
-     * @param vertices
+     * Removing unused vertices out a list of vertices
+     * @param vertices List<Vertex> a list of vertices
      */
     private static void removeUnusedVertices(@NotNull List<Vertex> vertices){
         for(Vertex vertex:vertices){

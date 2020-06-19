@@ -9,12 +9,13 @@ public class ModelData {
     private float furthestPoint;
 
     /**
-     *
-     * @param vertices
-     * @param textureCoords
-     * @param normals
-     * @param indices
-     * @param furthestPoint
+     * Constructor for ModelData
+     * This contains all the data for a model, like vertices, texture coordinates, normal data, indices data and furthest point data
+     * @param vertices float[] Array with all the coordinates of the vertices
+     * @param textureCoords float[] array with all the coordinates of the textures
+     * @param normals float[] array with all the coordinates of the normals
+     * @param indices int[] array with all the indices.
+     * @param furthestPoint float float value with the furthest point.
      */
     public ModelData(float[] vertices, float[] textureCoords, float[] normals, int[] indices,
                      float furthestPoint) {

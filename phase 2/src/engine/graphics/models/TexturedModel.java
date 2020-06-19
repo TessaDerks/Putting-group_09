@@ -8,9 +8,10 @@ public class TexturedModel {
 
 // Constructor for a textured Model, takes in a rawModel and textures for a model.
     /**
-     *
-     * @param model
-     * @param texture
+     * Constructor for a Textured Model
+     * This create a Textured Model, by combining the RawModel with the ModelTexture.
+     * @param model RawMode, assigns a RawModel to a created TexturedModel object.
+     * @param texture ModelTexture, assigns a ModelTexture to a created TexturedModel object.
      */
     public TexturedModel(RawModel model, ModelTexture texture){
         this.rawModel = model;

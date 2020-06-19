@@ -33,12 +33,12 @@ public class Loader {
 // loading of RawModel to Vertex Array Object
 
     /**
-     *
-     * @param positions
-     * @param textureCoords
-     * @param normals
-     * @param indices
-     * @return
+     * Loading the data into a vertex array object.
+     * @param positions float[]
+     * @param textureCoords float[]
+     * @param normals float[]
+     * @param indices int[]
+     * @return RawModel
      */
     public RawModel loadToVAO(float[] positions, float[] textureCoords,float [] normals, int[] indices){
         int vaoID = createVAO();

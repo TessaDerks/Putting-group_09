@@ -9,10 +9,11 @@ public class TextureData {
     private ByteBuffer buffer;
 
     /**
-     *
-     * @param buffer
-     * @param width
-     * @param height
+     * Constructor for a TextureData object
+     * assigns a buffer for the textureData and the width and height of the texture files.
+     * @param buffer ByteBuffer
+     * @param width int
+     * @param height int
      */
     public TextureData(ByteBuffer buffer, int width, int height){
         this.buffer = buffer;

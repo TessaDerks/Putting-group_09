@@ -23,9 +23,10 @@ public class EntityRenderer {
 // Constructor for Entity
 
 	/**
-	 *
-	 * @param shader
-	 * @param projectionMatrix
+	 * Constructor for the EntityRenderer
+	 * This is the renderer for an entity
+	 * @param shader StaticShader the shaders of the entity Renderer
+	 * @param projectionMatrix Matrix4f Projection Matrix of the entity renderer
 	 */
 	public EntityRenderer(@NotNull StaticShader shader, Matrix4f projectionMatrix){
 		this.shader = shader;
@@ -36,6 +37,7 @@ public class EntityRenderer {
 // Render method
 
 	/**
+	 * render method, this renders all the entities
 	 *
 	 * @param entities
 	 */
@@ -50,11 +52,11 @@ public class EntityRenderer {
 			unbindTexturedModel();
 		}
 	}
-//  binding of a textured model.
+
 
 	/**
-	 *
-	 * @param model1
+	 * This prepares the texturedModel for rendering.
+	 * @param model1 TexturedModel
 	 */
 	public void prepareTexturedModel (@NotNull TexturedModel model1){
 
@@ -87,8 +89,8 @@ public class EntityRenderer {
 	}
 
 	/**
-	 *
-	 * @param entity
+	 * Preparation of entity
+	 * @param entity Entity this is an entity that needs to be prepared for rendering, making of a transformation Matrix and loading it to the shader.
 	 */
 	private void prepareInstance(@NotNull Entity entity){
 
