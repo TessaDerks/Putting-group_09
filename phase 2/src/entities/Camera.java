@@ -18,19 +18,18 @@ public class Camera {
     private Vector3f position = new Vector3f(0,30,0);
     private float pitch = 20;
     private float yaw = 0;
-    private float roll;
     private Player player;
 
-// Constructor for Camera
 
     /**
-     *
-     * @param player
+     * assign camera to player
+     * @param player entity, player in this game is golf ball
      */
     public Camera(Player player){
         this.player = player;
     }
-// Movement of camera.
+
+
     public void move(){
         calculateZoom();
         calculatePitch();
@@ -40,25 +39,11 @@ public class Camera {
         calculateCameraPosition(horizontalDistance, verticalDistance);
 
     }
-// getters
-    public Vector3f getPosition() {
-        return position;
-    }
-    public float getPitch() {
-        return pitch;
-    }
-    public float getYaw() {
-        return yaw;
-    }
-    public float getRoll() {
-        return roll;
-    }
-// calculation of Camera Position
 
     /**
-     *
-     * @param horDistance
-     * @param vertDistance
+     * calculate camera position in proportion with player
+     * @param horDistance float
+     * @param vertDistance float
      */
     private void calculateCameraPosition(float horDistance, float vertDistance){
         float theta = player.getRotY() + angleAroundPlayer;
@@ -69,25 +54,15 @@ public class Camera {
         position.y = player.getPosition().y + vertDistance;
         this.yaw = 180 - (player.getRotY()+angleAroundPlayer);
     }
-// calculation of Horizontal Distance
 
-    /**
-     *
-     * @return
-     */
     private float calculateHorizontalDistance(){
         return (float) (distanceFromPlayer * Math.cos(Math.toRadians(pitch)));
     }
-// calculation of vertical Distance
 
-    /**
-     *
-     * @return
-     */
     private float calculateVerticalDistance(){
         return (float) (distanceFromPlayer * Math.sin(Math.toRadians(pitch)));
     }
-// calculation of Zoom
+
     private void calculateZoom(){
         if(Input.isKeyDown(GLFW.GLFW_KEY_UP)){
             distanceFromPlayer += 1;
@@ -96,7 +71,7 @@ public class Camera {
             distanceFromPlayer -= 1;
         }
     }
-// calculation of Pitch
+
     private void calculatePitch(){
 
         if(Input.isKeyDown(GLFW.GLFW_KEY_LEFT)){
@@ -108,7 +83,7 @@ public class Camera {
             pitch += pitchChange;
         }
     }
-// calculation of camera angle around the player
+
     private void calculateAngleAroundPlayer(){
 
         if(Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)){
@@ -120,9 +95,19 @@ public class Camera {
             angleAroundPlayer += angleChange;
         }
     }
-// invert the pitch
+
     public void invertPitch(){
         this.pitch = -pitch;
+    }
+
+    public Vector3f getPosition() {
+        return position;
+    }
+    public float getPitch() {
+        return pitch;
+    }
+    public float getYaw() {
+        return yaw;
     }
 
 }

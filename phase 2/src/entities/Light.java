@@ -8,34 +8,17 @@ public class Light {
     private Vector3f colour;
     private Vector3f attenuation = new Vector3f(1,0,0);
 
-// Constructor 1 for light: without Attenuation
-
     /**
-     *
-     * @param position
-     * @param colour
+     * creates Light
+     * @param position Vector3f, position of Light in game
+     * @param colour Vector3f, colour of light
      */
     public Light(Vector3f position, Vector3f colour) {
         this.position = position;
         this.colour = colour;
     }
-// Constructor 2 for Light: with Attenuation (if light travels a big distance, it becomes dimmer with this constructor)
 
-    /**
-     *
-     * @param position
-     * @param colour
-     * @param attenuation
-     */
-    public Light(Vector3f position, Vector3f colour, Vector3f attenuation) {
-        this.position = position;
-        this.colour = colour;
-        this.attenuation = attenuation;
-    }
-// Getters and Setters
-    public Vector3f getAttenuation() {
-        return attenuation;
-    }
+    public Vector3f getAttenuation() { return attenuation; }
 
     public Vector3f getPosition() {
         return position;
@@ -49,7 +32,4 @@ public class Light {
         return colour;
     }
 
-    public void setColour(Vector3f colour) {
-        this.colour = colour;
-    }
 }
