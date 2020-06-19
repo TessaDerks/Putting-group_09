@@ -106,20 +106,18 @@ public class Controller implements Initializable {
     @FXML
     private TextField heightString;
 
-    @FXML
-    private Button applyFileReader;
-
-    @FXML
-    private Button applyManInput;
-
     private ArrayList<Vector2d> treesList = new ArrayList<>();
 
     private ArrayList<Vector2d> sandList = new ArrayList<>();
 
     // read textfield from manual input screen and send information about terrain to simulate main
 
+    /**
+     *
+     * @throws IOException
+     */
     @FXML
-    private void applyMan(MouseEvent event) throws IOException {
+    private void applyMan() throws IOException {
         double gravityConstant = Double.parseDouble(gravity.getText());
         double massOfBall = Double.parseDouble(mass.getText());
         double frictionCoefficient = Double.parseDouble(friction.getText());
@@ -137,8 +135,12 @@ public class Controller implements Initializable {
         SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList, heightMap);
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     @FXML
-    private void randomNoiseGenerate(MouseEvent event) throws IOException {
+    private void randomNoiseGenerate() throws IOException {
         Random r = new Random();
         int largestFeature = r.nextInt(1000);
         float persistence = r.nextFloat()* 0.5f;
@@ -155,15 +157,13 @@ public class Controller implements Initializable {
         double XEnd=500;
         double yStart=0;
         double yEnd=500;
-        int xResolution= width;
-        int yResolution= height;
 
-        double[][] result=new double[xResolution][yResolution];
+        double[][] result=new double[width][height];
 
-        for(int i=0;i<xResolution;i++){
-            for(int j=0;j<yResolution;j++){
-                int x=(int)(xStart+i*((XEnd-xStart)/xResolution));
-                int y=(int)(yStart+j*((yEnd-yStart)/yResolution));
+        for(int i = 0; i< width; i++){
+            for(int j = 0; j< height; j++){
+                int x=(int)(xStart+i*((XEnd-xStart)/ width));
+                int y=(int)(yStart+j*((yEnd-yStart)/ height));
                 result[i][j]=0.5*(1+simplexNoise.getNoise(x,y));
             }
         }
@@ -202,9 +202,14 @@ public class Controller implements Initializable {
 
    */
 
-    // read textfields from file input screen and send information to filereader 
+    // read textfields from file input screen and send information to filereader
+
+    /**
+     *
+     * @throws IOException
+     */
     @FXML
-    private void applyFile(MouseEvent event) throws IOException {
+    private void applyFile() throws IOException {
         String fileCourse = courseCreator.getText();
         String fileShots = listMoves.getText();
         FileReader fileReader = new FileReader();
@@ -214,7 +219,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void applyRandomTrees(MouseEvent event){
+    private void applyRandomTrees(){
 
         for(int i = 0; i< 15; i++){
             double x = Math.random() * (800 + 1);
@@ -225,18 +230,18 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void resetTreeList(MouseEvent event){
+    private void resetTreeList(){
         treesList = new ArrayList<>();
     }
 
     @FXML
-    private void resetSandList(MouseEvent event){
+    private void resetSandList(){
         sandList = new ArrayList<>();
     }
 
 
     @FXML
-    private void applyRandomSand(MouseEvent event){
+    private void applyRandomSand(){
 
         for(int i = 0; i< 15; i++){
             double xTop = Math.random() * (800 + 1);
@@ -251,7 +256,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void applyTreesButton(MouseEvent event){
+    private void applyTreesButton(){
         double x = Double.parseDouble(treePosX.getText());
         double y = Double.parseDouble(treePosY.getText());
         Vector2d tree = new Vector2d(x,y);
@@ -259,7 +264,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void applySandButton(MouseEvent event){
+    private void applySandButton(){
         double xTop = Double.parseDouble(sandTopX.getText());
         double yTop = Double.parseDouble(sandTopY.getText());
         Vector2d sandTop = new Vector2d(xTop,yTop);
@@ -276,22 +281,22 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void start(MouseEvent event) {
+    private void start() {
         UILoader("Finish");
     }
 
     @FXML
-    private void manInput(MouseEvent event){
+    private void manInput(){
         UILoader("ManualInputScreen");
     }
 
     @FXML
-    private void fileRead(MouseEvent event){
+    private void fileRead(){
         UILoader("FileReaderScreen");
     }
 
     @FXML
-    private void exit(MouseEvent event){
+    private void exit(){
         Stage stage = (Stage) borderPane.getScene().getWindow();
         stage.close();
     }

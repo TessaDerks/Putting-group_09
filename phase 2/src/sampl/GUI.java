@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
@@ -21,8 +22,13 @@ public class GUI extends Application {
         launch(args);
     }
 
+    /**
+     *
+     * @param primaryStage
+     * @throws IOException
+     */
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(@NotNull Stage primaryStage) throws IOException {
         
         Parent root = FXMLLoader.load(getClass().getResource("GUIScreen.fxml"));
 
