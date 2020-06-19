@@ -9,18 +9,16 @@ public class GUITexture {
     private Vector2f scale;
 
     /**
-     *
-     * @param texture
-     * @param position
-     * @param scale
+     * create texture for small GUI that appears when ball landed at hole
+     * @param texture int, texture that is loaded in Main
+     * @param position Vector2f, position of texture for win GUI
+     * @param scale Vector2f, scale of texture for win GUI
      */
     public GUITexture(int texture, Vector2f position, Vector2f scale) {
         this.texture = texture;
         this.position = position;
         this.scale = scale;
     }
-
-
 
     public int getTexture() {
         return texture;

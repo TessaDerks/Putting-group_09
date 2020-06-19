@@ -9,15 +9,15 @@ import org.lwjglx.util.vector.Matrix4f;
 
 import java.util.List;
 
-// renders small GUI in the right corner of the window of terrain
+
 public class GUIRenderer {
 
     private final RawModel quad;
     private GUIShader shader;
 
     /**
-     *
-     * @param loader
+     * create renderer for small GUI that appears when ball landed at hole
+     * @param loader Loader
      */
     public GUIRenderer(@NotNull Loader loader){
         float[] positions = {-1,1,-1,-1,1,1,1,-1};
@@ -26,8 +26,8 @@ public class GUIRenderer {
     }
 
     /**
-     *
-     * @param guis
+     * render small GUI screen
+     * @param guis List<GUITexture>, list of GUI's to render
      */
     public void render(@NotNull List<GUITexture> guis){
         shader.start();
@@ -36,7 +36,7 @@ public class GUIRenderer {
         GL46.glEnable(GL46.GL_BLEND);
         GL46.glBlendFunc(GL46.GL_SRC_ALPHA, GL46.GL_ONE_MINUS_SRC_ALPHA);
         GL46.glDisable(GL46.GL_DEPTH_TEST);
-        //render part
+
         for(GUITexture gui: guis){
             GL13.glActiveTexture(GL13.GL_TEXTURE0);
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, gui.getTexture());
