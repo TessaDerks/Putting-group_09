@@ -204,7 +204,7 @@ public class Main implements Runnable {
 
 		// generate light
 		lights = new ArrayList<Light>();
-		lights.add(new Light(new Vector3f(200,200,0), new Vector3f(1f,1f,1f)));
+		lights.add(new Light(new Vector3f(1000,1000,300), new Vector3f(1f,1f,1f)));
 
 
 		// create and render small GUI in top right position if your ball landed in the hole
@@ -239,7 +239,7 @@ public class Main implements Runnable {
 			float x = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_x();
 			float z = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_y();
 			float y = terrain.getHeightOfTerrain(x,z);
-			stump.add(new Entity(texturedModelStump, new Vector3f(x,y,z),0,0,0,1));
+			stump.add(new Entity(texturedModelStump, new Vector3f(x,y,z),0,0,0,5));
 		}
 
 

@@ -23,17 +23,21 @@ import physics.Vector2d;
 import simplexNoise.ImageWriter;
 import simplexNoise.SimplexNoise;
 import terrain.Terrain;
+import MazeGenerator.MazeForSale;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -114,6 +118,7 @@ public class Controller implements Initializable {
     private ArrayList<Vector2d> sandList = new ArrayList<>();
 
     private ArrayList<Tree> stumps = new ArrayList<>();
+    public static int line;
 
     // read textfield from manual input screen and send information about terrain to simulate main
 
@@ -143,7 +148,44 @@ public class Controller implements Initializable {
 
     @FXML
     private void mazeGeneration() {
-        stumps = MazeGenerator.createMaze();
+
+        MazeForSale maze = new MazeForSale(100,100);
+       line = 0;
+        ArrayList<Tree> d = new ArrayList<>();
+
+        // Create a stream to hold the output
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+// IMPORTANT: Save the old System.out!
+        PrintStream old = System.out;
+// Tell Java to use your special stream
+        System.setOut(ps);
+// Print some output: goes to your special stream
+        System.out.println(maze.toString());
+// Put things back
+        System.out.flush();
+        System.setOut(old);
+// Show what happened
+        Scanner scanner = new Scanner(baos.toString());
+        while (scanner.hasNextLine()) {
+            line++;
+            String s = scanner.nextLine();
+            for (int i = 0; i < s.length(); i++){
+                char c = s.charAt(i);
+
+                if(c == '1'){
+                    d.add(new Tree(new Vector2d(line,i), 0.5));
+                }
+                if (c == 's'){
+
+                }
+
+            }
+
+        }
+        scanner.close();
+
+        stumps =  d;
     }
 
     /**
