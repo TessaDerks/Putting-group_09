@@ -30,10 +30,18 @@ public class SkyboxShader extends ShaderProgram{
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
 
+    /**
+     *
+     * @param matrix
+     */
     public void loadProjectionMatrix(Matrix4f matrix){
         super.loadMatrix(location_projectionMatrix, matrix);
     }
 
+    /**
+     *
+     * @param camera
+     */
     public void loadViewMatrix(Camera camera){
         Matrix4f matrix = Maths.createViewMatrix(camera);
         matrix.m30 = 0;
@@ -44,6 +52,12 @@ public class SkyboxShader extends ShaderProgram{
         super.loadMatrix(location_viewMatrix, matrix);
     }
 
+    /**
+     *
+     * @param r
+     * @param g
+     * @param b
+     */
     public void loadFogColour(float r, float g, float b){
         super.loadVector(location_fogColour, new Vector3f(r,g,b));
     }
@@ -53,6 +67,10 @@ public class SkyboxShader extends ShaderProgram{
         super.loadInt(location_cubeMap2, 1);
     }
 
+    /**
+     *
+     * @param blend
+     */
     public void loadBlendFactor(float blend){
         super.loadFloat(location_blendFactor, blend);
     }

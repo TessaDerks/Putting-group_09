@@ -1,7 +1,5 @@
 package Swing;
 
-import physics.PuttingSimulator;
-import physics.SIESolver;
 import physics.SimulateMain;
 
 import javax.swing.JButton;
