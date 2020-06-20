@@ -4,13 +4,9 @@ import engine.graphics.Loader;
 import engine.graphics.models.RawModel;
 import engine.io.Window;
 import entities.Camera;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL46;
 import org.lwjglx.util.vector.Matrix4f;
-
-import java.io.IOException;
-
-import static org.lwjgl.opengl.GL11.GL_FALSE;
-import static org.lwjgl.opengl.GL11.glDepthMask;
 
 public class SkyboxRenderer {
 
@@ -61,8 +57,8 @@ public class SkyboxRenderer {
     };
 
 
-    private static String[] TEXTURE_FILES = {"right", "left", "top", "bottom", "back", "front"};
-    private static String[] NIGHT_TEXTURE_FILES = {"nightRight", "nightLeft", "nightTop", "nightBottom", "nightBack", "nightFront"};
+    private static final String[] TEXTURE_FILES = {"right", "left", "top", "bottom", "back", "front"};
+    private static final String[] NIGHT_TEXTURE_FILES = {"nightRight", "nightLeft", "nightTop", "nightBottom", "nightBack", "nightFront"};
 
     private RawModel cube;
     private int texture;
@@ -75,7 +71,13 @@ public class SkyboxRenderer {
         return shader;
     }
 // Constructor for skybox
-    public SkyboxRenderer(Loader loader, Matrix4f projectionMatrix){
+
+    /**
+     *
+     * @param loader
+     * @param projectionMatrix
+     */
+    public SkyboxRenderer(@NotNull Loader loader, Matrix4f projectionMatrix){
 
         cube = loader.loadToVAO(VERTICES, 3);
         texture = loader.loadCubeMap(TEXTURE_FILES);
@@ -87,6 +89,14 @@ public class SkyboxRenderer {
         shader.stop();
     }
 // Render method
+
+    /**
+     *
+     * @param camera
+     * @param r
+     * @param g
+     * @param b
+     */
     public void render(Camera camera, float r, float g, float b){
 
         shader.start();
@@ -110,8 +120,6 @@ public class SkyboxRenderer {
     private void bindTextures(){
         time += Window.getFrameTimeSeconds()*1000;
         time%=24000;
-        int texture1 = texture;
-        int texture2 = nightTexture;
         float blendFactor = -((time/1000f)-13)*((time/1000f)-13) * 0.02f + 1;
 
         if(blendFactor < 0) blendFactor = 0;
