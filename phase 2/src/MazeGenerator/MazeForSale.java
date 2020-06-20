@@ -10,43 +10,7 @@ import java.util.Scanner;
 
 public class MazeForSale {
 
-
-        public static void mazeCreation() {
-            MazeForSale maze = new MazeForSale(40,40);
-            int line = 0;
-            ArrayList<Tree> d = new ArrayList<>();
-
-
-            // Create a stream to hold the output
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            PrintStream ps = new PrintStream(baos);
-// IMPORTANT: Save the old System.out!
-            PrintStream old = System.out;
-// Tell Java to use your special stream
-            System.setOut(ps);
-// Print some output: goes to your special stream
-            System.out.println(maze);
-// Put things back
-            System.out.flush();
-            System.setOut(old);
-// Show what happened
-            Scanner scanner = new Scanner(baos.toString());
-            while (scanner.hasNextLine()) {
-                String s = scanner.nextLine();
-                for (int i = 0; i < s.length(); i++){
-                    char c = s.charAt(i);
-                    if(c == 1){
-                        d.add(new Tree(new Vector2d(line,i), 0.5));
-                    }
-                    line++;
-                }
-
-            } scanner.close();
-
-        }
-
         Cell maze[][];
-
 
     public MazeForSale() {
             maze = new Cell[0][0];
@@ -155,6 +119,4 @@ public class MazeForSale {
             }
             return res.toString();
         }
-
-
 }
