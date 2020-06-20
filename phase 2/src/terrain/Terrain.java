@@ -70,7 +70,7 @@ public class Terrain {
 
     private RawModel generateTerrainFunction(Loader loader){
 
-        int VERTEX_COUNT = 1048;
+        int VERTEX_COUNT = (int) SIZE;
 
         heights = new float[VERTEX_COUNT][VERTEX_COUNT];
 
