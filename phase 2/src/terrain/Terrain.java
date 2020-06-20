@@ -5,9 +5,9 @@ import engine.graphics.models.RawModel;
 import engine.graphics.textures.TerrainTexture;
 import engine.graphics.textures.TerrainTexturePack;
 import maths.Maths;
+import org.jetbrains.annotations.NotNull;
 import org.lwjglx.util.vector.Vector2f;
 import org.lwjglx.util.vector.Vector3f;
-import physics.Function;
 import physics.SimulateMain;
 import physics.Vector2d;
 
@@ -38,20 +38,14 @@ public class Terrain {
         return blendMap;
     }
 
-    public Terrain(int gridX, int gridZ, Loader loader){
-        this.x = gridX*SIZE;
-        this.z = gridZ*SIZE;
-        if(SimulateMain.getHeightMap().equals("")){
-            this.model = generateTerrainFunction(loader);
-            System.out.println("a");
-        }
-        else
-        {
-            this.model = generateTerrainMap(loader, SimulateMain.getHeightMap());
-            System.out.println("b");
-        }
-    }
-
+    /**
+     *
+     * @param gridX
+     * @param gridZ
+     * @param loader
+     * @param texturePack
+     * @param blendMap
+     */
     public Terrain(int gridX, int gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap){
         this.texturePack = texturePack;
         this.blendMap = blendMap;
@@ -68,6 +62,11 @@ public class Terrain {
         }
     }
 
+    /**
+     *
+     * @param loader
+     * @return
+     */
     private RawModel generateTerrainFunction(Loader loader){
 
         int VERTEX_COUNT = (int) SIZE;
@@ -115,7 +114,14 @@ public class Terrain {
     }
 
     // calculation of normals.
-    private Vector3f calculateNormalFunction(int x, int z){
+
+    /**
+     *
+     * @param x
+     * @param z
+     * @return
+     */
+    private @NotNull Vector3f calculateNormalFunction(int x, int z){
 
         float heightL = (float) SimulateMain.getFunction().evaluate( new Vector2d(x-1,z));
         float heightR = (float) SimulateMain.getFunction().evaluate(new Vector2d(x+1, z));
@@ -127,6 +133,12 @@ public class Terrain {
         return normal;
     }
 
+    /**
+     *
+     * @param loader
+     * @param heightMap
+     * @return
+     */
     private RawModel generateTerrainMap(Loader loader, String heightMap){
 
         BufferedImage image = null;
@@ -135,7 +147,10 @@ public class Terrain {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int VERTEX_COUNT = image.getHeight();
+        int VERTEX_COUNT = 0;
+        if (image != null) {
+            VERTEX_COUNT = image.getHeight();
+        }
         heights = new float[VERTEX_COUNT][VERTEX_COUNT];
 
         int count = VERTEX_COUNT * VERTEX_COUNT;
@@ -178,7 +193,14 @@ public class Terrain {
         return loader.loadToVAO(vertices, textureCoords, normals, indices);
     }
 
-    private Vector3f calculateNormalMap(int x, int z, BufferedImage image){
+    /**
+     *
+     * @param x
+     * @param z
+     * @param image
+     * @return
+     */
+    private @NotNull Vector3f calculateNormalMap(int x, int z, BufferedImage image){
         float heightL = getHeight(x-1,z, image);
         float heightR = getHeight(x+1, z, image);
         float heightD = getHeight(x,z-1, image);
@@ -188,6 +210,13 @@ public class Terrain {
         return normal;
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param image
+     * @return
+     */
     private float getHeight(int x, int y, BufferedImage image){
         if(x<0 || x>=image.getHeight() || y<0 || y>=image.getHeight()){
             return 0;
@@ -200,6 +229,12 @@ public class Terrain {
 
     }
 
+    /**
+     *
+     * @param worldX
+     * @param worldZ
+     * @return
+     */
     public float getHeightOfTerrain(float worldX, float worldZ){
         float terrainX = worldX - this.x;
         float terrainZ = worldZ - this.z;
@@ -236,8 +271,6 @@ public class Terrain {
     public float getZ() {
         return z;
     }
-
-
 
     public RawModel getModel() {
         return model;
