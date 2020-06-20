@@ -30,7 +30,7 @@ public class TestAI {
      */
     public static void runMazeAI(Vector2d _start, Vector2d _end){
         Main.aiRunning = true;
-        GenerateNodes generator = new GenerateNodes(_start, _end,0.5,3);
+        GenerateNodes generator = new GenerateNodes(_start, _end,0.5,10);
         RouteFinder finder = new RouteFinder(generator.getMaze());
         List<CheckPoint> route = finder.findRoute(generator.getMaze().getNode(cToId(_start)),generator.getMaze().getNode(cToId(_end)));
 

@@ -26,7 +26,7 @@ public class GenerateNodes{
      * @param _k double, k => 0.5, determines distance between nodes
      * @param _compensate int, compensate > 0, amount of nodes behind the end
      */
-    public GenerateNodes(Vector2d _start, Vector2d _end, double _k, int _compensate){
+    public GenerateNodes(@NotNull Vector2d _start, Vector2d _end, double _k, int _compensate){
         end = _end;
         k = _k;
         compensate = _compensate;
