@@ -112,6 +112,12 @@ public class Controller implements Initializable {
     @FXML
     private TextField heightString;
 
+    @FXML
+    private TextField treeRadiusString;
+
+    public double treeRadius;
+
+
 
     private ArrayList<Vector2d> treesList = new ArrayList<>();
 
@@ -141,6 +147,7 @@ public class Controller implements Initializable {
         double maxV = Double.parseDouble(maxSpeed.getText());
         String heightFunction = heightProfile.getText();
         String heightMap = heightMapp.getText();
+
 
         SimulateMain.beginning(gravityConstant, massOfBall, frictionCoefficient, maxV, radiusOfTarget, start, goal, heightFunction, 1, treesList, sandList, heightMap, stumps);
     }
@@ -174,19 +181,19 @@ public class Controller implements Initializable {
                 char c = s.charAt(i);
 
                 if(c == '1'){
-                    d.add(new Tree(new Vector2d(line,i), 0.5));
+                    d.add(new Tree(new Vector2d(line,i), treeRadius));
                 }
                 else if (c == 'S'){
                     //  start (Btm Left in OpenGL)
                     Double mazeStart = Double.parseDouble(String.valueOf(line));
-                    String mazeStartString = Double.toString(mazeStart- 0.5 );
+                    String mazeStartString = Double.toString(mazeStart- treeRadius );
                     startPosX.setText(String.valueOf(line));
                     startPosY.setText(mazeStartString);
 
                 }
                 else if (c == 'E'){
                     Double mazeEnd = Double.parseDouble(String.valueOf(line));
-                    String mazeEndString = Double.toString(mazeEnd- 0.5 );
+                    String mazeEndString = Double.toString(mazeEnd- treeRadius );
                     goalPosX.setText(String.valueOf(line));
                     goalPosY.setText(mazeEndString);
                 }
@@ -323,6 +330,7 @@ public class Controller implements Initializable {
     private void applyTreesButton(){
         double x = Double.parseDouble(treePosX.getText());
         double y = Double.parseDouble(treePosY.getText());
+        treeRadius = Double.parseDouble(treeRadiusString.getText());
         Vector2d tree = new Vector2d(x,y);
         treesList.add(tree);
     }

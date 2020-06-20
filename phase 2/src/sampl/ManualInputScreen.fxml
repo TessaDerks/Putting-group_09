@@ -254,18 +254,28 @@
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin></ImageView>
-                                    <Label text="Tree Position ( x , y )" textFill="WHITE">
+                                    <Label prefHeight="17.0" prefWidth="126.0" text="Tree Position ( x , y)" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets left="30.0" top="40.0" />
+                                          <Insets left="10.0" top="40.0" />
                                        </HBox.margin></Label>
-                                    <TextField fx:id="treePosX">
+                                    <TextField fx:id="treePosX" prefHeight="25.0" prefWidth="75.0">
                                        <HBox.margin>
-                                          <Insets left="30.0" top="38.0" />
+                                          <Insets left="5.0" top="38.0" />
                                        </HBox.margin></TextField>
-                                    <TextField fx:id="treePosY">
+                                    <TextField fx:id="treePosY" prefHeight="25.0" prefWidth="75.0">
                                        <HBox.margin>
-                                          <Insets left="30.0" top="38.0" />
+                                          <Insets left="10.0" top="38.0" />
                                        </HBox.margin></TextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tree Radius (steps of 0.5)">
+                                       <HBox.margin>
+                                          <Insets left="15.0" right="20.0" top="40.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField fx:id="treeRadiusString" prefHeight="25.0" prefWidth="63.0">
+                                       <HBox.margin>
+                                          <Insets top="38.0" />
+                                       </HBox.margin>
+                                    </TextField>
                                  </children>
                               </HBox>
                               <HBox prefHeight="24.0" prefWidth="650.0">
@@ -286,7 +296,7 @@
                                        <HBox.margin>
                                           <Insets left="140.0" top="40.0" />
                                        </HBox.margin></Button>
-                                    <Button fx:id="resetTreeButton" mnemonicParsing="false" onMouseClicked="#resetTreeList" text="Reset">
+                                    <Button fx:id="resetTreeButton" mnemonicParsing="false" onMouseClicked="#resetTreeList" text="Reset List">
                                        <HBox.margin>
                                           <Insets left="20.0" top="40.0" />
                                        </HBox.margin>
@@ -308,15 +318,15 @@
                                        </HBox.margin></ImageView>
                                     <Label text="Sand | Top Left ( x , y )" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets left="30.0" top="40.0" />
+                                          <Insets left="10.0" top="40.0" />
                                        </HBox.margin></Label>
-                                    <TextField fx:id="sandTopX" prefHeight="25.0" prefWidth="138.0">
+                                    <TextField fx:id="sandTopX" prefHeight="25.0" prefWidth="75.0">
                                        <HBox.margin>
                                           <Insets left="60.0" top="40.0" />
                                        </HBox.margin></TextField>
-                                    <TextField fx:id="sandTopY" prefWidth="138.0">
+                                    <TextField fx:id="sandTopY" prefHeight="25.0" prefWidth="75.0">
                                        <HBox.margin>
-                                          <Insets left="30.0" top="40.0" />
+                                          <Insets left="10.0" top="40.0" />
                                        </HBox.margin></TextField>
                                  </children>
                               </HBox>
@@ -324,16 +334,16 @@
                                  <children>
                                     <Label text="Sand | Bottom Right ( x , y )" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets left="120.0" />
+                                          <Insets left="100.0" top="7.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="sandBtmX" prefWidth="138.0">
+                                    <TextField fx:id="sandBtmX" prefHeight="25.0" prefWidth="75.0">
                                        <HBox.margin>
-                                          <Insets left="32.0" />
+                                          <Insets left="32.0" top="5.0" />
                                        </HBox.margin></TextField>
-                                    <TextField fx:id="sandBtmY" prefWidth="138.0">
+                                    <TextField fx:id="sandBtmY" prefWidth="75.0">
                                        <HBox.margin>
-                                          <Insets left="30.0" />
+                                          <Insets left="10.0" top="5.0" />
                                        </HBox.margin></TextField>
                                  </children>
                               </HBox>
@@ -355,7 +365,7 @@
                                        <HBox.margin>
                                           <Insets left="140.0" top="40.0" />
                                        </HBox.margin></Button>
-                                    <Button fx:id="resetSandButton" mnemonicParsing="false" onMouseClicked="#resetSandList" text="Reset">
+                                    <Button fx:id="resetSandButton" mnemonicParsing="false" onMouseClicked="#resetSandList" text="Reset List">
                                        <HBox.margin>
                                           <Insets left="20.0" top="40.0" />
                                        </HBox.margin>
