@@ -1,5 +1,7 @@
 package simplexNoise;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,7 +11,11 @@ import javax.imageio.ImageIO;
 public class ImageWriter {
     //just convinence methods for debug
 
-    public static void greyWriteImage(double[][] data){
+    /**
+     *
+     * @param data
+     */
+    public static void greyWriteImage(double[] @NotNull [] data){
         //this takes and array of doubles between 0 and 1 and generates a grey scale image from them
 
         BufferedImage image = new BufferedImage(data.length,data[0].length, BufferedImage.TYPE_INT_RGB);

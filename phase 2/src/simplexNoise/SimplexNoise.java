@@ -12,6 +12,12 @@ public class SimplexNoise {
     double persistence;
     int seed;
 
+    /**
+     *
+     * @param largestFeature
+     * @param persistence
+     * @param seed
+     */
     public SimplexNoise(int largestFeature,double persistence, int seed){
         this.largestFeature=largestFeature;
         this.persistence=persistence;
@@ -36,7 +42,12 @@ public class SimplexNoise {
 
     }
 
-
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     public double getNoise(int x, int y){
 
         double result=0;
