@@ -149,8 +149,8 @@ public class Controller implements Initializable {
     @FXML
     private void mazeGeneration() {
 
-        MazeForSale maze = new MazeForSale(100,100);
-       line = 0;
+        MazeForSale maze = new MazeForSale(20,20);
+        line = 0;
         ArrayList<Tree> d = new ArrayList<>();
 
         // Create a stream to hold the output
@@ -176,8 +176,19 @@ public class Controller implements Initializable {
                 if(c == '1'){
                     d.add(new Tree(new Vector2d(line,i), 0.5));
                 }
-                if (c == 's'){
+                else if (c == 'S'){
+                    //  start (Btm Left in OpenGL)
+                    Double mazeStart = Double.parseDouble(String.valueOf(line));
+                    String mazeStartString = Double.toString(mazeStart- 0.5 );
+                    startPosX.setText(String.valueOf(line));
+                    startPosY.setText(mazeStartString);
 
+                }
+                else if (c == 'E'){
+                    Double mazeEnd = Double.parseDouble(String.valueOf(line));
+                    String mazeEndString = Double.toString(mazeEnd- 0.5 );
+                    goalPosX.setText(String.valueOf(line));
+                    goalPosY.setText(mazeEndString);
                 }
 
             }
