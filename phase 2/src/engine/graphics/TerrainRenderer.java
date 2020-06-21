@@ -21,9 +21,10 @@ public class TerrainRenderer {
 // Constructor for a Terrain Renderer
 
     /**
-     *
-     * @param shader
-     * @param projectionMatrix
+     * Constructor for the TerrainRenderer
+     * this method starts the terrainShader and loads in the projection matrix and connect all the Textures.
+     * @param shader TerrainShader, this is the shader for the terrain
+     * @param projectionMatrix Matrix4f, a projection matrix that is being loaded into the shader.
      */
     public TerrainRenderer(@NotNull TerrainShader shader, Matrix4f projectionMatrix) {
         this.shader = shader;
@@ -35,8 +36,9 @@ public class TerrainRenderer {
 // render method
 
     /**
-     *
-     * @param terrains
+     * Render method for the terrain
+     * this renders all the terrains in a list of terrains (can be used to render multiple terrains).
+     * @param terrains List<Terrain>, this is the list of terrains that will be rendered on screen.
      */
     public void render(@NotNull List<Terrain> terrains) {
         for (Terrain terrain : terrains) {
@@ -47,11 +49,11 @@ public class TerrainRenderer {
             unbindTexturedModel();
         }
     }
-// preparation of terrain to be rendered onto screen.
 
     /**
-     *
-     * @param terrain
+     * This method prepares the terrain for rendering
+     * this is where all the bindings of the vertexArrays happens and texturing of the terrain
+     * @param terrain Terrain, takes in the terrain that will be prepared for rendering, binds the textures and enables vertex attributes.
      */
     private void prepareTerrain(@NotNull Terrain terrain) {
         RawModel rawModel = terrain.getModel();
@@ -69,11 +71,11 @@ public class TerrainRenderer {
         //GL46.glActiveTexture(GL13.GL_TEXTURE0);
         //GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture.getID());
     }
-// binding of textures.
+
 
     /**
-     *
-     * @param terrain
+     * This method binds all the textures to a specific colour.
+     * @param terrain Terrain, takes in the texturePack of the terrain where the textures will be binded on.
      */
     private void bindTextures(@NotNull Terrain terrain){
         TerrainTexturePack texturePack = terrain.getTexturePack();
@@ -95,12 +97,9 @@ public class TerrainRenderer {
         GL20.glDisableVertexAttribArray(2);
         GL30.glBindVertexArray(0);
     }
+
 // loading of a terrain onto a transformation matrix
 
-    /**
-     *
-     * @param terrain
-     */
     private void loadModelMatrix(@NotNull Terrain terrain) {
         Matrix4f transformationMatrix = Maths.createTransformationMatrix(
                 new Vector3f(terrain.getX(), 0, terrain.getZ()), 0, 0, 0, 1);

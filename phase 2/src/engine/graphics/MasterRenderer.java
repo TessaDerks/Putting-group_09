@@ -40,8 +40,9 @@ public class MasterRenderer {
 // Constructor for MasterRenderer
 
     /**
-     *
-     * @param loader
+     * Constructor for the master renderer
+     * this creates a projection matrix as well as initializing an entity renderer, terrain renderer and skybox renderer.
+     * @param loader takes in a loader to render a skybox
      */
     public MasterRenderer(Loader loader) {
         enableCulling();
@@ -63,10 +64,10 @@ public class MasterRenderer {
 // render method
 
     /**
-     *
-     * @param lights
-     * @param camera
-     * @param clipPlane
+     * Render method, this method renders the camera and lights and prepares the shaders for the terrain, entities.
+     * @param lights List<Light>, list of light sources in the game
+     * @param camera Camera, inserts the camera in the game
+     * @param clipPlane Vector4f, plane where you want to start clipping the rendering.
      */
     public void render(List<Light> lights, Camera camera, Vector4f clipPlane){
         prepare();
@@ -95,8 +96,8 @@ public class MasterRenderer {
 // add terrain to list of terrains
 
     /**
-     *
-     * @param terrain
+     * Adding a terrain to a list of terrains
+     * @param terrain Terrain, takes in a terrain and puts it into a list of terrains
      */
     public void processTerrain(Terrain terrain){
         terrains.add(terrain);
@@ -108,8 +109,8 @@ public class MasterRenderer {
 // Adding Entity to a list of entities
 
     /**
-     *
-     * @param entity
+     * Adding an entity to be rendered by the master renderer.
+     * @param entity Entity, use this method to render an entity.
      */
     public void processEntity(Entity entity){
         TexturedModel entityModel = entity.getModel();
