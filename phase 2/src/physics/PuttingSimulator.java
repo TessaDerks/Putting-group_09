@@ -16,12 +16,10 @@ public class PuttingSimulator{
 	private PhysicsEngine engine;
 	//</editor-fold>
 
-	// Constructor.
-
 	/**
-	 *
-	 * @param _course
-	 * @param _engine
+	 * Constructor
+	 * @param _course PuttingCourse, the course to play on
+	 * @param _engine PhysicsEngine, the physics engine used for calculations
 	 */
 	public PuttingSimulator(PuttingCourse _course, PhysicsEngine _engine){
 		course = _course;
@@ -31,12 +29,11 @@ public class PuttingSimulator{
 		engine.recalculate();
 	}
 
-	// Take a shot.
-
 	/**
-	 *
-	 * @param initial_ball_velocity
-	 * @param useWhileLoop
+	 * Take a shot
+	 * @param initial_ball_velocity Vector2d, the velocity of the ball when the shot is taken
+	 * @param useWhileLoop boolean, set to true if shot should be calculated completely,
+	 * or false when only one time step should be calculated.
 	 */
 	public void take_shot(Vector2d initial_ball_velocity, boolean useWhileLoop){
 
@@ -86,18 +83,14 @@ public class PuttingSimulator{
 			}
 
 		}
-
-		//System.out.println(">> Shot landed at ( " + ball_position.get_x() + " , " + ball_position.get_y() + " ). t=" + engine.get_t());
 	}
 
-	// Calculate if ball is in hole.
-
 	/**
-	 *
-	 * @param position
-	 * @param flagPos
-	 * @param clearance
-	 * @return
+	 * Calculate if ball is in the hole
+	 * @param position Vector2d, position of ball
+	 * @param flagPos Vector2d, position of flag
+	 * @param clearance double, clearance > 0.1, number that radius around hole will be divide by, to have ai aim better
+	 * @return boolean, true when ball is in hole, false otherwise
 	 */
 	public boolean calcWin(@NotNull Vector2d position, @NotNull Vector2d flagPos, double clearance){
 		boolean r = false;
@@ -108,11 +101,9 @@ public class PuttingSimulator{
 		return r;
 	}
 
-	// Allows graphics engine to act a timestep.
-
 	/**
-	 *
-	 * @return
+	 * Allows graphics engine to execute a time step
+	 * @return Vector2d, ball position after time step was executed
 	 */
 	public Vector2d act_timestep_from_distance() {
 		engine.actTimestep();
