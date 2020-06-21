@@ -9,12 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 
-// create menu for manual shot input
+
 public class ShotMenu {
 
     private static final int FRAME_WIDTH = 200;
     private static final int FRAME_HEIGHT = 150;
 
+    /**
+     * create GUI for manual shot input
+     */
     public static void create(){
         JFrame frame = new JFrame();
         frame.setTitle("SHOT");
