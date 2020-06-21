@@ -57,27 +57,6 @@ public class PuttingSimulator{
 					break;
 				}
 
-				// Calculate tree hits.
-				for (Tree t : course.getTreeList()) {
-					if (t.treeHit(cp)) {
-						double rc;
-						double newAngle;
-						if (last_angle == 0 && ball_position.get_x() == t.getP().get_x()) {
-							newAngle = 180;
-						} else if (last_angle == 180 && ball_position.get_x() == t.getP().get_x()) {
-							newAngle = 0;
-						} else {
-							rc = (t.getP().get_y() - cp.get_y()) / (t.getP().get_x() - cp.get_x());
-							newAngle = 2 * Math.tan(rc) - last_angle - 90;
-						}
-
-						double ntv = Math.sqrt(Math.pow(cv.get_x(), 2) + Math.pow(cv.get_y(), 2));
-						Vector2d nv = Tools.velFromAngle(newAngle, ntv);
-						engine.set_v(nv);
-						break;
-					}
-				}
-
 				// Update ball position.
 				ball_position = cp;
 			}

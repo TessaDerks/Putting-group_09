@@ -64,7 +64,7 @@ public class SimulateMain {
 
         // add tree objects to puttingcourse
         for (Vector2d treePosition : treePositions) {
-            Tree t = new Tree(treePosition, 0.6);
+            Tree t = new Tree(treePosition, 0.5);
             course.addTree(t);
         }
 
