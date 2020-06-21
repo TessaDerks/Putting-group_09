@@ -134,7 +134,7 @@ public class Main implements Runnable {
 
 
 		// load objects to RawModels
-		modelDataTree = OBJFileLoader.loadOBJ("tree");
+		modelDataTree = OBJFileLoader.loadOBJ("uglyTree");
 		modelDataGrass = OBJFileLoader.loadOBJ("grassModel");
 		modelDataGolfBall = OBJFileLoader.loadOBJ("golfBall");
 		modelDataStump = OBJFileLoader.loadOBJ("treeStump2");
@@ -196,7 +196,7 @@ public class Main implements Runnable {
 			float x = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_x();
 			float z = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_y();
 			float y = terrain.getHeightOfTerrain(x,z);
-			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,5));
+			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,1));
 		}
 
 		// create stump entity list
