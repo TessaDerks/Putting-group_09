@@ -29,8 +29,8 @@ public class Test {
 
     /**
      *
-     * @param c
-     * @return
+     * @param c Vector2d, which you want to convert into a string
+     * @return String, converted Vector2d
      */
     public static @NotNull String cToId(@NotNull Vector2d c){
         return "("+c.get_x()+","+c.get_y()+")";

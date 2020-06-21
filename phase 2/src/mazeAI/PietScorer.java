@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class PietScorer<T> implements Scorer<CheckPoint>{
     /**
-     *
+     * Computes the score in between two checkpoints
      * @param from Checkpoint, starting checkpoint
      * @param to Checkpoint, end checkpoint
      * @return double, Manhattan distance between the checkpoints
