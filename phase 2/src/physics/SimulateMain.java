@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class SimulateMain {
 
     private static Vector2d start;

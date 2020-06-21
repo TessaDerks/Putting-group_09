@@ -2,6 +2,9 @@ package physics;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class PuttingSimulator{
 
 	//<editor-fold desc="Global Variables">

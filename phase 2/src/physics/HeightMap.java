@@ -10,6 +10,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class HeightMap implements Function2d {
 
     private BufferedImage heightMap = null;
