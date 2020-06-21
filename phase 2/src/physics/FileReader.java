@@ -18,6 +18,7 @@ public class FileReader {
 
     private static ArrayList<Vector2d> trees = new ArrayList<>();
     private static ArrayList<Vector2d> sand = new ArrayList<>();
+    private static ArrayList<Tree> stumps = new ArrayList<>();
 
     private static Vector2d[] velocity;
     private static Vector2d start;
@@ -26,15 +27,15 @@ public class FileReader {
     // read file about shots, create array with shots
 
     /**
-     *
-     * @param fileName
+     * read file and make list of shots
+     * @param fileName String, name of file that contains list with shots
      */
     public static void fileShot(String fileName){
 
         Scanner input;
 
         // add text in file to array by line
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
         try {
             File file = new File(fileName);
             input = new Scanner(file);
@@ -44,7 +45,7 @@ public class FileReader {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         // create array where shots will be added to
@@ -74,36 +75,33 @@ public class FileReader {
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * get velocity of a shot at given index
+     * @param index int, index of shot in list
+     * @return Vector2d, velocity of shot that is stored at index in list
      */
     public static Vector2d getShot(int index){
         return velocity[index];
     }
 
-    // returns array with all shots
-
     /**
-     *
-     * @return
+     * get list with all shots
+     * @return Vector2d[], list of shots
      */
     public static Vector2d[] getVelocity() {
         return velocity;
     }
 
-    // read file for information about the terrain
 
     /**
-     *
-     * @param path1
+     * read file to pass information about terrain
+     * @param path1 String, name of file that gets read
      * @throws IOException
      */
     public void fileRead(String path1) throws IOException {
 
         Scanner input;
 
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
 
         // add text in file to array by line
         try {
@@ -113,13 +111,12 @@ public class FileReader {
             while (input.hasNextLine()) {
                 data.add(input.nextLine());
             }
-
-
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            e.printStackTrace();
             return;
         }
 
+        // go through list with data and split labels from values
         for (String datum : data) {
             String[] parts = datum.split(" = ");
 
@@ -199,11 +196,20 @@ public class FileReader {
             if (list1.contains("heightMap")) {
                 heightMap = values;
             }
+
+            if (list1.contains("stumpLocation")) {
+                String[] stumpLoc = values.split(" ");
+
+                for (int i = 0; i < stumpLoc.length; i += 2) {
+                    double stumpPositionX = Double.parseDouble(stumpLoc[i]);
+                    double stumpPositionY = Double.parseDouble(stumpLoc[i + 1]);
+                    Vector2d stumpPosition = new Vector2d(stumpPositionX, stumpPositionY);
+                    stumps.add(new Tree(stumpPosition, 0.5));
+                }
+            }
         }
 
         // send information to build terrain
-        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, trees, sand, heightMap, new ArrayList<Tree>());
+        SimulateMain.beginning(g, weight, mu, speed, radius, start, goal, height,2, trees, sand, heightMap, stumps);
     }
-
-    
 }
