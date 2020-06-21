@@ -1,5 +1,8 @@
 package physics;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Vector2d {
     private final double x;
     private final double y;

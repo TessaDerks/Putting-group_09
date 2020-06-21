@@ -1,5 +1,8 @@
 package physics;
 
+/**
+ * @author Stijn Hennissen
+ */
 public interface Function2d {
     double delta = 1e-10;
     String masterFunction = null;

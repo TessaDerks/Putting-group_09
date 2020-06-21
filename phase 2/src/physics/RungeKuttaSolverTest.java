@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Stijn Hennissen
+ */
 class RungeKuttaSolverTest {
 
     @org.junit.jupiter.api.Test

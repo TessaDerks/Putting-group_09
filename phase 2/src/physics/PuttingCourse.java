@@ -4,6 +4,9 @@ package physics;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class PuttingCourse {
 
     //<editor-fold desc="Global Variables">

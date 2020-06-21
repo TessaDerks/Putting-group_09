@@ -4,6 +4,9 @@ import org.junit.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Stijn Hennissen
+ */
 class EulerSolverTest {
 
     @org.junit.jupiter.api.Test

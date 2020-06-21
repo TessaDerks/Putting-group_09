@@ -2,6 +2,9 @@ package physics;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Tree {
     private final Vector2d p;
     private final double r;

@@ -1,5 +1,8 @@
 package physics;
 
+/**
+ * @author Stijn Hennissen
+ */
 public interface PhysicsEngine {
     void actTimestep();
     public void recalculate();

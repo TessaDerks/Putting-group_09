@@ -3,6 +3,9 @@ package physics;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class EulerSolver implements PhysicsEngine{
 
     //<editor-fold desc="Global Variables">

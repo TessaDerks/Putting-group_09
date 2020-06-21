@@ -1,5 +1,8 @@
 package physics;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Wind {
     private double angle;
     private double totalForce;

@@ -2,6 +2,9 @@ package physics;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Sand {
     private final Vector2d topLeft;
     private final Vector2d bottomRight;

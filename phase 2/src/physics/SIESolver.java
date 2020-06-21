@@ -5,6 +5,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class SIESolver implements PhysicsEngine {
 
     //<editor-fold desc="Global Variables">

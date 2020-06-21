@@ -5,6 +5,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Tools {
 
     /**

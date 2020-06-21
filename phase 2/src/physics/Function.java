@@ -2,6 +2,9 @@ package physics;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Function implements Function2d {
     private static String masterFunction;
     private static double cap;
