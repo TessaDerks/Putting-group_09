@@ -21,8 +21,8 @@ public class VerletSolver implements PhysicsEngine{
     //</editor-fold>
 
     /**
-     *
-     * @param _p
+     * Constructor
+     * @param _p Vector2d, position of ball
      */
     public VerletSolver(Vector2d _p){
         p = _p;
@@ -50,7 +50,6 @@ public class VerletSolver implements PhysicsEngine{
             // New velocity.
             nv_x = (temp_p_x - p.get_x()) / dt;
             nv_y = (temp_p_y - p.get_y()) / dt;
-            v = new Vector2d(nv_x,nv_y);
         }
         // All other time steps.
         else{
@@ -62,9 +61,9 @@ public class VerletSolver implements PhysicsEngine{
             // New velocity.
             nv_x = (temp_p_x - last_p.get_x()) / (2 * dt);
             nv_y = (temp_p_y - last_p.get_y()) / (2 * dt);
-            v = new Vector2d(nv_x,nv_y);
         }
-        
+        v = new Vector2d(nv_x,nv_y);
+
         // Recalibrate.
         last_p = p;
         p = temp_p;
@@ -132,7 +131,6 @@ public class VerletSolver implements PhysicsEngine{
         }
     }
 
-
     @Override
     public void set_h(Function2d _h) {
         h = _h;
@@ -170,6 +168,7 @@ public class VerletSolver implements PhysicsEngine{
         return v;
     }
 
+    @Override
     public double get_t(){
         return t;
     }

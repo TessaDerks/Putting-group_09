@@ -6,8 +6,8 @@ public class Vector2d {
 
     /**
      * Constructor
-     * @param _x double
-     * @param _y double
+     * @param _x double, x direction of the vector
+     * @param _y double, y direction of the vector
      */
     public Vector2d(double _x, double _y){
         x = _x;

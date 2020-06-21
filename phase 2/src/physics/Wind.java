@@ -18,10 +18,10 @@ public class Wind {
 
     /**
      * Constructor, random force and direction, with bounds.
-     * @param angleLowerBound double, angleLowerBound<angleUpperBound
-     * @param angleUpperBound double, angleUpperBound>angleLowerBound
-     * @param forceLowerBound double, forceLowerBound<forceUpperBound
-     * @param forceUpperBound double, forceUpperBound>forceLowerBound
+     * @param angleLowerBound double, angleLowerBound < angleUpperBound
+     * @param angleUpperBound double, angleUpperBound > angleLowerBound
+     * @param forceLowerBound double, forceLowerBound < forceUpperBound
+     * @param forceUpperBound double, forceUpperBound > forceLowerBound
      */
     public Wind(double angleLowerBound, double angleUpperBound, double forceLowerBound, double forceUpperBound){
         angle = Math.random() * (angleUpperBound-angleLowerBound) + angleLowerBound;
@@ -44,9 +44,9 @@ public class Wind {
 
     /**
      * Calculate a force roughly following frequency of wind speed occurrence, bounded.
-     * @param lB double, lB<uB
-     * @param uB double, uB>lB
-     * @return double, force, lB<=force<=uB
+     * @param lB double, lB < uB
+     * @param uB double, uB > lB
+     * @return double, force, lB <= force <= uB
      */
     private double calcBoundedForce(double lB, double uB){
         int i = 0;
