@@ -23,8 +23,8 @@ public class HeightMap implements Function2d {
 
 
     /**
-     *
-     * @param heightmap
+     * create heightmap function
+     * @param heightmap String, name of heightmap file
      */
     public HeightMap(String heightmap){
         try {
@@ -35,6 +35,11 @@ public class HeightMap implements Function2d {
         generateHeights();
     }
 
+    /**
+     * get height at certain position
+     * @param p Vector2d, position on terrain
+     * @return double, height at given position
+     */
     @Override
     public double evaluate(@NotNull Vector2d p) {
         return getHeightOfTerrain((float) p.get_x(), (float) p.get_y());
@@ -61,10 +66,10 @@ public class HeightMap implements Function2d {
     }
 
     /**
-     *
-     * @param worldX
-     * @param worldZ
-     * @return
+     * get height at any point from double array with all heights
+     * @param worldX float
+     * @param worldZ float
+     * @return float, height of terrain at given index
      */
     public float getHeightOfTerrain(float worldX, float worldZ){
         float gridSquareSize = Terrain.SIZE/((float)heights.length -1);
@@ -94,10 +99,10 @@ public class HeightMap implements Function2d {
     }
 
     /**
-     *
-     * @param x
-     * @param y
-     * @return
+     * get height of heightmap at given index
+     * @param x int
+     * @param y int
+     * @return float, height at given index
      */
     private float getHeight(int x, int y){
         if(x<0 || x>=heightMap.getHeight() || y<0 || y>=heightMap.getHeight()){

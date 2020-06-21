@@ -34,12 +34,13 @@ public class SimulateMain {
      * @param _goal Vector2d, position of hole
      * @param _height String, function to calculate height for terrein
      * @param _version int, determines manual of filereader for input
-     * @param treePositions ArrayList<Vector2d>, list of positions of trees
-     * @param sandPositions ArrayList<Vector2d>, list of position of sand spaces
+     * @param _treePositions ArrayList<Vector2d>, list of positions of trees
+     * @param _sandPositions ArrayList<Vector2d>, list of position of sand spaces
      * @param _heightMap String, name of file with heightmap to describe terrain
+     * @param _stumps ArrayList<Tree>, list of stumps for maze
      * @throws IOException
      */
-    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> treePositions, ArrayList<Vector2d> sandPositions, String _heightMap, ArrayList<Tree> _stumps) throws IOException {
+    public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> _treePositions, ArrayList<Vector2d> _sandPositions, String _heightMap, ArrayList<Tree> _stumps) throws IOException {
 
         vmax = _vmax;
         start = _start;
@@ -63,7 +64,7 @@ public class SimulateMain {
 
 
         // add tree objects to puttingcourse
-        for (Vector2d treePosition : treePositions) {
+        for (Vector2d treePosition : _treePositions) {
             Tree t = new Tree(treePosition, 0.5);
             course.addTree(t);
         }
@@ -78,11 +79,11 @@ public class SimulateMain {
         Graphics2D graphics = (Graphics2D) blendMap.getGraphics();
         graphics.setColor(Color.BLUE);
 
-        for(int i = 0; i< sandPositions.size(); i = i+2){
-            Sand s = new Sand(sandPositions.get(i), sandPositions.get(i+1), 0.8);
+        for(int i = 0; i< _sandPositions.size(); i = i+2){
+            Sand s = new Sand(_sandPositions.get(i), _sandPositions.get(i+1), 0.8);
             course.addSand(s);
 
-            graphics.fillRect((int)sandPositions.get(i).get_x(),(int) sandPositions.get(i).get_y(), (int) sandPositions.get(i+1).get_x(),(int) sandPositions.get(i+1).get_y());
+            graphics.fillRect((int)_sandPositions.get(i).get_x(),(int) _sandPositions.get(i).get_y(), (int) _sandPositions.get(i+1).get_x(),(int) _sandPositions.get(i+1).get_y());
         }
         ImageIO.write(blendMap, "png", new File("res/blendMap.png"));
 
