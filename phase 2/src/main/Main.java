@@ -60,14 +60,11 @@ public class Main implements Runnable {
 	public ModelData modelDataPole;
 
 	public ModelTexture textureTree;
-	public ModelTexture textureGrass;
 	public ModelTexture textureStump;
-	public ModelTexture fernTextureAtlas;
 	public ModelTexture textureGolfBall;
 	public ModelTexture texturePole;
 
 	public TexturedModel texturedModelTree;
-	public TexturedModel texturedModelGrass;
 	public TexturedModel texturedModelGolfBall;
 	public TexturedModel texturedModelPole;
 	public TexturedModel texturedModelStump;
@@ -75,22 +72,17 @@ public class Main implements Runnable {
 	public MasterRenderer renderer;
 
 	public Player player;
-
 	public Camera camera;
-	public List<Light> lights;
 
+	public List<Light> lights;
 	public List<Entity> tree;
 	public List<Entity> stump;
-	public List<Entity> grass;
-
 	public List<Entity> entities;
 	public Entity pole;
 
 	public Random random;
 
 	public static Terrain terrain;
-
-
 	public TerrainTexture backgroundTexture;
 	public TerrainTexture rTexture;
 	public TerrainTexture gTexture;
@@ -112,7 +104,6 @@ public class Main implements Runnable {
 	public static int shotCount = 0;
 	private boolean win = false;
 
-	// background colour
 	private static final float RED = 0.5f;
 	private static final float GREEN = 0.5f;
 	private static final float BLUE = 0.5f;
@@ -131,7 +122,10 @@ public class Main implements Runnable {
 		game.start();
 	}
 
-	// create window with terrain
+	/**
+	 * create window with terrain
+	 * @throws Exception
+	 */
 	public void init() throws Exception {
 		window = new Window(WIDTH, HEIGHT, "Game");
 		window.setBackgroundColor(RED,GREEN,BLUE);
@@ -161,23 +155,12 @@ public class Main implements Runnable {
 		texturePack = new TerrainTexturePack(backgroundTexture, rTexture,gTexture,bTexture);
 		blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 
-		// create texture models
-		fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
-		fernTextureAtlas.setNumberOfRows(2);
-
 		texturedModelTree = new TexturedModel(modelTree, new ModelTexture(loader.loadTexture("tree")));
-		texturedModelGrass = new TexturedModel(modelGrass, new ModelTexture(loader.loadTexture("grassTexture")));
 		texturedModelGolfBall = new TexturedModel(golfballModel, new ModelTexture(loader.loadTexture("golf4")));
-		//texturedModelFern = new TexturedModel(fernModel, fernTextureAtlas);
 		texturedModelStump = new TexturedModel(stumpModel, new ModelTexture(loader.loadTexture("wallTexture")));
 		texturedModelPole = new TexturedModel(poleModel, new ModelTexture(loader.loadTexture("playerTexture")));
 
-		texturedModelGrass.getTexture().setHasTransparency(true);
-		texturedModelGrass.getTexture().setUseFakeLighting(true);
-
-
 		// set shine and reflectivity of each textured model
-
 		textureTree = texturedModelTree.getTexture();
 		textureTree.setShineDamper(10);
 		textureTree.setReflectivity(1);
@@ -185,10 +168,6 @@ public class Main implements Runnable {
 		textureStump = texturedModelStump.getTexture();
 		textureStump.setShineDamper(10);
 		textureStump.setReflectivity(1);
-
-		textureGrass = texturedModelGrass.getTexture();
-		textureGrass.setShineDamper(10);
-		textureGrass.setReflectivity(1);
 
 		textureGolfBall = texturedModelGolfBall.getTexture();
 		textureGolfBall.setShineDamper(10);
@@ -201,11 +180,9 @@ public class Main implements Runnable {
 		// generate terrain
 		terrain = new Terrain(0,0,loader,texturePack, blendMap);
 
-
 		// generate light
-		lights = new ArrayList<Light>();
+		lights = new ArrayList<>();
 		lights.add(new Light(new Vector3f(1000,1000,300), new Vector3f(1f,1f,1f)));
-
 
 		// create and render small GUI in top right position if your ball landed in the hole
 		guis = new ArrayList<>();
@@ -214,7 +191,7 @@ public class Main implements Runnable {
 		guiRenderer = new GUIRenderer(loader);
 
 		// create tree entity list
-		tree = new ArrayList<Entity>();
+		tree = new ArrayList<>();
 		for(int i=0;i<SimulateMain.simulator.get_course().getTreeList().size();i++){
 			float x = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_x();
 			float z = (float) SimulateMain.simulator.get_course().getTreeList().get(i).getP().get_y();
@@ -222,19 +199,8 @@ public class Main implements Runnable {
 			tree.add(new Entity(texturedModelTree, new Vector3f(x,y,z),0,0,0,5));
 		}
 
-
-		// create grass entity list
-		grass = new ArrayList<Entity>();
-		random = new Random();
-		for(int i=0;i<500;i++){
-			float x = random.nextFloat()*800;
-			float z = random.nextFloat()*800;
-			float y = terrain.getHeightOfTerrain(x,z);
-			grass.add(new Entity(texturedModelGrass, new Vector3f(x,y,z),0,0,0,1));
-		}
-
-		// create fern entity list
-		stump = new ArrayList<Entity>();
+		// create stump entity list
+		stump = new ArrayList<>();
 		for(int i=0;i<SimulateMain.simulator.get_course().getStumpList().size();i++){
 			float x = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_x();
 			float z = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_y();
@@ -247,16 +213,17 @@ public class Main implements Runnable {
 		fbos = new WaterFrameBuffers();
 		waterShader = new WaterShader();
 		waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), fbos);
-		waters = new ArrayList<WaterTile>();
+		waters = new ArrayList<>();
 		water = new WaterTile(Terrain.SIZE/2,Terrain.SIZE/2,0);
 		waters.add(water);
 
+
+
+
+		// generate ball and poal
 		playerStartPosition = SimulateMain.getStart();
-		goalPosition = SimulateMain.getFlag();
-
-		// generate ball
 		player = new Player(texturedModelGolfBall, new Vector3f((float)playerStartPosition.get_x(),terrain.getHeightOfTerrain((float)(playerStartPosition.get_x()), (float)playerStartPosition.get_y()),(float) playerStartPosition.get_y()),0,0,0,10);
-
+		goalPosition = SimulateMain.getFlag();
 		pole = new Entity(texturedModelPole, new Vector3f((float)goalPosition.get_x(),terrain.getHeightOfTerrain(((float) goalPosition.get_x()),(float) goalPosition.get_y()),(float)goalPosition.get_y()),0,0,0,10);
 
 		// put the camera on the ball
@@ -301,7 +268,7 @@ public class Main implements Runnable {
 
 		// if s is pressed on keyboard, get information for new shot
 		if(Input.isKeyDown(GLFW.GLFW_KEY_S) && !takingShot && openNewWindow) {
-			// if manual input was chosen, create GUI to ask for velocity of shot
+			// if manual input was chosen, create GUI to for velocity of shot
 			if (SimulateMain.getVersion() == 1) {
 				ShotMenu.create();
 				openNewWindow = false;
@@ -362,8 +329,8 @@ public class Main implements Runnable {
 			renderer.processEntity(entity);
 		}
 
-		for(int i = 0; i<stump.size(); i++){
-			renderer.processEntity(stump.get(i));
+		for (Entity value : stump) {
+			renderer.processEntity(value);
 		}
 
 
@@ -381,8 +348,8 @@ public class Main implements Runnable {
 			renderer.processEntity(entity);
 		}
 
-		for(int i = 0; i<stump.size(); i++){
-			renderer.processEntity(stump.get(i));
+		for (Entity value : stump) {
+			renderer.processEntity(value);
 		}
 
 		GL46.glDisable(GL46.GL_CLIP_DISTANCE0);
@@ -397,11 +364,11 @@ public class Main implements Runnable {
 		for (Entity entity : tree) {
 			renderer.processEntity(entity);
 		}
-		for(int i = 0; i<stump.size(); i++){
-			renderer.processEntity(stump.get(i));
+		for (Entity entity : stump) {
+			renderer.processEntity(entity);
 		}
 
-		// only render small gui if you've won
+		// render small gui ball landed at goal position
 		if(win){
 			guiRenderer.render(guis);
 		}
@@ -418,7 +385,5 @@ public class Main implements Runnable {
 	public static int getHEIGHT() {
 		return HEIGHT;
 	}
-
-
 
 }
