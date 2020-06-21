@@ -60,7 +60,7 @@ public class PuttingSimulator{
 				// Update ball position.
 				ball_position = cp;
 			}
-			System.out.println(ball_position.toString());
+			//System.out.println(ball_position.toString());
 		}
 	}
 

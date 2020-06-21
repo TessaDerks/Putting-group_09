@@ -110,6 +110,7 @@ public class Controller implements Initializable {
     private ArrayList<Tree> stumps = new ArrayList<>();
     public double treeRadius;
     public static int line;
+    private static final int MAZE_DIVIDED_BY_TWO = 7;
 
     /**
      * read textfields from GUI for terrain settings and send those to the game
@@ -141,7 +142,7 @@ public class Controller implements Initializable {
 
         treeRadius = Double.parseDouble(treeRadiusString.getText());
 
-        MazeForSale maze = new MazeForSale(5,5);
+        MazeForSale maze = new MazeForSale(MAZE_DIVIDED_BY_TWO,MAZE_DIVIDED_BY_TWO);
         line = 0;
         ArrayList<Tree> d = new ArrayList<>();
 

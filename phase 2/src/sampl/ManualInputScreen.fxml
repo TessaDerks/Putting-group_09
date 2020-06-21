@@ -276,7 +276,7 @@
                                           <Insets left="15.0" right="20.0" top="40.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField fx:id="treeRadiusString" prefHeight="25.0" prefWidth="63.0">
+                                    <TextField fx:id="treeRadiusString" prefHeight="25.0" prefWidth="63.0" text="0.5">
                                        <HBox.margin>
                                           <Insets top="38.0" />
                                        </HBox.margin>
