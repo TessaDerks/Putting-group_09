@@ -14,12 +14,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="650.0">
                      <children>
-                        <Text fill="WHITE" layoutX="77.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Setup" textAlignment="CENTER" wrappingWidth="496.037109375">
+                        <Text fill="WHITE" layoutX="77.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Setup" textAlignment="CENTER" wrappingWidth="496.037109375">
                            <font>
                               <Font name="Arial Nova Bold" size="39.0" />
                            </font>
                         </Text>
-                        <HBox layoutY="74.0" prefHeight="44.0" prefWidth="650.0">
+                        <HBox layoutX="2.0" layoutY="47.0" prefHeight="40.0" prefWidth="650.0">
                            <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
@@ -41,7 +41,7 @@
                               </TextField>
                            </children>
                         </HBox>
-                        <HBox layoutY="123.0" prefHeight="44.0" prefWidth="650.0">
+                        <HBox layoutY="87.0" prefHeight="40.0" prefWidth="650.0">
                            <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -58,12 +58,12 @@
                               </Text>
                               <TextField fx:id="mass" prefWidth="300.0" text="45">
                                  <HBox.margin>
-                                    <Insets left="72.0" top="10.0" />
+                                    <Insets left="76.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                            </children>
                         </HBox>
-                         <HBox layoutX="2.0" layoutY="256.0" prefHeight="39.0" prefWidth="650.0">
+                         <HBox layoutX="2.0" layoutY="289.0" prefHeight="40.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -90,7 +90,7 @@
                               </TextField>
                              </children>
                         </HBox>
-                         <HBox layoutX="2.0" layoutY="300.0" prefHeight="39.0" prefWidth="650.0">
+                         <HBox layoutX="2.0" layoutY="167.0" prefHeight="40.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -107,12 +107,12 @@
                               </Text>
                                  <TextField fx:id="radius" prefWidth="300.0" text="0.1">
                                  <HBox.margin>
-                                    <Insets left="60.0" top="10.0" />
+                                    <Insets left="61.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
                         </HBox>
-                         <HBox layoutX="-1.0" layoutY="339.0" prefHeight="42.0" prefWidth="656.0">
+                         <HBox layoutX="2.0" layoutY="207.0" prefHeight="40.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -129,12 +129,12 @@
                               </Text>
                                  <TextField fx:id="maxSpeed" prefWidth="300.0" text="90">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="48.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                              </children>
                         </HBox>
-                         <HBox layoutX="1.0" layoutY="382.0" prefHeight="52.0" prefWidth="650.0">
+                         <HBox layoutY="404.0" prefHeight="40.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -149,14 +149,14 @@
                                     <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="heightProfile" prefHeight="25.0" prefWidth="137.0" text="1">
+                                 <TextField fx:id="heightProfile" prefHeight="25.0" prefWidth="140.0" text="1">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="10.0" />
+                                    <Insets left="53.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimum value">
                                  <HBox.margin>
-                                    <Insets left="10.0" top="10.0" />
+                                    <Insets left="10.0" top="13.0" />
                                  </HBox.margin></Text>
                               <TextField prefHeight="25.0" prefWidth="68.0">
                                  <HBox.margin>
@@ -165,8 +165,8 @@
                               </TextField>
                              </children>
                         </HBox>
-                        <Button fx:id="applyManInput" layoutX="302.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#applyMan" text="Apply" />
-                         <HBox layoutX="1.0" layoutY="212.0" prefHeight="38.0" prefWidth="650.0">
+                        <Button fx:id="applyManInput" layoutX="302.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#applyMan" text="Apply" />
+                         <HBox layoutX="1.0" layoutY="249.0" prefHeight="40.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -193,7 +193,7 @@
                               </TextField>
                              </children>
                         </HBox>
-                           <HBox layoutY="168.0" prefHeight="48.0" prefWidth="650.0">
+                           <HBox layoutY="127.0" prefHeight="40.0" prefWidth="650.0">
                              <children>
                               <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -215,7 +215,7 @@
                               </TextField>
                              </children>
                         </HBox>
-                        <HBox layoutX="2.0" layoutY="426.0" prefHeight="51.0" prefWidth="650.0">
+                        <HBox layoutY="444.0" prefHeight="40.0" prefWidth="650.0">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Height Map">
                                  <HBox.margin>
@@ -224,11 +224,16 @@
                               </Text>
                               <TextField fx:id="heightMapp" prefHeight="25.0" prefWidth="140.0">
                                  <HBox.margin>
-                                    <Insets left="70.0" top="10.0" />
+                                    <Insets left="75.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                            </children>
                         </HBox>
+                        <Text fill="WHITE" layoutX="235.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terrain Options">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
             </content>

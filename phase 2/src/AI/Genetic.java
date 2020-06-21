@@ -137,7 +137,7 @@ class Genetic {
      * Genetic algorithm to find the final speed, adds the shot to the final list of shots
      */
     public static void finishGame() { // finish the game after you have taken the first shot
-        double clearance = 5;
+        double clearance = 3;
         boolean win = putting.calcWin(population[0].getPosition(),end, clearance);
         int popSizeNew = popSize/2;
         while(!win) {

@@ -4,6 +4,7 @@ import maths.Maths;
 import org.jetbrains.annotations.NotNull;
 import org.lwjglx.util.vector.Vector2f;
 import org.lwjglx.util.vector.Vector3f;
+import terrain.Terrain;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -19,7 +20,7 @@ public class HeightMap implements Function2d {
     private static final float MAX_PIXEL_COLOUR = 256 * 256 * 256;
     private static final float MAX_HEIGHT = 40;
     private float[][] heights;
-    public static final float SIZE = 200;
+
 
     /**
      *
@@ -66,7 +67,7 @@ public class HeightMap implements Function2d {
      * @return
      */
     public float getHeightOfTerrain(float worldX, float worldZ){
-        float gridSquareSize = SIZE/((float)heights.length -1);
+        float gridSquareSize = Terrain.SIZE/((float)heights.length -1);
         int gridX = (int) Math.floor(worldX /gridSquareSize);
         int gridZ = (int) Math.floor(worldZ /gridSquareSize);
         if(gridX >= heights.length -1 || gridZ >= heights.length -1 || gridX < 0 || gridZ < 0){

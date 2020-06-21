@@ -14,7 +14,7 @@ public class PuttingCourse {
     private final Vector2d flag;
     private final Vector2d start;
     private double mu = 0.3;
-    private double vMax = 5;
+    private double vMax = 100;
     private double holeTolerance = 0.2;
     private List<Tree> treeList = new LinkedList<Tree>();
     private List<Sand> sandList = new LinkedList<Sand>();
@@ -91,6 +91,11 @@ public class PuttingCourse {
      */
     public boolean nodeOnTree(Vector2d p) {
         for(Tree t : treeList){
+            if(t.AITreeHit(p)){
+                return true;
+            }
+        }
+        for(Tree t : stumpList){
             if(t.AITreeHit(p)){
                 return true;
             }

@@ -239,7 +239,7 @@ public class Main implements Runnable {
 			float x = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_x();
 			float z = (float) SimulateMain.simulator.get_course().getStumpList().get(i).getP().get_y();
 			float y = terrain.getHeightOfTerrain(x,z);
-			stump.add(new Entity(texturedModelStump, new Vector3f(x,y,z),0,0,0,5));
+			stump.add(new Entity(texturedModelStump, new Vector3f(x,y,z),0,0,0,3));
 		}
 
 
@@ -257,7 +257,7 @@ public class Main implements Runnable {
 		// generate ball
 		player = new Player(texturedModelGolfBall, new Vector3f((float)playerStartPosition.get_x(),terrain.getHeightOfTerrain((float)(playerStartPosition.get_x()), (float)playerStartPosition.get_y()),(float) playerStartPosition.get_y()),0,0,0,10);
 
-		pole = new Entity(texturedModelPole, new Vector3f((float)goalPosition.get_x(),terrain.getHeightOfTerrain(((float) goalPosition.get_x()),(float) goalPosition.get_y()),(float)goalPosition.get_y()-0.25f),0,0,0,10);
+		pole = new Entity(texturedModelPole, new Vector3f((float)goalPosition.get_x(),terrain.getHeightOfTerrain(((float) goalPosition.get_x()),(float) goalPosition.get_y()),(float)goalPosition.get_y()),0,0,0,10);
 
 		// put the camera on the ball
 		camera = new Camera(player);
@@ -276,7 +276,7 @@ public class Main implements Runnable {
 			render();
 			if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) window.setFullscreen(!window.isFullscreen());
 			// check if shot landed in hole
-			if(SimulateMain.simulator.calcWin(SimulateMain.simulator.get_ball_position(),SimulateMain.getFlag(),1)&& !win && !takingShot){
+			if(SimulateMain.simulator.calcWin(SimulateMain.simulator.get_ball_position(),goalPosition,1)&& !win && !takingShot){
 				System.out.println();
 				System.out.println("=!= Y O U   W I N =!=");
 				System.out.println();
@@ -331,7 +331,7 @@ public class Main implements Runnable {
 			Vector2d newPosition = SimulateMain.simulator.act_timestep_from_distance();
 			player.move(terrain, new Vector2f((float) newPosition.get_x(), (float) newPosition.get_y()));
 
-			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),0) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),0) == 0){
+			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),2) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),2) == 0){
 				takingShot = false;
 				if(aiRunning && (TestAI.shotCount < TestAI.getBotShots().size())){
 					TestAI.takeAIShot();

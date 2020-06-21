@@ -115,15 +115,11 @@ public class Controller implements Initializable {
     @FXML
     private TextField treeRadiusString;
 
-    public double treeRadius;
-
-
-
     private ArrayList<Vector2d> treesList = new ArrayList<>();
-
     private ArrayList<Vector2d> sandList = new ArrayList<>();
-
     private ArrayList<Tree> stumps = new ArrayList<>();
+
+    public double treeRadius;
     public static int line;
 
     // read textfield from manual input screen and send information about terrain to simulate main
@@ -156,7 +152,9 @@ public class Controller implements Initializable {
     @FXML
     private void mazeGeneration() {
 
-        MazeForSale maze = new MazeForSale(20,20);
+        treeRadius = Double.parseDouble(treeRadiusString.getText());
+
+        MazeForSale maze = new MazeForSale(5,5);
         line = 0;
         ArrayList<Tree> d = new ArrayList<>();
 
@@ -175,7 +173,6 @@ public class Controller implements Initializable {
 // Show what happened
         Scanner scanner = new Scanner(baos.toString());
         while (scanner.hasNextLine()) {
-            line++;
             String s = scanner.nextLine();
             for (int i = 0; i < s.length(); i++){
                 char c = s.charAt(i);
@@ -186,19 +183,20 @@ public class Controller implements Initializable {
                 else if (c == 'S'){
                     //  start (Btm Left in OpenGL)
                     Double mazeStart = Double.parseDouble(String.valueOf(line));
-                    String mazeStartString = Double.toString(mazeStart- treeRadius );
+                    String mazeStartString = Double.toString(mazeStart );
                     startPosX.setText(String.valueOf(line));
                     startPosY.setText(mazeStartString);
 
                 }
                 else if (c == 'E'){
                     Double mazeEnd = Double.parseDouble(String.valueOf(line));
-                    String mazeEndString = Double.toString(mazeEnd- treeRadius );
+                    String mazeEndString = Double.toString(mazeEnd );
                     goalPosX.setText(String.valueOf(line));
                     goalPosY.setText(mazeEndString);
                 }
 
             }
+            line++;
 
         }
         scanner.close();
