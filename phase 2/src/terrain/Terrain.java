@@ -27,24 +27,16 @@ public class Terrain {
     private RawModel model;
     private TerrainTexturePack texturePack;
     private TerrainTexture blendMap;
-
     private float[][] heights;
 
-    public TerrainTexturePack getTexturePack() {
-        return texturePack;
-    }
-
-    public TerrainTexture getBlendMap() {
-        return blendMap;
-    }
 
     /**
-     *
-     * @param gridX
-     * @param gridZ
-     * @param loader
-     * @param texturePack
-     * @param blendMap
+     * create terrain
+     * @param gridX int, x position in field to describe starting point for generating
+     * @param gridZ int, z position in field to describe starting point for generating
+     * @param loader Loader
+     * @param texturePack TerrainTexturePack, pack of textures used in the terrain
+     * @param blendMap TerrainTexture, describes where which texture should be placed
      */
     public Terrain(int gridX, int gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap){
         this.texturePack = texturePack;
@@ -53,19 +45,17 @@ public class Terrain {
         this.z = gridZ*SIZE;
         if(SimulateMain.getHeightMap().equals("")){
             this.model = generateTerrainFunction(loader);
-            System.out.println("a");
         }
         else
         {
             this.model = generateTerrainMap(loader, SimulateMain.getHeightMap());
-            System.out.println("b");
         }
     }
 
     /**
-     *
-     * @param loader
-     * @return
+     * generate terrain with height described by a function
+     * @param loader Loader
+     * @return RawModel, model of terrain
      */
     private RawModel generateTerrainFunction(Loader loader){
 
@@ -113,13 +103,11 @@ public class Terrain {
         return loader.loadToVAO(vertices, textureCoords, normals, indices);
     }
 
-    // calculation of normals.
-
     /**
-     *
-     * @param x
-     * @param z
-     * @return
+     * calculate normals for terrain with height described by a function
+     * @param x int
+     * @param z int
+     * @return Vector3f
      */
     private @NotNull Vector3f calculateNormalFunction(int x, int z){
 
@@ -134,10 +122,10 @@ public class Terrain {
     }
 
     /**
-     *
-     * @param loader
-     * @param heightMap
-     * @return
+     * generate terrain with height described by a heightmap
+     * @param loader Loader
+     * @param heightMap String, name of heightmap file
+     * @return RawModel, model of terrain
      */
     private RawModel generateTerrainMap(Loader loader, String heightMap){
 
@@ -159,6 +147,7 @@ public class Terrain {
         float[] textureCoords = new float[count*2];
         int[] indices = new int[6*(VERTEX_COUNT-1)*(VERTEX_COUNT-1)];
         int vertexPointer = 0;
+
         for(int i=0;i<VERTEX_COUNT;i++){
             for(int j=0;j<VERTEX_COUNT;j++){
                 vertices[vertexPointer*3] = (float)j/((float)VERTEX_COUNT - 1) * SIZE;
@@ -175,6 +164,7 @@ public class Terrain {
                 vertexPointer++;
             }
         }
+
         int pointer = 0;
         for(int gz=0;gz<VERTEX_COUNT-1;gz++){
             for(int gx=0;gx<VERTEX_COUNT-1;gx++){
@@ -194,11 +184,11 @@ public class Terrain {
     }
 
     /**
-     *
-     * @param x
-     * @param z
-     * @param image
-     * @return
+     * calculate normals for terrain with height described by a heightmap
+     * @param x int
+     * @param z int
+     * @param image BufferedImage, heightmap
+     * @return Vector3f
      */
     private @NotNull Vector3f calculateNormalMap(int x, int z, BufferedImage image){
         float heightL = getHeight(x-1,z, image);
@@ -211,11 +201,11 @@ public class Terrain {
     }
 
     /**
-     *
-     * @param x
-     * @param y
-     * @param image
-     * @return
+     * get height of heightmap at given index
+     * @param x int
+     * @param y int
+     * @param image BufferedImage
+     * @return float, height at given index
      */
     private float getHeight(int x, int y, BufferedImage image){
         if(x<0 || x>=image.getHeight() || y<0 || y>=image.getHeight()){
@@ -230,10 +220,10 @@ public class Terrain {
     }
 
     /**
-     *
-     * @param worldX
-     * @param worldZ
-     * @return
+     * get height at any point from double array with all heights
+     * @param worldX float
+     * @param worldZ float
+     * @return float, height of terrain at given index
      */
     public float getHeightOfTerrain(float worldX, float worldZ){
         float terrainX = worldX - this.x;
@@ -274,6 +264,14 @@ public class Terrain {
 
     public RawModel getModel() {
         return model;
+    }
+
+    public TerrainTexturePack getTexturePack() {
+        return texturePack;
+    }
+
+    public TerrainTexture getBlendMap() {
+        return blendMap;
     }
 
 
