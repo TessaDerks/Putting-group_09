@@ -28,7 +28,7 @@ class Genetic {
         putting = SimulateMain.simulator;
     }
 
-    public static void initializePopulation(){
+    public void initializePopulation(){
         population = new Individual[popSize];
         for ( int i = 0; i < popSize; i++){
             population[i] = new Individual(start);
@@ -63,7 +63,7 @@ class Genetic {
     /**
      * generates the first shot
      */
-    public static void takeFirstShot() { // take the first shot to gain an idea of with how much power the AI should shoot
+    public void takeFirstShot() { // take the first shot to gain an idea of with how much power the AI should shoot
         for (Individual individual : population) {
             putting.get_engine().resetPosition(start);
             double _speed = generateSpeed(putting.get_course().get_maximum_velocity());
@@ -78,10 +78,10 @@ class Genetic {
     }
 
     /**
-     *
+     * Checks whether the ball is on the left side or on the right side regarding the hole
      * @return boolean returns true for a ball on the left side of the hole and false for a ball on the right side
      */
-    public static boolean leftOfHole(){
+    public boolean leftOfHole(){
         boolean ret = false;
         putting.get_engine().resetPosition(start);
         putting.take_shot(Tools.velFromAngle(angle, (putting.get_course().get_maximum_velocity()/2)), true);
@@ -101,7 +101,7 @@ class Genetic {
     /**
      * finds the final angle, by adjusting the angle based on its previous position
      */
-    public static void cocktailShaker(){ // shake the angle back and forth until the tolerance is small enough to create the right angle
+    public void cocktailShaker(){ // shake the angle back and forth until the tolerance is small enough to create the right angle
         boolean leftRight = leftOfHole();
         double adjusting = 10.0;
 
@@ -136,7 +136,7 @@ class Genetic {
     /**
      * Genetic algorithm to find the final speed, adds the shot to the final list of shots
      */
-    public static void finishGame() { // finish the game after you have taken the first shot
+    public void finishGame() { // finish the game after you have taken the first shot
         double clearance = 3;
         boolean win = putting.calcWin(population[0].getPosition(),end, clearance);
         int popSizeNew = popSize/2;
@@ -180,11 +180,11 @@ class Genetic {
     }
 
     // getters and setters
-    public static Individual[] getPopulation() {
+    public Individual[] getPopulation() {
         return population;
     }
 
-    public static int getGeneration() {
+    public int getGeneration() {
         return generation;
     }
 

@@ -24,7 +24,7 @@ public class TestAI {
     }
 
     /**
-     *
+     * runs every shot from the found route using the putting bot
      * @param _start Vector2d
      * @param _end Vector2d
      */

@@ -60,7 +60,7 @@ public class GenerateNodes{
     }
 
     /**
-     *
+     * Generate all nodes possible
      * @param c Vector2d, position from where you want to generate the nodes
      * @param p int, i <= 0 <= 7, index of Checkpoint
      */
@@ -113,7 +113,7 @@ public class GenerateNodes{
     }
 
     /**
-     *
+     * Set connections to from nodes to each other
      * @param c Checkpoint, generate connections from this checkpoint
      */
     public void hingeNode(@NotNull CheckPoint c){
@@ -141,7 +141,7 @@ public class GenerateNodes{
     }
 
     /**
-     *
+     * converts a Vector2d into a string
      * @param c Vector2d
      * @return string, contains coordinates and returns position as a string
      */

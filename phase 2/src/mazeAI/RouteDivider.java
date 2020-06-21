@@ -15,7 +15,7 @@ public class RouteDivider {
     private final double k;
 
     /**
-     *
+     * Divide the complete route into possible shots
      * @param _route List of checkpoints, describes the route
      * @param _k double, distance between the nodes, k > 0.5
      */
@@ -54,7 +54,7 @@ public class RouteDivider {
     }
 
     /**
-     *
+     * Check whether a shot passes trees or water
      * @param s Checkpoint, starting point
      * @param e Checkpoint, end point
      * @return boolean, return false if the connections crosses a tree or water.

@@ -41,9 +41,6 @@ public class Shot {
      *
      * @return String, including angle and speed
      */
-    public String altToString(){
-        return "Shot{a:"+angle+";s:"+speed+"}";
-    }
 
     public double getAngle() {
         return angle;
