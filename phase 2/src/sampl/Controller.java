@@ -1,33 +1,23 @@
 package sampl;
 
-import MazeGenerator.MazeGenerator;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.Main;
 import physics.FileReader;
 import physics.SimulateMain;
 import physics.Tree;
 import physics.Vector2d;
 import simplexNoise.ImageWriter;
 import simplexNoise.SimplexNoise;
-import terrain.Terrain;
 import MazeGenerator.MazeForSale;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -118,14 +108,11 @@ public class Controller implements Initializable {
     private ArrayList<Vector2d> treesList = new ArrayList<>();
     private ArrayList<Vector2d> sandList = new ArrayList<>();
     private ArrayList<Tree> stumps = new ArrayList<>();
-
     public double treeRadius;
     public static int line;
 
-    // read textfield from manual input screen and send information about terrain to simulate main
-
     /**
-     *
+     * read textfields from GUI for terrain settings and send those to the game
      * @throws IOException
      */
     @FXML
@@ -161,16 +148,11 @@ public class Controller implements Initializable {
         // Create a stream to hold the output
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
-// IMPORTANT: Save the old System.out!
         PrintStream old = System.out;
-// Tell Java to use your special stream
         System.setOut(ps);
-// Print some output: goes to your special stream
         System.out.println(maze.toString());
-// Put things back
         System.out.flush();
         System.setOut(old);
-// Show what happened
         Scanner scanner = new Scanner(baos.toString());
         while (scanner.hasNextLine()) {
             String s = scanner.nextLine();
@@ -182,14 +164,14 @@ public class Controller implements Initializable {
                 }
                 else if (c == 'S'){
                     //  start (Btm Left in OpenGL)
-                    Double mazeStart = Double.parseDouble(String.valueOf(line));
+                    double mazeStart = Double.parseDouble(String.valueOf(line));
                     String mazeStartString = Double.toString(mazeStart );
                     startPosX.setText(String.valueOf(line));
                     startPosY.setText(mazeStartString);
 
                 }
                 else if (c == 'E'){
-                    Double mazeEnd = Double.parseDouble(String.valueOf(line));
+                    double mazeEnd = Double.parseDouble(String.valueOf(line));
                     String mazeEndString = Double.toString(mazeEnd );
                     goalPosX.setText(String.valueOf(line));
                     goalPosY.setText(mazeEndString);
@@ -205,7 +187,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     *
+     * create random heightmap for terrain witht the use of perlin noise
      * @throws IOException
      */
     @FXML
@@ -245,36 +227,8 @@ public class Controller implements Initializable {
     }
 
 
-  /*  private String translateFunction(double startX, double startY, String function){
-        for(int i = 0; i<function.length();i++){
-
-            String findX = Character.toString(function.charAt(i));
-            if (findX.equals("x")){
-                String subX = function.substring(0, i-1);
-                String a = Double.toString(startX);
-                subX = subX + " ( x - " + a + " )";
-                function = subX + function.substring(i+1, function.length());
-                System.out.println(function);
-                i+=2;
-            }
-            if (findX.equals("y")){
-                String subX = function.substring(0, i-1);
-                String a = Double.toString(startY);
-                subX = subX + " ( y - " + a + " )";
-                function = subX + function.substring(i+1, function.length());
-                System.out.println(function);
-                i+=2;
-            }
-        }
-        return function;
-    }
-
-   */
-
-    // read textfields from file input screen and send information to filereader
-
     /**
-     *
+     * read textfields for file names to send to filereader to get terrain information
      * @throws IOException
      */
     @FXML
@@ -299,13 +253,17 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void resetTreeList(){
-        treesList = new ArrayList<>();
+    private void applyTreesButton(){
+        double x = Double.parseDouble(treePosX.getText());
+        double y = Double.parseDouble(treePosY.getText());
+        treeRadius = Double.parseDouble(treeRadiusString.getText());
+        Vector2d tree = new Vector2d(x,y);
+        treesList.add(tree);
     }
 
     @FXML
-    private void resetSandList(){
-        sandList = new ArrayList<>();
+    private void resetTreeList(){
+        treesList = new ArrayList<>();
     }
 
 
@@ -325,15 +283,6 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void applyTreesButton(){
-        double x = Double.parseDouble(treePosX.getText());
-        double y = Double.parseDouble(treePosY.getText());
-        treeRadius = Double.parseDouble(treeRadiusString.getText());
-        Vector2d tree = new Vector2d(x,y);
-        treesList.add(tree);
-    }
-
-    @FXML
     private void applySandButton(){
         double xTop = Double.parseDouble(sandTopX.getText());
         double yTop = Double.parseDouble(sandTopY.getText());
@@ -345,10 +294,14 @@ public class Controller implements Initializable {
         sandList.add(sandBtm);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    @FXML
+    private void resetSandList(){
+        sandList = new ArrayList<>();
     }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
     private void start() {

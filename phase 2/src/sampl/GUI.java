@@ -13,18 +13,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-// starts application with main GUI of the game
-public class GUI extends Application {
 
-    private double x,y;
+public class GUI extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
 
     /**
-     *
-     * @param primaryStage
+     * load main screen of GUI for the game
+     * @param primaryStage Stage
      * @throws IOException
      */
     @Override
@@ -34,14 +32,6 @@ public class GUI extends Application {
 
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
-
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                x = mouseEvent.getSceneX();
-                y = mouseEvent.getSceneY();
-            }
-        });
 
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
