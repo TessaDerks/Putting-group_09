@@ -29,7 +29,8 @@ public class Sand {
      */
     public double coordInSand(@NotNull Vector2d c){
         double r = -1;
-        if(((c.get_x()>=topLeft.get_x())&&(c.get_x()<=bottomRight.get_x())&& ((c.get_y()<=topLeft.get_y())&&(c.get_y()>=bottomRight.get_y())))){
+        //System.out.println("TL"+topLeft.toString()+";BR"+bottomRight.toString()+";c"+c.toString());
+        if(((c.get_x()>=topLeft.get_x())&&(c.get_x()<=bottomRight.get_x())&&((c.get_y()>=topLeft.get_y())&&(c.get_y()<=bottomRight.get_y())))){
             r = friction;
         }
         return r;
