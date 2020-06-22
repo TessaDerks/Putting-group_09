@@ -2,12 +2,8 @@ package physics;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
-
 public class PostFixCalculator {
 
-    //<editor-fold desc="Global Variables">
-    private static Double operand1, operand2;
     private static final String ADD = "+";
     private static final String SUB = "-";
     private static final String MUL = "*";
@@ -23,29 +19,34 @@ public class PostFixCalculator {
 
     /**
      *
-     * @param input
-     * @param coordinates
-     * @return
+     * @param input String, Function that you would want to convert
+     * @param coordinates Vector2d, the value that you want to calculate
+     * @return Double, z value for the coordinate in a certain function
      */
     public static Double calculate(@NotNull String input, Vector2d coordinates) {
         SinglyLinkedListStack<Double> stack = new SinglyLinkedListStack<>();
 
         String[] inputs = input.split(" ");
         for ( int i = 0; i < inputs.length; i++) {
-         if(inputs[i].equals("x")) {
-            String x = removeX(coordinates);
-            inputs[i] = x;
-         
-        } else if (inputs[i].equals("y")) {
-            String y = removeY(coordinates);
-            inputs[i] = y;
-        } else if (inputs[i].equals("pi")) {
-            String pi = String.valueOf(Math.PI);
-            inputs[i] = pi;
-        } else if (inputs[i].equals("e")) {
-            String e = String.valueOf(Math.E);
-            inputs[i] = e;
-        }
+            switch (inputs[i]) {
+                case "x":
+                    String x = removeX(coordinates);
+                    inputs[i] = x;
+
+                    break;
+                case "y":
+                    String y = removeY(coordinates);
+                    inputs[i] = y;
+                    break;
+                case "pi":
+                    String pi = String.valueOf(Math.PI);
+                    inputs[i] = pi;
+                    break;
+                case "e":
+                    String e = String.valueOf(Math.E);
+                    inputs[i] = e;
+                    break;
+            }
         }
 
         return handleCalculation(stack, inputs);
@@ -53,86 +54,86 @@ public class PostFixCalculator {
 
     /**
      *
-     * @param stack
-     * @param el
-     * @return
+     * @param stack Stack of Doubles, doubles you want to review
+     * @param el Array of Strings, contains al standard values (x, y, e, pi)
+     * @return Double, calculated value
      */
     private static Double handleCalculation(SinglyLinkedListStack<Double> stack, String @NotNull [] el) {
+        double operand1, operand2;
 
-        for(int i = 0; i < el.length; i++) {
-            if( el[i].equals(ADD) || el[i].equals(SUB) || el[i].equals(MUL) || el[i].equals(DIV) || el[i].equals(POW) ) {
+        for (String s : el) {
+            //<editor-fold desc="Global Variables">
+            if (s.equals(ADD) || s.equals(SUB) || s.equals(MUL) || s.equals(DIV) || s.equals(POW)) {
 
                 operand2 = stack.pop();
                 operand1 = stack.pop();
-                switch(el[i]) {
+                switch (s) {
                     case ADD: {
-                        Double local = operand1 + operand2;
+                        double local = operand1 + operand2;
                         stack.push(local);
                         break;
                     }
 
                     case SUB: {
-                        Double local = operand1 - operand2;
+                        double local = operand1 - operand2;
                         stack.push(local);
                         break;
                     }
 
                     case MUL: {
-                        Double local = operand1 * operand2;
+                        double local = operand1 * operand2;
                         stack.push(local);
                         break;
                     }
 
                     case DIV: {
-                        Double local = operand1 / operand2;
+                        double local = operand1 / operand2;
                         stack.push(local);
                         break;
                     }
                     case POW: {
-                        Double local = Math.pow(operand1, operand2);
+                        double local = Math.pow(operand1, operand2);
                         stack.push(local);
                         break;
                     }
                 }
-            }
-                    else if (el[i].equals(SQRT) || el[i].equals(SIN) || el[i].equals(COS) || el[i].equals(TAN) || el[i].equals(LOG) || el[i].equals(LN) ) {
-                        operand1 = stack.pop();
-                        switch(el[i]) {
-                        case SQRT: {
-                        Double local = Math.sqrt(operand1);
+            } else if (s.equals(SQRT) || s.equals(SIN) || s.equals(COS) || s.equals(TAN) || s.equals(LOG) || s.equals(LN)) {
+                operand1 = stack.pop();
+                switch (s) {
+                    case SQRT: {
+                        double local = Math.sqrt(operand1);
                         stack.push(local);
                         break;
-                        }
-                        case SIN: {
-                            Double local = Math.sin(operand1);
-                            stack.push(local);
-                            break;
-                        }
-                        case COS: {
-                            Double local = Math.cos(operand1);
-                            stack.push(local);
-                            break;
-                        }
-                        case TAN: {
-                            Double local = Math.tan(operand1);
-                            stack.push(local);
-                            break;
-                        }
-                        case LOG: {
-                            Double local = Math.log10(operand1);
-                            stack.push(local);
-                            break;
-                        }
-                        case LN: {
-                            Double local = Math.log(operand1);
-                            stack.push(local);
-                            break;
-                        }
+                    }
+                    case SIN: {
+                        double local = Math.sin(operand1);
+                        stack.push(local);
+                        break;
+                    }
+                    case COS: {
+                        double local = Math.cos(operand1);
+                        stack.push(local);
+                        break;
+                    }
+                    case TAN: {
+                        double local = Math.tan(operand1);
+                        stack.push(local);
+                        break;
+                    }
+                    case LOG: {
+                        double local = Math.log10(operand1);
+                        stack.push(local);
+                        break;
+                    }
+                    case LN: {
+                        double local = Math.log(operand1);
+                        stack.push(local);
+                        break;
+                    }
 
-                    }
                 }
-             else {
-                stack.push(Double.parseDouble(el[i]));
+            } else {
+                stack.push(Double.parseDouble(s));
             }
         }
 
@@ -141,8 +142,8 @@ public class PostFixCalculator {
 
     /**
      *
-     * @param coordinates
-     * @return
+     * @param coordinates Vector2d
+     * @return String, value of x
      */
     public static @NotNull String removeX(@NotNull Vector2d coordinates) {
 
@@ -152,8 +153,8 @@ public class PostFixCalculator {
 
     /**
      *
-     * @param coordinates
-     * @return
+     * @param coordinates Vector2d
+     * @return String, value of y
      */
     public static @NotNull String removeY(@NotNull Vector2d coordinates) {
 
