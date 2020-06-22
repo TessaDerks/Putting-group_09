@@ -8,14 +8,21 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class MazeForSale {
 
         Cell maze[][];
+
 
     public MazeForSale() {
             maze = new Cell[0][0];
         }
 
+    /**
+     * @param length
+     * @param height
+     * @return generate() method, with the height and length given by user
+     */
         public MazeForSale( int length , int height ) {
             maze = new Cell[height][length];
             for ( int i = 0 ; i < height ; ++i ) {
@@ -27,8 +34,11 @@ public class MazeForSale {
             generate();
         }
 
+    /**
+     * Method that generates the maze based on prim's algorithm
+     */
 
-        private void generate() {
+    private void generate() {
             int di[] = { -1 , 1 , 0 , 0 };
             int dk[] = {  0 , 0 , -1 , 1 };
             ArrayList<Integer> queue = new ArrayList<Integer>();
@@ -65,7 +75,12 @@ public class MazeForSale {
             }
         }
 
-        //merges two cels together
+    /**
+     * Merge the two cells together
+     * @param cell, first cell selected
+     * @param cell2, second sell selected
+     */
+
         private void merge(Cell cell, Cell cell2) {
             int set = cell2.getSet();
             for ( int i = 0 ; i < maze.length ; ++i ) {
@@ -77,7 +92,14 @@ public class MazeForSale {
             }
         }
 
-        //checks to see if the new location is valid
+    /**
+     * A check whether the new location is valid
+     * @param cell
+     * @param set
+     * @param di
+     * @param dk
+     * @return boolean check, false if location isnt valid, otherwise true
+     */
         private boolean check ( Cell cell , int set, int[] di, int[] dk ) {
             for ( int w = 0 ; w < di.length ; ++w ) {
                 int ti = di[w]+cell.i;
@@ -92,7 +114,11 @@ public class MazeForSale {
             return false;
         }
 
-        @Override
+    /**
+     * override toString() so a proper output is generated
+     * @return String
+     */
+    @Override
         public String toString() {
             StringBuilder res = new StringBuilder();
             for ( int k = 0 ; k < maze[0].length ; ++k ) {

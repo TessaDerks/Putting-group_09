@@ -71,6 +71,7 @@ public class SIESolver implements PhysicsEngine {
         for(Sand s : SimulateMain.simulator.get_course().getSandList()){
             double cs = s.coordInSand(p);
             if(cs != -1){
+                System.out.println("Sand at "+p.toString());
                 mu = s.getFriction();
             }
             else{
