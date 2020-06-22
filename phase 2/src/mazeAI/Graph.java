@@ -26,7 +26,7 @@ public class Graph<T extends GraphNode> {
      *
      * @param id String, id of the node, consisting of its checkpoint
      * @return Node matching the Id
-     * @throws IllegalArgumentException, whenever a certain id is not found
+     * @throws IllegalArgumentException whenever a certain id is not found
      */
     public T getNode(String id){
         return nodes.stream()
