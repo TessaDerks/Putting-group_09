@@ -105,7 +105,7 @@
                                     <Insets left="25.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
-                                 <TextField fx:id="radius" prefWidth="300.0" text="0.1">
+                                 <TextField fx:id="radius" prefWidth="300.0" text="0.5">
                                  <HBox.margin>
                                     <Insets left="61.0" top="10.0" />
                                  </HBox.margin>

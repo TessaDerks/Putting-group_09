@@ -64,15 +64,16 @@ public class TerrainShader extends ShaderProgram {
         }
 
     }
-// load clipplane
+
 
     /**
-     *
-     * @param plane
+     * Method that loads up the clipping plane.
+     * @param plane Vector4f, this is the plane where you want to start the clipping.
      */
     public void loadClipPlane(Vector4f plane){
         super.loadVector(location_plane, plane);
     }
+
 // connection of textures
     public void connectTextureUnits(){
         super.loadInt(location_backgroundTexture, 0);
@@ -81,23 +82,23 @@ public class TerrainShader extends ShaderProgram {
         super.loadInt(location_bTexture, 3);
         super.loadInt(location_blendMap, 4);
     }
-// set skyColour
+
 
     /**
-     *
-     * @param r
-     * @param g
-     * @param b
+     * Method that loads up the colour of the Sky
+     * @param r float, value that represents the red colour.
+     * @param g float, value that represents the green colour.
+     * @param b float, value that represents the blue colour.
      */
     public void loadSkyColour(float r, float g, float b){
         super.loadVector(location_skyColour, new Vector3f(r,g,b));
     }
-// set dampe and reflectivity
+
 
     /**
-     *
-     * @param damper
-     * @param reflectivity
+     * Method that loads up the shine
+     * @param damper float, value that represents the inhibition of the shine.
+     * @param reflectivity float, value that represents the reflectivity of the shine.
      */
     public void loadShineVariables(float damper, float reflectivity){
         super.loadFloat(location_shineDamper, damper);
@@ -112,8 +113,8 @@ public class TerrainShader extends ShaderProgram {
     }
 
     /**
-     *
-     * @param matrix
+     * method that loads the transformation Matrix
+     * @param matrix Matrix4f, this is the matrix that represents transformations.
      */
     public void loadTransformationMatrix(Matrix4f matrix){
 
@@ -121,8 +122,8 @@ public class TerrainShader extends ShaderProgram {
     }
 
     /**
-     *
-     * @param camera
+     * Method that loads the viewMatrix
+     * @param camera Camera, assigns the camera as the viewMatrix and loads it up.
      */
     public void loadViewMatrix(Camera camera){
         Matrix4f viewMatrix = Maths.createViewMatrix(camera);
@@ -131,8 +132,8 @@ public class TerrainShader extends ShaderProgram {
 // load lights
 
     /**
-     *
-     * @param lights
+     * Loads in a list of lights for the terrain shaders.
+     * @param lights List<Light>, a list of all the light sources in the game.
      */
     public void loadLights(List<Light> lights){
         for (int i=0;i<MAX_LIGHTS;i++){
@@ -149,8 +150,8 @@ public class TerrainShader extends ShaderProgram {
     }
 
     /**
-     *
-     * @param projection
+     * Method that loads up the projection Matrix
+     * @param projection Matrix4f, this is a matrix containing the projection.
      */
     public void loadProjectionMatrix(Matrix4f projection){
         super.loadMatrix(location_projectionMatrix,projection);
