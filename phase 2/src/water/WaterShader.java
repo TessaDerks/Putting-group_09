@@ -40,7 +40,7 @@ public class WaterShader extends ShaderProgram {
 		location_moveFactor = getUniformLocation("location_moveFactor");
 
 	}
-// connection of texture Units
+
 	public void connectTextureUnits(){
 		super.loadInt(location_reflectionTexture,0);
 		super.loadInt(location_refractionTexture,1);
@@ -51,15 +51,27 @@ public class WaterShader extends ShaderProgram {
 		super.loadFloat(location_moveFactor, factor);
 	}
 
+	/**
+	 * Method that loads up the projection Matrix.
+	 * @param projection Matrix4f, the matrix that will be set as the projectionMatrix.
+	 */
 	public void loadProjectionMatrix(Matrix4f projection) {
 		loadMatrix(location_projectionMatrix, projection);
 	}
 
+	/**
+	 * Method that loads up the view Matrix,
+	 * @param camera Camera, this is the camera that gets set up as the viewing Matrix.
+	 */
 	public void loadViewMatrix(Camera camera){
 		Matrix4f viewMatrix = Maths.createViewMatrix(camera);
 		loadMatrix(location_viewMatrix, viewMatrix);
 	}
 
+	/**
+	 * Method that loads up the model Matrix
+	 * @param modelMatrix Matrix4f, this is the matrix that gets set as the modelMatrix.
+	 */
 	public void loadModelMatrix(Matrix4f modelMatrix){
 		loadMatrix(location_modelMatrix, modelMatrix);
 	}
