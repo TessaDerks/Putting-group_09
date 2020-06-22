@@ -14,7 +14,7 @@ public class ShuntingYard {
                 Operator(int p) { precedence = p; }
             }
 
-            private static Map<String, Operator> ops = new HashMap<String, Operator>() {{
+    private static Map<String, Operator> ops = new HashMap<String, Operator>() {{
                 put("+", Operator.ADD);
                 put("-", Operator.SUBTRACT);
                 put("*", Operator.MULTIPLY);
@@ -33,14 +33,19 @@ public class ShuntingYard {
      *
      * @param op
      * @param sub
-     * @return
+     * @return boolean isHigherPrec
      */
     private static boolean isHigerPrec(String op, String sub)
             {
                 return (ops.containsKey(sub) && ops.get(sub).precedence >= ops.get(op).precedence);
             }
 
-            public static @NotNull String postfix(@NotNull String infix) {
+    /**
+     * postfix method
+     * @param infix
+     * @return String
+     */
+    public static @NotNull String postfix(@NotNull String infix) {
                 StringBuilder output = new StringBuilder();
                 Deque<String> stack = new LinkedList<>();
 

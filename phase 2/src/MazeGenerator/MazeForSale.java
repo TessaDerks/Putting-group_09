@@ -37,6 +37,7 @@ public class MazeForSale {
     /**
      * Method that generates the maze based on prim's algorithm
      */
+
     private void generate() {
             int di[] = { -1 , 1 , 0 , 0 };
             int dk[] = {  0 , 0 , -1 , 1 };

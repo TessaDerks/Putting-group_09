@@ -11,7 +11,7 @@ public class SinglyLinkedListStack<T> {
     }
 
     /**
-     *
+     * push element to the stack
      * @param element
      */
     public void push(T element) {
@@ -27,8 +27,8 @@ public class SinglyLinkedListStack<T> {
     }
 
     /**
-     *
-     * @return
+     * pop element of the stack
+     * @return topData
      */
     public T pop() {
         if(head == null)
@@ -43,6 +43,10 @@ public class SinglyLinkedListStack<T> {
         }
     }
 
+    /**
+     * size of the stack
+     * @return size
+     */
     public int size() {
         return size;
     }
@@ -52,7 +56,7 @@ public class SinglyLinkedListStack<T> {
         private Node<T> next;
 
         /**
-         *
+         * Constructor
          * @param data
          */
         public Node(T data) {
