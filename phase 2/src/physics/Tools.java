@@ -54,13 +54,22 @@ public class Tools {
      * @return Vector2d, checker flag used to determine if ball is on left or right side of actual flag
      */
     @Contract("_, _ -> new")
-    public static @NotNull Vector2d adjustFlagPosition(@NotNull Vector2d start, @NotNull Vector2d flag){
-        double angleFlag = Math.atan((flag.get_y()-start.get_y())/(flag.get_x()-start.get_x()));
+    public static @NotNull Vector2d adjustFlagPosition(@NotNull Vector2d start, @NotNull Vector2d flag) {
+        double angleFlag = Math.atan((flag.get_y() - start.get_y()) / (flag.get_x() - start.get_x()));
         angleFlag = Math.toDegrees(angleFlag);
-        double magnitude = Math.sqrt(Math.pow(flag.get_x()-start.get_x(),2)+Math.pow(flag.get_y()-start.get_y(),2));
-        double angleChecker = angleFlag+0.01;
-        Vector2d temp = velFromAngle(angleChecker,magnitude);
-        return new Vector2d(temp.get_y()+start.get_x(),temp.get_x()+start.get_y());
+        System.out.println(angleFlag);
+        double magnitude = Math.sqrt(Math.pow(flag.get_x() - start.get_x(), 2) + Math.pow(flag.get_y() - start.get_y(), 2));
+        System.out.println(magnitude);
+        double angleChecker = angleFlag + 0.01;
+        Vector2d temp = velFromAngle(angleChecker, magnitude);
+        System.out.println(temp.toString());
+        if (start.get_x() <= flag.get_x() || start.get_y() <= flag.get_y()) {
+            return new Vector2d(temp.get_y() + start.get_x(), temp.get_x() + start.get_y());
+        }
+        else {
+            return new Vector2d(Math.abs(temp.get_y() - start.get_x()), Math.abs(temp.get_x() - start.get_y()));
+        }
+
     }
 
     /**
