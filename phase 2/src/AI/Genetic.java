@@ -79,6 +79,7 @@ class Genetic {
 
     /**
      * Checks whether the ball is on the left side or on the right side regarding the hole
+     *
      * @return boolean returns true for a ball on the left side of the hole and false for a ball on the right side
      */
     public boolean leftOfHole(){
@@ -88,11 +89,14 @@ class Genetic {
 
         // adjust the flag a little to the left and make a checker flag
         Vector2d checker = Tools.adjustFlagPosition(start, end);
+        System.out.println(checker.toString());
         // calculate the distance to the flag and to the checker
         double disFlag = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - end.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - end.get_y(), 2));
         double disCheck = Math.sqrt(Math.pow(putting.get_ball_position().get_x() - checker.get_x(), 2) + Math.pow(putting.get_ball_position().get_y() - checker.get_y(), 2));
+        System.out.println(disCheck);
+        System.out.println(disFlag);
         // if the flag is further away than the checker, the ball is on the left side of the flagd
-        if(disFlag <= disCheck){
+        if(disFlag >= disCheck){
             ret = true;
         }
         return ret;
@@ -116,6 +120,7 @@ class Genetic {
                 if(leftRight){ angle += adjusting; }
                 else{ angle -= adjusting; }
             }
+            System.out.println(angle);
             /*
             if(angle >= 360) {
                 angle = 0.0;
