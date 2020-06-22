@@ -67,6 +67,12 @@ public class SIESolver implements PhysicsEngine {
         }
     }
 
+    public void findSand(){
+        for(Sand s : SimulateMain.simulator.get_course().getSandList()){
+
+        }
+    }
+
     //<editor-fold desc="Calculators">
 
     @Override
