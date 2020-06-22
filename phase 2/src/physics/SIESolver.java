@@ -40,6 +40,7 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public void actTimestep(){
+        findSand();
         recalculate();
 
         double newPX,newPY,newVX,newVY;
@@ -61,15 +62,21 @@ public class SIESolver implements PhysicsEngine {
         v = new Vector2d(newVX,newVY);
 
         t = Tools.advRound(t+dt,6);
-
-        if(mu != muBase){
-            mu = muBase;
-        }
     }
 
+    /**
+     * Change friction coeficient if ball is on or not on sand
+     */
     public void findSand(){
         for(Sand s : SimulateMain.simulator.get_course().getSandList()){
-
+            double cs = s.coordInSand(p);
+            if(cs != -1){
+                System.out.println("Sand at "+p.toString());
+                mu = s.getFriction();
+            }
+            else{
+                mu = muBase;
+            }
         }
     }
 
@@ -83,16 +90,6 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public void recalculate(){
-
-        if(SimulateMain.simulator != null) {
-
-            for (Sand s : SimulateMain.simulator.get_course().getSandList()) {
-                if (s.coordInSand(p)) {
-                    mu = s.getFriction();
-                    break;
-                }
-            }
-        }
         G = calcG();
         H = calcH();
         F = calcF();

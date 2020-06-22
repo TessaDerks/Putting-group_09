@@ -80,7 +80,7 @@ public class SimulateMain {
         graphics.setColor(Color.BLUE);
 
         for(int i = 0; i< _sandPositions.size(); i = i+2){
-            Sand s = new Sand(_sandPositions.get(i), _sandPositions.get(i+1), 0.8);
+            Sand s = new Sand(_sandPositions.get(i), _sandPositions.get(i+1), 0.9);
             course.addSand(s);
 
             graphics.fillRect((int)_sandPositions.get(i).get_x(),(int) _sandPositions.get(i).get_y(), (int) _sandPositions.get(i+1).get_x(),(int) _sandPositions.get(i+1).get_y());
