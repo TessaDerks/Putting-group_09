@@ -9,7 +9,12 @@ public class WaterTile {
 	private float height;
 	private float x,z;
 
-// Constructor of Water Tile
+	/**
+	 * Constructor for the waterTiles.
+	 * @param centerX float, center position of the x-coordinate.
+	 * @param centerZ float, center position of the y-coordinate.
+	 * @param height float, height position of the waterTile.
+	 */
 	public WaterTile(float centerX, float centerZ, float height){
 		this.x = centerX;
 		this.z = centerZ;

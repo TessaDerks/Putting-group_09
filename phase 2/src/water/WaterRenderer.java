@@ -27,7 +27,14 @@ public class WaterRenderer {
 	private WaterFrameBuffers fbos;
 
 	private float moveFactor = 0;
-// Constructor for the Water Renderer
+
+	/**
+	 * Constructor for the water Renderer.
+	 * @param loader Loader, loader that sets up the VAO.
+	 * @param shader WaterShader, this is the shader for the water.
+	 * @param projectionMatrix Matrix4f, this is the projection matrix of the waterrenderer.
+	 * @param fbos WaterFrameBuffers, this are the water frame buffers of the water renderer.
+	 */
 	public WaterRenderer(Loader loader, WaterShader shader, Matrix4f projectionMatrix, WaterFrameBuffers fbos) {
 		this.shader = shader;
 		this.fbos = fbos;
@@ -37,7 +44,12 @@ public class WaterRenderer {
 		shader.stop();
 		setUpVAO(loader);
 	}
-// Render method for water
+
+	/**
+	 * Method that renders the waterTiles.
+	 * @param water List<WaterTile>, List of waterTiles that will be rendered.
+	 * @param camera Camera, camera that will be rendered and set as the viewMatrix by the prepareRender method.
+	 */
 	public void render(List<WaterTile> water, Camera camera) {
 		prepareRender(camera);	
 		for (WaterTile tile : water) {
@@ -49,7 +61,11 @@ public class WaterRenderer {
 		}
 		unbind();
 	}
-// Preparation of water render
+
+	/**
+	 * Method that prepares the shaders for rendering.
+	 * @param camera Camera, this camera gets loaded as the view Matrix.
+	 */
 	private void prepareRender(Camera camera){
 		shader.start();
 		shader.loadViewMatrix(camera);
@@ -63,12 +79,14 @@ public class WaterRenderer {
 		GL46.glActiveTexture(GL46.GL_TEXTURE1);
 		GL46.glBindTexture(GL46.GL_TEXTURE_2D, fbos.getRefractionTexture());
 	}
+
 // unbinding of vertex and shaders
 	private void unbind(){
 		GL20.glDisableVertexAttribArray(0);
 		GL30.glBindVertexArray(0);
 		shader.stop();
 	}
+
 // Creation of Vertex Array Object
 	private void setUpVAO(Loader loader) {
 		// Just x and z vertex positions here, y is set to 0 in v.shader

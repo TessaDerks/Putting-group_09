@@ -9,15 +9,15 @@ class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
     private double estimatedScore;
 
     /**
-     *
-     * @param current
+     * Constructor for first node
+     * @param current T, starting node
      */
     RouteNode(T current){
         this(current, null, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
     }
 
     /**
-     *
+     *  Constructor for all nodes but the first
      * @param current
      * @param previous
      * @param routeScore
