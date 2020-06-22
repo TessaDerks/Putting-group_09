@@ -10,6 +10,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class GenerateNodes{
 
     private Graph<CheckPoint> maze;

@@ -1,5 +1,8 @@
 package mazeAI;
 
+/**
+ * @author Stijn Hennissen
+ */
 public interface Scorer<T extends GraphNode> {
     /**
      *

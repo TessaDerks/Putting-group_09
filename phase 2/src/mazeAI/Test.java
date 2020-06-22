@@ -7,6 +7,9 @@ import physics.Vector2d;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Test {
     public static void main(String[] args){
         Function f = new Function("cos ( x ) + cos ( y ) + 1", 1);

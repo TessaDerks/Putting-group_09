@@ -8,6 +8,9 @@ import physics.Vector2d;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class RouteDivider {
     private List<CheckPoint> route;
     private List<Shot> shots = new ArrayList<>();

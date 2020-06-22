@@ -2,6 +2,9 @@ package mazeAI;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Stijn Hennissen
+ */
 class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
     private final T current;
     private T previous;

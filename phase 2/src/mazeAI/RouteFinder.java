@@ -6,6 +6,9 @@ import physics.Vector2d;
 
 import java.util.*;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class RouteFinder<T extends GraphNode> {
     private final Graph<T> graph;
     private final Scorer<T> nextNodeScorer;

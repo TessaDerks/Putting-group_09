@@ -2,6 +2,9 @@ package mazeAI;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class PietScorer<T> implements Scorer<CheckPoint>{
     /**
      * Computes the score in between two checkpoints

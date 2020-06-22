@@ -2,6 +2,9 @@ package mazeAI;
 
 import physics.Vector2d;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Shot {
     private Vector2d start;
     private Vector2d end;

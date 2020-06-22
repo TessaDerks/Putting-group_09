@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class Graph<T extends GraphNode> {
     private final Set<T> nodes; // Set of all nodes in our Graph
     private final Map<String, Set<String>> connections; // Mapping of node id's to all id's connected to this node

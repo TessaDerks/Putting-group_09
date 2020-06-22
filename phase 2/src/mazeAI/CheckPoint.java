@@ -1,5 +1,8 @@
 package mazeAI;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class CheckPoint implements GraphNode {
     private final String id;
     private final double x;

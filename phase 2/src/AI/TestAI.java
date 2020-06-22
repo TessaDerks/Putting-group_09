@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 import static mazeAI.Test.cToId;
 
+/**
+ * @author Stijn Hennissen
+ */
 public class TestAI {
 
     private static List<Shot> botShots = new ArrayList<>();
