@@ -65,7 +65,7 @@ public class SIESolver implements PhysicsEngine {
     }
 
     /**
-     * Change friction coeficient if ball is on or not on sand
+     * Change friction coefficient if ball is on or not on sand
      */
     public void findSand(){
         for(Sand s : SimulateMain.simulator.get_course().getSandList()){
