@@ -13,7 +13,9 @@ public class MazeForSale {
 
         Cell maze[][];
 
-
+    /**
+     * Constructor
+     */
     public MazeForSale() {
             maze = new Cell[0][0];
         }
@@ -98,7 +100,7 @@ public class MazeForSale {
      * @param set
      * @param di
      * @param dk
-     * @return boolean check, false if location isnt valid, otherwise true
+     * @return boolean check, false if location isn't valid, otherwise true
      */
         private boolean check ( Cell cell , int set, int[] di, int[] dk ) {
             for ( int w = 0 ; w < di.length ; ++w ) {
