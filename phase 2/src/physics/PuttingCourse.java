@@ -22,16 +22,36 @@ public class PuttingCourse {
     //</editor-fold>
 
     /**
-     *
-     * @param _height
-     * @param _flag
-     * @param _start
+     * Constructor
+     * @param _height Function2d, height mapping of the course
+     * @param _flag Vector2d, position of the flag
+     * @param _start Vector2d, starting position of the ball
      */
     public PuttingCourse(Function2d _height, Vector2d _flag, Vector2d _start){
         height = _height;
         flag = _flag;
         start = _start;
     }
+
+    /**
+     * Check if a specific node collides with any tree
+     * @param p Vector2d, position of the node
+     * @return boolean, true if node collides with any tree, false otherwise
+     */
+    public boolean nodeOnTree(Vector2d p) {
+        for(Tree t : treeList){
+            if(t.AITreeHit(p)){
+                return true;
+            }
+        }
+        for(Tree t : stumpList){
+            if(t.AITreeHit(p)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     //<editor-fold desc="Setters">
     public void set_mu(double _mu){
@@ -57,10 +77,9 @@ public class PuttingCourse {
     public void addStump(Tree t){
         stumpList.add(t);
     }
-
-
     //</editor-fold>
 
+    //<editor-fold desc="Getters">
     public double get_friction_coefficient(){
         return mu;
     }
