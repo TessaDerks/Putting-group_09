@@ -84,23 +84,5 @@ public class PuttingCourse {
     public List<Tree> getStumpList() {
         return stumpList;
     }
-    /**
-     *
-     * @param p
-     * @return
-     */
-    public boolean nodeOnTree(Vector2d p) {
-        for(Tree t : treeList){
-            if(t.AITreeHit(p)){
-                return true;
-            }
-        }
-        for(Tree t : stumpList){
-            if(t.AITreeHit(p)){
-                return true;
-            }
-        }
-        return false;
-    }
     //</editor-fold>
 }
