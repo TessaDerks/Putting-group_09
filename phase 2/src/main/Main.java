@@ -124,7 +124,7 @@ public class Main implements Runnable {
 
 	/**
 	 * create window with terrain
-	 * @throws Exception
+	 * @throws Exception if OBJFileLoader couldn't load model or Loader couldn't load texture
 	 */
 	public void init() throws Exception {
 		window = new Window(WIDTH, HEIGHT, "Game");

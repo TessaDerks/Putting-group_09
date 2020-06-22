@@ -66,7 +66,7 @@ public class Loader {
      * Loading of a texture file
      * @param fileName String the name of the file
      * @return int returns an integer that identifies a texture.
-     * @throws IOException
+     * @throws IOException Throws exception when it cannot read .png file.
      */
     public int loadTexture(String fileName) throws IOException {
         Texture texture = null;
@@ -99,7 +99,7 @@ public class Loader {
 
     /**
      * Cube Map Loader, loads up 6 textures of the Cube Map
-     * @param textureFiles
+     * @param textureFiles String[], the name of the texture files
      * @return int returns an integer that identifies a texture.
      */
     public int loadCubeMap(String[] textureFiles){

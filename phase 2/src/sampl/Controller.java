@@ -114,7 +114,7 @@ public class Controller implements Initializable {
 
     /**
      * read textfields from GUI for terrain settings and send those to the game
-     * @throws IOException
+     * @throws IOException if textfields are empty
      */
     @FXML
     private void applyMan() throws IOException {
@@ -189,7 +189,7 @@ public class Controller implements Initializable {
 
     /**
      * create random heightmap for terrain witht the use of perlin noise
-     * @throws IOException
+     * @throws IOException if textfields are empty or filereader can't read file
      */
     @FXML
     private void randomNoiseGenerate() throws IOException {
@@ -230,7 +230,7 @@ public class Controller implements Initializable {
 
     /**
      * read textfields for file names to send to filereader to get terrain information
-     * @throws IOException
+     * @throws IOException if textfields are empty
      */
     @FXML
     private void applyFile() throws IOException {
