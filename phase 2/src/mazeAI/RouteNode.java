@@ -18,10 +18,10 @@ class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
 
     /**
      *  Constructor for all nodes but the first
-     * @param current
-     * @param previous
-     * @param routeScore
-     * @param estimatedScore
+     * @param current T, node getting looked at
+     * @param previous T, node connection came from
+     * @param routeScore double, score of the route up to this point
+     * @param estimatedScore double expected score if this route is continued
      */
     RouteNode(T current, T previous, double routeScore, double estimatedScore) {
         this.current = current;
