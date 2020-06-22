@@ -13,7 +13,9 @@ public class MazeForSale {
 
         Cell maze[][];
 
-
+    /**
+     * Constructor
+     */
     public MazeForSale() {
             maze = new Cell[0][0];
         }
