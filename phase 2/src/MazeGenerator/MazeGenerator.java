@@ -141,7 +141,7 @@ public class MazeGenerator
      * @return
      */
 
-    public static ArrayList<Tree> removeDuplicates() {
+    public static @NotNull ArrayList<Tree> removeDuplicates() {
 
         ArrayList<Tree> treeList = new ArrayList<>();
         List<Vector2d> newList = new ArrayList<Vector2d>();
@@ -174,7 +174,7 @@ public class MazeGenerator
         return treeList;
     }
 
-    public static ArrayList<Tree> createMaze(){
+    public static @NotNull ArrayList<Tree> createMaze(){
 
        width = 10;
        height = 10;

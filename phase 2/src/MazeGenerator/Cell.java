@@ -1,6 +1,8 @@
 package MazeGenerator;
 
 
+import org.jetbrains.annotations.NotNull;
+
 public class Cell {
     public int i;
     public int k;
@@ -18,7 +20,12 @@ public class Cell {
         set = -1;
     }
 
-    public void connect(String dir , Cell neighbour ) {
+    /**
+     *
+     * @param dir
+     * @param neighbour
+     */
+    public void connect(@NotNull String dir , Cell neighbour ) {
         if ( dir.charAt(0) == 'l' ) {
             left = neighbour;
             neighbour.right = this;
@@ -36,6 +43,12 @@ public class Cell {
             neighbour.up = this;
         }
     }
+
+    /**
+     *
+     * @param dir
+     * @param neighbour
+     */
     public void connect(int dir , Cell neighbour ) {
         if ( dir == 0 ) {
             connect("up",neighbour);
