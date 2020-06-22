@@ -80,6 +80,7 @@ public class MazeForSale {
      * @param cell, first cell selected
      * @param cell2, second sell selected
      */
+
         private void merge(Cell cell, Cell cell2) {
             int set = cell2.getSet();
             for ( int i = 0 ; i < maze.length ; ++i ) {

@@ -14,6 +14,7 @@ public class SinglyLinkedListStack<T> {
      * push element to the stack
      * @param element
      */
+
     public void push(T element) {
         if(head == null) {
             head = new Node(element);

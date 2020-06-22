@@ -35,6 +35,7 @@ public class ShuntingYard {
      * @param sub
      * @return boolean isHigherPrec
      */
+
     private static boolean isHigerPrec(String op, String sub)
             {
                 return (ops.containsKey(sub) && ops.get(sub).precedence >= ops.get(op).precedence);
