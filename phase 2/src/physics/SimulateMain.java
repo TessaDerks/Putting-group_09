@@ -38,7 +38,7 @@ public class SimulateMain {
      * @param _sandPositions ArrayList<Vector2d>, list of position of sand spaces
      * @param _heightMap String, name of file with heightmap to describe terrain
      * @param _stumps ArrayList<Tree>, list of stumps for maze
-     * @throws IOException
+     * @throws IOException if one or more parameters are empty
      */
     public static void beginning(double _g, double _m, double _mu, double _vmax, double _tol, Vector2d _start, Vector2d _goal, String _height, int _version, @NotNull ArrayList<Vector2d> _treePositions, ArrayList<Vector2d> _sandPositions, String _heightMap, ArrayList<Tree> _stumps) throws IOException {
 

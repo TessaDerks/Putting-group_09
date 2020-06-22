@@ -24,8 +24,6 @@ public class FileReader {
     private static Vector2d start;
     private static Vector2d goal;
 
-    // read file about shots, create array with shots
-
     /**
      * read file and make list of shots
      * @param fileName String, name of file that contains list with shots
@@ -95,7 +93,7 @@ public class FileReader {
     /**
      * read file to pass information about terrain
      * @param path1 String, name of file that gets read
-     * @throws IOException
+     * @throws IOException if parameters of beginning method are empty
      */
     public void fileRead(String path1) throws IOException {
 

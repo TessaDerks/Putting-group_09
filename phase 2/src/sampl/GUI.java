@@ -23,7 +23,7 @@ public class GUI extends Application {
     /**
      * load main screen of GUI for the game
      * @param primaryStage Stage
-     * @throws IOException
+     * @throws IOException if loader can't load screen
      */
     @Override
     public void start(@NotNull Stage primaryStage) throws IOException {
