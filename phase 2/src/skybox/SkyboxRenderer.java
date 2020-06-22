@@ -73,9 +73,9 @@ public class SkyboxRenderer {
 // Constructor for skybox
 
     /**
-     *
-     * @param loader
-     * @param projectionMatrix
+     * Render method for the skybox.
+     * @param loader Loader, loader that will be used to render the skybox with.
+     * @param projectionMatrix Matrix4f, projection matrix that will be used for the skybox.
      */
     public SkyboxRenderer(@NotNull Loader loader, Matrix4f projectionMatrix){
 
@@ -91,11 +91,11 @@ public class SkyboxRenderer {
 // Render method
 
     /**
-     *
-     * @param camera
-     * @param r
-     * @param g
-     * @param b
+     * Method that renders the shaders of the skybox.
+     * @param camera Camera, camera that will be set as the viewMatrix.
+     * @param r float, value of red colour that will be loaded as the Fog colour.
+     * @param g float, value of green colour that will be loaded as the Fog colour.
+     * @param b float, value of blue colour that will be loaded as the Fog colour.
      */
     public void render(Camera camera, float r, float g, float b){
 

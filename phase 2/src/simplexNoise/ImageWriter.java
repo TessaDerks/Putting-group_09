@@ -11,10 +11,7 @@ import javax.imageio.ImageIO;
 public class ImageWriter {
     //just convinence methods for debug
 
-    /**
-     *
-     * @param data
-     */
+
     public static void greyWriteImage(double[] @NotNull [] data){
         //this takes and array of doubles between 0 and 1 and generates a grey scale image from them
 

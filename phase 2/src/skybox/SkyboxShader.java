@@ -31,16 +31,16 @@ public class SkyboxShader extends ShaderProgram{
     }
 
     /**
-     *
-     * @param matrix
+     * Method that loads up the projection Matrix
+     * @param matrix Matrix4f, this is a matrix containing the projection.
      */
     public void loadProjectionMatrix(Matrix4f matrix){
         super.loadMatrix(location_projectionMatrix, matrix);
     }
 
     /**
-     *
-     * @param camera
+     * Method that loads the viewMatrix
+     * @param camera Camera, assigns the camera as the viewMatrix and loads it up.
      */
     public void loadViewMatrix(Camera camera){
         Matrix4f matrix = Maths.createViewMatrix(camera);
@@ -53,10 +53,10 @@ public class SkyboxShader extends ShaderProgram{
     }
 
     /**
-     *
-     * @param r
-     * @param g
-     * @param b
+     * Method that loads up the fog colour
+     * @param r float, value that represents red colour.
+     * @param g float, value that represents green colour.
+     * @param b float, value that represents blue colour.
      */
     public void loadFogColour(float r, float g, float b){
         super.loadVector(location_fogColour, new Vector3f(r,g,b));
@@ -68,8 +68,8 @@ public class SkyboxShader extends ShaderProgram{
     }
 
     /**
-     *
-     * @param blend
+     * Method that loads the blend factor for the skybox shader.
+     * @param blend float, value that represents the blend.
      */
     public void loadBlendFactor(float blend){
         super.loadFloat(location_blendFactor, blend);
