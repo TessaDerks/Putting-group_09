@@ -88,7 +88,7 @@ public class SimulateMain {
         ImageIO.write(blendMap, "png", new File("res/blendMap.png"));
 
         // create physics engine and set all variables
-        PhysicsEngine engine = new SIESolver(start);
+        PhysicsEngine engine = new RungeKuttaSolver(start);
         engine.set_step_size(0.01);
         engine.set_h(function);
         engine.set_m(_m);
