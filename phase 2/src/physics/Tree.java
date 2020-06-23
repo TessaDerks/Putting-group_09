@@ -34,7 +34,7 @@ public class Tree {
      * @return boolean, true when the point collides or is too close to with the tree, false otherwise
      */
     public boolean AITreeHit(@NotNull Vector2d bp){
-        return (Math.sqrt(Math.pow(bp.get_x() - p.get_x(),2) + Math.pow(bp.get_y() - p.get_y(),2))) <= r*1.2;
+        return (Math.sqrt(Math.pow(bp.get_x() - p.get_x(),2) + Math.pow(bp.get_y() - p.get_y(),2))) <= r*1.5;
     }
 
     public Vector2d getP() {

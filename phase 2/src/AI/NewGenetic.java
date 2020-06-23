@@ -124,7 +124,16 @@ public class NewGenetic {
 
             }
             generation++;
+        }            TestAI.addBotShots(new Shot(angle,population[0].getSpeed()));
+        System.out.println("Congrats! Bot made a hole in one!");
+        if(!testCase){
+            putting.get_engine().resetPosition(SimulateMain.getStart());
+            putting.take_shot( Tools.velFromAngle(angle, population[0].getSpeed()), false);
+            Main.takingShot = true;
+            Main.openNewWindow = true;
         }
+        System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
+
     }
     public void changeAngle() {
         if (leftRight == leftOfHole()) { // if the ball lays on the same side as before, dont change the adjusting angle

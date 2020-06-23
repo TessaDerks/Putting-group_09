@@ -16,13 +16,11 @@ public class SimulateGenetic {
      * @param end Vector2d
      */
     public static void initialize(int popSize, Vector2d start, Vector2d end){
-        Genetic gen = new Genetic(popSize,start,end);
+        NewGenetic gen = new NewGenetic(popSize,start,end);
         gen.initializePopulation();
-        gen.cocktailShaker();
+        gen.alternateGenetic();
 
-            gen.takeFirstShot();
-            gen.finishGame();
-            System.out.println("Your bot scored after " + gen.getGeneration() + " generations!");
+        System.out.println("Your bot scored after " + gen.getGeneration() + " generations!");
 
         lastEnd = gen.getPopulation()[0].getPosition();
     }
