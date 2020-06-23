@@ -8,6 +8,10 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author gajduk
+ * source-link: https://github.com/gajduk/text-maze-generation
+ */
 
 public class MazeForSale {
 
