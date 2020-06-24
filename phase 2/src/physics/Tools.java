@@ -57,12 +57,9 @@ public class Tools {
     public static @NotNull Vector2d adjustFlagPosition(@NotNull Vector2d start, @NotNull Vector2d flag) {
         double angleFlag = Math.atan((flag.get_y() - start.get_y()) / (flag.get_x() - start.get_x()));
         angleFlag = Math.toDegrees(angleFlag);
-        System.out.println(angleFlag);
         double magnitude = Math.sqrt(Math.pow(flag.get_x() - start.get_x(), 2) + Math.pow(flag.get_y() - start.get_y(), 2));
-        System.out.println(magnitude);
         double angleChecker = angleFlag + 0.01;
         Vector2d temp = velFromAngle(angleChecker, magnitude);
-        System.out.println(temp.toString());
         if (start.get_x() <= flag.get_x() || start.get_y() <= flag.get_y()) {
             return new Vector2d(temp.get_y() + start.get_x(), temp.get_x() + start.get_y());
         }
