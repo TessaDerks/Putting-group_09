@@ -115,7 +115,7 @@ public class NewGenetic {
         leftRight = leftOfHole();
         int clearance = 1;
         while(!putting.calcWin(population[0].getPosition(), end, clearance)){
-            if (adjusting > 0.1) {
+            if (adjusting > 0.01) {
                 changeAngle();
                 changeSpeed(3);
             }
