@@ -102,15 +102,13 @@ public class Controller implements Initializable {
     @FXML
     private TextField heightString;
 
-    @FXML
-    private TextField treeRadiusString;
 
     private ArrayList<Vector2d> treesList = new ArrayList<>();
     private ArrayList<Vector2d> sandList = new ArrayList<>();
     private ArrayList<Tree> stumps = new ArrayList<>();
     public double treeRadius;
     public static int line;
-    private static final int MAZE_DIVIDED_BY_TWO = 8;
+    private static final int MAZE_DIVIDED_BY_TWO = 10;
 
     /**
      * read textfields from GUI for terrain settings and send those to the game
@@ -140,7 +138,7 @@ public class Controller implements Initializable {
     @FXML
     private void mazeGeneration() {
 
-        treeRadius = Double.parseDouble(treeRadiusString.getText());
+        treeRadius = 0.5;
 
         MazeForSale maze = new MazeForSale(MAZE_DIVIDED_BY_TWO,MAZE_DIVIDED_BY_TWO);
         line = 0;
@@ -246,8 +244,8 @@ public class Controller implements Initializable {
     private void applyRandomTrees(){
 
         for(int i = 0; i< 15; i++){
-            double x = Math.random() * (800 + 1);
-            double y = Math.random() * (800 + 1);
+            double x = Math.random() * (256 + 1);
+            double y = Math.random() * (256 + 1);
             Vector2d tree = new Vector2d(x, y);
             treesList.add(tree);
         }
@@ -257,7 +255,7 @@ public class Controller implements Initializable {
     private void applyTreesButton(){
         double x = Double.parseDouble(treePosX.getText());
         double y = Double.parseDouble(treePosY.getText());
-        treeRadius = Double.parseDouble(treeRadiusString.getText());
+        treeRadius = 0.5;
         Vector2d tree = new Vector2d(x,y);
         treesList.add(tree);
     }
@@ -272,12 +270,12 @@ public class Controller implements Initializable {
     private void applyRandomSand(){
 
         for(int i = 0; i< 15; i++){
-            double xTop = Math.random() * (800 + 1);
-            double yTop = Math.random() * (800 + 1);
+            double xTop = Math.random() * (256 + 1);
+            double yTop = Math.random() * (256 + 1);
             Vector2d sandTop = new Vector2d(xTop, yTop);
             sandList.add(sandTop);
-            double xBtm = Math.random() * (800 + 1);
-            double yBtm = Math.random() * (800 + 1);
+            double xBtm = Math.random() * (256 + 1);
+            double yBtm = Math.random() * (256 + 1);
             Vector2d sandBtm = new Vector2d(xBtm, yBtm);
             sandList.add(sandBtm);
         }
