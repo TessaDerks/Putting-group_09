@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 
 import static mazeAI.Test.cToId;
 
+/**
+ * @author Teun Hermans
+ */
+
 public class NewGenetic {
     private static Vector2d start;
     private static Vector2d end;
@@ -107,9 +111,8 @@ public class NewGenetic {
     }
 
     /**
-     * finds the final angle, by adjusting the angle based on its previous position
+     * Alternates between angle and speed to determine the final speed and angle
      */
-
     public void alternateGenetic(){
         takeFirstShot();
         leftRight = leftOfHole();
@@ -135,6 +138,10 @@ public class NewGenetic {
         System.out.println("Winning velocity: angle "+ angle + " & speed " + population[0].getSpeed());
 
     }
+
+    /**
+     * Change the angle for a certain step
+     */
     public void changeAngle() {
         if (leftRight == leftOfHole()) { // if the ball lays on the same side as before, dont change the adjusting angle
             if (leftRight) {
@@ -152,9 +159,12 @@ public class NewGenetic {
                 angle -= adjusting;
             }
         }
-        System.out.println("angle " + angle);
-        System.out.println("adjusting " + adjusting);
     }
+
+    /**
+     * Determine with a genetic algorithm what the next best time step is
+     * @param adjustSpeed double, determines how large differences you want in the speed
+     */
     public void changeSpeed(double adjustSpeed){
         int popSizeNew = popSize/2;
         double speed = population[0].getSpeed();

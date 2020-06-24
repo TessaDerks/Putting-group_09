@@ -300,6 +300,7 @@ public class Main implements Runnable {
 
 			if(Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_x(),2) == 0 && Tools.advRound(SimulateMain.simulator.get_engine().get_v().get_y(),2) == 0){
 				takingShot = false;
+				System.out.println("Position = "+SimulateMain.simulator.get_engine().get_p().toString());
 				if(aiRunning && (TestAI.shotCount < TestAI.getBotShots().size())){
 					TestAI.takeAIShot();
 				}

@@ -40,6 +40,7 @@ public class SIESolver implements PhysicsEngine {
 
     @Override
     public void actTimestep(){
+        System.out.println(t);
         findSand();
         recalculate();
 
